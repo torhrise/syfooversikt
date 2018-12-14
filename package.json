@@ -2,16 +2,19 @@
   "name": "syfooversikt",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "author": "DigiSyfo <digisyfo@nav.no>",
+  "license": "ISC",
+  "dependencies": {
+    "prop-types": "15.6.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1"
   },
   "eslintConfig": {
     "extends": "react-app"
