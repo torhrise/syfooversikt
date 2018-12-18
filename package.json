@@ -11,10 +11,17 @@
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
   "dependencies": {
-    "prop-types": "15.6.0",
+    "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.15",
+    "@types/react": "^16.7.17",
+    "@types/react-dom": "^16.0.11",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "redux": "3.5.2",
+    "redux-form": "6.6.3",
+    "redux-saga": "0.16.0",
+    "typescript": "^3.2.2"
   },
   "eslintConfig": {
     "extends": "react-app"
