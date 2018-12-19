@@ -7,7 +7,7 @@
     "start-local": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint js/. --ext .js"
+    "lint": "tslint ./app/**/*.ts*"
   },
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
@@ -25,7 +25,8 @@
     "typescript": "^3.2.2"
   },
   "devDependencies": {
-    "eslint-config-airbnb": "15.1.0"
+    "tslint": "5.7.0",
+    "tslint-react": "3.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"
