@@ -6,16 +6,6 @@ replicas:
   max: 2
   cpuThresholdPercentage: 50
 port: 8080
-healthcheck:
-  liveness:
-    path: /health/isAlive
-    initialDelay: 60
-  readiness:
-    path: /health/isReady
-    initialDelay: 60
-prometheus:
-  enabled: true
-  path: /actuator/metrics
 resources:
   limits:
     cpu: 500m
@@ -25,13 +15,3 @@ resources:
     memory: 256Mi
 ingress:
   enabled: true
-fasitResources:
-  used:
-  - alias: appres.cms
-    resourceType: baseurl
-  - alias: loginservice
-    resourceType: restservice
-  - alias: syfoapi-syfoteksterapi
-    resourceType: restservice
-  - alias: syfopersonapi
-    resourceType: restservice
