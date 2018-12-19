@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "clean": "rimraf ./public/resources/ && mkdirp ./public/resources",
+    "deploy": "node deploy.ts",
+    "nais-build": "react-scripts build",
     "start": "react-scripts build",
     "start-local": "react-scripts start",
     "test": "mocha -r ts-node/register src/test/**/*.tsx",
@@ -31,6 +34,7 @@
     "babel-core": "6.26.0",
     "ignore-styles": "5.0.1",
     "mocha": "4.0.0",
+    "npm-run-all": "4.1.5",
     "tslint": "5.7.0",
     "tslint-react": "3.2.0"
   },
