@@ -6,7 +6,8 @@
     "start": "react-scripts build",
     "start-local": "react-scripts start",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint js/. --ext .js"
   },
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
@@ -22,6 +23,10 @@
     "redux-form": "6.6.3",
     "redux-saga": "0.16.0",
     "typescript": "^3.2.2"
+  },
+  "devDependencies": {
+    "eslint": "4.8.0",
+    "eslint-config-airbnb": "15.1.0"
   },
   "eslintConfig": {
     "extends": "react-app"
