@@ -1,5 +1,3 @@
-import { Landingsside } from "./src/sider/Landingsside";
-
 const childProcess = require('child_process');
 const fs = require('fs');
 
@@ -8,7 +6,7 @@ const timestamp = Date.now().toString();
 fs.writeFile('./settings.json', JSON.stringify({
     timestamp,
     isProd: true,
-}), (error: string) => {
+}), (error) => {
     if (error) {
         console.log('Feil ved lagring av settings.');
     } else {
@@ -16,7 +14,7 @@ fs.writeFile('./settings.json', JSON.stringify({
     }
 });
 
-childProcess.exec('webpack -p --config webpack.production.config.js', (error: string, stdout: string, stderr: string) => {
+childProcess.exec('webpack -p --config webpack.production.config.js', (error, stdout, stderr) => {
     console.log('stdout: ' + stdout);
     console.log('stderr: ' + stderr);
     if (error !== null) {
