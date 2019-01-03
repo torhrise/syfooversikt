@@ -27,13 +27,12 @@ server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
 
-const renderApp = (decoratorFragments) => {
+const renderApp = () => {
     return new Promise((resolve, reject) => {
         server.render(
             'index.html',
             Object.assign(
                 {},
-                decoratorFragments,
                 settings,
             ),
             (err, html) => {
@@ -55,15 +54,15 @@ function nocache(req, res, next) {
 }
 
 const startServer = (html) => {
-    server.use(express.static(path.join(__dirname, 'dist')));
+    server.use(
+        '/syfooversikt/src/resources',
+        express.static(path.resolve(__dirname, 'dist/resources')),
+    );
 
-    server.get('/ping', function (req, res) {
-        return res.send('pong');
-    });
-
-    server.get('/', function (req, res) {
-        res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-    });
+    server.use(
+        '/syfooversikt/src/img',
+        express.static(path.resolve(__dirname, 'dist/resources/img')),
+    );
 
     server.get(
         ['/', '/syfooversikt/?', /^\/syfooversikt\/(?!(resources|img)).*$/],

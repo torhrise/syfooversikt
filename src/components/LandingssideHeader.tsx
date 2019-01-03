@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface LandingssideHeaderProps {
-    bilde: string,
+    bilde: string;
 }
 
 const LandingssideHeader = (props: LandingssideHeaderProps) => {

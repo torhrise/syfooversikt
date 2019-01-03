@@ -1,6 +1,6 @@
+import { render } from 'react-dom';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Landingsside } from './sider/Landingsside';
 import './styles/styles.css';
 
-ReactDOM.render(<Landingsside />, document.getElementById('maincontent'));
+render(<Landingsside />, document.getElementById('maincontent') as HTMLElement);

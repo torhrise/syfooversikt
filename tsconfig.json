@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es6",
     "allowJs": true,
     "skipLibCheck": false,
@@ -12,9 +13,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "react",
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true
   },
   "include": [
-    "src"
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

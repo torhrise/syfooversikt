@@ -1,21 +1,21 @@
 {
   "name": "syfooversikt",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "description": "Digitalisering av sykefraværsoppfølging",
+  "main": "index.tsx",
+  "test": "npm run test",
   "scripts": {
-    "clean": "rimraf ./public/resources/ && mkdirp ./public/resources",
+    "clean": "rimraf ./dist/resources/ && mkdirp ./dist/resources",
     "deploy": "node deploy.js",
-    "dev": "npm run scripts:watch",
-    "nais-build": "node scripts/build.js",
-    "build": "node scripts/build.js",
-    "scripts:watch": "react-dev-utils --inline --port 9090",
-    "start": "node scripts/start.js",
+    "dev": "npm-run-all clean images scripts:watch",
+    "images": "cp -R src/img dist/resources",
+    "nais-build": "npm-run-all clean deploy images",
+    "scripts:watch": "webpack-dev-server --inline --port 9090",
+    "start": "node ./server.js",
+    "start-local": "node ./server.js local",
     "test": "mocha -r ts-node/register src/test/**/*.tsx",
-    "test-watch": "node scripts/test.js",
-    "lint": "tslint ./app/**/*.ts*",
-    "start-node-test": "node ./server.js"
+    "lint": "tslint src/**/*.tsx*"
   },
-  "proxy": "http://localhost:8080",
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
   "dependencies": {
@@ -25,12 +25,12 @@
     "@types/node": "^10.12.15",
     "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
     "babel-loader": "8.0.4",
     "babel-plugin-named-asset-import": "^0.2.3",
     "babel-polyfill": "6.26.0",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-react-native": "4.0.1",
     "babel-preset-react-app": "^6.1.0",
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
@@ -76,8 +76,8 @@
     "sass-loader": "7.1.0",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
+    "tslint-config-prettier": "^1.10.0",
     "ts-node": "3.3.0",
-    "typescript": "^3.2.2",
     "url-loader": "1.1.1",
     "webpack": "4.19.1",
     "webpack-dev-server": "3.1.9",
@@ -85,23 +85,34 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.1.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-cli": "6.26.0",
     "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "8.0.1",
+    "babel-istanbul": "0.12.2",
+    "babel-plugin-istanbul": "4.1.5",
+    "babel-preset-env": "1.6.0",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-0": "6.24.1",
+    "babel-runtime": "6.26.0",
+    "babelify": "7.3.0",
     "dotenv-webpack": "1.5.7",
     "ignore-styles": "5.0.1",
+    "mkdirp": "0.5.1",
     "mocha": "4.0.0",
     "npm-run-all": "4.1.5",
+    "rimraf": "2.6.2",
+    "source-map-loader": "^0.2.4",
+    "svg-url-loader": "2.3.2",
     "tslint": "5.7.0",
-    "tslint-react": "3.2.0"
+    "tslint-react": "3.2.0",
+    "typescript": "^3.2.2",
+    "webpack-cli": "3.1.0"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
@@ -141,11 +152,6 @@
       "web.jsx",
       "jsx",
       "node"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
     ]
   }
 }
