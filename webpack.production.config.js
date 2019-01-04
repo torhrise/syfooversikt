@@ -2,9 +2,15 @@ var Webpack = require('webpack');
 var path = require('path');
 var buildPath = path.resolve(__dirname, 'dist/resources');
 var mainPath = path.resolve(__dirname, 'src', 'index.tsx');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var autoprefixer = require('autoprefixer');
 var Dotenv = require('dotenv-webpack');
 
 var config = function () {
+    var extractCss = new MiniCssExtractPlugin({
+        filename: 'styles.css',
+        disable: false,
+    });
     return {
         // We change to normal source mapping
         devtool: 'source-map',
@@ -15,6 +21,7 @@ var config = function () {
         },
         mode: 'production',
         resolve: {
+            extensions: ['.js', '.json', '.ts', '.tsx'],
             alias: {
                 react: path.join(__dirname, 'node_modules', 'react'),
             },
@@ -67,20 +74,24 @@ var config = function () {
                         // It enables caching results in ./node_modules/.cache/babel-loader/
                         // directory for faster rebuilds.
                         cacheDirectory: true,
-                        // Don't waste time on Gzipping the cache
-                        cacheCompression: false,
+                        cacheCompression: true,
+                        compact: true,
                     },
                 },
                 {
-                    test: /\.css$/,
-                    use: [
-                        {
-                            loader: 'style-loader',
+                    test: /\.css/,
+                    use: [{
+                        loader: MiniCssExtractPlugin.loader,
+                    }, {
+                        loader: 'css-loader',
+                    }, {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: function() {
+                                return [autoprefixer];
+                            },
                         },
-                        {
-                            loader: 'css-loader',
-                        },
-                    ],
+                    }],
                 },
                 {
                     test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/,
@@ -91,6 +102,7 @@ var config = function () {
             ],
         },
         plugins: [
+            extractCss,
             new Webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"production"',
             }),
