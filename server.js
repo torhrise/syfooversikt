@@ -55,7 +55,7 @@ function nocache(req, res, next) {
 
 const startServer = (html) => {
     server.use(
-        '/syfooversikt/src/resources',
+        '/syfooversikt/resources',
         express.static(path.resolve(__dirname, 'dist/resources')),
     );
 
