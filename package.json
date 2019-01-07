@@ -9,37 +9,38 @@
     "deploy": "node deploy.js",
     "dev": "npm-run-all clean images scripts:watch",
     "images": "cp -R src/img dist/resources",
+    "lint": "tslint src/**/*.tsx*",
     "nais-build": "npm-run-all clean deploy images",
+    "prettier": "prettier --write src/**/*.tsx",
+    "prettier-lint": "npm-run-all prettier lint",
     "scripts:watch": "webpack-dev-server --inline --port 9090",
     "start": "node ./server.js",
     "start-local": "node ./server.js local",
-    "test": "mocha -r ts-node/register src/test/**/*.tsx",
-    "prettier-lint": "npm-run-all prettier lint",
-    "lint": "tslint src/**/*.tsx*",
-    "prettier": "prettier --write src/**/*.tsx"
+    "test": "mocha -r ts-node/register -r ignore-styles -r jsdom-global/register ./src/test/setup.ts src/test/**/*.tsx"
   },
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "7.1.0",
     "@svgr/webpack": "2.4.1",
-    "@types/jest": "^23.3.10",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/node": "^10.12.15",
     "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
-    "babel-jest": "23.6.0",
     "babel-loader": "8.0.4",
     "babel-plugin-named-asset-import": "^0.2.3",
     "babel-polyfill": "6.26.0",
     "babel-preset-react": "6.24.1",
-    "babel-preset-react-native": "4.0.1",
     "babel-preset-react-app": "^6.1.0",
+    "babel-preset-react-native": "4.0.1",
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.1.2",
     "chalk": "2.4.1",
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
+    "enzyme": "3.7.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "eslint": "5.6.0",
     "eslint-config-react-app": "^3.0.5",
     "eslint-loader": "2.1.1",
@@ -53,9 +54,6 @@
     "fs-extra": "7.0.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
-    "jest": "23.6.0",
-    "jest-pnp-resolver": "1.0.1",
-    "jest-resolve": "23.6.0",
     "mini-css-extract-plugin": "0.4.3",
     "mustache-express": "1.2.5",
     "optimize-css-assets-webpack-plugin": "5.0.1",
@@ -78,8 +76,8 @@
     "sass-loader": "7.1.0",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
-    "tslint-config-prettier": "^1.10.0",
     "ts-node": "3.3.0",
+    "tslint-config-prettier": "^1.10.0",
     "url-loader": "1.1.1",
     "webpack": "4.19.1",
     "webpack-dev-server": "3.1.9",
@@ -88,6 +86,10 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.1.0",
+    "@types/chai": "^4.1.7",
+    "@types/chai-enzyme": "^0.6.5",
+    "@types/enzyme": "^3.1.15",
+    "@types/mocha": "^5.2.5",
     "awesome-typescript-loader": "^5.2.1",
     "babel-cli": "6.26.0",
     "babel-core": "7.0.0-bridge.0",
@@ -99,10 +101,14 @@
     "babel-preset-stage-0": "6.24.1",
     "babel-runtime": "6.26.0",
     "babelify": "7.3.0",
+    "chai": "4.1.2",
+    "chai-enzyme": "^1.0.0-beta.1",
     "dotenv-webpack": "1.5.7",
     "ignore-styles": "5.0.1",
+    "jsdom": "^13.1.0",
+    "jsdom-global": "^3.0.2",
     "mkdirp": "0.5.1",
-    "mocha": "4.0.0",
+    "mocha": "5.2.0",
     "npm-run-all": "4.1.5",
     "prettier": "1.15.3",
     "rimraf": "2.6.2",
@@ -115,46 +121,5 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
-    ],
-    "resolver": "jest-pnp-resolver",
-    "setupFiles": [
-      "react-app-polyfill/jsdom"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
-    ],
-    "testEnvironment": "jsdom",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
-      "^.+\\.module\\.(css|sass|scss)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "tsx",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
   }
 }
