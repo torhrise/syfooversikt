@@ -1,5 +1,5 @@
 name: syfooversikt
-team: sykefravaer-veden
+team: teamsykefravr
 image: repo.adeo.no:5443/digisyfo/syfooversikt
 replicas:
   min: 2
