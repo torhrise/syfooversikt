@@ -6,7 +6,7 @@ export class Landingsside extends Component {
     return (
       <div className="landingsside__header">
         <LandingssideHeader bilde={'/syfooversikt/src/img/veileder.svg'} />
-        <p>Her får du en oversikt over syfoting!</p>
+        <p>Her får du en oversikt over syfo-oppgaver!</p>
       </div>
     );
   }
