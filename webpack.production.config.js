@@ -78,21 +78,29 @@ var config = function () {
                         compact: true,
                     },
                 },
-                {
-                    test: /\.css/,
-                    use: [{
-                        loader: MiniCssExtractPlugin.loader,
-                    }, {
-                        loader: 'css-loader',
-                    }, {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: function() {
-                                return [autoprefixer];
-                            },
-                        },
-                    }],
-                },
+              {
+                test: /\.(less|css)$/,
+                use: [{
+                  loader: 'style-loader',
+                }, {
+                  loader: 'css-loader',
+                }, {
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: function() {
+                      return [autoprefixer];
+                    },
+                  },
+                }, {
+                  loader: 'less-loader',
+                  options: {
+                    globalVars: {
+                      nodeModulesPath: '~',
+                      coreModulePath: '~',
+                    },
+                  },
+                }],
+              },
                 {
                     test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/,
                     use: [{
