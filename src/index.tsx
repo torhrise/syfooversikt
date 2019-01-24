@@ -1,43 +1,27 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import {
-  applyMiddleware,
-  combineReducers,
-  createStore} from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import history from './history';
 import { CONTEXT_EVENT_TYPE } from './konstanter';
-import AppRouter from './routers/AppRouter';
-import rootSaga from './store';
 import {
   hentAktivEnhet,
   pushModiaContext,
 } from './store/modiacontext/modiacontext_actions';
-import modiacontextReducer from './store/modiacontext/modiacontextReducer';
-import { ModiacontextState } from './store/modiacontext/modiacontextTypes';
-import veilederinfoReducer from './store/veilederinfo/veilederinfoReducer';
-import { VeilederinfoState } from './store/veilederinfo/veilederinfoTypes';
-import './styles/styles.css';
+import './styles/styles.less';
 import { finnMiljoStreng } from './utils/miljoUtil';
+import createHashHistory from 'history/createHashHistory';
+import configureStore from './configureStore';
+import AppRouter from './routers/AppRouter';
+import { Provider } from 'react-redux';
 
-export interface ApplicationState {
-  modiacontextReducer: ModiacontextState;
-  veilederinfoReducer: VeilederinfoState;
+const history = createHashHistory();
+
+const initialState = window.initialReduxState;
+const store = configureStore(history, initialState);
+
+if (!(window as any)._babelPolyfill) {
+  require('babel-polyfill'); // tslint:disable-line no-var-requires
 }
 
-const rootReducer = combineReducers<ApplicationState>({
-  modiacontextReducer,
-  veilederinfoReducer,
-});
-
-const sagaMiddleware = createSagaMiddleware();
-
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
-
-sagaMiddleware.run(rootSaga);
-
-export const config = {
+const config = {
   config: {
     dataSources: {
       veileder: `https://app${finnMiljoStreng()}.adeo.no/syfomoteadmin/api/veilederinfo`,
@@ -79,7 +63,7 @@ store.dispatch(
   })
 );
 
-(window as any).renderDecoratorHead(config);
+(window as any).renderDecoratorHead && (window as any).renderDecoratorHead(config); // tslint:disable-line no-unused-expression
 
 render(
   <Provider store={store}>

@@ -53,5 +53,8 @@ function* watchAktivEnhet() {
 }
 
 export default function* modiacontextSagas() {
-  yield all([fork(watchPushModiacontext), fork(watchAktivEnhet)]);
+  yield all([
+    fork(watchPushModiacontext),
+    fork(watchAktivEnhet)
+  ]);
 }

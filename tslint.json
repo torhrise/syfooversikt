@@ -17,5 +17,10 @@
     "jsx-no-string-ref": false,
     "jsx-wrap-multiline": false,
     "quotemark": [true, "single", "jsx-double"]
+  },
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**/*.ts"
+    ]
   }
 }

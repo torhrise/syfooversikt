@@ -1,7 +1,7 @@
 import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import { get } from '../../api/index';
 import * as actions from './veilederinfo_actions';
-import { VeilederinfoActiontypes } from './veilederinfoTypes';
+import { VeilederinfoActionTypes } from './veilederinfoTypes';
 
 export function* hentVeilederinfoSaga() {
   // if (skalHenteVeilederinfo ) {...
@@ -17,7 +17,7 @@ export function* hentVeilederinfoSaga() {
 
 function* watchHentVeilederinfo() {
   yield takeEvery(
-    VeilederinfoActiontypes.HENT_VEILEDERINFO_FORESPURT,
+    VeilederinfoActionTypes.HENT_VEILEDERINFO_FORESPURT,
     hentVeilederinfoSaga
   );
 }

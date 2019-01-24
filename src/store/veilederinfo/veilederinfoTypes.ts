@@ -2,7 +2,7 @@ export interface Veilederinfo {
   ident: string;
 }
 
-export const enum VeilederinfoActiontypes {
+export const enum VeilederinfoActionTypes {
   HENT_VEILEDERINFO_FORESPURT = 'HENT_VEILEDERINFO_FORESPURT',
   HENTER_VEILEDERINFO = 'HENTER_VEILEDERINFO',
   HENT_VEILEDERINFO_FEILET = 'HENT_VEILEDERINFO_FEILET',
@@ -10,8 +10,8 @@ export const enum VeilederinfoActiontypes {
 }
 
 export interface VeilederinfoState {
-  readonly hentet: false;
-  readonly henter: false;
-  readonly hentingFeilet: false;
+  readonly hentet: boolean;
+  readonly henter: boolean;
+  readonly hentingFeilet: boolean;
   readonly data: Veilederinfo;
 }

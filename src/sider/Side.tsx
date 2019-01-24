@@ -1,29 +1,33 @@
-import { Column, Container, Row } from 'nav-frontend-grid';
+import {
+  Column,
+  Container,
+  Row
+} from 'nav-frontend-grid';
 import React from 'react';
-import DocumentTitle from 'react-document-title';
 import ContextContainer from '../context/ContextContainer';
 
 interface SideProps {
   children: object;
+  tittel: string;
 }
 
-const Side = ({ children }: SideProps) => {
-  return (
-    <DocumentTitle title="Syfooversikt">
-      <Container>
-        <Row>
-          <Column className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-            <ContextContainer />
-          </Column>
-        </Row>
-        <Row>
-          <Column className="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-            {children}
-          </Column>
-        </Row>
-      </Container>
-    </DocumentTitle>
-  );
+const DocumentTitle = require('react-document-title'); // tslint:disable-line no-var-requires
+
+const Side = ({ tittel = '', children }: SideProps) => {
+  return (<DocumentTitle title={tittel + (tittel.length > 0 ? ' - Syfooversikt' : 'Syfooversikt')}>
+    <Container>
+      <Row>
+        <Column className="col-xs-12">
+          <ContextContainer />
+        </Column>
+      </Row>
+      <Row>
+        <Column className="col-xs-12 col-sm-9">
+          {children}
+        </Column>
+      </Row>
+    </Container>
+  </DocumentTitle>);
 };
 
 export default Side;

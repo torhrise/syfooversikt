@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 import {
-  VeilederinfoActiontypes,
+  VeilederinfoActionTypes,
   VeilederinfoState,
 } from './veilederinfoTypes';
 
@@ -16,25 +16,25 @@ const veilederinfoReducer: Reducer<VeilederinfoState> = (
   action
 ) => {
   switch (action.type) {
-    case VeilederinfoActiontypes.HENTER_VEILEDERINFO: {
-      return Object.assign({}, state, {
+    case VeilederinfoActionTypes.HENTER_VEILEDERINFO: {
+      return { ...state,
         henter: true,
         hentet: false,
         hentingFeilet: false,
-      });
+      };
     }
-    case VeilederinfoActiontypes.VEILEDERINFO_HENTET: {
-      return Object.assign({}, state, {
+    case VeilederinfoActionTypes.VEILEDERINFO_HENTET: {
+      return { ...state,
         henter: false,
         hentet: true,
         data: action.data,
-      });
+      };
     }
-    case VeilederinfoActiontypes.HENT_VEILEDERINFO_FEILET: {
-      return Object.assign({}, state, {
+    case VeilederinfoActionTypes.HENT_VEILEDERINFO_FEILET: {
+      return { ...state,
         henter: false,
         hentingFeilet: true,
-      });
+      };
     }
     default: {
       return state;

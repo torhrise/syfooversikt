@@ -2,7 +2,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { ApplicationState, config } from '../index';
+import { ApplicationState } from '../store';
 import { CONTEXT_EVENT_TYPE } from '../konstanter';
 import { hentAktivEnhet } from '../store/modiacontext/modiacontext_actions';
 import { HentAktivEnhetData } from '../store/modiacontext/modiacontextTypes';
@@ -11,7 +11,7 @@ import { VeilederinfoState } from '../store/veilederinfo/veilederinfoTypes';
 import { opprettWebsocketConnection } from './contextHolder';
 
 interface StateProps {
-  veilederinfoReducer: VeilederinfoState;
+  veilederinfo: VeilederinfoState;
 }
 
 interface DispatchProps {
@@ -24,8 +24,8 @@ interface DispatchProps {
 type ContextContainerProps = StateProps & DispatchProps;
 
 const opprettWSConnection = (props: ContextContainerProps) => {
-  const { actions, veilederinfoReducer } = props;
-  const ident = veilederinfoReducer.data.ident;
+  const { actions, veilederinfo } = props;
+  const ident = veilederinfo.data.ident;
 
   opprettWebsocketConnection(ident, (wsCallback) => {
     if (wsCallback.data === CONTEXT_EVENT_TYPE.NY_AKTIV_ENHET) {
@@ -48,20 +48,20 @@ class Context extends Component<ContextContainerProps> {
   }
 
   componentDidUpdate(nextProps: ContextContainerProps) {
-    const { actions, veilederinfoReducer } = this.props;
+    const { actions, veilederinfo } = this.props;
 
-    if (!veilederinfoReducer.hentet && nextProps.veilederinfoReducer.hentet) {
-      this.setState(veilederinfoReducer);
-      opprettWSConnection({ actions, veilederinfoReducer });
+    if (!veilederinfo.hentet && nextProps.veilederinfo.hentet) {
+      this.setState(veilederinfo);
+      opprettWSConnection({ actions, veilederinfo });
     }
   }
 
   render() {
-    const { veilederinfoReducer } = this.props;
+    const { veilederinfo } = this.props;
 
     return (
       <div className="contextContainer">
-        {veilederinfoReducer.hentingFeilet && (
+        {veilederinfo.hentingFeilet && (
           <AlertStripe
             className="contextContainer__alertstripe"
             type="advarsel"
@@ -78,8 +78,8 @@ class Context extends Component<ContextContainerProps> {
   }
 }
 
-const mapStateToProps = ({ veilederinfoReducer }: ApplicationState) => ({
-  veilederinfoReducer,
+const mapStateToProps = ({ veilederinfo }: ApplicationState) => ({
+  veilederinfo,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

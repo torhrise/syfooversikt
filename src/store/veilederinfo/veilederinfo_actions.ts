@@ -1,26 +1,29 @@
-import { Veilederinfo, VeilederinfoActiontypes } from './veilederinfoTypes';
+import {
+  Veilederinfo,
+  VeilederinfoActionTypes
+} from './veilederinfoTypes';
 
 export function hentVeilederinfo() {
   return {
-    type: VeilederinfoActiontypes.HENT_VEILEDERINFO_FORESPURT,
+    type: VeilederinfoActionTypes.HENT_VEILEDERINFO_FORESPURT,
   };
 }
 
 export function henterVeilederinfo() {
   return {
-    type: VeilederinfoActiontypes.HENTER_VEILEDERINFO,
+    type: VeilederinfoActionTypes.HENTER_VEILEDERINFO,
   };
 }
 
 export function veilederinfoHentet(data: Veilederinfo) {
   return {
-    type: VeilederinfoActiontypes.VEILEDERINFO_HENTET,
+    type: VeilederinfoActionTypes.VEILEDERINFO_HENTET,
     data,
   };
 }
 
 export function hentVeilederinfoFeilet() {
   return {
-    type: VeilederinfoActiontypes.HENT_VEILEDERINFO_FEILET,
+    type: VeilederinfoActionTypes.HENT_VEILEDERINFO_FEILET,
   };
 }

@@ -79,7 +79,7 @@ var config = function () {
                     },
                 },
               {
-                test: /\.(less|css)$/,
+                test: /\.less$/,
                 use: [{
                   loader: 'style-loader',
                 }, {

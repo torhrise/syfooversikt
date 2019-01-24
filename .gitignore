@@ -10,7 +10,8 @@
 
 # production
 /build
-/dist/resources
+/dist
+!/dist/index.html
 
 npm-debug.log*
 
