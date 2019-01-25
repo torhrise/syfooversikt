@@ -1,5 +1,3 @@
-import { finnNaisUrl } from './src/utils/miljoUtil';
-
 const childProcess = require('child_process');
 const fs = require('fs');
 
@@ -8,7 +6,6 @@ const timestamp = Date.now().toString();
 fs.writeFile('./settings.json', JSON.stringify({
     timestamp,
     isProd: true,
-    naisUrl: finnNaisUrl(),
 }), (error) => {
     if (error) {
         console.log('Feil ved lagring av settings.');
