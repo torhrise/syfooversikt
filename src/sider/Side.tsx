@@ -22,7 +22,7 @@ const Side = ({ tittel = '', children }: SideProps) => {
         </Column>
       </Row>
       <Row>
-        <Column className="col-xs-12 col-sm-9">
+        <Column className="col-xs-12">
           {children}
         </Column>
       </Row>
