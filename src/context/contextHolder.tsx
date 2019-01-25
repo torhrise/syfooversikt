@@ -1,4 +1,4 @@
-import { finnMiljoStreng } from '../utils/miljoUtil';
+import { finnNaisUrl } from '../utils/miljoUtil';
 
 interface ContextHolderProps {
   ident: string;
@@ -7,7 +7,7 @@ interface ContextHolderProps {
 
 const ContextholderConnection = (ident: ContextHolderProps['ident']) => {
   return new WebSocket(
-    `wss://veilederflatehendelser${finnMiljoStreng()}.adeo.no/modiaeventdistribution/ws/${ident}`
+    `wss://veilederflatehendelser${finnNaisUrl()}/modiaeventdistribution/ws/${ident}`
   );
 };
 

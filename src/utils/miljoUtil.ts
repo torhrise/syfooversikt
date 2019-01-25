@@ -7,3 +7,11 @@ export const finnMiljoStreng = () => {
   const dotIndex = host.indexOf('.');
   return host.substring(bindestrekIndex, dotIndex);
 };
+
+export const finnNaisUrl = () => {
+  const miljoStreng = finnMiljoStreng();
+  if (miljoStreng === '') {
+    return '.nais.adeo.no';
+  }
+  return `${miljoStreng}.nais.preprod.local`;
+};
