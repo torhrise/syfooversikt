@@ -2,6 +2,7 @@ const path = require('path');
 var mainPath = path.resolve(__dirname, 'src', 'index.tsx');
 var autoprefixer = require('autoprefixer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
+var Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: mainPath,
@@ -48,7 +49,6 @@ module.exports = {
                     customize: require.resolve(
                         'babel-preset-react-app/webpack-overrides'
                     ),
-
                     plugins: [
                         [
                             require.resolve('babel-plugin-named-asset-import'),
@@ -101,6 +101,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new Dotenv(),
         new ForkTsCheckerWebpackPlugin({
             async: false,
             watch: './src',

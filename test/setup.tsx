@@ -20,10 +20,10 @@ function copyProps(src: any, target: any) {
   const props = Object.getOwnPropertyNames(src)
     .filter((prop) =>  typeof target[prop] === 'undefined')
     .map((prop) => Object.getOwnPropertyDescriptor(src, prop));
-  // TODO dette er teit!
-  const nyProps = (props as unknown);
-  const nyNyProps = (nyProps as PropertyDescriptorMap);
-  Object.defineProperties(target, nyNyProps);
+
+  const propsAsUnknown = (props as unknown);
+  const propsAsPropertyDescriptorMap = (propsAsUnknown as PropertyDescriptorMap);
+  Object.defineProperties(target, propsAsPropertyDescriptorMap);
 }
 
 let temp: any = null;
