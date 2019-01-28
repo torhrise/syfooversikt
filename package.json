@@ -17,8 +17,7 @@
     "scripts:watch": "webpack-dev-server --inline --port 9090",
     "start": "node ./server.js",
     "start-local": "node ./server.js local",
-    "test": "mocha -r ts-node/register -r ignore-styles -r jsdom-global/register ./test/setup.tsx ./test/**/*.tsx",
-    "test2": "mocha"
+    "test": "mocha -r ts-node/register -r ignore-styles -r jsdom-global/register ./test/setup.tsx ./test/**/*.tsx"
   },
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
