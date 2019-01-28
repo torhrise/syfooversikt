@@ -81,7 +81,7 @@ var config = function () {
               {
                 test: /\.less$/,
                 use: [{
-                  loader: 'style-loader',
+                  loader: MiniCssExtractPlugin.loader,
                 }, {
                   loader: 'css-loader',
                 }, {
