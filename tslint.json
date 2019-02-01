@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "extends": ["tslint:recommended", "tslint-react"],
   "rules": {
     "triple-equals": [true, "allow-null-check"],
     "curly": [true, "ignore-same-line"],
@@ -15,6 +15,12 @@
     "jsx-no-lambda": false,
     "jsx-no-multiline-js": false,
     "jsx-no-string-ref": false,
-    "jsx-wrap-multiline": false
+    "jsx-wrap-multiline": false,
+    "quotemark": [true, "single", "jsx-double"]
+  },
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**/*.ts"
+    ]
   }
 }

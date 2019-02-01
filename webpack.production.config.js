@@ -7,7 +7,7 @@ var autoprefixer = require('autoprefixer');
 var Dotenv = require('dotenv-webpack');
 
 var config = function () {
-    var extractCss = new MiniCssExtractPlugin({
+    var extractLess = new MiniCssExtractPlugin({
         filename: 'styles.css',
         disable: false,
     });
@@ -78,21 +78,29 @@ var config = function () {
                         compact: true,
                     },
                 },
-                {
-                    test: /\.css/,
-                    use: [{
-                        loader: MiniCssExtractPlugin.loader,
-                    }, {
-                        loader: 'css-loader',
-                    }, {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: function() {
-                                return [autoprefixer];
-                            },
-                        },
-                    }],
-                },
+              {
+                test: /\.less$/,
+                use: [{
+                  loader: MiniCssExtractPlugin.loader,
+                }, {
+                  loader: 'css-loader',
+                }, {
+                  loader: 'postcss-loader',
+                  options: {
+                    plugins: function() {
+                      return [autoprefixer];
+                    },
+                  },
+                }, {
+                  loader: 'less-loader',
+                  options: {
+                    globalVars: {
+                      nodeModulesPath: '~',
+                      coreModulePath: '~',
+                    },
+                  },
+                }],
+              },
                 {
                     test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/,
                     use: [{
@@ -102,7 +110,7 @@ var config = function () {
             ],
         },
         plugins: [
-            extractCss,
+            extractLess,
             new Webpack.DefinePlugin({
                 'process.env.NODE_ENV': '"production"',
             }),

@@ -1,6 +1,8 @@
 const path = require('path');
 var mainPath = path.resolve(__dirname, 'src', 'index.tsx');
+var autoprefixer = require('autoprefixer');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt');
+var Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: mainPath,
@@ -47,7 +49,6 @@ module.exports = {
                     customize: require.resolve(
                         'babel-preset-react-app/webpack-overrides'
                     ),
-
                     plugins: [
                         [
                             require.resolve('babel-plugin-named-asset-import'),
@@ -68,17 +69,29 @@ module.exports = {
                     cacheCompression: false,
                 },
             },
-            {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                ],
-            },
+          {
+            test: /\.less$/,
+            use: [{
+              loader: 'style-loader',
+            }, {
+              loader: 'css-loader',
+            }, {
+              loader: 'postcss-loader',
+              options: {
+                plugins: function() {
+                  return [autoprefixer];
+                },
+              },
+            }, {
+              loader: 'less-loader',
+              options: {
+                globalVars: {
+                  nodeModulesPath: '~',
+                  coreModulePath: '~',
+                },
+              },
+            }],
+          },
             {
                 test: /\.((woff2?|svg)(\?v=[0-9]\.[0-9]\.[0-9]))|(woff2?|svg|jpe?g|png|gif|ico)$/,
                 use: [{
@@ -88,6 +101,7 @@ module.exports = {
         ]
     },
     plugins: [
+        new Dotenv(),
         new ForkTsCheckerWebpackPlugin({
             async: false,
             watch: './src',
