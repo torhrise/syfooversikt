@@ -20,19 +20,10 @@ export const hentLoginUrl = () => {
 
 export const hentRedirectBaseUrl = (windowLocationHref: string) => {
     if (window.location.href.indexOf('app.adeo.no') > -1) {
-        // Prod
-        if (windowLocationHref.indexOf('sykefravaer') > -1) {
-            return 'https://modiasyfofront.nais.adeo.no';
-        } else if (windowLocationHref.indexOf('sykefravaersoppfoelging') > -1) {
-            return 'https://sykefravaersoppfoelgingfront.nais.adeo.no';
-        }
+        return 'https://syfooversikt.nais.adeo.no';
     }
-    if (windowLocationHref.indexOf('sykefravaer') > -1) {
-        return 'https://modiasyfofront-q1.nais.preprod.local';
-    } else if (windowLocationHref.indexOf('sykefravaersoppfoelging') > -1) {
-        return 'https://sykefravaersoppfoelgingfront-q1.nais.preprod.local';
-    }
-    return windowLocationHref;
+    return 'https://syfooversikt-q1.nais.preprod.local';
+
 };
 
 export const lagreRedirectUrlILocalStorage = (href: string) => {
