@@ -1,3 +1,5 @@
+import {getCookie} from 'digisyfo-npm';
+
 const createLogger = () => {
   if (window.location.search.indexOf('log=true') > -1 || (process.env.NODE_ENV === 'development')) {
     // tslint:disable-next-line
@@ -60,6 +62,7 @@ export function post(url: string, body: object) {
         body: JSON.stringify(body),
         headers: new Headers({
             'Content-Type': 'application/json',
+            'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'),
         }),
     })
         .then((res) => {
