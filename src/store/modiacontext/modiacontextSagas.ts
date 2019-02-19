@@ -11,7 +11,7 @@ export function* pushModiacontextSaga(
   try {
     yield call(
       post,
-      `https://app${finnMiljoStreng()}.adeo.no/modiacontextholder/api/context`,
+      `https://modiacontextholder${finnMiljoStreng()}.nais.preprod.local/modiacontextholder/api/context`,
       {
         verdi: action.data.verdi,
         eventType: action.data.eventType,
@@ -30,7 +30,7 @@ export function* aktivEnhetSaga(
   try {
     const data = yield call(
       get,
-      `https://app${finnMiljoStreng()}.adeo.no/modiacontextholder/api/context/aktivenhet`
+        `https://modiacontextholder${finnMiljoStreng()}.nais.preprod.local/modiacontextholder/api/context/aktivenhet`
     );
     action.data.callback(data.aktivEnhet);
   } catch (e) {
