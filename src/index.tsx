@@ -11,6 +11,7 @@ import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
 import AppRouter from './routers/AppRouter';
 import { Provider } from 'react-redux';
+import {hentVeilederMotebehov} from './store/veilederMotebehov/veilederMotebehov_actions';
 
 const history = createHashHistory();
 
@@ -61,6 +62,10 @@ store.dispatch(
       }
     },
   })
+);
+
+store.dispatch(
+    hentVeilederMotebehov()
 );
 
 (window as any).renderDecoratorHead && (window as any).renderDecoratorHead(config); // tslint:disable-line no-unused-expression
