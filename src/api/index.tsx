@@ -37,11 +37,13 @@ export const lagreRedirectUrlILocalStorage = (href: string) => {
 };
 
 export function get(url: string) {
+    global.console.log('HENTER: ', url);
     const fetchX = window.fetch;
     return fetchX(url, {
         credentials: 'include',
     })
         .then((res) => {
+            global.console.log('FIKK STATUS: ', res.status);
             if (res.status === 401) {
                 log(res, 'Redirect til login');
                 lagreRedirectUrlILocalStorage(window.location.href);
