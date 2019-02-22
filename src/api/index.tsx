@@ -37,13 +37,12 @@ export const lagreRedirectUrlILocalStorage = (href: string) => {
 };
 
 export function get(url: string) {
-    global.console.log('HENTER: ', url);
     const fetchX = window.fetch;
     return fetchX(url, {
         credentials: 'include',
     })
         .then((res) => {
-            global.console.log('FIKK STATUS: ', res.status);
+
             if (res.status === 401) {
                 log(res, 'Redirect til login');
                 lagreRedirectUrlILocalStorage(window.location.href);
@@ -55,6 +54,7 @@ export function get(url: string) {
             return res.json();
         })
         .catch((err) => {
+            global.console.log('FEILER!');
             log(err);
             throw err;
         });
@@ -89,6 +89,7 @@ export function post(url: string, body: object) {
             }
         })
         .catch((err) => {
+
             log(err);
             throw err;
         });

@@ -7,7 +7,7 @@ import { finnMiljoStreng } from '../../utils/miljoUtil';
 export function* hentVeilederMotebehovSaga() {
     yield put(actions.henterVeilederMotebehov());
     try {
-        const url = `https://app${finnMiljoStreng()}.adeo.no${process.env.REACT_APP_SYFOMOTEBEHOVREST_ROOT}/enhet/0315/motebehov/brukere`;          // TODO: Sett inn riktig path
+        const url = `https://syfomotebehov${finnMiljoStreng()}.nais.preprod.local${process.env.REACT_APP_SYFOMOTEBEHOVREST_ROOT}/enhet/0315/motebehov/brukere`;          // TODO: Sett inn riktig path
         const data = yield call(get, url);
         yield put(actions.veilederMotebehovHentet(data));
     } catch (e) {
