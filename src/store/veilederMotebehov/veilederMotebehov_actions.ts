@@ -15,7 +15,7 @@ export function henterVeilederMotebehov() {
     };
 }
 
-export function veilederMotebehovHentet(data: VeilederMotebehov) {
+export function veilederMotebehovHentet(data: VeilederMotebehov[]) {
     return {
         type: VeilederMotebehovActionTypes.VEILEDER_MOTEBEHOV_HENTET,
         data

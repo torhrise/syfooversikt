@@ -1,6 +1,6 @@
 export interface VeilederMotebehov {
     fnr: string;
-    // TODO: Sett inn riktig struktur
+    skjermetEllerEgenAnsatt: boolean;
 }
 
 export const enum VeilederMotebehovActionTypes {
@@ -10,9 +10,10 @@ export const enum VeilederMotebehovActionTypes {
     VEILEDER_MOTEBEHOV_HENTET = 'VEILEDER_MOTEBEHOV_HENTET',
 }
 
+// TODO: Fjerne readonly?
 export interface VeilederMotebehovState {
     readonly hentet: boolean;
     readonly henter: boolean;
     readonly hentingFeilet: boolean;
-    readonly data: VeilederMotebehov;
+    readonly data: VeilederMotebehov[];
 }

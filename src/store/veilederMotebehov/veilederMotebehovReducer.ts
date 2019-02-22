@@ -1,14 +1,14 @@
 import { Reducer } from 'redux';
 import {
     VeilederMotebehovActionTypes,
-    VeilederMotebehovState,
+    VeilederMotebehovState
 } from './veilederMotebehovTypes';
 
 const initiellState: VeilederMotebehovState = {
     hentet: false,
     henter: false,
     hentingFeilet: false,
-    data: { fnr: '' },
+    data: [],
 };
 
 const veilederMotebehovReducer: Reducer<VeilederMotebehovState> = (
