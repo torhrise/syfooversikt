@@ -55,6 +55,7 @@ export function get(url: string) {
         })
         .catch((err) => {
             global.console.log('FEILER!');
+            global.console.log(err);
             log(err);
             throw err;
         });
