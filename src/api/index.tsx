@@ -42,7 +42,6 @@ export function get(url: string) {
         credentials: 'include',
     })
         .then((res) => {
-
             if (res.status === 401) {
                 log(res, 'Redirect til login');
                 lagreRedirectUrlILocalStorage(window.location.href);
@@ -54,7 +53,29 @@ export function get(url: string) {
             return res.json();
         })
         .catch((err) => {
-            global.console.log('Redirect til login');
+            log(err);
+            throw err;
+        });
+}
+
+export function naisGet(url: string) {
+    const fetchX = window.fetch;
+    return fetchX(url, {
+        credentials: 'include',
+    })
+        .then((res) => {
+            if (res.status === 401) {
+                log(res, 'Redirect til login');
+                lagreRedirectUrlILocalStorage(window.location.href);
+                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
+            } else if (res.status > 400) {
+                log(res);
+                throw new Error('Forespørsel feilet');
+            }
+            return res.json();
+        })
+        .catch((err) => {
+            global.console.log('Redirect syfomotebehov: ', url);
             lagreRedirectUrlILocalStorage(window.location.href);
             window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
             log(err);
@@ -91,7 +112,6 @@ export function post(url: string, body: object) {
             }
         })
         .catch((err) => {
-
             log(err);
             throw err;
         });
