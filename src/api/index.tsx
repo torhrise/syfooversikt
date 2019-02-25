@@ -54,8 +54,10 @@ export function get(url: string) {
             return res.json();
         })
         .catch((err) => {
-            global.console.log('FEILER!');
-            global.console.log(err);
+            log(res, 'Redirect til login');
+            global.console.log('Redirect til login');
+            lagreRedirectUrlILocalStorage(window.location.href);
+            window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
             log(err);
             throw err;
         });
