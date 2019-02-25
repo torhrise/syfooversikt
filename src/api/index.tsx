@@ -61,12 +61,7 @@ export function get(url: string) {
 export function naisGet(url: string) {
     const fetchX = window.fetch;
     return fetchX(url, {
-        credentials: 'include',
-        headers: new Headers({
-            Authorization: getCookie('isso-idtoken'),
-            NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
-        }),
-
+        credentials: 'include'
     })
         .then((res) => {
             if (res.status === 401) {
