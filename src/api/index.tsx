@@ -58,6 +58,30 @@ export function get(url: string) {
         });
 }
 
+export function naisGet(url: string) {
+    const fetchX = window.fetch;
+    return fetchX(url, {
+        credentials: 'include',
+    })
+        .then((res) => {
+            if (res.status === 401) {
+                log(res, 'Redirect til login');
+                lagreRedirectUrlILocalStorage(window.location.href);
+                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
+            } else if (res.status > 400) {
+                log(res);
+                throw new Error('Forespørsel feilet');
+            }
+            return res.json();
+        })
+        .catch((err) => {
+            lagreRedirectUrlILocalStorage(window.location.href);
+            window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
+            log(err);
+            throw err;
+        });
+}
+
 export function post(url: string, body: object) {
     const fetchX = window.fetch;
     return fetchX(url, {
