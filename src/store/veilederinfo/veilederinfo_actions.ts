@@ -11,13 +11,13 @@ export function hentVeilederinfo() {
 
 export function henterVeilederinfo() {
   return {
-    type: VeilederinfoActionTypes.HENTER_VEILEDERINFO,
+    type: VeilederinfoActionTypes.HENT_VEILEDERINFO_HENTER,
   };
 }
 
 export function veilederinfoHentet(data: Veilederinfo) {
   return {
-    type: VeilederinfoActionTypes.VEILEDERINFO_HENTET,
+    type: VeilederinfoActionTypes.HENT_VEILEDERINFO_HENTET,
     data,
   };
 }
