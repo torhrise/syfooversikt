@@ -8,7 +8,7 @@ const initiellState: EnhetensMotebehovState = {
   hentet: false,
   henter: false,
   hentingFeilet: false,
-  data: { ident: '' },
+  data: [],
 };
 
 const enhetensMotebehovReducer: Reducer<EnhetensMotebehovState> = (

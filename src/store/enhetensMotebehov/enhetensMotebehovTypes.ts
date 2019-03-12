@@ -1,5 +1,10 @@
+interface MotebehovSvar {
+  fnr: string;
+  skjermetEllerEgenAnsatt: boolean;
+}
+
 export interface EnhetensMotebehov {
-  ident: string;
+  motebehovSvar: MotebehovSvar[];
 }
 
 export const enum EnhetensMotebehovActionTypes {
@@ -13,5 +18,5 @@ export interface EnhetensMotebehovState {
   readonly hentet: boolean;
   readonly henter: boolean;
   readonly hentingFeilet: boolean;
-  readonly data: EnhetensMotebehov;
+  readonly data: MotebehovSvar[];
 }
