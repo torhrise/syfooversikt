@@ -10,7 +10,7 @@ interface EnhetensOversiktProps {
 }
 
 class EnhetensOversikt extends Component<EnhetensOversiktProps, {}> {
-  constructor(props: OversiktProps) {
+  constructor(props: EnhetensOversiktProps) {
     super(props);
   }
 
@@ -18,8 +18,8 @@ class EnhetensOversikt extends Component<EnhetensOversiktProps, {}> {
     return (
       <div>
         {this.props.type === HL_VISNING_TYPE.ENHETENS_OVERSIKT && <h1>{enhetensOversiktOverskrift}</h1>}
-    {this.props.type === HL_VISNING_TYPE.MIN_OVERSIKT && <h1>{minOversiktOverskrift}</h1>}
-      {this.props.type === HL_VISNING_TYPE.VEILEDEROVERSIKT && <h1>{veilederoversiktOverskrift}</h1>}
+        {this.props.type === HL_VISNING_TYPE.MIN_OVERSIKT && <h1>{minOversiktOverskrift}</h1>}
+        {this.props.type === HL_VISNING_TYPE.VEILEDEROVERSIKT && <h1>{veilederoversiktOverskrift}</h1>}
       </div>
       );
   }
