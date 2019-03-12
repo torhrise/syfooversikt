@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import {HL_VISNING_TYPE} from '../konstanter';
+import {OVERSIKT_VISNING_TYPE} from '../konstanter';
+
+const tekster = {
+  overskrifter: {
+    enhetensOversikt: 'Ubehandlede møtebehov',
+    minOversikt: 'Denne fanen er under utvikling',
+    veilederoversikt: 'Denne fanen er under utvikling'
+  }
+};
 
 const enhetensOversiktOverskrift = 'Ubehandlede møtebehov';
 const minOversiktOverskrift = 'Denne fanen er under utvikling';
@@ -17,13 +25,12 @@ class Oversikt extends Component<OversiktProps, {}> {
   render() {
     return (
       <div>
-        {this.props.type === HL_VISNING_TYPE.ENHETENS_OVERSIKT && <h1>{enhetensOversiktOverskrift}</h1>}
-        {this.props.type === HL_VISNING_TYPE.MIN_OVERSIKT && <h1>{minOversiktOverskrift}</h1>}
-        {this.props.type === HL_VISNING_TYPE.VEILEDEROVERSIKT && <h1>{veilederoversiktOverskrift}</h1>}
+        {this.props.type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h1>{tekster.overskrifter.enhetensOversikt}</h1>}
+        {this.props.type === OVERSIKT_VISNING_TYPE.MIN_OVERSIKT && <h1>{tekster.overskrifter.minOversikt}</h1>}
+        {this.props.type === OVERSIKT_VISNING_TYPE.VEILEDEROVERSIKT && <h1>{tekster.overskrifter.veilederoversikt}</h1>}
       </div>
     );
   }
-
 }
 
 export default Oversikt;
