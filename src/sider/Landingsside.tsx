@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import LandingssideHeader from '../components/LandingssideHeader';
+import OversiktVelger from '../components/OversiktVelger';
 import Side from './Side';
+import LandingssideHeader from '../components/LandingssideHeader';
 
 export class Landingsside extends Component {
   public render() {
     return (
       <Side tittel="">
-        <div className="landingsside__header">
+        <div>
           <LandingssideHeader bilde={'/syfooversikt/src/img/veileder.svg'} />
-          <p>Her får du en oversikt over syfo-oppgaver!</p>
+          <OversiktVelger/>
         </div>
       </Side>
     );
