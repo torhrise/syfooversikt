@@ -4,16 +4,17 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import LandingssideHeader from '../src/components/LandingssideHeader';
 import { Landingsside } from '../src/sider/Landingsside';
+import OversiktVelger from '../src/components/OversiktVelger';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('Landingsside', () => {
+describe('Landingsside skal rendre OversiktVelger', () => {
   const component = shallow(<Landingsside />);
-  it('Skal rendre LandingssideHeader', () => {
+  it('Skal rendre Oversikt', () => {
     expect(
       component.contains(
-        <LandingssideHeader bilde={'/syfooversikt/src/img/veileder.svg'} />
+        <OversiktVelger />
       )
     ).to.equal(true);
   });
