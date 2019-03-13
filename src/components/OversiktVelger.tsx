@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {HL_VISNING_TYPE} from '../konstanter';
 import Oversikt from './Oversikt';
+import OversiktContainer from '../containers/OversiktContainer';
 
 const enhetensOversiktTekst = 'Enhetens oversikt';
 const minOversiktTekst = 'Min oversikt';
@@ -50,6 +51,7 @@ class OversiktVelger extends Component<{}, StateProps> {
         </div>
         <div>
           <Oversikt type={visning}/>
+          <OversiktContainer />
         </div>
       </div>
     );

@@ -52,6 +52,9 @@ class OversiktCont extends Component<OversiktContainerProps> {
             />
           </AlertStripe>
         )}
+        { enhetensMotebehov.hentet && (
+          <p>{enhetensMotebehov.data[0].fnr}</p>
+        )}
       </div>
     );
   }
