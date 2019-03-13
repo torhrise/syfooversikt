@@ -1,4 +1,4 @@
-interface MotebehovSvar {
+export interface MotebehovSvar {
   fnr: string;
   skjermetEllerEgenAnsatt: boolean;
 }
