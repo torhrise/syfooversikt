@@ -5,6 +5,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
+import MotebehovSvarListe from '../components/MotebehovSvarListe';
 
 interface StateProps {
   enhetensMotebehov: EnhetensMotebehovState;
@@ -38,6 +39,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
       <div className="oversiktContainer">
         { enhetensMotebehov.hentingFeilet && (
           <AlertStripe
+            className="oversiktContainer__alertstripe"
             type="advarsel"
           >
             <div
@@ -48,7 +50,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
           </AlertStripe>
         )}
         { enhetensMotebehov.hentet && (
-          <p>{enhetensMotebehov.data[0].fnr}</p>
+          <MotebehovSvarListe svarListe={enhetensMotebehov.data}/>
         )}
       </div>
     );
