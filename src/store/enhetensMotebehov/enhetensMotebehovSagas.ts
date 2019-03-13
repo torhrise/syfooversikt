@@ -5,6 +5,7 @@ import { EnhetensMotebehovActionTypes } from './enhetensMotebehovTypes';
 import { finnNaisUrl } from '../../utils/miljoUtil';
 
 export function* hentEnhetensMotebehovSaga() {
+  global.console.log('ENHETENS MOTEBEHOV SAGA');
   yield put(actions.henterEnhetensMotebehov());
   try {
     const url = `https://syfomotebehov${finnNaisUrl()}${process.env.REACT_APP_SYFOMOTEBEHOVREST_ROOT}/enhet/0315/motebehov/brukere`;

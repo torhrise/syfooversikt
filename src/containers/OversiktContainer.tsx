@@ -34,15 +34,10 @@ class OversiktCont extends Component<OversiktContainerProps> {
   render() {
     const { enhetensMotebehov } = this.props;
 
-    global.console.log('MOTEBEHOV: ', enhetensMotebehov.data[0]);
-    global.console.log('MOTEBEHOV: ', enhetensMotebehov.data[0].fnr);
-    global.console.log('MOTEBEHOV: ', enhetensMotebehov.data[0].skjermetEllerEgenAnsatt);
-
     return (
       <div className="oversiktContainer">
         { enhetensMotebehov.hentingFeilet && (
           <AlertStripe
-            className="contextContainer__alertstripe"
             type="advarsel"
           >
             <div
