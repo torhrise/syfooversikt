@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { CONTEXT_EVENT_TYPE } from './konstanter';
-import { hentEnhetensMotebehov } from './store/enhetensMotebehov/enhetensMotebehov_actions';
 import {
   hentAktivEnhet,
   pushModiaContext,
@@ -52,8 +51,6 @@ const config = {
     },
   },
 };
-
-store.dispatch(hentEnhetensMotebehov());
 
 store.dispatch(
   hentAktivEnhet({

@@ -3,7 +3,6 @@ import { get } from '../../api/index';
 import * as actions from './enhetensMotebehov_actions';
 import { EnhetensMotebehovActionTypes } from './enhetensMotebehovTypes';
 import { finnNaisUrl } from '../../utils/miljoUtil';
-import { hentEnhetensMotebehov } from './enhetensMotebehov_actions';
 
 export function* hentEnhetensMotebehovSaga() {
   yield put(actions.henterEnhetensMotebehov());
