@@ -15,7 +15,7 @@ class MotebehovSvarListe extends Component<MotebehovSvarListeProps, {}> {
       <ul>
         {
           this.props.svarListe.map((svar, idx) => {
-            return (<li key={idx}>{svar.fnr} {svar.skjermetEllerEgenAnsatt ? '' : '(SKJERMET)'}</li>);
+            return (<li key={idx}>{svar.fnr} {svar.skjermetEllerEgenAnsatt === true ? '' : '(SKJERMET)'}</li>);
           })
         }
       </ul>
