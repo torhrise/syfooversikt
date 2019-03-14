@@ -52,8 +52,8 @@ class OversiktCont extends Component<OversiktContainerProps> {
         { enhetensMotebehov.hentingFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT &&
           AlterstripeMedMelding(tekster.feil.hentMotebehovFeilet)
         }
+        <Oversikt type={type}/>
         { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && (
-          <Oversikt type={type}/> &&
           <MotebehovSvarListe svarListe={enhetensMotebehov.data}/>
         )}
       </div>
