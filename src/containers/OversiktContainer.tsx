@@ -11,7 +11,7 @@ import {OVERSIKT_VISNING_TYPE} from '../konstanter';
 
 const tekster = {
   feil: {
-    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over møtebehov svar på enhet'
+    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over ubehandlet møtebehov svar på enhet'
   }
 };
 
