@@ -1,6 +1,6 @@
 import { EnhetensMotebehovState } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { hentEnhetensMotebehov } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
-import { AlterstripeMedMelding } from '../utils/componentUtils';
+import { AlertStripeMedMelding } from '../utils/componentUtils';
 import React, { Component } from 'react';
 import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
@@ -50,7 +50,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
     return (
       <div className="oversiktContainer">
         { enhetensMotebehov.hentingFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT &&
-          AlterstripeMedMelding(tekster.feil.hentMotebehovFeilet)
+          AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
         }
         <Oversikt type={type}/>
         { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && (

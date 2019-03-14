@@ -1,4 +1,4 @@
-import { AlterstripeMedMelding } from '../utils/componentUtils';
+import { AlertStripeMedMelding } from '../utils/componentUtils';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -68,7 +68,7 @@ class Context extends Component<ContextContainerProps> {
     return (
       <div className="contextContainer">
         { veilederinfo.hentingFeilet &&
-          AlterstripeMedMelding(tekster.feil.hentVeilederIdentFeilet)
+          AlertStripeMedMelding(tekster.feil.hentVeilederIdentFeilet, 'contextContainer__alertstripe')
         }
       </div>
     );
