@@ -1,4 +1,4 @@
-import AlertStripe from 'nav-frontend-alertstriper';
+import { AlterstripeMedMelding } from '../utils/componentUtils';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -61,18 +61,9 @@ class Context extends Component<ContextContainerProps> {
 
     return (
       <div className="contextContainer">
-        {veilederinfo.hentingFeilet && (
-          <AlertStripe
-            className="contextContainer__alertstripe"
-            type="advarsel"
-          >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: '<p>Det skjedde en feil: Vi fant ikke din ident</p>',
-              }}
-            />
-          </AlertStripe>
-        )}
+        { veilederinfo.hentingFeilet &&
+          AlterstripeMedMelding('Det skjedde en feil: Vi fant ikke din ident')
+        }
       </div>
     );
   }
