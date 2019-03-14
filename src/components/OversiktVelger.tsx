@@ -50,8 +50,7 @@ class OversiktVelger extends Component<{}, StateProps> {
           </ul>
         </div>
         <div>
-          <Oversikt type={visning}/>
-          <OversiktContainer />
+          <OversiktContainer type={visning}/>
         </div>
       </div>
     );

@@ -6,6 +6,12 @@ import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import MotebehovSvarListe from '../components/MotebehovSvarListe';
+import Oversikt from '../components/Oversikt';
+import {HL_VISNING_TYPE} from '../konstanter';
+
+interface OwnProps {
+  type: string;
+}
 
 interface StateProps {
   enhetensMotebehov: EnhetensMotebehovState;
@@ -17,7 +23,7 @@ interface DispatchProps {
   };
 }
 
-type OversiktContainerProps = StateProps & DispatchProps;
+type OversiktContainerProps = OwnProps & StateProps & DispatchProps;
 
 class OversiktCont extends Component<OversiktContainerProps> {
   componentDidMount() {
@@ -33,7 +39,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
   }
 
   render() {
-    const { enhetensMotebehov } = this.props;
+    const { enhetensMotebehov, type } = this.props;
 
     return (
       <div className="oversiktContainer">
@@ -49,7 +55,8 @@ class OversiktCont extends Component<OversiktContainerProps> {
             />
           </AlertStripe>
         )}
-        { enhetensMotebehov.hentet && (
+        { enhetensMotebehov.hentet && type === HL_VISNING_TYPE.ENHETENS_OVERSIKT && (
+          <Oversikt type={type}/> &&
           <MotebehovSvarListe svarListe={enhetensMotebehov.data}/>
         )}
       </div>
@@ -57,8 +64,18 @@ class OversiktCont extends Component<OversiktContainerProps> {
   }
 }
 
-const mapStateToProps = ({ enhetensMotebehov }: ApplicationState) => ({
+/*
+const mapStateToProps = (
+  _state: AppState,
+  ownProps: MyComponentOwnProps,
+) => ({
+  value: ownProps.value,
+});
+ */
+
+const mapStateToProps = ({ enhetensMotebehov }: ApplicationState, ownProps: OwnProps) => ({
   enhetensMotebehov,
+  ownProps,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
