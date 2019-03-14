@@ -1,3 +1,6 @@
+import React from 'react';
+import AlertStripe from 'nav-frontend-alertstriper';
+
 export const AlterstripeMedMelding = (melding: string) => {
   return (
     <AlertStripe
