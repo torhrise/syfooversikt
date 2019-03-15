@@ -5,16 +5,20 @@ import React, { Component } from 'react';
 import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import Oversikt from '../components/Oversikt';
 import {OVERSIKT_VISNING_TYPE} from '../konstanter';
 
 const tekster = {
+  overskrifter: {
+    enhetensOversikt: 'Ubehandlede møtebehov',
+    minOversikt: 'Denne fanen er under utvikling',
+    veilederoversikt: 'Denne fanen er under utvikling'
+  },
   feil: {
     hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over ubehandlet møtebehov svar på enhet'
   }
 };
 
-interface OwnProps {
+interface OversiktProps {
   type: string;
 }
 
@@ -32,7 +36,7 @@ interface MotebehovSvarListeProps {
   svarListe: MotebehovSvar[];
 }
 
-type OversiktContainerProps = OwnProps & StateProps & DispatchProps;
+type OversiktContainerProps = OversiktProps & StateProps & DispatchProps;
 
 class OversiktCont extends Component<OversiktContainerProps> {
   componentDidMount() {
@@ -52,17 +56,28 @@ class OversiktCont extends Component<OversiktContainerProps> {
 
     return (
       <div className="oversiktContainer">
-        { enhetensMotebehov.hentingFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT &&
-          AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
+        { enhetensMotebehov.hentingFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+          && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
         }
         <Oversikt type={type}/>
-        { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && (
-          <MotebehovSvarListe svarListe={enhetensMotebehov.data}/>
-        )}
+        { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+          && (<MotebehovSvarListe svarListe={enhetensMotebehov.data}/>)
+        }
       </div>
     );
   }
 }
+
+const Oversikt = (oversiktsType: OversiktProps) => {
+  const { type } = oversiktsType;
+  return (
+    <div>
+      {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h1>{tekster.overskrifter.enhetensOversikt}</h1>}
+      {type === OVERSIKT_VISNING_TYPE.MIN_OVERSIKT && <h1>{tekster.overskrifter.minOversikt}</h1>}
+      {type === OVERSIKT_VISNING_TYPE.VEILEDEROVERSIKT && <h1>{tekster.overskrifter.veilederoversikt}</h1>}
+    </div>
+  );
+};
 
 const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
   const { svarListe } = motebehovSvarListe;
@@ -75,7 +90,7 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
   </ul>);
 };
 
-const mapStateToProps = ({ enhetensMotebehov }: ApplicationState, ownProps: OwnProps) => ({
+const mapStateToProps = ({ enhetensMotebehov }: ApplicationState, ownProps: OversiktProps) => ({
   enhetensMotebehov,
   ownProps,
 });

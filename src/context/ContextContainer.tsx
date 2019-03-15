@@ -67,8 +67,8 @@ class Context extends Component<ContextContainerProps> {
 
     return (
       <div className="contextContainer">
-        { veilederinfo.hentingFeilet &&
-          AlertStripeMedMelding(tekster.feil.hentVeilederIdentFeilet, 'contextContainer__alertstripe')
+        { veilederinfo.hentingFeilet
+          && AlertStripeMedMelding(tekster.feil.hentVeilederIdentFeilet, 'contextContainer__alertstripe')
         }
       </div>
     );

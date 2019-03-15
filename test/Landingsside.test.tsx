@@ -9,7 +9,7 @@ import OversiktVelger from '../src/components/OversiktVelger';
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('Landingsside skal rendre LandingssideHeader og OversiktVelger', () => {
+describe('Landingsside', () => {
   const component = shallow(<Landingsside />);
   it('Skal rendre LandingssideHeader', () => {
     expect(

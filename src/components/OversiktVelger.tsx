@@ -28,21 +28,21 @@ class OversiktVelger extends Component<{}, StateProps> {
         <div className="oversiktVelger">
           <ul>
             <li>
-              <button className={`${visning === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && 'oversiktVelger__knapp--aktiv'}`}
+              <button className={visning === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT ? 'oversiktVelger__knapp--aktiv' : ''}
                       aria-pressed={visning === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT}
                       onClick={() => { this.byttVisning(OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT); }}>
                 {tekster.enhetensOversikt}
               </button>
             </li>
             <li>
-              <button className={`${visning === OVERSIKT_VISNING_TYPE.MIN_OVERSIKT && 'oversiktVelger__knapp--aktiv'}`}
+              <button className={visning === OVERSIKT_VISNING_TYPE.MIN_OVERSIKT ? 'oversiktVelger__knapp--aktiv' : ''}
                       aria-pressed={visning === OVERSIKT_VISNING_TYPE.MIN_OVERSIKT}
                       onClick={() => { this.byttVisning(OVERSIKT_VISNING_TYPE.MIN_OVERSIKT); }}>
                 {tekster.minOversikt}
               </button>
             </li>
             <li>
-              <button className={`${visning === OVERSIKT_VISNING_TYPE.VEILEDEROVERSIKT && 'oversiktVelger__knapp--aktiv'}`}
+              <button className={visning === OVERSIKT_VISNING_TYPE.VEILEDEROVERSIKT ? 'oversiktVelger__knapp--aktiv' : ''}
                       aria-pressed={visning === OVERSIKT_VISNING_TYPE.VEILEDEROVERSIKT}
                       onClick={() => { this.byttVisning(OVERSIKT_VISNING_TYPE.VEILEDEROVERSIKT); }}>
                 {tekster.veilederoversikt}

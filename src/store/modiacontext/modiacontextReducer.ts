@@ -25,14 +25,14 @@ const modiacontextReducer: Reducer<ModiacontextState> = (
         pushingFeilet: true,
       };
     }
-    case modiacontextActionTypes.PUSHER_MODIACONTEXT: {
+    case modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHER: {
       return { ...state,
         pushet: false,
         pusher: true,
         pushingFeilet: false,
       };
     }
-    case modiacontextActionTypes.MODIACONTEXT_PUSHET: {
+    case modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET: {
       return { ...state,
         pushet: true,
         pusher: false,
@@ -45,7 +45,7 @@ const modiacontextReducer: Reducer<ModiacontextState> = (
         hentingEnhetFeilet: true,
       };
     }
-    case modiacontextActionTypes.HENTER_AKTIVENHET: {
+    case modiacontextActionTypes.HENT_AKTIVENHET_HENTER: {
       return { ...state,
         henterEnhet: true,
         hentingEnhetFeilet: false,

@@ -11,13 +11,13 @@ export function hentEnhetensMotebehov() {
 
 export function henterEnhetensMotebehov() {
   return {
-    type: EnhetensMotebehovActionTypes.HENTER_ENHETENS_MOTEBEHOV,
+    type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTER,
   };
 }
 
 export function enhetensMotebehovHentet(data: EnhetensMotebehov) {
   return {
-    type: EnhetensMotebehovActionTypes.ENHETENS_MOTEBEHOV_HENTET,
+    type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET,
     data,
   };
 }
