@@ -9,10 +9,6 @@ const tekster = {
   }
 };
 
-const enhetensOversiktOverskrift = 'Ubehandlede møtebehov';
-const minOversiktOverskrift = 'Denne fanen er under utvikling';
-const veilederoversiktOverskrift = 'Denne fanen er under utvikling';
-
 interface OversiktProps {
   type: string;
 }

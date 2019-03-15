@@ -1,11 +1,10 @@
-import { EnhetensMotebehovState } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
+import {EnhetensMotebehovState, MotebehovSvar} from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { hentEnhetensMotebehov } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
 import { AlertStripeMedMelding } from '../utils/componentUtils';
 import React, { Component } from 'react';
 import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
-import MotebehovSvarListe from '../components/MotebehovSvarListe';
 import Oversikt from '../components/Oversikt';
 import {OVERSIKT_VISNING_TYPE} from '../konstanter';
 
@@ -27,6 +26,10 @@ interface DispatchProps {
   actions: {
     hentEnhetensMotebehov: typeof hentEnhetensMotebehov;
   };
+}
+
+interface MotebehovSvarListeProps {
+  svarListe: MotebehovSvar[];
 }
 
 type OversiktContainerProps = OwnProps & StateProps & DispatchProps;
@@ -60,6 +63,17 @@ class OversiktCont extends Component<OversiktContainerProps> {
     );
   }
 }
+
+const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
+  const { svarListe } = motebehovSvarListe;
+  return (<ul>
+    {
+      svarListe.map((svar: MotebehovSvar, idx: number) => {
+        return (<li key={idx}>{svar.fnr} {svar.skjermetEllerEgenAnsatt === true ? '(SKJERMET)' : ''}</li>);
+      })
+    }
+  </ul>);
+};
 
 const mapStateToProps = ({ enhetensMotebehov }: ApplicationState, ownProps: OwnProps) => ({
   enhetensMotebehov,
