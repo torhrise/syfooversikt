@@ -55,31 +55,28 @@ class OversiktCont extends Component<OversiktContainerProps> {
   render() {
     const { enhetensMotebehov, type } = this.props;
 
-    return (
-      <div className="oversiktContainer">
+    return (<div className="oversiktContainer">
         { enhetensMotebehov.hentingFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
         }
         <Oversikt type={type}/>
         { enhetensMotebehov.henter
-          && <AppSpinner /> }
-        { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && (<MotebehovSvarListe svarListe={enhetensMotebehov.data}/>)
+          && <AppSpinner />
         }
-      </div>
-    );
+        { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+          && <MotebehovSvarListe svarListe={enhetensMotebehov.data}/>
+        }
+    </div>);
   }
 }
 
 const Oversikt = (oversiktsType: OversiktProps) => {
   const { type } = oversiktsType;
-  return (
-    <div>
+  return (<div>
       {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h1>{tekster.overskrifter.enhetensOversikt}</h1>}
       {type === OVERSIKT_VISNING_TYPE.MIN_OVERSIKT && <h1>{tekster.overskrifter.minOversikt}</h1>}
       {type === OVERSIKT_VISNING_TYPE.VEILEDEROVERSIKT && <h1>{tekster.overskrifter.veilederoversikt}</h1>}
-    </div>
-  );
+  </div>);
 };
 
 const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {

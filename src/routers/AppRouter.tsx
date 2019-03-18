@@ -7,11 +7,9 @@ interface AppRouterProps {
 }
 
 const AppRouter = ({ history }: AppRouterProps) => {
-  return (
-    <Router history={history}>
+  return (<Router history={history}>
       <Route path="*" component={Landingsside} />
-    </Router>
-  );
+  </Router>);
 };
 
 export default AppRouter;

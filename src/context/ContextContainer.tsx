@@ -65,13 +65,11 @@ class Context extends Component<ContextContainerProps> {
   render() {
     const { veilederinfo } = this.props;
 
-    return (
-      <div className="contextContainer">
+    return (<div className="contextContainer">
         { veilederinfo.hentingFeilet
           && AlertStripeMedMelding(tekster.feil.hentVeilederIdentFeilet, 'contextContainer__alertstripe')
         }
-      </div>
-    );
+    </div>);
   }
 }
 

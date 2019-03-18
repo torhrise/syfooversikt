@@ -5,13 +5,11 @@ import LandingssideHeader from '../components/LandingssideHeader';
 
 export class Landingsside extends Component {
   public render() {
-    return (
-      <Side tittel="">
+    return (<Side tittel="">
         <div>
           <LandingssideHeader bilde={'/syfooversikt/src/img/veileder.svg'} />
           <OversiktVelger/>
         </div>
-      </Side>
-    );
+    </Side>);
   }
 }
