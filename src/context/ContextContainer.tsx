@@ -12,7 +12,7 @@ import { opprettWebsocketConnection } from './contextHolder';
 
 const tekster = {
   feil: {
-    hentVeilederIdentFeilet: 'Det skjedde en feil: Kunne ikke hente liste over møtebehov svar på enhet'
+    hentVeilederIdentFeilet: 'Det skjedde en feil: Vi fant ikke din ident'
   }
 };
 
