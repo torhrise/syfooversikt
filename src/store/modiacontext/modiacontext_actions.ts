@@ -20,13 +20,13 @@ export function hentAktivEnhetFeilet() {
 
 export function henterAktivEnhet() {
   return {
-    type: modiacontextActionTypes.HENTER_AKTIVENHET,
+    type: modiacontextActionTypes.HENT_AKTIVENHET_HENTER,
   };
 }
 
 export function aktivEnhetHentet(data: Modiacontext) {
   return {
-    type: modiacontextActionTypes.AKTIVENHET_HENTET,
+    type: modiacontextActionTypes.HENT_AKTIVENHET_HENTET,
     data,
   };
 }
@@ -39,7 +39,7 @@ export function pushModiaContextFeilet() {
 
 export function pusherModiaContext() {
   return {
-    type: modiacontextActionTypes.PUSHER_MODIACONTEXT,
+    type: modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHER,
   };
 }
 
@@ -52,6 +52,6 @@ export function pushModiaContext(data: ModiacontextPayload) {
 
 export function modiaContextPushet() {
   return {
-    type: modiacontextActionTypes.MODIACONTEXT_PUSHET,
+    type: modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET,
   };
 }

@@ -1,4 +1,4 @@
-import AlertStripe from 'nav-frontend-alertstriper';
+import { AlertStripeMedMelding } from '../utils/componentUtils';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -9,6 +9,12 @@ import { HentAktivEnhetData } from '../store/modiacontext/modiacontextTypes';
 import { hentVeilederinfo } from '../store/veilederinfo/veilederinfo_actions';
 import { VeilederinfoState } from '../store/veilederinfo/veilederinfoTypes';
 import { opprettWebsocketConnection } from './contextHolder';
+
+const tekster = {
+  feil: {
+    hentVeilederIdentFeilet: 'Det skjedde en feil: Vi fant ikke din ident'
+  }
+};
 
 interface StateProps {
   veilederinfo: VeilederinfoState;
@@ -59,22 +65,11 @@ class Context extends Component<ContextContainerProps> {
   render() {
     const { veilederinfo } = this.props;
 
-    return (
-      <div className="contextContainer">
-        {veilederinfo.hentingFeilet && (
-          <AlertStripe
-            className="contextContainer__alertstripe"
-            type="advarsel"
-          >
-            <div
-              dangerouslySetInnerHTML={{
-                __html: '<p>Det skjedde en feil: Vi fant ikke din ident</p>',
-              }}
-            />
-          </AlertStripe>
-        )}
-      </div>
-    );
+    return (<div className="contextContainer">
+        { veilederinfo.hentingFeilet
+          && AlertStripeMedMelding(tekster.feil.hentVeilederIdentFeilet, 'contextContainer__alertstripe')
+        }
+    </div>);
   }
 }
 

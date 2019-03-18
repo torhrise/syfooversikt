@@ -6,12 +6,10 @@ interface LandingssideHeaderProps {
 
 const LandingssideHeader = (props: LandingssideHeaderProps) => {
   const { bilde } = props;
-  return (
-    <div className="landingsside__header">
+  return (<div className="landingsside__header">
       <h1>Syfooversikt</h1>
       <img className="header__bilde" src={bilde} alt="veileder" />
-    </div>
-  );
+  </div>);
 };
 
 export default LandingssideHeader;

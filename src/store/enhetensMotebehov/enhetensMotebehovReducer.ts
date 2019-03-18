@@ -1,36 +1,36 @@
 import { Reducer } from 'redux';
 import {
-  VeilederinfoActionTypes,
-  VeilederinfoState,
-} from './veilederinfoTypes';
+  EnhetensMotebehovActionTypes,
+  EnhetensMotebehovState,
+} from './enhetensMotebehovTypes';
 
-const initiellState: VeilederinfoState = {
+const initiellState: EnhetensMotebehovState = {
   hentet: false,
   henter: false,
   hentingFeilet: false,
-  data: { ident: '' },
+  data: [],
 };
 
-const veilederinfoReducer: Reducer<VeilederinfoState> = (
+const enhetensMotebehovReducer: Reducer<EnhetensMotebehovState> = (
   state = initiellState,
   action
 ) => {
   switch (action.type) {
-    case VeilederinfoActionTypes.HENT_VEILEDERINFO_HENTER: {
+    case EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTER: {
       return { ...state,
         henter: true,
         hentet: false,
         hentingFeilet: false,
       };
     }
-    case VeilederinfoActionTypes.HENT_VEILEDERINFO_HENTET: {
+    case EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET: {
       return { ...state,
         henter: false,
         hentet: true,
         data: action.data,
       };
     }
-    case VeilederinfoActionTypes.HENT_VEILEDERINFO_FEILET: {
+    case EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_FEILET: {
       return { ...state,
         henter: false,
         hentingFeilet: true,
@@ -42,4 +42,4 @@ const veilederinfoReducer: Reducer<VeilederinfoState> = (
   }
 };
 
-export default veilederinfoReducer;
+export default enhetensMotebehovReducer;
