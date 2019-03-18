@@ -6,6 +6,7 @@ import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {OVERSIKT_VISNING_TYPE} from '../konstanter';
+import AppSpinner from '../components/AppSpinner';
 
 const tekster = {
   overskrifter: {
@@ -60,6 +61,8 @@ class OversiktCont extends Component<OversiktContainerProps> {
           && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
         }
         <Oversikt type={type}/>
+        { enhetensMotebehov.henter
+          && <AppSpinner /> }
         { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && (<MotebehovSvarListe svarListe={enhetensMotebehov.data}/>)
         }
