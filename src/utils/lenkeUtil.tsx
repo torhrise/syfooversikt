@@ -1,10 +1,12 @@
 import React from 'react';
 import { finnMiljoStreng } from './miljoUtil';
 
-const modiaEnkeltpersonBaseUrl = `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/`;
+const lenkeTilModiaBasertPaaFnr = (fnr: string) => {
+  return `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/` + fnr;
+};
 
 export const lenkeTilModiaEnkeltperson = (fnr: string) => {
-  return (<a href={modiaEnkeltpersonBaseUrl + fnr}>
+  return (<a href={lenkeTilModiaBasertPaaFnr(fnr)}>
     {fnr}
   </a>);
 };
