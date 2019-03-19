@@ -20,7 +20,7 @@ const tekster = {
   }
 };
 
-const modiaEnkeltpersonBaseUrl = 'https://app${finnMiljoStreng()}.adeo.no/sykefravaer/';
+const modiaEnkeltpersonBaseUrl = `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/`;
 
 interface OversiktProps {
   type: string;
