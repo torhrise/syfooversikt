@@ -1,7 +1,7 @@
 import {EnhetensMotebehovState, MotebehovSvar} from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { hentEnhetensMotebehov } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
-import { AlertStripeMedMelding } from '../utils/componentUtils';
-import { finnMiljoStreng } from '../utils/miljoUtil';
+import { AlertStripeMedMelding } from '../utils/componentUtil';
+import { lenkeTilModiaEnkeltperson} from '../utils/lenkeUtil';
 import React, { Component } from 'react';
 import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
@@ -19,8 +19,6 @@ const tekster = {
     hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over ubehandlet møtebehov svar på enhet'
   }
 };
-
-const modiaEnkeltpersonBaseUrl = `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/`;
 
 interface OversiktProps {
   type: string;
@@ -86,7 +84,7 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
     {
       svarListe.map((svar: MotebehovSvar, idx: number) => {
         return (<li key={idx}>
-          <a href={modiaEnkeltpersonBaseUrl + svar.fnr}> {svar.fnr} {svar.skjermetEllerEgenAnsatt === true ? '(SKJERMET)' : ''}</a>
+          {lenkeTilModiaEnkeltperson(svar.fnr)} {svar.skjermetEllerEgenAnsatt === true ? '(SKJERMET)' : ''}
         </li>);
       })
     }
