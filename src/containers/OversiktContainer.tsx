@@ -1,6 +1,7 @@
 import {EnhetensMotebehovState, MotebehovSvar} from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { hentEnhetensMotebehov } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
 import { AlertStripeMedMelding } from '../utils/componentUtils';
+import { finnMiljoStreng } from '../utils/miljoUtil';
 import React, { Component } from 'react';
 import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
@@ -18,6 +19,8 @@ const tekster = {
     hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over ubehandlet møtebehov svar på enhet'
   }
 };
+
+const modiaEnkeltpersonBaseUrl = 'https://app${finnMiljoStreng()}.adeo.no/sykefravaer/';
 
 interface OversiktProps {
   type: string;
@@ -59,7 +62,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
         { enhetensMotebehov.hentingFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
         }
-        <Oversikt type={type}/>
+        <OversiktHeader type={type}/>
         { enhetensMotebehov.henter
           && <AppSpinner />
         }
@@ -70,7 +73,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
   }
 }
 
-const Oversikt = (oversiktsType: OversiktProps) => {
+const OversiktHeader = (oversiktsType: OversiktProps) => {
   const { type } = oversiktsType;
   return (<div>
       {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h1>{tekster.overskrifter.enhetensOversikt}</h1>}
@@ -82,7 +85,9 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
   return (<ul>
     {
       svarListe.map((svar: MotebehovSvar, idx: number) => {
-        return (<li key={idx}>{svar.fnr} {svar.skjermetEllerEgenAnsatt === true ? '(SKJERMET)' : ''}</li>);
+        return (<li key={idx}>
+          <a href={modiaEnkeltpersonBaseUrl + svar.fnr}> {svar.fnr} {svar.skjermetEllerEgenAnsatt === true ? '(SKJERMET)' : ''}</a>
+        </li>);
       })
     }
   </ul>);
