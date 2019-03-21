@@ -1,4 +1,4 @@
-import { AlertStripeMedMelding } from '../utils/componentUtil';
+import { AlertStripeMedMelding } from '../components/AlterStripeMedMelding';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
