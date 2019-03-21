@@ -11,12 +11,12 @@ import AppSpinner from '../components/AppSpinner';
 
 const tekster = {
   overskrifter: {
-    enhetensOversikt: 'Ubehandlede møtebehov',
+    enhetensOversikt: 'Møtebehov på enhet',
     minOversikt: 'Denne fanen er under utvikling',
     veilederoversikt: 'Denne fanen er under utvikling'
   },
   feil: {
-    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over ubehandlet møtebehov svar på enhet'
+    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over møtebehov svar på enhet'
   }
 };
 
