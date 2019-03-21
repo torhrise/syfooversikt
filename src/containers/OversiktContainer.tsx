@@ -2,6 +2,7 @@ import {EnhetensMotebehovState, MotebehovSvar} from '../store/enhetensMotebehov/
 import { hentEnhetensMotebehov } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
 import { AlertStripeMedMelding } from '../utils/componentUtil';
 import { lenkeTilModiaEnkeltperson} from '../utils/lenkeUtil';
+import { default as MotebehovSvarListeContainer } from './MotebehovSvarListeContainer';
 import React, { Component } from 'react';
 import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
@@ -11,12 +12,12 @@ import AppSpinner from '../components/AppSpinner';
 
 const tekster = {
   overskrifter: {
-    enhetensOversikt: 'Ubehandlede møtebehov',
+    enhetensOversikt: 'Møtebehov på enhet',
     minOversikt: 'Denne fanen er under utvikling',
     veilederoversikt: 'Denne fanen er under utvikling'
   },
   feil: {
-    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over ubehandlet møtebehov svar på enhet'
+    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over møtebehov svar på enhet'
   }
 };
 
@@ -64,8 +65,8 @@ class OversiktCont extends Component<OversiktContainerProps> {
         { enhetensMotebehov.henter
           && <AppSpinner />
         }
-        { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && <MotebehovSvarListe svarListe={enhetensMotebehov.data}/>
+        { enhetensMotebehov.hentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+          && <MotebehovSvarListeContainer svarListe={enhetensMotebehov.data}/>
         }
     </div>);
   }

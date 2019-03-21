@@ -2,7 +2,7 @@ import React from 'react';
 import { finnMiljoStreng } from './miljoUtil';
 
 const lenkeTilModiaBasertPaaFnr = (fnr: string) => {
-  return `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/` + fnr;
+  return `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/${fnr}`;
 };
 
 export const lenkeTilModiaEnkeltperson = (fnr: string) => {
