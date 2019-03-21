@@ -11,6 +11,7 @@ import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
 import AppRouter from './routers/AppRouter';
 import { Provider } from 'react-redux';
+import {hentPersonNavn} from './store/personNavn/personNavn_actions';
 
 const history = createHashHistory();
 
@@ -51,6 +52,10 @@ const config = {
     },
   },
 };
+
+store.dispatch(
+  hentPersonNavn([{aktorId: '1891933570193'}, {aktorId: '1498556759355'}])
+);
 
 store.dispatch(
   hentAktivEnhet({
