@@ -1,3 +1,7 @@
+export interface AktorId {
+  aktorId: string;
+}
+
 export interface PersonNavn {
   navnListe: string[];
 }

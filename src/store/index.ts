@@ -17,7 +17,7 @@ export interface ApplicationState {
   modiacontext: ModiacontextState;
   veilederinfo: VeilederinfoState;
   enhetensMotebehov: EnhetensMotebehovState;
-  personData: PersonNavnState;
+  personNavn: PersonNavnState;
 }
 
 export interface ConnectedReduxProps<A extends Action = AnyAction> {

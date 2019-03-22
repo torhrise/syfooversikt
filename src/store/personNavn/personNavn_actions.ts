@@ -1,11 +1,13 @@
 import {
   PersonNavn,
+  AktorId,
   PersonNavnActionTypes
 } from './personNavnTypes';
 
-export function hentPersonNavn() {
+export function hentPersonNavn(data: AktorId[]) {
   return {
-    type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT
+    type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT,
+    data
   };
 }
 
@@ -18,7 +20,7 @@ export function henterPersonNavn() {
 export function personNavnHentet(data: PersonNavn) {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET,
-    data,
+    data
   };
 }
 
