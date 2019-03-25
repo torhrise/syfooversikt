@@ -1,10 +1,10 @@
 import {
   PersonNavn,
-  AktorId,
+  Fodselsnummer,
   PersonNavnActionTypes
 } from './personNavnTypes';
 
-export function hentPersonNavn(data: AktorId[]) {
+export function hentPersonNavn(data: Fodselsnummer[]) {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT,
     data

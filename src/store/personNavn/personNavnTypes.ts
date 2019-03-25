@@ -1,5 +1,5 @@
-export interface AktorId {
-  aktorId: string;
+export interface Fodselsnummer {
+  fnr: string;
 }
 
 export interface PersonNavn {

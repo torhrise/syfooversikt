@@ -56,8 +56,8 @@ class MotebehovSvarContainer extends Component<MotebehovSvarListeContainerProps>
 const hentFnrFraMotebehovSvar = (svarListe: MotebehovSvar[]) => {
   global.console.log('SVAR: ', svarListe);
   return svarListe.map((motebehovSvar) => {
-    global.console.log('aktor: ', {aktorId: motebehovSvar.fnr});
-    return {aktorId: motebehovSvar.fnr};
+    global.console.log('aktor: ', {fnr: motebehovSvar.fnr});
+    return {fnr: motebehovSvar.fnr};
   });
 };
 

@@ -65,7 +65,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
         { enhetensMotebehov.henter
           && <AppSpinner />
         }
-        { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+        { enhetensMotebehov.hentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && <MotebehovSvarListeContainer svarListe={enhetensMotebehov.data}/>
         }
     </div>);

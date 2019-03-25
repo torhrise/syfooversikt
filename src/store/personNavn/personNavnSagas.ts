@@ -1,7 +1,7 @@
 import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import { get, post } from '../../api/index';
 import * as actions from './personNavn_actions';
-import {AktorId, PersonNavnActionTypes} from './personNavnTypes';
+import {PersonNavnActionTypes} from './personNavnTypes';
 import { finnNaisUrl } from '../../utils/miljoUtil';
 
 export function* hentPersonNavnSaga(action: ReturnType<typeof actions.hentPersonNavn>) {
