@@ -75,8 +75,9 @@ const MotebehovSvarListeContainer = connect(
   mapDispatchToProps
 )(MotebehovSvarContainer);
 
-const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps, navnListe: string[]) => {
+const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
   const { svarListe } = motebehovSvarListe;
+  const { navn } = motebehovSvarListe;
   return (<div>
     <div className="motebehovSvarVenstre">
       <h1>
@@ -98,9 +99,9 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps, navnLis
       </h1>
       <ul>
         {
-          navnListe.map((navn: string, idx: number) => {
+          navn.map((nv: string, idx: number) => {
             return (<li key={idx}>
-              {navn}
+              {nv}
             </li>);
           })
         }
