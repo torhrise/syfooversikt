@@ -54,10 +54,6 @@ const config = {
 };
 
 store.dispatch(
-  hentPersonNavn([{aktorId: '1891933570193'}, {aktorId: '1498556759355'}])
-);
-
-store.dispatch(
   hentAktivEnhet({
     callback: (aktivEnhet) => {
       if (aktivEnhet && config.config.initiellEnhet !== aktivEnhet) {
