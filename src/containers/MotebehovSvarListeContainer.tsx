@@ -1,0 +1,112 @@
+import {PersonNavn, PersonNavnState} from '../store/personNavn/personNavnTypes';
+import {hentPersonNavn} from '../store/personNavn/personNavn_actions';
+import {MotebehovSvar} from '../store/enhetensMotebehov/enhetensMotebehovTypes';
+import React, { Component } from 'react';
+import {ApplicationState} from '../store/index';
+import {Dispatch} from 'redux';
+import {connect} from 'react-redux';
+import {lenkeTilModiaEnkeltperson} from '../utils/lenkeUtil';
+
+interface MotebehovSvarProps {
+  svarListe: MotebehovSvar[];
+}
+
+interface MotebehovSvarListeProps {
+  svarListe: MotebehovSvar[];
+  navn: string[];
+}
+
+interface StateProps {
+  personNavn: PersonNavnState;
+}
+
+interface DispatchProps {
+  actions: {
+    hentPersonNavn: typeof hentPersonNavn;
+  };
+}
+
+interface PersonNavnProps {
+  personNavnListe: PersonNavn;
+}
+
+type MotebehovSvarListeContainerProps = MotebehovSvarProps & StateProps & DispatchProps;
+
+class MotebehovSvarContainer extends Component<MotebehovSvarListeContainerProps> {
+  componentDidMount() {
+    const { actions, svarListe } = this.props;
+    actions.hentPersonNavn(hentFnrFraMotebehovSvar(svarListe));
+  }
+
+  componentDidUpdate(nextProps: MotebehovSvarListeContainerProps) {
+    const { personNavn } = this.props;
+    if (!personNavn.hentet && nextProps.personNavn.hentet) {
+      this.setState(personNavn);
+    }
+  }
+
+  render() {
+    const { personNavn, svarListe } = this.props;
+    return (<div>
+      {<MotebehovSvarListe svarListe={svarListe} navn={personNavn.data}/>}
+    </div>);
+  }
+}
+
+const hentFnrFraMotebehovSvar = (svarListe: MotebehovSvar[]) => {
+  return svarListe.map((motebehovSvar) => {
+    return {aktorId: motebehovSvar.fnr};
+  });
+};
+
+const mapStateToProps = ({ personNavn }: ApplicationState, ownProps: MotebehovSvarProps) => ({
+  personNavn,
+  ownProps,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: MotebehovSvarProps) => ({
+  actions: {
+    hentPersonNavn: () => dispatch(hentPersonNavn(hentFnrFraMotebehovSvar(ownProps.svarListe))),
+  },
+});
+
+const MotebehovSvarListeContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MotebehovSvarContainer);
+
+const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps, navnListe: string[]) => {
+  const { svarListe } = motebehovSvarListe;
+  return (<div>
+    <div className="motebehovSvarVenstre">
+      <h1>
+        Fødselsnummer
+      </h1>
+      <ul>
+      {
+        svarListe.map((svar: MotebehovSvar, idx: number) => {
+          return (<li key={idx}>
+            {lenkeTilModiaEnkeltperson(svar.fnr)} {svar.skjermetEllerEgenAnsatt === true ? '(SKJERMET)' : ''}
+          </li>);
+        })
+      }
+      </ul>
+    </div>
+    <div className="motebehovSvarHoyre">
+      <h1>
+        Navn
+      </h1>
+      <ul>
+        {
+          navnListe.map((navn: string, idx: number) => {
+            return (<li key={idx}>
+              {navn}
+            </li>);
+          })
+        }
+      </ul>
+    </div>
+  </div>);
+};
+
+export default MotebehovSvarListeContainer;
