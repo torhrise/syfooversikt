@@ -87,6 +87,10 @@ const startServer = (html) => {
         res.sendStatus(200);
     });
 
+    if (env === 'local') {
+        require('./mock/mockEndepunkter').mockForLokal(server);
+    }
+
     const port = process.env.PORT || 8080;
     server.listen(port, () => {
         console.log(`App listening on port: ${port}`);

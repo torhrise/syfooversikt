@@ -1,6 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import { get, post } from '../../api/index';
-import { finnMiljoStreng } from '../../utils/miljoUtil';
+import { fullAppAdeoUrl } from '../../utils/miljoUtil';
 import * as actions from './modiacontext_actions';
 import { modiacontextActionTypes } from './modiacontextTypes';
 
@@ -9,9 +9,10 @@ export function* pushModiacontextSaga(
 ) {
   yield put(actions.pusherModiaContext());
   try {
+    const path = '/modiacontextholder/api/context';
     yield call(
       post,
-      `https://app${finnMiljoStreng()}.adeo.no/modiacontextholder/api/context`,
+      fullAppAdeoUrl(path),
       {
         verdi: action.data.verdi,
         eventType: action.data.eventType,
@@ -28,9 +29,10 @@ export function* aktivEnhetSaga(
 ) {
   yield put(actions.henterAktivEnhet());
   try {
+    const path = '/modiacontextholder/api/context/aktivenhet';
     const data = yield call(
       get,
-      `https://app${finnMiljoStreng()}.adeo.no/modiacontextholder/api/context/aktivenhet`
+      fullAppAdeoUrl(path)
     );
     action.data.callback(data.aktivEnhet);
   } catch (e) {

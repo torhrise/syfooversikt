@@ -1,8 +1,9 @@
 import React from 'react';
-import { finnMiljoStreng } from './miljoUtil';
+import { fullAppAdeoUrl } from './miljoUtil';
 
 const lenkeTilModiaBasertPaaFnr = (fnr: string) => {
-  return `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/` + fnr;
+  const path = `/sykefravaer/${fnr}`;
+  return fullAppAdeoUrl(path);
 };
 
 export const lenkeTilModiaEnkeltperson = (fnr: string) => {

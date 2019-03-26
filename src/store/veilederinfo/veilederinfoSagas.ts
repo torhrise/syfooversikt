@@ -2,12 +2,13 @@ import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import { get } from '../../api/index';
 import * as actions from './veilederinfo_actions';
 import { VeilederinfoActionTypes } from './veilederinfoTypes';
-import { finnMiljoStreng } from '../../utils/miljoUtil';
+import { fullAppAdeoUrl } from '../../utils/miljoUtil';
 
 export function* hentVeilederinfoSaga() {
   yield put(actions.henterVeilederinfo());
   try {
-    const url = `https://app${finnMiljoStreng()}.adeo.no${process.env.REACT_APP_VEILEDEROPPGAVERREST_ROOT}/veilederinfo`;
+    const path = `${process.env.REACT_APP_VEILEDEROPPGAVERREST_ROOT}/veilederinfo`;
+    const url = fullAppAdeoUrl(path);
     const data = yield call(get, url);
     yield put(actions.veilederinfoHentet(data));
   } catch (e) {
