@@ -8,10 +8,28 @@ export const finnMiljoStreng = () => {
   return host.substring(bindestrekIndex, dotIndex);
 };
 
+export const erLokal = () => {
+  return window.location.host.indexOf('localhost') > -1;
+};
+
 export const finnNaisUrl = () => {
   const miljoStreng = finnMiljoStreng();
   if (miljoStreng === '') {
     return '.nais.adeo.no';
   }
   return `${miljoStreng}.nais.preprod.local`;
+};
+
+export const fullNaisUrl = (host: string, path: string) => {
+  if (erLokal()) {
+    return path;
+  }
+  return `https://${host}${finnNaisUrl()}${path}`;
+};
+
+export const fullAppAdeoUrl = (path: string) => {
+  if (erLokal()) {
+    return path;
+  }
+  return `https://app${finnMiljoStreng()}.adeo.no${path}`;
 };
