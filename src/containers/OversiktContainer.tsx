@@ -1,7 +1,8 @@
 import {EnhetensMotebehovState, MotebehovSvar} from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { hentEnhetensMotebehov } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
-import { AlertStripeMedMelding } from '../utils/componentUtil';
+import { AlertStripeMedMelding } from '../components/AlterStripeMedMelding';
 import { lenkeTilModiaEnkeltperson} from '../utils/lenkeUtil';
+import { default as MotebehovSvarListeContainer } from './MotebehovSvarListeContainer';
 import React, { Component } from 'react';
 import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
@@ -11,12 +12,12 @@ import AppSpinner from '../components/AppSpinner';
 
 const tekster = {
   overskrifter: {
-    enhetensOversikt: 'Ubehandlede møtebehov',
+    enhetensOversikt: 'Møtebehov på enhet',
     minOversikt: 'Denne fanen er under utvikling',
     veilederoversikt: 'Denne fanen er under utvikling'
   },
   feil: {
-    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over ubehandlet møtebehov svar på enhet'
+    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over møtebehov svar på enhet'
   }
 };
 
@@ -57,15 +58,15 @@ class OversiktCont extends Component<OversiktContainerProps> {
     const { enhetensMotebehov, type } = this.props;
 
     return (<div className="oversiktContainer">
-        { enhetensMotebehov.hentingFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+        { enhetensMotebehov.hentingFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
         }
         <OversiktHeader type={type}/>
         { enhetensMotebehov.henter
           && <AppSpinner />
         }
-        { enhetensMotebehov.hentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && <MotebehovSvarListe svarListe={enhetensMotebehov.data}/>
+        { enhetensMotebehov.hentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+          && <MotebehovSvarListeContainer svarListe={enhetensMotebehov.data}/>
         }
     </div>);
   }
@@ -74,7 +75,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
 const OversiktHeader = (oversiktsType: OversiktProps) => {
   const { type } = oversiktsType;
   return (<div>
-      {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h1>{tekster.overskrifter.enhetensOversikt}</h1>}
+      {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h2>{tekster.overskrifter.enhetensOversikt}</h2>}
   </div>);
 };
 
