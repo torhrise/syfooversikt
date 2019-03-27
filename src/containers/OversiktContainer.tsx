@@ -75,7 +75,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
 const OversiktHeader = (oversiktsType: OversiktProps) => {
   const { type } = oversiktsType;
   return (<div>
-      {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h1>{tekster.overskrifter.enhetensOversikt}</h1>}
+      {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h2>{tekster.overskrifter.enhetensOversikt}</h2>}
   </div>);
 };
 

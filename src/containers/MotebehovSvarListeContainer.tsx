@@ -76,9 +76,9 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
   const { navn } = motebehovSvarListe;
   return (<div>
     <div className="motebehovSvarListeFnr">
-      <h1>
+      <h3>
         Fødselsnummer
-      </h1>
+      </h3>
       <ul>
       {
         svarListe.map((svar: MotebehovSvar, idx: number) => {
@@ -90,9 +90,9 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
       </ul>
     </div>
     <div className="motebehovSvarListeNavn">
-      <h1>
+      <h3>
         Navn
-      </h1>
+      </h3>
       <ul>
         {
           navn.map((nv: string, idx: number) => {
