@@ -75,7 +75,7 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
   const { svarListe } = motebehovSvarListe;
   const { navn } = motebehovSvarListe;
   return (<div>
-    <div className="motebehovSvarVenstre">
+    <div className="motebehovSvarListeFnr">
       <h1>
         Fødselsnummer
       </h1>
@@ -89,7 +89,7 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
       }
       </ul>
     </div>
-    <div className="motebehovSvarHoyre">
+    <div className="motebehovSvarListeNavn">
       <h1>
         Navn
       </h1>
