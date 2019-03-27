@@ -11,7 +11,6 @@ import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
 import AppRouter from './routers/AppRouter';
 import { Provider } from 'react-redux';
-import {hentPersonNavn} from './store/personNavn/personNavn_actions';
 
 const history = createHashHistory();
 
