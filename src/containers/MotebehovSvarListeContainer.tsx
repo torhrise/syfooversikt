@@ -7,6 +7,13 @@ import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {lenkeTilModiaEnkeltperson} from '../utils/lenkeUtil';
 
+const tekster = {
+  motebehovListe: {
+    arbeidstakerFnr: 'Fødselsnummer',
+    arbeidstakerNavn: 'Navn'
+  }
+};
+
 interface MotebehovSvarProps {
   svarListe: MotebehovSvar[];
 }
@@ -77,7 +84,7 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
   return (<div>
     <div className="motebehovSvarListeFnr">
       <h3>
-        Fødselsnummer
+        {tekster.motebehovListe.arbeidstakerFnr}
       </h3>
       <ul>
       {
@@ -91,7 +98,7 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
     </div>
     <div className="motebehovSvarListeNavn">
       <h3>
-        Navn
+        {tekster.motebehovListe.arbeidstakerNavn}
       </h3>
       <ul>
         {
