@@ -6,6 +6,7 @@ import {ApplicationState} from '../store/index';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {lenkeTilModiaEnkeltperson} from '../utils/lenkeUtil';
+import Toolbar from '../components/toolbar/Toolbar';
 
 const tekster = {
   motebehovListe: {
@@ -82,6 +83,7 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
   const { svarListe } = motebehovSvarListe;
   const { navn } = motebehovSvarListe;
   return (<div>
+    <Toolbar />
     <div className="motebehovSvarListeFnr">
       <h3>
         {tekster.motebehovListe.arbeidstakerFnr}
