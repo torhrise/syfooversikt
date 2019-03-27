@@ -1,6 +1,6 @@
 import {EnhetensMotebehovState, MotebehovSvar} from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { hentEnhetensMotebehov } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
-import { AlertStripeMedMelding } from '../utils/componentUtil';
+import { AlertStripeMedMelding } from '../components/AlterStripeMedMelding';
 import { lenkeTilModiaEnkeltperson} from '../utils/lenkeUtil';
 import { default as MotebehovSvarListeContainer } from './MotebehovSvarListeContainer';
 import React, { Component } from 'react';
@@ -58,7 +58,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
     const { enhetensMotebehov, type } = this.props;
 
     return (<div className="oversiktContainer">
-        { enhetensMotebehov.hentingFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+        { enhetensMotebehov.hentingFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
         }
         <OversiktHeader type={type}/>
