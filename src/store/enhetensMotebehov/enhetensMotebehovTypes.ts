@@ -1,6 +1,6 @@
 export interface MotebehovSvar {
   fnr: string;
-  skjermetEllerEgenAnsatt: boolean;
+  skjermingskode: string;
 }
 
 export interface EnhetensMotebehov {

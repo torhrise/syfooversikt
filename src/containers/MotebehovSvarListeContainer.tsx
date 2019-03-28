@@ -92,7 +92,7 @@ const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
       {
         svarListe.map((svar: MotebehovSvar, idx: number) => {
           return (<li key={idx}>
-            {lenkeTilModiaEnkeltperson(svar.fnr)} {svar.skjermetEllerEgenAnsatt === true ? '(SKJERMET)' : ''}
+            {lenkeTilModiaEnkeltperson(svar.fnr)} {svar.skjermingskode !== 'INGEN' ? '(' + svar.skjermingskode + ')' : ''}
           </li>);
         })
       }

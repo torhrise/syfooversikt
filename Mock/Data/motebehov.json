@@ -1,14 +1,14 @@
 [
   {
     "fnr":"99999911111",
-    "skjermetEllerEgenAnsatt":false
+    "skjermingskode":"INGEN"
   },
   {
     "fnr":"99999922222",
-    "skjermetEllerEgenAnsatt":false
+    "skjermingskode":"DISKRESJONSMERKET"
   },
   {
     "fnr":"99999933333",
-    "skjermetEllerEgenAnsatt":true
+    "skjermingskode":"EGEN_ANSATT"
   }
 ]
