@@ -1,14 +1,14 @@
 [
   {
     "fnr":"99999911111",
-    "skjermetEllerEgenAnsatt":false
+    "skjermetEllerEgenAnsatt":"INGEN"
   },
   {
     "fnr":"99999922222",
-    "skjermetEllerEgenAnsatt":false
+    "skjermetEllerEgenAnsatt":"INGEN"
   },
   {
     "fnr":"99999933333",
-    "skjermetEllerEgenAnsatt":true
+    "skjermetEllerEgenAnsatt":"INGEN"
   }
 ]
