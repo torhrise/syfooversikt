@@ -1,3 +1,5 @@
+import { erProd } from '../utils/miljoUtil';
+
 const getCookie = (name: string) => {
     const re = new RegExp(`${name}=([^;]+)`);
     const match = re.exec(document.cookie);
@@ -16,8 +18,7 @@ const createLogger = () => {
 const log = createLogger();
 
 export const hentLoginUrl = () => {
-    if (window.location.href.indexOf('app.adeo.no') > -1) {
-        // Prod
+    if (erProd()) {
         return 'https://loginservice.nais.adeo.no/login';
     }
     // Preprod
@@ -25,7 +26,7 @@ export const hentLoginUrl = () => {
 };
 
 export const hentRedirectBaseUrl = (windowLocationHref: string) => {
-    if (window.location.href.indexOf('app.adeo.no') > -1) {
+    if (erProd()) {
         return 'https://syfooversikt.nais.adeo.no';
     }
     return 'https://syfooversikt-q1.nais.preprod.local';

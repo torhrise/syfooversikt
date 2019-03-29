@@ -8,6 +8,10 @@ export const finnMiljoStreng = () => {
   return host.substring(bindestrekIndex, dotIndex);
 };
 
+export const erProd = () => {
+    return window.location.href.indexOf('nais.adeo.no') > -1;
+};
+
 export const erLokal = () => {
   return window.location.host.indexOf('localhost') > -1;
 };
