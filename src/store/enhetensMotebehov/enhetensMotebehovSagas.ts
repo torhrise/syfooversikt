@@ -8,7 +8,7 @@ export function* hentEnhetensMotebehovSaga() {
   yield put(actions.henterEnhetensMotebehov());
   try {
     const host = 'syfomotebehov';
-    const path = `${process.env.REACT_APP_SYFOMOTEBEHOVREST_ROOT}/enhet/0315/motebehov/brukere`;
+    const path = `${process.env.REACT_APP_SYFOMOTEBEHOVREST_ROOT}/enhet/0316/motebehov/brukere`;
     const url = fullNaisUrl(host, path);
     const data = yield call(get, url);
     yield put(actions.enhetensMotebehovHentet(data));
