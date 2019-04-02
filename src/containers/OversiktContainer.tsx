@@ -1,24 +1,23 @@
-import {EnhetensMotebehovState, MotebehovSvar} from '../store/enhetensMotebehov/enhetensMotebehovTypes';
+import { EnhetensMotebehovState } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { hentEnhetensMotebehov } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
 import { AlertStripeMedMelding } from '../components/AlterStripeMedMelding';
-import { lenkeTilModiaEnkeltperson} from '../utils/lenkeUtil';
-import { default as MotebehovSvarListeContainer } from './MotebehovSvarListeContainer';
 import React, { Component } from 'react';
-import {ApplicationState} from '../store/index';
-import {Dispatch} from 'redux';
-import {connect} from 'react-redux';
-import {OVERSIKT_VISNING_TYPE} from '../konstanter';
+import { ApplicationState } from '../store/index';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import AppSpinner from '../components/AppSpinner';
+import PersonlisteContainer from './PersonerContainer';
 
 const tekster = {
   overskrifter: {
     enhetensOversikt: 'Møtebehov på enhet',
     minOversikt: 'Denne fanen er under utvikling',
-    veilederoversikt: 'Denne fanen er under utvikling'
+    veilederoversikt: 'Denne fanen er under utvikling',
   },
   feil: {
-    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over møtebehov svar på enhet'
-  }
+    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over møtebehov svar på enhet',
+  },
 };
 
 interface OversiktProps {
@@ -33,10 +32,6 @@ interface DispatchProps {
   actions: {
     hentEnhetensMotebehov: typeof hentEnhetensMotebehov;
   };
-}
-
-interface MotebehovSvarListeProps {
-  svarListe: MotebehovSvar[];
 }
 
 type OversiktContainerProps = OversiktProps & StateProps & DispatchProps;
@@ -66,7 +61,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
           && <AppSpinner />
         }
         { enhetensMotebehov.hentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && <MotebehovSvarListeContainer svarListe={enhetensMotebehov.data}/>
+          && <PersonlisteContainer svarListe={enhetensMotebehov.data} />
         }
     </div>);
   }
@@ -77,19 +72,6 @@ const OversiktHeader = (oversiktsType: OversiktProps) => {
   return (<div>
       {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h2>{tekster.overskrifter.enhetensOversikt}</h2>}
   </div>);
-};
-
-const MotebehovSvarListe = (motebehovSvarListe: MotebehovSvarListeProps) => {
-  const { svarListe } = motebehovSvarListe;
-  return (<ul>
-    {
-      svarListe.map((svar: MotebehovSvar, idx: number) => {
-        return (<li key={idx}>
-          {lenkeTilModiaEnkeltperson(svar.fnr)} {svar.skjermingskode !== 'INGEN' ? svar.skjermingskode : ''}
-        </li>);
-      })
-    }
-  </ul>);
 };
 
 const mapStateToProps = ({ enhetensMotebehov }: ApplicationState, ownProps: OversiktProps) => ({
@@ -105,7 +87,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const OversiktContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(OversiktCont);
 
 export default OversiktContainer;
