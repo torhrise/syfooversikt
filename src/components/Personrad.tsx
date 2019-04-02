@@ -13,6 +13,12 @@ interface PersonradProps {
   person: Person;
 }
 
+const skjermingskode = (person: Person) => {
+  return person.svar.skjermingskode !== 'INGEN'
+    ? person.svar.skjermingskode.toLowerCase()
+    : '';
+};
+
 const Personrad = (props: PersonradProps) => {
   const { person } = props;
   return (<Row className="personrad">
@@ -21,7 +27,7 @@ const Personrad = (props: PersonradProps) => {
     </Column>
     <Column className="personrad__navn" md={'3'}>{person.navn}</Column>
     <Column className="personrad__fnr" md={'3'}>{lenkeTilModiaEnkeltperson(person.svar.fnr)}</Column>
-    <Column className="personrad__skjermet" md={'3'}>{person.svar.skjermingskode !== 'INGEN' ? '(SKJERMET)' : ''}</Column>
+    <Column className="personrad__skjermet" md={'3'}>{skjermingskode(person)}</Column>
   </Row>);
 };
 
