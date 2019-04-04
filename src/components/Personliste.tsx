@@ -1,6 +1,6 @@
 import React from 'react';
-import Personrad, { Person } from './Personrad';
 import { Container } from 'nav-frontend-grid';
+import Personrad, { Person } from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
 
 interface PersonlisteProps {
