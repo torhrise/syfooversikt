@@ -3,10 +3,6 @@ export interface MotebehovSvar {
   skjermingskode: string;
 }
 
-export interface EnhetensMotebehov {
-  motebehovSvar: MotebehovSvar[];
-}
-
 export const enum EnhetensMotebehovActionTypes {
   HENT_ENHETENS_MOTEBEHOV_FORESPURT = 'HENT_ENHETENS_MOTEBEHOV_FORESPURT',
   HENT_ENHETENS_MOTEBEHOV_HENTER = 'HENT_ENHETENS_MOTEBEHOV_HENTER',
