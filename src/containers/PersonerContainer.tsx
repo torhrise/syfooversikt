@@ -1,4 +1,3 @@
-import { PersonNavnState } from '../store/personNavn/personNavnTypes';
 import { hentPersonNavn } from '../store/personNavn/personNavn_actions';
 import { MotebehovSvar } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import React, { Component } from 'react';
@@ -7,14 +6,15 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Toolbar from '../components/toolbar/Toolbar';
 import Personliste from '../components/Personliste';
-import { Person } from '../components/Personrad';
+import { PersonregisterState } from '../store/personregister/personregisterTypes';
+import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
 
 interface PersonerProps {
   svarListe: MotebehovSvar[];
 }
 
 interface StateProps {
-  personNavn: PersonNavnState;
+  personregister: PersonregisterState;
 }
 
 interface DispatchProps {
@@ -31,54 +31,45 @@ class PersonerContainer extends Component<PersonlisteContainerProps> {
       actions,
       svarListe,
     } = this.props;
-    actions.hentPersonNavn(hentFnrFraMotebehovSvar(svarListe));
-  }
-
-  componentDidUpdate(nextProps: PersonlisteContainerProps) {
-    const { personNavn } = this.props;
-    if (!personNavn.hentet && nextProps.personNavn.hentet) {
-      this.setState(personNavn);
-    }
+    actions.hentPersonNavn(hentFodselsnummerFraMotebehovSvar(svarListe));
   }
 
   render() {
     const {
-      personNavn,
       svarListe,
+      personregister,
     } = this.props;
-    const personer = mapTilPersoner(svarListe, personNavn.data);
+    const fnrListe = hentFnrFraFodselsnummer(hentFodselsnummerFraMotebehovSvar(svarListe));
     return (<div>
       <Toolbar />
-      <Personliste personer={personer}/>
+      <Personliste
+        fnrListe={fnrListe}
+        personregister={personregister}
+      />
     </div>);
   }
 }
 
-const hentFnrFraMotebehovSvar = (svarListe: MotebehovSvar[]) => {
+const hentFodselsnummerFraMotebehovSvar = (svarListe: MotebehovSvar[]) => {
   return svarListe.map((motebehovSvar) => {
     return {fnr: motebehovSvar.fnr};
   });
 };
 
-const mapTilPersoner = (svarListe: MotebehovSvar[], navneliste: string[]) => {
-  const personer: Person[] = [];
-  svarListe.map((svar: MotebehovSvar, idx: number) => {
-    const navn = !!navneliste
-      ? navneliste[idx]
-      : '';
-    return personer[idx] = { navn, svar };
+const hentFnrFraFodselsnummer = (fodselsnummerListe: Fodselsnummer[]) => {
+  return fodselsnummerListe.map((fodselsnummer) => {
+    return fodselsnummer.fnr;
   });
-  return personer;
 };
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: PersonerProps) => ({
   actions: {
-    hentPersonNavn: () => dispatch(hentPersonNavn(hentFnrFraMotebehovSvar(ownProps.svarListe))),
+    hentPersonNavn: () => dispatch(hentPersonNavn(hentFodselsnummerFraMotebehovSvar(ownProps.svarListe))),
   },
 });
 
-const mapStateToProps = ({ personNavn }: ApplicationState, ownProps: PersonerProps) => ({
-  personNavn,
+const mapStateToProps = ({ personregister }: ApplicationState, ownProps: PersonerProps) => ({
+  personregister,
   ownProps,
 });
 

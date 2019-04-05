@@ -3,7 +3,8 @@ export interface Fodselsnummer {
 }
 
 export interface PersonNavn {
-  navnListe: string[];
+  fnr: string;
+  navn: string;
 }
 
 export const enum PersonNavnActionTypes {
@@ -17,5 +18,5 @@ export interface PersonNavnState {
   readonly hentet: boolean;
   readonly henter: boolean;
   readonly hentingFeilet: boolean;
-  readonly data: string[];
+  readonly data: PersonNavn[];
 }

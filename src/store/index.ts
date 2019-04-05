@@ -4,10 +4,12 @@ import { ModiacontextState } from './modiacontext/modiacontextTypes';
 import { VeilederinfoState } from './veilederinfo/veilederinfoTypes';
 import { EnhetensMotebehovState } from './enhetensMotebehov/enhetensMotebehovTypes';
 import { PersonNavnState} from './personNavn/personNavnTypes';
+import { PersonregisterState } from './personregister/personregisterTypes';
 import modiacontextReducer from './modiacontext/modiacontextReducer';
 import veilederinfoReducer from './veilederinfo/veilederinfoReducer';
 import enhetensMotebehovReducer from './enhetensMotebehov/enhetensMotebehovReducer';
 import personNavnReducer from './personNavn/personNavnReducer';
+import personregisterReducer from './personregister/personregisterReducer';
 import modiacontextSagas from './modiacontext/modiacontextSagas';
 import veilederinfoSagas from './veilederinfo/veilederinfoSagas';
 import enhetensMotebehovSagas from './enhetensMotebehov/enhetensMotebehovSagas';
@@ -18,6 +20,7 @@ export interface ApplicationState {
   veilederinfo: VeilederinfoState;
   enhetensMotebehov: EnhetensMotebehovState;
   personNavn: PersonNavnState;
+  personregister: PersonregisterState;
 }
 
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
@@ -28,7 +31,8 @@ export const rootReducer = combineReducers<ApplicationState>({
   modiacontext: modiacontextReducer,
   veilederinfo: veilederinfoReducer,
   enhetensMotebehov: enhetensMotebehovReducer,
-  personNavn: personNavnReducer
+  personNavn: personNavnReducer,
+  personregister: personregisterReducer,
 });
 
 export function* rootSaga() {
@@ -36,6 +40,6 @@ export function* rootSaga() {
     fork(modiacontextSagas),
     fork(veilederinfoSagas),
     fork(enhetensMotebehovSagas),
-    fork(personNavnSagas)
+    fork(personNavnSagas),
   ]);
 }

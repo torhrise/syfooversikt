@@ -1,6 +1,6 @@
 import {
-  EnhetensMotebehov,
-  EnhetensMotebehovActionTypes
+  EnhetensMotebehovActionTypes,
+  MotebehovSvar,
 } from './enhetensMotebehovTypes';
 
 export function hentEnhetensMotebehov() {
@@ -15,7 +15,7 @@ export function henterEnhetensMotebehov() {
   };
 }
 
-export function enhetensMotebehovHentet(data: EnhetensMotebehov) {
+export function enhetensMotebehovHentet(data: MotebehovSvar[]) {
   return {
     type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET,
     data,
