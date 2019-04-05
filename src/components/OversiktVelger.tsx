@@ -4,8 +4,6 @@ import OversiktContainer from '../containers/OversiktContainer';
 
 const tekster = {
     enhetensOversikt: 'Enhetens oversikt',
-    minOversikt: 'Min oversikt',
-    veilederoversikt: 'Veilederoversikt'
 };
 
 interface StateProps {
