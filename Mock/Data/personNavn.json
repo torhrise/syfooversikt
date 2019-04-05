@@ -1,5 +1,14 @@
 [
-  "Et navn",
-  "Et annet navn",
-  "Nok et navn.."
+  {
+    "fnr": "99999911111",
+    "navn":"Et navn"
+  },
+  {
+    "fnr": "99999922222",
+    "navn":"Et annet navn"
+  },
+  {
+    "fnr": "99999933333",
+    "navn":"Nok et navn.."
+  }
 ]

@@ -1,21 +1,24 @@
 import React from 'react';
 import { Container } from 'nav-frontend-grid';
-import Personrad, { Person } from './Personrad';
+import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
+import { PersonregisterState} from '../store/personregister/personregisterTypes';
 
 interface PersonlisteProps {
-  personer: Person[];
+  fnrListe: string[];
+  personregister: PersonregisterState;
 }
 
 const Personliste = (props: PersonlisteProps) => {
-  const { personer } = props;
+  const { fnrListe, personregister } = props;
   return (<Container className="personliste">
     <Sorteringsrad />
     {
-      personer.map((person: Person, idx: number) => {
+      fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad
           key={idx}
-          person={person}
+          fnr={fnr}
+          personData={personregister[fnr]}
         />);
       })
     }

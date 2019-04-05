@@ -1,33 +1,29 @@
 import { Checkbox } from 'nav-frontend-skjema';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import React from 'react';
-import { MotebehovSvar } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
+import { Person } from '../store/personregister/personregisterTypes';
 import { Column, Row } from 'nav-frontend-grid';
 
-export interface Person {
-  navn: string;
-  svar: MotebehovSvar;
-}
-
 interface PersonradProps {
-  person: Person;
+  fnr: string;
+  personData: Person;
 }
 
 const skjermingskode = (person: Person) => {
-  return person.svar.skjermingskode !== 'INGEN'
-    ? person.svar.skjermingskode.toLowerCase()
+  return person.skjermingskode !== 'INGEN'
+    ? person.skjermingskode.toLowerCase().replace('_', ' ')
     : '';
 };
 
 const Personrad = (props: PersonradProps) => {
-  const { person } = props;
+  const { fnr, personData } = props;
   return (<Row className="personrad">
     <Column className="personrad__checkbox" md={'3'}>
       <Checkbox label={'Marker'} />
     </Column>
-    <Column className="personrad__navn" md={'3'}>{person.navn}</Column>
-    <Column className="personrad__fnr" md={'3'}>{lenkeTilModiaEnkeltperson(person.svar.fnr)}</Column>
-    <Column className="personrad__skjermet" md={'3'}>{skjermingskode(person)}</Column>
+    <Column className="personrad__navn" md={'3'}>{personData.navn}</Column>
+    <Column className="personrad__fnr" md={'3'}>{lenkeTilModiaEnkeltperson(fnr)}</Column>
+    <Column className="personrad__skjermet" md={'3'}>{skjermingskode(personData)}</Column>
   </Row>);
 };
 
