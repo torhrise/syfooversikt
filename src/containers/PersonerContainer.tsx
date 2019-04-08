@@ -6,8 +6,8 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Toolbar from '../components/toolbar/Toolbar';
 import Personliste from '../components/Personliste';
-import {PersonregisterState} from '../store/personregister/personregisterTypes';
-import {Fodselsnummer} from '../store/personNavn/personNavnTypes';
+import { PersonregisterState } from '../store/personregister/personregisterTypes';
+import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
 
 interface PersonerProps {
   svarListe: MotebehovSvar[];

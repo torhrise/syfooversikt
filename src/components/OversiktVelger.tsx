@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {OVERSIKT_VISNING_TYPE} from '../konstanter';
+import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import OversiktContainer from '../containers/OversiktContainer';
 
 const tekster = {

@@ -1,5 +1,6 @@
 import {
-  EnhetensMotebehovActionTypes, MotebehovSvar
+  EnhetensMotebehovActionTypes,
+  MotebehovSvar
 } from './enhetensMotebehovTypes';
 
 export function hentEnhetensMotebehov() {
