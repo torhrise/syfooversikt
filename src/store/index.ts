@@ -32,7 +32,7 @@ export const rootReducer = combineReducers<ApplicationState>({
   veilederinfo: veilederinfoReducer,
   enhetensMotebehov: enhetensMotebehovReducer,
   personNavn: personNavnReducer,
-  personregister: personregisterReducer
+  personregister: personregisterReducer,
 });
 
 export function* rootSaga() {
@@ -40,6 +40,6 @@ export function* rootSaga() {
     fork(modiacontextSagas),
     fork(veilederinfoSagas),
     fork(enhetensMotebehovSagas),
-    fork(personNavnSagas)
+    fork(personNavnSagas),
   ]);
 }

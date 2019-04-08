@@ -16,7 +16,10 @@ const skjermingskode = (person: PersonData) => {
 };
 
 const Personrad = (props: PersonradProps) => {
-  const { fnr, personData } = props;
+  const {
+    fnr,
+    personData,
+  } = props;
   return (<Row className="personrad">
     <Column className="personrad__checkbox" md={'3'}>
       <Checkbox label={'Marker'} />

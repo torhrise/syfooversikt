@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'nav-frontend-grid';
 import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
-import { PersonregisterState} from '../store/personregister/personregisterTypes';
+import { PersonregisterState } from '../store/personregister/personregisterTypes';
 
 interface PersonlisteProps {
   fnrListe: string[];
@@ -10,7 +10,10 @@ interface PersonlisteProps {
 }
 
 const Personliste = (props: PersonlisteProps) => {
-  const { fnrListe, personregister } = props;
+  const {
+    fnrListe,
+    personregister,
+  } = props;
   return (<Container className="personliste">
     <Sorteringsrad />
     {

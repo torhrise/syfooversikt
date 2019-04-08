@@ -37,7 +37,7 @@ class PersonerContainer extends Component<PersonlisteContainerProps> {
   render() {
     const {
       svarListe,
-      personregister
+      personregister,
     } = this.props;
     const fnrListe = hentFnrFraFodselsnummer(hentFodselsnummerFraMotebehovSvar(svarListe));
     return (<div>

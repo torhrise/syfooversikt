@@ -1,7 +1,16 @@
-import { EnhetensMotebehovActionTypes, MotebehovSvar } from '../enhetensMotebehov/enhetensMotebehovTypes';
-import { PersonNavnActionTypes, PersonNavn } from '../personNavn/personNavnTypes';
-import { PersonData, PersonregisterState } from './personregisterTypes';
 import { Reducer } from 'redux';
+import {
+  EnhetensMotebehovActionTypes,
+  MotebehovSvar,
+} from '../enhetensMotebehov/enhetensMotebehovTypes';
+import {
+  PersonNavnActionTypes,
+  PersonNavn,
+} from '../personNavn/personNavnTypes';
+import {
+  PersonData,
+  PersonregisterState,
+} from './personregisterTypes';
 
 const initiellState = { };
 
