@@ -17,7 +17,7 @@ export function henterPersonNavn() {
   };
 }
 
-export function personNavnHentet(data: PersonNavn) {
+export function personNavnHentet(data: PersonNavn[]) {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET,
     data

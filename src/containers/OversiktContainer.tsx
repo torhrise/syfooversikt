@@ -1,4 +1,5 @@
 import { EnhetensMotebehovState } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
+import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { hentEnhetensMotebehov } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
 import { AlertStripeMedMelding } from '../components/AlterStripeMedMelding';
 import React, { Component } from 'react';
@@ -26,6 +27,7 @@ interface OversiktProps {
 
 interface StateProps {
   enhetensMotebehov: EnhetensMotebehovState;
+  personregister: PersonregisterState;
 }
 
 interface DispatchProps {
@@ -74,8 +76,9 @@ const OversiktHeader = (oversiktsType: OversiktProps) => {
   </div>);
 };
 
-const mapStateToProps = ({ enhetensMotebehov }: ApplicationState, ownProps: OversiktProps) => ({
+const mapStateToProps = ({ enhetensMotebehov, personregister }: ApplicationState, ownProps: OversiktProps) => ({
   enhetensMotebehov,
+  personregister,
   ownProps,
 });
 
