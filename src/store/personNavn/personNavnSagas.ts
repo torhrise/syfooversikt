@@ -4,14 +4,14 @@ import * as actions from './personNavn_actions';
 import { PersonNavnActionTypes } from './personNavnTypes';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 
-export function* hentPersonNavnSaga(action: ReturnType<typeof actions.hentPersonNavn>) {
-  yield put(actions.henterPersonNavn());
+export function* hentPersonNavnSaga(action: ReturnType<typeof actions.hentPersonNavnForespurt>) {
+  yield put(actions.hentPersonNavnHenter());
   try {
     const host = 'syfoperson';
     const path = `${process.env.REACT_APP_SYFOPERSONREST_ROOT}/person/navn`;
     const url = fullNaisUrl(host, path);
     const data = yield call(post, url, action.data);
-    yield put(actions.personNavnHentet(data));
+    yield put(actions.hentPersonNavnHentet(data));
   } catch (e) {
     yield put(actions.hentPersonNavnFeilet());
   }

@@ -2,9 +2,9 @@ import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { shallow } from 'enzyme';
 import React from 'react';
-import LandingssideHeader from '../src/components/LandingssideHeader';
-import { Landingsside } from '../src/sider/Landingsside';
-import OversiktVelger from '../src/components/OversiktVelger';
+import LandingssideHeader from '../../src/components/LandingssideHeader';
+import { Landingsside } from '../../src/sider/Landingsside';
+import OversiktVelger from '../../src/components/OversiktVelger';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
