@@ -7,7 +7,7 @@ describe('personregisterReducer', () => {
   describe('Henter persondata', () => {
     const initialState = Object.freeze({ });
 
-    it('haandterer HENT_ENHETENS_MOTEBEHOV_HENTET', () => {
+    it('handterer HENT_ENHETENS_MOTEBEHOV_HENTET', () => {
       const dataIForsteKall = [ { fnr: '99999911111', skjermingskode: 'INGEN'}, { fnr: '99999922222', skjermingskode: 'DISKRESJONSMERKET'} ];
       const dataIAndreKall = [ { fnr: '99999933333', skjermingskode: 'EGEN_ANSATT'} ];
       const forsteAction = hentEnhetensMotebehovHentet(dataIForsteKall);
@@ -25,7 +25,7 @@ describe('personregisterReducer', () => {
       });
     });
 
-    it('haandterer HENT_PERSON_NAVN_HENTET', () => {
+    it('handterer HENT_PERSON_NAVN_HENTET', () => {
       const dataIForsteKall = [ { fnr: '99999911111', navn: 'Et navn' }, { fnr: '99999922222', navn: 'Et annet navn' } ];
       const dataIAndreKall = [ {fnr: '99999933333', navn: 'Nok et navn..'} ];
       const forsteAction = hentPersonNavnHentet(dataIForsteKall);
@@ -43,7 +43,7 @@ describe('personregisterReducer', () => {
       });
     });
 
-    it('haandterer kombinasjoner', () => {
+    it('handterer kombinasjoner', () => {
       const dataIForsteKall = [ { fnr: '99999911111', skjermingskode: 'INGEN'}, { fnr: '99999922222', skjermingskode: 'DISKRESJONSMERKET'}, { fnr: '99999933333', skjermingskode: 'EGEN_ANSATT'} ];
       const dataIAndreKall = [ { fnr: '99999911111', navn: 'Et navn' }, { fnr: '99999922222', navn: 'Et annet navn' }, {fnr: '99999933333', navn: 'Nok et navn..'} ];
       const forsteAction = hentEnhetensMotebehovHentet(dataIForsteKall);

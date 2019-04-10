@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { render } from 'react-dom';
 import { CONTEXT_EVENT_TYPE } from './konstanter';
 import {
@@ -10,7 +11,6 @@ import { finnMiljoStreng } from './utils/miljoUtil';
 import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
 import AppRouter from './routers/AppRouter';
-import { Provider } from 'react-redux';
 
 const history = createHashHistory();
 

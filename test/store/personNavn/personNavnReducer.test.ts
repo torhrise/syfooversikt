@@ -16,7 +16,7 @@ describe('personNavnReducer', () => {
       data: [],
     });
 
-    it('haandterer HENT_PERSON_NAVN_HENTER', () => {
+    it('handterer HENT_PERSON_NAVN_HENTER', () => {
       const action = hentPersonNavnHenter();
       const nesteState = personNavnReducer(initialState, action);
       expect(nesteState).to.deep.equal({
@@ -27,7 +27,7 @@ describe('personNavnReducer', () => {
       });
     });
 
-    it('haandterer HENT_PERSON_NAVN_HENTET', () => {
+    it('handterer HENT_PERSON_NAVN_HENTET', () => {
       const personNavnSvar = [{ fnr: '99999911111', navn: 'Et navn' }];
       const action = hentPersonNavnHentet(personNavnSvar);
       const nesteState = personNavnReducer(initialState, action);
@@ -39,7 +39,7 @@ describe('personNavnReducer', () => {
       });
     });
 
-    it('haandterer HENT_PERSON_NAVN_FEILET', () => {
+    it('handterer HENT_PERSON_NAVN_FEILET', () => {
       const action = hentPersonNavnFeilet()
       const nesteState = personNavnReducer(initialState, action);
       expect(nesteState).to.deep.equal({

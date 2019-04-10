@@ -16,7 +16,7 @@ describe('enhetensMotebehovReducer', () => {
       data: [],
     });
 
-    it('haandterer HENT_ENHETENS_MOTEBEHOV_HENTER', () => {
+    it('handterer HENT_ENHETENS_MOTEBEHOV_HENTER', () => {
       const action = hentEnhetensMotebehovHenter();
       const nesteState = enhetensMotebehovReducer(initialState, action);
       expect(nesteState).to.deep.equal({
@@ -27,7 +27,7 @@ describe('enhetensMotebehovReducer', () => {
       });
     });
 
-    it('haandterer HENT_ENHETENS_MOTEBEHOV_HENTET', () => {
+    it('handterer HENT_ENHETENS_MOTEBEHOV_HENTET', () => {
       const motebehovSvar = [{ fnr: '99999911111', skjermingskode: 'INGEN' }];
       const action = hentEnhetensMotebehovHentet(motebehovSvar);
       const nesteState = enhetensMotebehovReducer(initialState, action);
@@ -39,7 +39,7 @@ describe('enhetensMotebehovReducer', () => {
       });
     });
 
-    it('haandterer HENT_ENHETENS_MOTEBEHOV_FEILET', () => {
+    it('handterer HENT_ENHETENS_MOTEBEHOV_FEILET', () => {
       const action = hentEnhetensMotebehovFeilet()
       const nesteState = enhetensMotebehovReducer(initialState, action);
       expect(nesteState).to.deep.equal({

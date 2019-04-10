@@ -21,7 +21,7 @@ describe('personNavn_actions', () => {
     expect(hentPersonNavnHenter()).to.deep.equal({ type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER });
   });
 
-  it('hentPersonNavnHentet()() skal returnere riktig action', () => {
+  it('hentPersonNavnHentet() skal returnere riktig action', () => {
     const personNavnSvar = [ { fnr: '99999911111', navn: 'Et navn'} ];
     expect(hentPersonNavnHentet(personNavnSvar)).to.deep.equal({ type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET, data: personNavnSvar });
   });

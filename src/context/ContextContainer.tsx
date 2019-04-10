@@ -1,9 +1,9 @@
-import { AlertStripeMedMelding } from '../components/AlterStripeMedMelding';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { ApplicationState } from '../store';
 import { CONTEXT_EVENT_TYPE } from '../konstanter';
+import { AlertStripeMedMelding } from '../components/AlertStripeMedMelding';
 import { hentAktivEnhet } from '../store/modiacontext/modiacontext_actions';
 import { HentAktivEnhetData } from '../store/modiacontext/modiacontextTypes';
 import { hentVeilederinfo } from '../store/veilederinfo/veilederinfo_actions';

@@ -1,5 +1,5 @@
-import { Checkbox } from 'nav-frontend-skjema';
 import React from 'react';
+import { Checkbox } from 'nav-frontend-skjema';
 import {
   Column,
   Row,

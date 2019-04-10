@@ -1,19 +1,14 @@
+import React from 'react';
+import { Column, Row } from 'nav-frontend-grid';
 import { Checkbox } from 'nav-frontend-skjema';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
-import React from 'react';
 import { PersonData } from '../store/personregister/personregisterTypes';
-import { Column, Row } from 'nav-frontend-grid';
+import { skjermingskode } from '../utils/personDataUtil';
 
 interface PersonradProps {
   fnr: string;
   personData: PersonData;
 }
-
-const skjermingskode = (person: PersonData) => {
-  return person.skjermingskode !== 'INGEN'
-    ? person.skjermingskode.toLowerCase().replace('_', ' ')
-    : '';
-};
 
 const Personrad = (props: PersonradProps) => {
   const {
