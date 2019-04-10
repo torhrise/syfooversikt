@@ -1,9 +1,9 @@
-import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
-import { MotebehovSvar } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import React, { Component } from 'react';
-import { ApplicationState } from '../store/index';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
+import { MotebehovSvar } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
+import { ApplicationState } from '../store/index';
 import Toolbar from '../components/toolbar/Toolbar';
 import Personliste from '../components/Personliste';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';

@@ -1,11 +1,11 @@
+import React, { Component } from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { EnhetensMotebehovState } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { hentEnhetensMotebehovForespurt } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
-import { AlertStripeMedMelding } from '../components/AlterStripeMedMelding';
-import React, { Component } from 'react';
-import { ApplicationState } from '../store/index';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { AlertStripeMedMelding } from '../components/AlertStripeMedMelding';
+import { ApplicationState } from '../store';
 import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import AppSpinner from '../components/AppSpinner';
 import PersonlisteContainer from './PersonerContainer';

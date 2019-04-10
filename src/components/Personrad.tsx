@@ -1,8 +1,9 @@
+import React from 'react';
+import { Column, Row } from 'nav-frontend-grid';
 import { Checkbox } from 'nav-frontend-skjema';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
-import React from 'react';
 import { PersonData } from '../store/personregister/personregisterTypes';
-import { Column, Row } from 'nav-frontend-grid';
+
 
 interface PersonradProps {
   fnr: string;

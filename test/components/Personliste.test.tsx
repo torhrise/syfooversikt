@@ -23,7 +23,7 @@ describe('Personliste', () => {
     expect(component.contains(<Sorteringsrad/>)).to.equal(true);
   });
 
-  it('Skal rendre Personrad.test.tsx med riktig persondata', () => {
+  it('Skal rendre Personrad-komponenter med riktig persondata', () => {
     expect(component.contains(<Personrad fnr={fnr1} personData={personregister[fnr1]} />)).to.equal(true);
     expect(component.contains(<Personrad fnr={fnr2} personData={personregister[fnr2]} />)).to.equal(true);
   });
