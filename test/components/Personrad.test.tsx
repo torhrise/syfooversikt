@@ -5,16 +5,10 @@ import React from 'react';
 import { Column } from 'nav-frontend-grid';
 import Personrad from '../../src/components/Personrad';
 import { lenkeTilModiaEnkeltperson } from '../../src/utils/lenkeUtil';
-import { PersonData } from '../../src/store/personregister/personregisterTypes';
+import {skjermingskode} from '../../src/utils/personDataUtil';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
-
-const skjermingskode = (person: PersonData) => {
-  return person.skjermingskode !== 'INGEN'
-    ? person.skjermingskode.toLowerCase().replace('_', ' ')
-    : '';
-};
 
 describe('Personrad', () => {
   const fnr = '99999911111 ';
