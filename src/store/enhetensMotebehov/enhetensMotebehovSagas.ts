@@ -5,13 +5,13 @@ import { EnhetensMotebehovActionTypes } from './enhetensMotebehovTypes';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 
 export function* hentEnhetensMotebehovSaga() {
-  yield put(actions.henterEnhetensMotebehov());
+  yield put(actions.hentEnhetensMotebehovHenter());
   try {
     const host = 'syfomotebehov';
     const path = `${process.env.REACT_APP_SYFOMOTEBEHOVREST_ROOT}/enhet/0315/motebehov/brukere`;
     const url = fullNaisUrl(host, path);
     const data = yield call(get, url);
-    yield put(actions.enhetensMotebehovHentet(data));
+    yield put(actions.hentEnhetensMotebehovHentet(data));
   } catch (e) {
     yield put(actions.hentEnhetensMotebehovFeilet());
   }

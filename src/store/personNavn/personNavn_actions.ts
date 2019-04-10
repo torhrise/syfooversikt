@@ -4,20 +4,20 @@ import {
   PersonNavnActionTypes
 } from './personNavnTypes';
 
-export function hentPersonNavn(data: Fodselsnummer[]) {
+export function hentPersonNavnForespurt(data: Fodselsnummer[]) {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT,
     data
   };
 }
 
-export function henterPersonNavn() {
+export function hentPersonNavnHenter() {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER
   };
 }
 
-export function personNavnHentet(data: PersonNavn[]) {
+export function hentPersonNavnHentet(data: PersonNavn[]) {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET,
     data

@@ -1,9 +1,9 @@
-import { hentPersonNavn } from '../store/personNavn/personNavn_actions';
-import { MotebehovSvar } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import React, { Component } from 'react';
-import { ApplicationState } from '../store/index';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
+import { MotebehovSvar } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
+import { ApplicationState } from '../store';
 import Toolbar from '../components/toolbar/Toolbar';
 import Personliste from '../components/Personliste';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
@@ -19,7 +19,7 @@ interface StateProps {
 
 interface DispatchProps {
   actions: {
-    hentPersonNavn: typeof hentPersonNavn;
+    hentPersonNavnForespurt: typeof hentPersonNavnForespurt;
   };
 }
 
@@ -31,7 +31,7 @@ class PersonerContainer extends Component<PersonlisteContainerProps> {
       actions,
       svarListe,
     } = this.props;
-    actions.hentPersonNavn(hentFodselsnummerFraMotebehovSvar(svarListe));
+    actions.hentPersonNavnForespurt(hentFodselsnummerFraMotebehovSvar(svarListe));
   }
 
   render() {
@@ -64,7 +64,7 @@ const hentFnrFraFodselsnummer = (fodselsnummerListe: Fodselsnummer[]) => {
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: PersonerProps) => ({
   actions: {
-    hentPersonNavn: () => dispatch(hentPersonNavn(hentFodselsnummerFraMotebehovSvar(ownProps.svarListe))),
+    hentPersonNavnForespurt: () => dispatch(hentPersonNavnForespurt(hentFodselsnummerFraMotebehovSvar(ownProps.svarListe))),
   },
 });
 

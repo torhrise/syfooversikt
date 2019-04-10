@@ -17,13 +17,14 @@
     "scripts:watch": "webpack-dev-server --inline --port 9090",
     "start": "node ./server.js",
     "start-local": "node ./server.js local",
-    "test": "mocha -r ts-node/register -r ignore-styles -r jsdom-global/register ./test/setup.tsx ./test/**/*.tsx"
+    "test": "mocha -r ts-node/register -r ignore-styles -r jsdom-global/register ./test/setup.tsx ./test/**/*.tsx ./test/**/*.ts"
   },
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
   "dependencies": {
     "@svgr/webpack": "2.4.1",
     "@types/classnames": "^2.2.3",
+    "@types/deep-freeze": "0.1.1",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/history": "4.7.2",
     "@types/node": "10.12.10",
@@ -141,6 +142,7 @@
     "babelify": "7.3.0",
     "chai": "4.1.2",
     "chai-enzyme": "^1.0.0-beta.1",
+    "deep-freeze": "0.0.1",
     "dotenv-webpack": "1.5.7",
     "ignore-styles": "5.0.1",
     "jsdom": "13.1.0",
