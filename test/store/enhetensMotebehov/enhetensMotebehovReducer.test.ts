@@ -6,6 +6,7 @@ import {
   hentEnhetensMotebehovHentet,
   hentEnhetensMotebehovFeilet,
 } from '../../../src/store/enhetensMotebehov/enhetensMotebehov_actions';
+import * as testdata from '../../../Mock/Data/fellesTestdata.json';
 
 describe('enhetensMotebehovReducer', () => {
   describe('Henter motebehovsvar', () => {
@@ -28,7 +29,7 @@ describe('enhetensMotebehovReducer', () => {
     });
 
     it('handterer HENT_ENHETENS_MOTEBEHOV_HENTET', () => {
-      const motebehovSvar = [{ fnr: '99999911111', skjermingskode: 'INGEN' }];
+      const motebehovSvar = [{ fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen }];
       const action = hentEnhetensMotebehovHentet(motebehovSvar);
       const nesteState = enhetensMotebehovReducer(initialState, action);
       expect(nesteState).to.deep.equal({

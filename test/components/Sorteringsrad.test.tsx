@@ -2,10 +2,8 @@ import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { shallow } from 'enzyme';
 import React from 'react';
-import { Checkbox } from 'nav-frontend-skjema';
 import { Column } from 'nav-frontend-grid';
 import Sorteringsrad from '../../src/components/Sorteringsrad';
-
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -17,11 +15,11 @@ describe('Sorteringsrad', () => {
   const kolonneForDiskresjonskodeTekst = 'Diskresjonskode';
   const component = shallow(<Sorteringsrad />);
 
-  it('Skal rendre "Velg alle"-Checkbox', () => {
-    expect(component.contains(<Checkbox label={checkboxVelgAlleTekst} />)).to.equal(true);
+  it('Skal inneholde "Velg alle"-Checkbox', () => {
+    expect(component.find({label: checkboxVelgAlleTekst})).to.have.length(1);
   });
 
-  it('Skal rendre komponent med "sorteringsrad"-klasse', () => {
+  it('Skal inneholde komponent med "sorteringsrad"-klasse', () => {
     expect(component.find('.sorteringsrad')).to.have.length(1);
   });
 

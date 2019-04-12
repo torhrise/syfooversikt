@@ -4,7 +4,7 @@ import { connectRouter, routerMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { History } from 'history';
 
-import { ApplicationState, rootReducer, rootSaga } from './store';
+import { ApplicationState, rootReducer, rootSaga } from './index';
 
 export default function configureStore(
   history: History,
