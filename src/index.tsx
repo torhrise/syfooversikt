@@ -8,14 +8,9 @@ import {
 } from './store/modiacontext/modiacontext_actions';
 import './styles/styles.less';
 import { finnMiljoStreng } from './utils/miljoUtil';
-import createHashHistory from 'history/createHashHistory';
-import configureStore from './configureStore';
 import AppRouter from './routers/AppRouter';
 
-const history = createHashHistory();
-
-const initialState = window.initialReduxState;
-const store = configureStore(history, initialState);
+import { store, history } from './store';
 
 if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
@@ -78,5 +73,3 @@ document.addEventListener('DOMContentLoaded', () => {
     (window as any).renderDecoratorHead(config);
 });
 /* tslint:enable no-unused-expression */
-
-export { store, history };

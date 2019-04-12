@@ -5,18 +5,17 @@ import React from 'react';
 import Personliste from '../../src/components/Personliste';
 import Sorteringsrad from '../../src/components/Sorteringsrad';
 import Personrad from '../../src/components/Personrad';
+import * as testdata from '../../Mock/Data/fellesTestdata.json';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 describe('Personliste', () => {
-  const fnr1 = '99999911111';
-  const fnr2 = '99999922222';
   const personregister = {
-    [fnr1]: { navn: 'Et navn', harSvartPaaMotebehov: true, skjermingskode: 'INGEN' },
-    [fnr2]: { navn: 'Et annet navn', harSvartPaaMotebehov: false, skjermingskode: 'EGEN_ANSATT' },
+    [testdata.fnr1]: { navn: testdata.navn1, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.ingen, markert: false },
+    [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: false, skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false },
   };
-  const fnrListe = ['99999911111', '99999922222'];
+  const fnrListe = [testdata.fnr1, testdata.fnr2];
   const component = shallow(<Personliste fnrListe={fnrListe} personregister={personregister} />);
 
   it('Skal rendre Sorteringsrad', () => {
@@ -24,7 +23,7 @@ describe('Personliste', () => {
   });
 
   it('Skal rendre Personrad-komponenter med riktig persondata', () => {
-    expect(component.contains(<Personrad fnr={fnr1} personData={personregister[fnr1]} />)).to.equal(true);
-    expect(component.contains(<Personrad fnr={fnr2} personData={personregister[fnr2]} />)).to.equal(true);
+    expect(component.contains(<Personrad fnr={testdata.fnr1} personData={personregister[testdata.fnr1]} />)).to.equal(true);
+    expect(component.contains(<Personrad fnr={testdata.fnr2} personData={personregister[testdata.fnr2]} />)).to.equal(true);
   });
 });

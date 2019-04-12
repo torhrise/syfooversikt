@@ -5,17 +5,18 @@ import React from 'react';
 import { Column } from 'nav-frontend-grid';
 import Personrad from '../../src/components/Personrad';
 import { lenkeTilModiaEnkeltperson } from '../../src/utils/lenkeUtil';
-import {skjermingskode} from '../../src/utils/personDataUtil';
+import { skjermingskode } from '../../src/utils/personDataUtil';
+import * as testdata from '../../Mock/Data/fellesTestdata.json';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 describe('Personrad', () => {
-  const fnr = '99999911111 ';
-  const personData = { navn: 'Et navn', harSvartPaaMotebehov: false, skjermingskode: 'INGEN' };
+  const fnr = testdata.fnr1;
+  const personData = { navn: testdata.navn1, harSvartPaaMotebehov: false, skjermingskode: testdata.skjermingskode.ingen, markert: false };
   const component = shallow(<Personrad fnr={fnr} personData={personData} />);
 
-  it('Skal rendre komponent med "personrad"-klasse', () => {
+  it('Skal inneholde komponent med "personrad"-klasse', () => {
     expect(component.find('.personrad')).to.have.length(1);
   });
 

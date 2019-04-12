@@ -4,10 +4,10 @@ import { hentPersonNavnSaga } from '../../../src/store/personNavn/personNavnSaga
 import { PersonNavnActionTypes } from '../../../src/store/personNavn/personNavnTypes';
 import { post } from '../../../src/api';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
-
+import * as testdata from '../../../Mock/Data/fellesTestdata.json';
 
 describe('hentPersonNavnSagas', () => {
-  const requestBody = [{fnr: '99999911111'}];
+  const requestBody = [{fnr: testdata.fnr1}];
   const forespurtAction = { type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT, data: requestBody}
   const generator = hentPersonNavnSaga(forespurtAction);
 
@@ -23,7 +23,7 @@ describe('hentPersonNavnSagas', () => {
   });
 
   it(`Skal dernest sette ${PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET}`, () => {
-    const personNavnSvar = [{ fnr: '99999911111', navn: 'Et navn'}];
+    const personNavnSvar = [{ fnr: testdata.fnr1, navn: testdata.navn1}];
     const nextPut = put({
       type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET,
       data: personNavnSvar,

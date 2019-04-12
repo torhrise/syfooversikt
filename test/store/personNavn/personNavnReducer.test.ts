@@ -6,6 +6,7 @@ import {
   hentPersonNavnHentet,
   hentPersonNavnFeilet,
 } from '../../../src/store/personNavn/personNavn_actions';
+import * as testdata from '../../../Mock/Data/fellesTestdata.json';
 
 describe('personNavnReducer', () => {
   describe('Henter navn paa personer', () => {
@@ -28,7 +29,7 @@ describe('personNavnReducer', () => {
     });
 
     it('handterer HENT_PERSON_NAVN_HENTET', () => {
-      const personNavnSvar = [{ fnr: '99999911111', navn: 'Et navn' }];
+      const personNavnSvar = [{ fnr: testdata.fnr1, navn: testdata.navn1 }];
       const action = hentPersonNavnHentet(personNavnSvar);
       const nesteState = personNavnReducer(initialState, action);
       expect(nesteState).to.deep.equal({

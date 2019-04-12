@@ -14,6 +14,8 @@ import modiacontextSagas from './modiacontext/modiacontextSagas';
 import veilederinfoSagas from './veilederinfo/veilederinfoSagas';
 import enhetensMotebehovSagas from './enhetensMotebehov/enhetensMotebehovSagas';
 import personNavnSagas from './personNavn/personNavnSagas';
+import createHashHistory from 'history/createHashHistory';
+import configureStore from './configureStore';
 
 export interface ApplicationState {
   modiacontext: ModiacontextState;
@@ -43,3 +45,10 @@ export function* rootSaga() {
     fork(personNavnSagas),
   ]);
 }
+
+const history = createHashHistory();
+
+const initialState = window.initialReduxState;
+const store = configureStore(history, initialState);
+
+export { store, history };
