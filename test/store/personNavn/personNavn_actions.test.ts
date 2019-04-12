@@ -7,13 +7,14 @@ import {
   hentPersonNavnHentet,
   hentPersonNavnFeilet,
 } from '../../../src/store/personNavn/personNavn_actions';
+import * as testdata from '../../../Mock/Data/fellesTestdata.json';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 describe('personNavn_actions', () => {
   it('hentPersonNavnForespurt() skal returnere riktig action', () => {
-    const fnrListe = [{fnr: '99999911111'}];
+    const fnrListe = [{fnr: testdata.fnr1}];
     expect(hentPersonNavnForespurt(fnrListe)).to.deep.equal({ type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT, data: fnrListe });
   });
 
@@ -22,7 +23,7 @@ describe('personNavn_actions', () => {
   });
 
   it('hentPersonNavnHentet() skal returnere riktig action', () => {
-    const personNavnSvar = [ { fnr: '99999911111', navn: 'Et navn'} ];
+    const personNavnSvar = [ { fnr: testdata.fnr1, navn: testdata.navn1} ];
     expect(hentPersonNavnHentet(personNavnSvar)).to.deep.equal({ type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET, data: personNavnSvar });
   });
 

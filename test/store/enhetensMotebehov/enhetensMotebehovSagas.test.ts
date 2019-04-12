@@ -4,6 +4,7 @@ import { hentEnhetensMotebehovSaga } from '../../../src/store/enhetensMotebehov/
 import { get } from '../../../src/api';
 import { EnhetensMotebehovActionTypes } from '../../../src/store/enhetensMotebehov/enhetensMotebehovTypes';
 import {fullNaisUrl} from '../../../src/utils/miljoUtil';
+import * as testdata from '../../../Mock/Data/fellesTestdata.json';
 
 describe('hentEnhetensMotebehovSagas', () => {
   const generator = hentEnhetensMotebehovSaga();
@@ -20,7 +21,7 @@ describe('hentEnhetensMotebehovSagas', () => {
   });
 
   it(`Skal dernest sette ${EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET}`, () => {
-    const motebehovSvar = [{ fnr: '99999911111', skjermingskode: 'INGEN'}];
+    const motebehovSvar = [{ fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen}];
     const nextPut = put({
       type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET,
       data: motebehovSvar,

@@ -7,6 +7,7 @@ import {
   hentEnhetensMotebehovHentet,
   hentEnhetensMotebehovFeilet,
 } from '../../../src/store/enhetensMotebehov/enhetensMotebehov_actions';
+import * as testdata from '../../../Mock/Data/fellesTestdata.json';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -21,7 +22,7 @@ describe('enhetensMotebehov_actions', () => {
   });
 
   it('hentEnhetensMotebehovHentet() skal returnere riktig action', () => {
-    const motebehovSvar = [ { fnr: '99999911111', skjermingskode: 'INGEN'} ];
+    const motebehovSvar = [ { fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen} ];
     expect(hentEnhetensMotebehovHentet(motebehovSvar)).to.deep.equal({ type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET, data: motebehovSvar });
   });
 

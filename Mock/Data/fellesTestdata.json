@@ -1,0 +1,13 @@
+{
+  "fnr1": "99999911111",
+  "fnr2": "99999922222",
+  "fnr3": "99999933333",
+  "navn1": "Et navn",
+  "navn2": "Et annet navn",
+  "navn3": "Nok et navn..",
+  "skjermingskode": {
+    "ingen": "INGEN",
+    "diskresjonsmerket": "DISKRESJONSMERKET",
+    "egenAnsatt": "EGEN_ANSATT"
+  }
+}
