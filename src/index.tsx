@@ -11,6 +11,7 @@ import { finnMiljoStreng } from './utils/miljoUtil';
 import AppRouter from './routers/AppRouter';
 
 import { store, history } from './store';
+import {pushVeilederBrukerTilknytning} from './store/veilederBrukerTilknytning/veilederBrukerTilknytning_actions';
 
 if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
@@ -46,6 +47,14 @@ const config = {
     },
   },
 };
+store.dispatch(
+  pushVeilederBrukerTilknytning([{
+      veilederIdent: 'Z990243',
+      aktorId: '1733483394485',
+      enhet: '0315',
+    }]
+  )
+);
 
 store.dispatch(
   hentAktivEnhet({
