@@ -3,7 +3,7 @@ import { all, fork } from 'redux-saga/effects';
 import { ModiacontextState } from './modiacontext/modiacontextTypes';
 import { VeilederinfoState } from './veilederinfo/veilederinfoTypes';
 import { EnhetensMotebehovState } from './enhetensMotebehov/enhetensMotebehovTypes';
-import { PersonNavnState} from './personNavn/personNavnTypes';
+import { PersonNavnState } from './personNavn/personNavnTypes';
 import { PersonregisterState } from './personregister/personregisterTypes';
 import modiacontextReducer from './modiacontext/modiacontextReducer';
 import veilederinfoReducer from './veilederinfo/veilederinfoReducer';

@@ -1,8 +1,14 @@
-import {all, call, fork, put, takeEvery} from 'redux-saga/effects';
-import {post} from '../../api/index';
+import {
+  all,
+  call,
+  fork,
+  put,
+  takeEvery
+} from 'redux-saga/effects';
+import { post } from '../../api/index';
 import * as actions from './veilederBrukerTilknytning_actions';
-import {veilederBrukerTilknytningActionTypes} from './veilederBrukerTilknytningTypes';
-import {fullNaisUrl} from '../../utils/miljoUtil';
+import { veilederBrukerTilknytningActionTypes } from './veilederBrukerTilknytningTypes';
+import { fullNaisUrl } from '../../utils/miljoUtil';
 
 export function* pushBrukerTilknytningSaga(
   action: ReturnType<typeof actions.pushVeilederBrukerTilknytning>

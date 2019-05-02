@@ -1,4 +1,4 @@
-import {PersonData} from '../store/personregister/personregisterTypes';
+import { PersonData } from '../store/personregister/personregisterTypes';
 
 export const skjermingskode = (person: PersonData) => {
   return person.skjermingskode !== 'INGEN'

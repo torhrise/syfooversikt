@@ -3,7 +3,7 @@ import { put, call } from 'redux-saga/effects';
 import { hentEnhetensMotebehovSaga } from '../../../src/store/enhetensMotebehov/enhetensMotebehovSagas';
 import { get } from '../../../src/api';
 import { EnhetensMotebehovActionTypes } from '../../../src/store/enhetensMotebehov/enhetensMotebehovTypes';
-import {fullNaisUrl} from '../../../src/utils/miljoUtil';
+import { fullNaisUrl } from '../../../src/utils/miljoUtil';
 import * as testdata from '../../../Mock/Data/fellesTestdata.json';
 
 describe('hentEnhetensMotebehovSagas', () => {
