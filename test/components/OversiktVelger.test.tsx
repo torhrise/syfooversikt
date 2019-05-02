@@ -3,7 +3,7 @@ import chaiEnzyme from 'chai-enzyme';
 import { shallow } from 'enzyme';
 import React from 'react';
 import OversiktVelger from '../../src/components/OversiktVelger';
-import {OVERSIKT_VISNING_TYPE} from '../../src/konstanter';
+import { OVERSIKT_VISNING_TYPE } from '../../src/konstanter';
 import OversiktContainer from '../../src/containers/OversiktContainer';
 
 chai.use(chaiEnzyme());
