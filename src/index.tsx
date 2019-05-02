@@ -47,6 +47,7 @@ const config = {
     },
   },
 };
+// TODO: beholder dette for å kunne teste endepunktet mot syfoperson
 store.dispatch(
   pushVeilederBrukerTilknytning([{
       veilederIdent: 'Z990243',

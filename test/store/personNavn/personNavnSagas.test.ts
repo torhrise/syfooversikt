@@ -8,7 +8,7 @@ import * as testdata from '../../../Mock/Data/fellesTestdata.json';
 
 describe('hentPersonNavnSagas', () => {
   const requestBody = [{fnr: testdata.fnr1}];
-  const forespurtAction = { type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT, data: requestBody}
+  const forespurtAction = { type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT, data: requestBody};
   const generator = hentPersonNavnSaga(forespurtAction);
 
   it(`Skal dispatche ${PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER}`, () => {

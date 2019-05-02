@@ -41,7 +41,7 @@ describe('personNavnReducer', () => {
     });
 
     it('handterer HENT_PERSON_NAVN_FEILET', () => {
-      const action = hentPersonNavnFeilet()
+      const action = hentPersonNavnFeilet();
       const nesteState = personNavnReducer(initialState, action);
       expect(nesteState).to.deep.equal({
         hentet: false,
