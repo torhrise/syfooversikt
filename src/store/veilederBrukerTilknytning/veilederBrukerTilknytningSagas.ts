@@ -11,7 +11,7 @@ import { veilederBrukerTilknytningActionTypes } from './veilederBrukerTilknytnin
 import { fullNaisUrl } from '../../utils/miljoUtil';
 
 export function* pushBrukerTilknytningSaga(
-  action: ReturnType<typeof actions.pushVeilederBrukerTilknytning>
+  action: ReturnType<typeof actions.pushVeilederBrukerTilknytningForespurt>
 ) {
   yield put(actions.pusherVeilederBrukerTilknytning());
   try {

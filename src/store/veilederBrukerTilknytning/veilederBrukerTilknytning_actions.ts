@@ -3,7 +3,7 @@ import {
   VeilederBrukerTilknytning,
 } from './veilederBrukerTilknytningTypes';
 
-export function pushVeilederBrukerTilknytning(data: VeilederBrukerTilknytning[]) {
+export function pushVeilederBrukerTilknytningForespurt(data: VeilederBrukerTilknytning[]) {
   return {
     type: veilederBrukerTilknytningActionTypes.PUSH_VEILEDERBRUKERTILKNYTNING_FORESPURT,
     data,
