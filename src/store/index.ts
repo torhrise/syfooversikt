@@ -16,7 +16,7 @@ import enhetensMotebehovSagas from './enhetensMotebehov/enhetensMotebehovSagas';
 import personNavnSagas from './personNavn/personNavnSagas';
 import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
-import veilederBrukerTilknytningSagas from './veilederBrukerTilknytning/veilederBrukerTilknytningSagas';
+import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstakerSagas';
 
 export interface ApplicationState {
   modiacontext: ModiacontextState;
@@ -45,7 +45,7 @@ export function* rootSaga() {
     fork(enhetensMotebehovSagas),
     fork(personNavnSagas),
     fork(personNavnSagas),
-    fork(veilederBrukerTilknytningSagas),
+    fork(veilederArbeidstakerSagas),
   ]);
 }
 
