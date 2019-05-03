@@ -16,7 +16,7 @@ export function pushVeilederArbeidstakerPusher() {
   };
 }
 
-export function pushVeiledeArbeidstakerPushet() {
+export function pushVeilederArbeidstakerPushet() {
   return {
     type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET,
   };

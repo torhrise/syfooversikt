@@ -18,7 +18,7 @@ export function* pushBrukerArbeidstakerSaga(
     const host = 'syfoperson';
     const path = `${process.env.REACT_APP_SYFOPERSONREST_ROOT}/veilederbehandling/registrer`;
     yield call(post, fullNaisUrl(host, path), action.data);
-    yield put(actions.pushVeiledeArbeidstakerPushet());
+    yield put(actions.pushVeilederArbeidstakerPushet());
   } catch (e) {
     yield put(actions.pushVeilederArbeidstakerFeilet());
   }
