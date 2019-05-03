@@ -11,6 +11,7 @@ import { finnMiljoStreng } from './utils/miljoUtil';
 import AppRouter from './routers/AppRouter';
 
 import { store, history } from './store';
+import { pushVeilederArbeidstakerForespurt } from './store/veilederArbeidstaker/veilederArbeidstaker_actions';
 
 if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
@@ -46,6 +47,15 @@ const config = {
     },
   },
 };
+// TODO: beholder dette for å kunne teste endepunktet mot syfoperson
+store.dispatch(
+  pushVeilederArbeidstakerForespurt([{
+      veilederIdent: 'Z990243',
+      aktorId: '1733483394485',
+      enhet: '0315',
+    }]
+  )
+);
 
 store.dispatch(
   hentAktivEnhet({

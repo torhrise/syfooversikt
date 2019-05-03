@@ -3,7 +3,7 @@ import { all, fork } from 'redux-saga/effects';
 import { ModiacontextState } from './modiacontext/modiacontextTypes';
 import { VeilederinfoState } from './veilederinfo/veilederinfoTypes';
 import { EnhetensMotebehovState } from './enhetensMotebehov/enhetensMotebehovTypes';
-import { PersonNavnState} from './personNavn/personNavnTypes';
+import { PersonNavnState } from './personNavn/personNavnTypes';
 import { PersonregisterState } from './personregister/personregisterTypes';
 import modiacontextReducer from './modiacontext/modiacontextReducer';
 import veilederinfoReducer from './veilederinfo/veilederinfoReducer';
@@ -16,6 +16,7 @@ import enhetensMotebehovSagas from './enhetensMotebehov/enhetensMotebehovSagas';
 import personNavnSagas from './personNavn/personNavnSagas';
 import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
+import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstakerSagas';
 
 export interface ApplicationState {
   modiacontext: ModiacontextState;
@@ -43,6 +44,8 @@ export function* rootSaga() {
     fork(veilederinfoSagas),
     fork(enhetensMotebehovSagas),
     fork(personNavnSagas),
+    fork(personNavnSagas),
+    fork(veilederArbeidstakerSagas),
   ]);
 }
 

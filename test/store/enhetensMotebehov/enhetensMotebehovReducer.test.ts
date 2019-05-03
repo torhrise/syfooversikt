@@ -41,7 +41,7 @@ describe('enhetensMotebehovReducer', () => {
     });
 
     it('handterer HENT_ENHETENS_MOTEBEHOV_FEILET', () => {
-      const action = hentEnhetensMotebehovFeilet()
+      const action = hentEnhetensMotebehovFeilet();
       const nesteState = enhetensMotebehovReducer(initialState, action);
       expect(nesteState).to.deep.equal({
         hentet: false,
