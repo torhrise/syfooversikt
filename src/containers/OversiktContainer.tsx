@@ -8,7 +8,10 @@ import { AlertStripeMedMelding } from '../components/AlertStripeMedMelding';
 import { ApplicationState } from '../store';
 import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import AppSpinner from '../components/AppSpinner';
-import PersonlisteContainer from './PersonerContainer';
+import Sokeresultat from '../components/Sokeresultat';
+import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
+import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
+import { hentFodselsnummerFraMotebehovSvar } from '../components/utils/util';
 
 const tekster = {
   overskrifter: {
@@ -33,10 +36,11 @@ interface StateProps {
 interface DispatchProps {
   actions: {
     hentEnhetensMotebehovForespurt: typeof hentEnhetensMotebehovForespurt;
+    hentPersonNavnForespurt: typeof hentPersonNavnForespurt;
   };
 }
 
-type OversiktContainerProps = OversiktProps & StateProps & DispatchProps;
+export type OversiktContainerProps = OversiktProps & StateProps & DispatchProps;
 
 class OversiktCont extends Component<OversiktContainerProps> {
   componentDidMount() {
@@ -44,9 +48,10 @@ class OversiktCont extends Component<OversiktContainerProps> {
     actions.hentEnhetensMotebehovForespurt();
   }
 
-  componentDidUpdate(nextProps: OversiktContainerProps) {
-    const { enhetensMotebehov } = this.props;
-    if (!enhetensMotebehov.hentet && nextProps.enhetensMotebehov.hentet) {
+  componentDidUpdate(prevProps: OversiktContainerProps) {
+    const { enhetensMotebehov, actions } = this.props;
+    if (enhetensMotebehov.hentet && prevProps.enhetensMotebehov.henter) {
+      actions.hentPersonNavnForespurt(hentFodselsnummerFraMotebehovSvar(prevProps.enhetensMotebehov.data));
       this.setState(enhetensMotebehov);
     }
   }
@@ -63,7 +68,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
           && <AppSpinner />
         }
         { enhetensMotebehov.hentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && <PersonlisteContainer svarListe={enhetensMotebehov.data} />
+          && <Sokeresultat {...this.props} />
         }
     </div>);
   }
@@ -76,15 +81,16 @@ const OversiktHeader = (oversiktsType: OversiktProps) => {
   </div>);
 };
 
-const mapStateToProps = ({ enhetensMotebehov, personregister }: ApplicationState, ownProps: OversiktProps) => ({
+const mapStateToProps = ({ enhetensMotebehov, personregister }: ApplicationState, oversiktProps: OversiktProps) => ({
   enhetensMotebehov,
   personregister,
-  ownProps,
+  oversiktProps,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: {
     hentEnhetensMotebehovForespurt: () => dispatch(hentEnhetensMotebehovForespurt()),
+    hentPersonNavnForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonNavnForespurt(fnrListe)),
   },
 });
 
