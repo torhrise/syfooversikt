@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { EnhetensMotebehovState, MotebehovSvar } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
+import { EnhetensMotebehovState } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { hentEnhetensMotebehovForespurt } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
 import { AlertStripeMedMelding } from '../components/AlertStripeMedMelding';
@@ -11,6 +11,7 @@ import AppSpinner from '../components/AppSpinner';
 import Sokeresultat from '../components/Sokeresultat';
 import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
 import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
+import { hentFodselsnummerFraMotebehovSvar } from '../components/utils/util';
 
 const tekster = {
   overskrifter: {
@@ -78,12 +79,6 @@ const OversiktHeader = (oversiktsType: OversiktProps) => {
   return (<div>
       {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h2>{tekster.overskrifter.enhetensOversikt}</h2>}
   </div>);
-};
-
-const hentFodselsnummerFraMotebehovSvar = (svarListe: MotebehovSvar[]) => {
-  return svarListe.map((motebehovSvar) => {
-    return {fnr: motebehovSvar.fnr};
-  });
 };
 
 const mapStateToProps = ({ enhetensMotebehov, personregister }: ApplicationState, oversiktProps: OversiktProps) => ({

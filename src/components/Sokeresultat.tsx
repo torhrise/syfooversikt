@@ -2,8 +2,8 @@ import React from 'react';
 import Toolbar from './toolbar/Toolbar';
 import Personliste from './Personliste';
 import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
-import { MotebehovSvar } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { OversiktContainerProps } from '../containers/OversiktContainer';
+import { hentFodselsnummerFraMotebehovSvar } from './utils/util';
 
 const Sokeresultat = (props: OversiktContainerProps) => {
   const {
@@ -28,12 +28,6 @@ const Sokeresultat = (props: OversiktContainerProps) => {
 const hentFnrFraFodselsnummer = (fodselsnummerListe: Fodselsnummer[]) => {
   return fodselsnummerListe.map((fodselsnummer) => {
     return fodselsnummer.fnr;
-  });
-};
-
-const hentFodselsnummerFraMotebehovSvar = (svarListe: MotebehovSvar[]) => {
-  return svarListe.map((motebehovSvar) => {
-    return {fnr: motebehovSvar.fnr};
   });
 };
 
