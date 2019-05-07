@@ -51,7 +51,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
   componentDidUpdate(prevProps: OversiktContainerProps) {
     const { enhetensMotebehov, actions } = this.props;
     if (enhetensMotebehov.hentet && prevProps.enhetensMotebehov.henter) {
-      actions.hentPersonNavnForespurt(hentFodselsnummerFraMotebehovSvar(prevProps.enhetensMotebehov.data));
+      actions.hentPersonNavnForespurt(hentFodselsnummerFraMotebehovSvar(enhetensMotebehov.data));
       this.setState(enhetensMotebehov);
     }
   }
