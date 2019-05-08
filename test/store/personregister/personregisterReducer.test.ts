@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import { hentEnhetensMotebehovHentet } from '../../../src/store/enhetensMotebehov/enhetensMotebehov_actions';
 import { hentPersonNavnHentet } from '../../../src/store/personNavn/personNavn_actions';
-import { togglePersonMarkert, toggleVelgAlle } from '../../../src/store/personregister/personregister_action';
 import personregisterReducer from '../../../src/store/personregister/personregisterReducer';
 import * as testdata from '../../../Mock/Data/fellesTestdata.json';
 
@@ -45,7 +44,7 @@ describe('personregisterReducer', () => {
       });
     });
 
-    it('handterer TOGGLE_PERSON_MARKERT', () => {
+    /*it('handterer TOGGLE_PERSON_MARKERT', () => {
       const initellState = {
         [testdata.fnr1]: { navn: testdata.navn1, harSvartPaaMotebehov: false, skjermingskode: testdata.skjermingskode.ingen, markert: false },
         [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: false, skjermingskode: testdata.skjermingskode.diskresjonsmerket, markert: true },
@@ -87,7 +86,7 @@ describe('personregisterReducer', () => {
         [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: false, skjermingskode: testdata.skjermingskode.diskresjonsmerket, markert: false },
         [testdata.fnr3]: { navn: testdata.navn3, harSvartPaaMotebehov: false, skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false },
       });
-    });
+    }); */
 
     it('handterer kombinasjoner', () => {
       const dataIForsteKall = [
@@ -100,8 +99,6 @@ describe('personregisterReducer', () => {
         { fnr: testdata.fnr3, navn: testdata.navn3 } ];
       const hentMotebehovAction = hentEnhetensMotebehovHentet(dataIForsteKall);
       const hentPersonNavnAction = hentPersonNavnHentet(dataIAndreKall);
-      const togglePersonMarkertAction = togglePersonMarkert(testdata.fnr1);
-      const toggleVelgAlleAction = toggleVelgAlle(true);
       const forsteState = personregisterReducer(initialState, hentMotebehovAction);
       expect(forsteState).to.deep.equal({
         [testdata.fnr1]: { harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.ingen },
@@ -114,7 +111,7 @@ describe('personregisterReducer', () => {
         [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.diskresjonsmerket },
         [testdata.fnr3]: { navn: testdata.navn3, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.egenAnsatt }
       });
-      const tredjeState = personregisterReducer(andreState, togglePersonMarkertAction);
+     /* const tredjeState = personregisterReducer(andreState, togglePersonMarkertAction);
       expect(tredjeState).to.deep.equal({
         [testdata.fnr1]: { navn: testdata.navn1, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.ingen, markert: true },
         [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.diskresjonsmerket },
@@ -125,7 +122,7 @@ describe('personregisterReducer', () => {
         [testdata.fnr1]: { navn: testdata.navn1, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.ingen, markert: true },
         [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.diskresjonsmerket, markert: true },
         [testdata.fnr3]: { navn: testdata.navn3, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.egenAnsatt, markert: true }
-      });
+      });*/
     });
   });
 });

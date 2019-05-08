@@ -7,21 +7,35 @@ import { PersonregisterState } from '../store/personregister/personregisterTypes
 interface PersonlisteProps {
   fnrListe: string[];
   personregister: PersonregisterState;
+  checkboxHandler: (fnr: string ) => void;
+  markertePersoner: string[];
+  checkAllHandler: (checked: boolean) => void;
+}
+
+function erMarkert(markertePersoner: string[], fnr: string) {
+  return markertePersoner.findIndex((markertPerson: string) => {
+    return markertPerson === fnr;
+  }) !== -1;
 }
 
 const Personliste = (props: PersonlisteProps) => {
   const {
     fnrListe,
     personregister,
+    checkboxHandler,
+    markertePersoner,
+    checkAllHandler,
   } = props;
   return (<Container className="personliste">
-    <Sorteringsrad />
+    <Sorteringsrad checkAllHandler={checkAllHandler} />
     {
       fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad
           key={idx}
           fnr={fnr}
           personData={personregister[fnr]}
+          checkboxHandler={checkboxHandler}
+          kryssAv={erMarkert(markertePersoner, fnr)}
         />);
       })
     }
