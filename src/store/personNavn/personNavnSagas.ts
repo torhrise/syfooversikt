@@ -11,6 +11,7 @@ export function* hentPersonNavnSaga(action: ReturnType<typeof actions.hentPerson
     const host = HOST_NAMES.SYFOPERSON;
     const path = `${process.env.REACT_APP_SYFOPERSONREST_ROOT}/person/navn`;
     const url = fullNaisUrl(host, path);
+    console.log('L-TRACE: PersonNavn data: ', action.data); //tslint:disable-line
     const data = yield call(post, url, action.data);
     yield put(actions.hentPersonNavnHentet(data));
   } catch (e) {

@@ -35,13 +35,16 @@ export function hentPersonregister(state: any) {
 }
 
 export function* hentNavnForPersonerUtenNavn(data: PersonHendelseData[]): any {
+  console.log('L-TRACE: Motebehov Data: ', data); //tslint:disable-line
   const fnrListe = hentFodselsnummerFraPersonHendelseListe(data);
 
   const personRegisterData = yield select(hentPersonregister);
+  console.log('L-TRACE: Motebehov personregister: ', personRegisterData); //tslint:disable-line
 
   const filtrertListe = fnrListe.filter((fnrObjekt) => {
     return !personRegisterData[fnrObjekt.fnr] || (personRegisterData[fnrObjekt.fnr] && personRegisterData[fnrObjekt.fnr].navn === undefined);
   });
+  console.log('L-TRACE: Motebehov filtrertListe: ', filtrertListe); //tslint:disable-line
 
   yield put(personNavnActions.hentPersonNavnForespurt(filtrertListe));
 }

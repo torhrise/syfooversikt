@@ -22,7 +22,7 @@ export function* hentEnhetensMoterSaga() {
     const url = fullNaisUrl(host, path);
     const data = yield call(get, url);
     yield put(actions.hentEnhetensMoterHentet(data));
-    yield call(hentNavnForPersonerUtenNavn, data);
+    yield call(hentNavnForPersonerMedMoteUtenNavn, data);
   } catch (e) {
     yield put(actions.hentEnhetensMoterFeilet());
   }
@@ -34,14 +34,17 @@ export function hentPersonregister(state: any) {
     : [];
 }
 
-export function* hentNavnForPersonerUtenNavn(data: PersonHendelseData[]): any {
+export function* hentNavnForPersonerMedMoteUtenNavn(data: PersonHendelseData[]): any {
+  console.log('L-TRACE: Moter Data: ', data); //tslint:disable-line
   const fnrListe = hentFodselsnummerFraPersonHendelseListe(data);
 
   const personRegisterData = yield select(hentPersonregister);
+  console.log('L-TRACE: Moter Personregister: ', personRegisterData); //tslint:disable-line
 
   const filtrertListe = fnrListe.filter((fnrObjekt) => {
     return !personRegisterData[fnrObjekt.fnr] || (personRegisterData[fnrObjekt.fnr] && personRegisterData[fnrObjekt.fnr].navn === undefined);
   });
+  console.log('L-TRACE: Moter FiltrertListe: ', filtrertListe); //tslint:disable-line
 
   yield put(personNavnActions.hentPersonNavnForespurt(filtrertListe));
 }
