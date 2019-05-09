@@ -12,8 +12,8 @@ const expect = chai.expect;
 
 describe('Personliste', () => {
   const personregister = {
-    [testdata.fnr1]: { navn: testdata.navn1, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.ingen, markert: false },
-    [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: false, skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false },
+    [testdata.fnr1]: { navn: testdata.navn1, harSvartPaaMotebehov: true, harMote: false, skjermingskode: testdata.skjermingskode.ingen, markert: false },
+    [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: false, harMote: false, skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false },
   };
   const fnrListe = [testdata.fnr1, testdata.fnr2];
   const component = shallow(<Personliste fnrListe={fnrListe} personregister={personregister} />);

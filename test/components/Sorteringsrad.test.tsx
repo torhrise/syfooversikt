@@ -13,6 +13,7 @@ describe('Sorteringsrad', () => {
   const kolonneForNavnTekst = 'Navn';
   const kolonneForFnrTekst = 'Fødselsnummer';
   const kolonneForDiskresjonskodeTekst = 'Diskresjonskode';
+  const kolonneForTyperTekst = 'Hendelsestyper';
   const component = shallow(<Sorteringsrad />);
 
   it('Skal inneholde "Velg alle"-Checkbox', () => {
@@ -24,8 +25,9 @@ describe('Sorteringsrad', () => {
   });
 
   it('Skal rendre navn, fodselsnummer og skjermingskode Column-komponenter', () => {
-    expect(component.contains(<Column md={'3'}>{kolonneForNavnTekst}</Column>)).to.equal(true);
-    expect(component.contains(<Column md={'3'}>{kolonneForFnrTekst}</Column>)).to.equal(true);
-    expect(component.contains(<Column md={'3'}>{kolonneForDiskresjonskodeTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column md={'2'}>{kolonneForNavnTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column md={'2'}>{kolonneForFnrTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column md={'2'}>{kolonneForDiskresjonskodeTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column md={'2'}>{kolonneForTyperTekst}</Column>)).to.equal(true);
   });
 });

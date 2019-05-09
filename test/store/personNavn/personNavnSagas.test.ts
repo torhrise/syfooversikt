@@ -5,6 +5,7 @@ import { PersonNavnActionTypes } from '../../../src/store/personNavn/personNavnT
 import { post } from '../../../src/api';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
 import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { HOST_NAMES } from '../../../src/konstanter';
 
 describe('hentPersonNavnSagas', () => {
   const requestBody = [{fnr: testdata.fnr1}];
@@ -17,7 +18,7 @@ describe('hentPersonNavnSagas', () => {
   });
 
   it('Skal dernest kalle REST-tjenesten', () => {
-    const url = fullNaisUrl('syfoperson', '/syfoperson/api/person/navn');
+    const url = fullNaisUrl(HOST_NAMES.SYFOPERSON, '/syfoperson/api/person/navn');
     const nesteKall = call(post, url, forespurtAction.data);
     expect(generator.next().value).to.deep.equal(nesteKall);
   });
