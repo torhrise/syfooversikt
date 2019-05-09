@@ -1,7 +1,5 @@
-import {
-  EnhetensMotebehovActionTypes,
-  MotebehovSvar,
-} from './enhetensMotebehovTypes';
+import { EnhetensMotebehovActionTypes } from './enhetensMotebehovTypes';
+import { PersonHendelseData } from '../personregister/personregisterTypes';
 
 export function hentEnhetensMotebehovForespurt() {
   return {
@@ -15,7 +13,7 @@ export function hentEnhetensMotebehovHenter() {
   };
 }
 
-export function hentEnhetensMotebehovHentet(data: MotebehovSvar[]) {
+export function hentEnhetensMotebehovHentet(data: PersonHendelseData[]) {
   return {
     type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET,
     data,

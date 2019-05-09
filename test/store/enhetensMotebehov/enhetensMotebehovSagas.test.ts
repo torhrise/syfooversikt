@@ -5,6 +5,7 @@ import { get } from '../../../src/api';
 import { EnhetensMotebehovActionTypes } from '../../../src/store/enhetensMotebehov/enhetensMotebehovTypes';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
 import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { HOST_NAMES } from '../../../src/konstanter';
 
 describe('hentEnhetensMotebehovSagas', () => {
   const generator = hentEnhetensMotebehovSaga();
@@ -15,7 +16,7 @@ describe('hentEnhetensMotebehovSagas', () => {
   });
 
   it('Skal dernest kalle REST-tjenesten', () => {
-    const url = fullNaisUrl('syfomotebehov', '/syfomotebehov/api/enhet/0315/motebehov/brukere');
+    const url = fullNaisUrl(HOST_NAMES.SYFOMOTEBEHOV, '/syfomotebehov/api/enhet/0315/motebehov/brukere');
     const nesteKall = call(get, url);
     expect(generator.next().value).to.deep.equal(nesteKall);
   });

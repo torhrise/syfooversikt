@@ -2,29 +2,29 @@ import {
   call,
   fork,
   put,
-  takeEvery,
   select,
+  takeEvery,
 } from 'redux-saga/effects';
 import { get } from '../../api/index';
-import * as actions from './enhetensMotebehov_actions';
-import * as personNavnActions from '../personNavn/personNavn_actions';
-import { EnhetensMotebehovActionTypes } from './enhetensMotebehovTypes';
+import * as actions from './enhetensMoter_actions';
+import { EnhetensMoterActionTypes } from './enhetensMoterTypes';
 import { fullNaisUrl } from '../../utils/miljoUtil';
-import { hentFodselsnummerFraPersonHendelseListe } from '../../components/utils/util';
+import * as personNavnActions from '../personNavn/personNavn_actions';
 import { PersonHendelseData } from '../personregister/personregisterTypes';
+import { hentFodselsnummerFraPersonHendelseListe } from '../../components/utils/util';
 import { HOST_NAMES } from '../../konstanter';
 
-export function* hentEnhetensMotebehovSaga() {
-  yield put(actions.hentEnhetensMotebehovHenter());
+export function* hentEnhetensMoterSaga() {
+  yield put(actions.hentEnhetensMoterHenter());
   try {
-    const host = HOST_NAMES.SYFOMOTEBEHOV;
-    const path = `${process.env.REACT_APP_SYFOMOTEBEHOVREST_ROOT}/enhet/0315/motebehov/brukere`;
+    const host = HOST_NAMES.SYFOMOTEADMIN;
+    const path = `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/enhet/0315/moter/brukere`;
     const url = fullNaisUrl(host, path);
     const data = yield call(get, url);
-    yield put(actions.hentEnhetensMotebehovHentet(data));
+    yield put(actions.hentEnhetensMoterHentet(data));
     yield call(hentNavnForPersonerUtenNavn, data);
   } catch (e) {
-    yield put(actions.hentEnhetensMotebehovFeilet());
+    yield put(actions.hentEnhetensMoterFeilet());
   }
 }
 
@@ -46,13 +46,13 @@ export function* hentNavnForPersonerUtenNavn(data: PersonHendelseData[]): any {
   yield put(personNavnActions.hentPersonNavnForespurt(filtrertListe));
 }
 
-function* watchHentEnhetensMotebehov() {
+function* watchHentEnhetensMoter() {
   yield takeEvery(
-    EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_FORESPURT,
-    hentEnhetensMotebehovSaga
+    EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_FORESPURT,
+    hentEnhetensMoterSaga
   );
 }
 
-export default function* enhetensMotebehovSagas() {
-  yield [fork(watchHentEnhetensMotebehov)];
+export default function* enhetensMoterSagas() {
+  yield [fork(watchHentEnhetensMoter)];
 }

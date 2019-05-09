@@ -1,7 +1,4 @@
-export interface MotebehovSvar {
-  fnr: string;
-  skjermingskode: string;
-}
+import { PersonHendelseData } from '../personregister/personregisterTypes';
 
 export const enum EnhetensMotebehovActionTypes {
   HENT_ENHETENS_MOTEBEHOV_FORESPURT = 'HENT_ENHETENS_MOTEBEHOV_FORESPURT',
@@ -14,5 +11,5 @@ export interface EnhetensMotebehovState {
   readonly hentet: boolean;
   readonly henter: boolean;
   readonly hentingFeilet: boolean;
-  readonly data: MotebehovSvar[];
+  readonly data: PersonHendelseData[];
 }

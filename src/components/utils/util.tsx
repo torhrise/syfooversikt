@@ -1,7 +1,7 @@
-import { MotebehovSvar } from '../../store/enhetensMotebehov/enhetensMotebehovTypes';
+import { PersonHendelseData } from '../../store/personregister/personregisterTypes';
 
-export const hentFodselsnummerFraMotebehovSvar = (svarListe: MotebehovSvar[]) => {
-  return svarListe.map((motebehovSvar) => {
-    return {fnr: motebehovSvar.fnr};
+export const hentFodselsnummerFraPersonHendelseListe = (svarListe: PersonHendelseData[]) => {
+  return svarListe.map((hendelseObjekt) => {
+    return {fnr: hendelseObjekt.fnr};
   });
 };
