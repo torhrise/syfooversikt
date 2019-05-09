@@ -3,9 +3,20 @@ import Toolbar from './toolbar/Toolbar';
 import Personliste from './Personliste';
 import { OversiktContainerProps } from '../containers/OversiktContainer';
 import { hentFnrFraMotebehovSvar } from './utils/util';
+import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 
 interface  SokeresultatState {
   markertePersoner: string[];
+}
+
+function lagListe(markertePersoner: string[], veilederIdent: string, enhet: string): VeilederArbeidstaker[] {
+  return markertePersoner.map( (fnr: string) => {
+    return {
+      veilederIdent,
+      fnr,
+      enhet
+    };
+  });
 }
 
 class Sokeresultat extends Component<OversiktContainerProps, SokeresultatState> {
@@ -54,6 +65,14 @@ class Sokeresultat extends Component<OversiktContainerProps, SokeresultatState> 
     }
   }
 
+  buttonHandler =  () => {
+    const { actions } = this.props;
+    const veilederIdent = 'z990243';
+    const enhet = '0315';
+    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, enhet);
+    actions.tildelVeileder(veilederArbeidstakerListe);
+  }
+
   render() {
     const {
       enhetensMotebehov,
@@ -63,7 +82,7 @@ class Sokeresultat extends Component<OversiktContainerProps, SokeresultatState> 
     const fnrListe =  hentFnrFraMotebehovSvar(enhetensMotebehov.data);
 
     return (<div>
-      <Toolbar />
+      <Toolbar buttonHandler={this.buttonHandler}/>
       <Personliste
         fnrListe={fnrListe}
         personregister={personregister}

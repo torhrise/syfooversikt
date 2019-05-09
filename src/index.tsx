@@ -47,15 +47,6 @@ const config = {
     },
   },
 };
-// TODO: beholder dette for å kunne teste endepunktet mot syfoperson
-store.dispatch(
-  pushVeilederArbeidstakerForespurt([{
-      veilederIdent: 'Z990243',
-      aktorId: '1733483394485',
-      enhet: '0315',
-    }]
-  )
-);
 
 store.dispatch(
   hentAktivEnhet({

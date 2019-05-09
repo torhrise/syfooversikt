@@ -1,6 +1,6 @@
 export interface VeilederArbeidstaker {
   veilederIdent: string;
-  aktorId: string;
+  fnr: string;
   enhet: string;
 }
 

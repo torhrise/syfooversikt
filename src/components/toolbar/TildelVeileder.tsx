@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { ToolbarProps } from './Toolbar';
 
 const tekster = {
   knappTekst: 'Tildel',
 };
 
-const TildelVeileder = () => {
-  const klikk = (): void => {
-    alert('Dette funker ikke! :(((( :-(');
-  };
+const TildelVeileder = (props: ToolbarProps) => {
 
-  return (<Hovedknapp onClick={klikk} mini>
+  return (<Hovedknapp onClick={() => props.buttonHandler()} mini>
     {tekster.knappTekst}
   </Hovedknapp>);
 };

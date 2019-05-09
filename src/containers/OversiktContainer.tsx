@@ -12,6 +12,8 @@ import Sokeresultat from '../components/Sokeresultat';
 import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
 import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
 import { hentFodselsnummerFraMotebehovSvar } from '../components/utils/util';
+import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
+import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 
 const tekster = {
   overskrifter: {
@@ -37,6 +39,7 @@ interface DispatchProps {
   actions: {
     hentEnhetensMotebehovForespurt: typeof hentEnhetensMotebehovForespurt;
     hentPersonNavnForespurt: typeof hentPersonNavnForespurt;
+    tildelVeileder: typeof pushVeilederArbeidstakerForespurt;
   };
 }
 
@@ -91,6 +94,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: {
     hentEnhetensMotebehovForespurt: () => dispatch(hentEnhetensMotebehovForespurt()),
     hentPersonNavnForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonNavnForespurt(fnrListe)),
+    tildelVeileder: (liste: VeilederArbeidstaker[]) => dispatch(pushVeilederArbeidstakerForespurt(liste)),
   },
 });
 
