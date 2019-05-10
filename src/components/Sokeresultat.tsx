@@ -14,7 +14,7 @@ function lagListe(markertePersoner: string[], veilederIdent: string, enhet: stri
     return {
       veilederIdent,
       fnr,
-      enhet
+      enhet,
     };
   });
 }
@@ -53,13 +53,13 @@ class Sokeresultat extends Component<OversiktContainerProps, SokeresultatState> 
     if (checked) {
       this.setState( () => {
         return {
-          markertePersoner: fnrListe
+          markertePersoner: fnrListe,
         };
       });
     } else {
       this.setState(() => {
         return {
-          markertePersoner: []
+          markertePersoner: [],
         };
       });
     }
@@ -76,7 +76,7 @@ class Sokeresultat extends Component<OversiktContainerProps, SokeresultatState> 
   render() {
     const {
       enhetensMotebehov,
-      personregister
+      personregister,
     } = this.props;
 
     const fnrListe =  hentFnrFraMotebehovSvar(enhetensMotebehov.data);

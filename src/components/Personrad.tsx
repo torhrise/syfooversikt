@@ -22,7 +22,7 @@ class Personrad extends Component<PersonradProps> {
       fnr,
       checkboxHandler,
       personData,
-      kryssAv
+      kryssAv,
     } = this.props;
     return (
       <Row className="personrad">

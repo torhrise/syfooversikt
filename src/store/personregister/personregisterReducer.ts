@@ -32,8 +32,8 @@ const personregisterReducer: Reducer<PersonregisterState> = (
           [motebehovSvar.fnr]: {
             ...state[motebehovSvar.fnr],
             harSvartPaaMotebehov: true,
-            skjermingskode: motebehovSvar.skjermingskode
-          }
+            skjermingskode: motebehovSvar.skjermingskode,
+          },
         };
       });
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
@@ -45,8 +45,8 @@ const personregisterReducer: Reducer<PersonregisterState> = (
         return {
           [personNavn.fnr]: {
             ...state[personNavn.fnr],
-            navn: personNavn.navn
-          }
+            navn: personNavn.navn,
+          },
         };
       });
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);

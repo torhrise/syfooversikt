@@ -5,7 +5,15 @@
     "curly": [true, "ignore-same-line"],
     "member-access": false,
     "object-literal-sort-keys": false,
-    "trailing-comma": false,
+    "trailing-comma": [true, {
+      "singleline": "never",
+      "multiline": {
+        "objects": "always",
+        "arrays": "ignore",
+        "functions": "ignore",
+        "typeLiterals": "ignore"
+      }
+    }],
     "max-line-length": false,
     "interface-name": [true, "never-prefix"],
     "ordered-imports": false,

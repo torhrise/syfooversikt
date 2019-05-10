@@ -109,7 +109,7 @@ describe('personregisterReducer', () => {
       expect(andreState).to.deep.equal({
         [testdata.fnr1]: { navn: testdata.navn1, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.ingen },
         [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.diskresjonsmerket },
-        [testdata.fnr3]: { navn: testdata.navn3, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.egenAnsatt }
+        [testdata.fnr3]: { navn: testdata.navn3, harSvartPaaMotebehov: true, skjermingskode: testdata.skjermingskode.egenAnsatt },
       });
      /* const tredjeState = personregisterReducer(andreState, togglePersonMarkertAction);
       expect(tredjeState).to.deep.equal({
