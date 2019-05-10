@@ -9,6 +9,7 @@ const Sokeresultat = (props: OversiktContainerProps) => {
   } = props;
 
   const fnrListe = Object.keys(personregister);
+  console.log('L-TRACE: Personregister Sokeresultat: ', personregister); //tslint:disable-line
 
   return (
     <div>

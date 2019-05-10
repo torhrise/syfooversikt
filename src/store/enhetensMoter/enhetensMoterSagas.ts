@@ -21,8 +21,10 @@ export function* hentEnhetensMoterSaga() {
     const path = `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/enhet/0315/moter/brukere`;
     const url = fullNaisUrl(host, path);
     const data = yield call(get, url);
+    console.log('L-TRACE: Moter Data Før Navn: ', data); //tslint:disable-line
     yield put(actions.hentEnhetensMoterHentet(data));
     yield call(hentNavnForPersonerMedMoteUtenNavn, data);
+    // yield put(personNavnActions.hentPersonNavnForespurt(hentFodselsnummerFraPersonHendelseListe(data)));
   } catch (e) {
     yield put(actions.hentEnhetensMoterFeilet());
   }
