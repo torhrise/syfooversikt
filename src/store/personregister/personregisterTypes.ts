@@ -12,8 +12,3 @@ export interface Personer {
 export interface PersonregisterState {
   [fnr: string]: PersonData;
 }
-
-export const enum PersonregisterActionTypes {
-  TOGGLE_PERSON_MARKERT = 'TOGGLE_PERSON_MARKERT',
-  TOGGLE_VELG_ALLE = 'TOGGLE_VELG_ALLE',
-}

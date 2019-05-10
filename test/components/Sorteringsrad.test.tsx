@@ -13,7 +13,8 @@ describe('Sorteringsrad', () => {
   const kolonneForNavnTekst = 'Navn';
   const kolonneForFnrTekst = 'Fødselsnummer';
   const kolonneForDiskresjonskodeTekst = 'Diskresjonskode';
-  const component = shallow(<Sorteringsrad />);
+  const checkAllHandler = () =>  { const kake = 3; };
+  const component = shallow(<Sorteringsrad checkAllHandler={checkAllHandler}/>);
 
   it('Skal inneholde "Velg alle"-Checkbox', () => {
     expect(component.find({label: checkboxVelgAlleTekst})).to.have.length(1);

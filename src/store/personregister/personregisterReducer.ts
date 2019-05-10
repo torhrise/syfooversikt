@@ -8,7 +8,6 @@ import {
   PersonNavn,
 } from '../personNavn/personNavnTypes';
 import {
-  PersonregisterActionTypes,
   PersonData,
   PersonregisterState,
 } from './personregisterTypes';
@@ -33,8 +32,8 @@ const personregisterReducer: Reducer<PersonregisterState> = (
           [motebehovSvar.fnr]: {
             ...state[motebehovSvar.fnr],
             harSvartPaaMotebehov: true,
-            skjermingskode: motebehovSvar.skjermingskode
-          }
+            skjermingskode: motebehovSvar.skjermingskode,
+          },
         };
       });
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
@@ -46,35 +45,11 @@ const personregisterReducer: Reducer<PersonregisterState> = (
         return {
           [personNavn.fnr]: {
             ...state[personNavn.fnr],
-            navn: personNavn.navn
-          }
+            navn: personNavn.navn,
+          },
         };
       });
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
-      return {...state, ...oppdatering };
-    }
-    case PersonregisterActionTypes.TOGGLE_PERSON_MARKERT: {
-      const personSomSkalToggles = action.fnr;
-      const erMarkert = state[personSomSkalToggles].markert;
-      return {
-        ...state,
-        [personSomSkalToggles]: {
-          ...state[personSomSkalToggles],
-          markert: !erMarkert
-        }
-      };
-    }
-    case PersonregisterActionTypes.TOGGLE_VELG_ALLE: {
-      const skalMarkeres = action.kryssetAv;
-      const allePersoner = Object.keys(state).map((fnr) => {
-        return {
-          [fnr]: {
-            ...state[fnr],
-            markert: skalMarkeres
-          }
-        };
-      });
-      const oppdatering = tilPersonDataMap(allePersoner);
       return {...state, ...oppdatering };
     }
   }

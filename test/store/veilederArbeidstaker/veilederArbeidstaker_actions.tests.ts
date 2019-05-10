@@ -16,7 +16,7 @@ describe('personNavn_actions', () => {
   it('pushVeilederArbeidstakerForespurt() skal returnere riktig action', () => {
     const payload = [{
       veilederIdent: 'Z999999',
-      aktorId: '123456789',
+      fnr: '123456789',
       enhet: '0001',
     }];
     expect(pushVeilederArbeidstakerForespurt(payload)).to.deep.equal({
