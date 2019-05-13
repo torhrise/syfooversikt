@@ -16,14 +16,35 @@ describe('Personliste', () => {
     [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: false, harMote: false, skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false },
   };
   const fnrListe = [testdata.fnr1, testdata.fnr2];
-  const component = shallow(<Personliste fnrListe={fnrListe} personregister={personregister} />);
+  const markertePersoner = ['123', '234'];
+  // tslint:disable-next-line:no-empty
+  const checkAllHandler = () =>  {};
+  // tslint:disable-next-line:no-empty
+  const checkboxHandler = () =>  {};
+  const component = shallow(<Personliste
+    fnrListe={fnrListe}
+    personregister={personregister}
+    checkboxHandler={checkboxHandler}
+    markertePersoner={markertePersoner}
+    checkAllHandler={checkAllHandler}
+  />);
 
   it('Skal rendre Sorteringsrad', () => {
-    expect(component.contains(<Sorteringsrad/>)).to.equal(true);
+    expect(component.contains(<Sorteringsrad checkAllHandler={checkAllHandler}/>)).to.equal(true);
   });
 
   it('Skal rendre Personrad-komponenter med riktig persondata', () => {
-    expect(component.contains(<Personrad fnr={testdata.fnr1} personData={personregister[testdata.fnr1]} />)).to.equal(true);
-    expect(component.contains(<Personrad fnr={testdata.fnr2} personData={personregister[testdata.fnr2]} />)).to.equal(true);
+    expect(component.contains(<Personrad
+      fnr={testdata.fnr1}
+      personData={personregister[testdata.fnr1]}
+      checkboxHandler={checkboxHandler}
+      kryssAv={false}
+    />)).to.equal(true);
+    expect(component.contains(<Personrad
+      fnr={testdata.fnr2}
+      personData={personregister[testdata.fnr2]}
+      checkboxHandler={checkboxHandler}
+      kryssAv={false}
+    />)).to.equal(true);
   });
 });

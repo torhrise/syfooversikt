@@ -14,7 +14,14 @@ const expect = chai.expect;
 describe('Personrad', () => {
   const fnr = testdata.fnr1;
   const personData = { navn: testdata.navn1, harSvartPaaMotebehov: false, harMote: false, skjermingskode: testdata.skjermingskode.ingen, markert: false };
-  const component = shallow(<Personrad fnr={fnr} personData={personData} />);
+  // tslint:disable-next-line:no-empty
+  const checkboxHandler = () => {};
+  const component = shallow(<Personrad
+    fnr={fnr}
+    personData={personData}
+    checkboxHandler={checkboxHandler}
+    kryssAv={false}
+  />);
 
   it('Skal inneholde komponent med "personrad"-klasse', () => {
     expect(component.find('.personrad')).to.have.length(1);

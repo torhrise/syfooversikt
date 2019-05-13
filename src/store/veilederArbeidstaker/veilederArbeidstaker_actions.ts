@@ -12,7 +12,7 @@ export function pushVeilederArbeidstakerForespurt(data: VeilederArbeidstaker[]) 
 
 export function pushVeilederArbeidstakerPusher() {
   return {
-    type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHER
+    type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHER,
   };
 }
 

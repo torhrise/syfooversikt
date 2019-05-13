@@ -4,7 +4,6 @@ import {
   Row,
 } from 'nav-frontend-grid';
 import { Checkbox } from 'nav-frontend-skjema';
-import { togglePersonMarkert } from '../store/personregister/personregister_action';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
@@ -16,35 +15,26 @@ import { store } from '../store';
 interface PersonradProps {
   fnr: string;
   personData: PersonData;
+  checkboxHandler: (fnr: string) => void;
+  kryssAv: boolean;
 }
 
-interface PersonradState {
-  kryssetAv: boolean;
-}
-
-class Personrad extends Component<PersonradProps, PersonradState> {
+class Personrad extends Component<PersonradProps> {
   constructor(props: PersonradProps) {
     super(props);
-    this.state = {
-      kryssetAv: false
-    };
-  }
-
-  componentWillReceiveProps(nextProps: PersonradProps) {
-    this.setState({
-      kryssetAv: nextProps.personData.markert
-    });
   }
 
   render() {
     const {
       fnr,
+      checkboxHandler,
+      personData,
+      kryssAv,
     } = this.props;
-    const erMarkert = this.state.kryssetAv;
     return (
       <Row className="personrad">
       <Column className="personrad__checkbox" md={'2'}>
-        <Checkbox label={'Marker'} checked={!!erMarkert} onChange={() => store.dispatch(togglePersonMarkert(fnr))} />
+        <Checkbox label={'Marker'} checked={!!kryssAv} onChange={(event) => {checkboxHandler(fnr);}}/>
       </Column>
       <Column className="personrad__navn" md={'2'}>{this.props.personData.navn}</Column>
       <Column className="personrad__fnr" md={'2'}>{lenkeTilModiaEnkeltperson(fnr)}</Column>

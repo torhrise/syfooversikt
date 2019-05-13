@@ -7,25 +7,25 @@ import {
 export function hentPersonNavnForespurt(data: Fodselsnummer[]) {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT,
-    data
+    data,
   };
 }
 
 export function hentPersonNavnHenter() {
   return {
-    type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER
+    type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER,
   };
 }
 
 export function hentPersonNavnHentet(data: PersonNavn[]) {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET,
-    data
+    data,
   };
 }
 
 export function hentPersonNavnFeilet() {
   return {
-    type: PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET
+    type: PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET,
   };
 }

@@ -11,9 +11,7 @@ import { VeilederinfoState } from '../store/veilederinfo/veilederinfoTypes';
 import { opprettWebsocketConnection } from './contextHolder';
 
 const tekster = {
-  feil: {
-    hentVeilederIdentFeilet: 'Det skjedde en feil: Vi fant ikke din ident'
-  }
+  feil: { hentVeilederIdentFeilet: 'Det skjedde en feil: Vi fant ikke din ident' },
 };
 
 interface StateProps {

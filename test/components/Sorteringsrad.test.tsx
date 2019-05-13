@@ -14,7 +14,9 @@ describe('Sorteringsrad', () => {
   const kolonneForFnrTekst = 'Fødselsnummer';
   const kolonneForDiskresjonskodeTekst = 'Diskresjonskode';
   const kolonneForTyperTekst = 'Hendelsestyper';
-  const component = shallow(<Sorteringsrad />);
+  // tslint:disable-next-line:no-empty
+  const checkAllHandler = () =>  {};
+  const component = shallow(<Sorteringsrad checkAllHandler={checkAllHandler}/>);
 
   it('Skal inneholde "Velg alle"-Checkbox', () => {
     expect(component.find({label: checkboxVelgAlleTekst})).to.have.length(1);

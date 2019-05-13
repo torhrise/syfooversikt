@@ -3,7 +3,7 @@ import { PersonHendelseData } from '../personregister/personregisterTypes';
 
 export function hentEnhetensMoterForespurt() {
   return {
-    type: EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_FORESPURT
+    type: EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_FORESPURT,
   };
 }
 

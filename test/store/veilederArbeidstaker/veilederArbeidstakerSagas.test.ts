@@ -12,7 +12,7 @@ describe('veilederArbeidstakerSagas', () => {
   describe('fordel liste av brukere til en veileder', () => {
     const payload = [{
       veilederIdent: 'Z999999',
-      aktorId: '123456789',
+      fnr: '123456789',
       enhet: '0001',
     }];
     const forespurtAction  = {

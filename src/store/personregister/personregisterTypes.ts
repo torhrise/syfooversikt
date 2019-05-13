@@ -14,8 +14,3 @@ export interface PersonHendelseData {
   fnr: string;
   skjermingskode: string;
 }
-
-export const enum PersonregisterActionTypes {
-  TOGGLE_PERSON_MARKERT = 'TOGGLE_PERSON_MARKERT',
-  TOGGLE_VELG_ALLE = 'TOGGLE_VELG_ALLE',
-}
