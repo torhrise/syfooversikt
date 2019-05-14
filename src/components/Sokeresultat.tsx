@@ -35,15 +35,10 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
 
   checkboxHandler =  (fnr: string ) => {
     this.setState((prevState) => {
-      if (personErIkkeMarkert(prevState, fnr)) {
-        return {
-          markertePersoner: [...prevState.markertePersoner, fnr],
-        };
-      } else {
-        return {
-          markertePersoner: fjernMarkertPerson(prevState, fnr),
-        };
-      }
+      const markertePersoner = personErIkkeMarkert(prevState, fnr)
+        ? [...prevState.markertePersoner, fnr]
+        :  fjernMarkertPerson(prevState, fnr);
+      return { markertePersoner };
     });
   }
 
@@ -54,19 +49,12 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
 
     const fnrListe = Object.keys(personregister);
 
-    if (checked) {
-      this.setState( () => {
-        return {
-          markertePersoner: fnrListe,
-        };
-      });
-    } else {
-      this.setState(() => {
-        return {
-          markertePersoner: [],
-        };
-      });
-    }
+    const markertePersoner = checked
+      ? fnrListe
+      : [];
+    this.setState(() => {
+      return { markertePersoner };
+    });
   }
 
   buttonHandler =  () => {
