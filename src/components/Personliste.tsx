@@ -5,7 +5,6 @@ import Sorteringsrad from './Sorteringsrad';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 
 interface PersonlisteProps {
-  fnrListe: string[];
   personregister: PersonregisterState;
   checkboxHandler: (fnr: string ) => void;
   markertePersoner: string[];
@@ -20,12 +19,12 @@ function erMarkert(markertePersoner: string[], fnr: string) {
 
 const Personliste = (props: PersonlisteProps) => {
   const {
-    fnrListe,
     personregister,
     checkboxHandler,
     markertePersoner,
     checkAllHandler,
   } = props;
+  const fnrListe = Object.keys(personregister);
   return (<Container className="personliste">
     <Sorteringsrad checkAllHandler={checkAllHandler} />
     {

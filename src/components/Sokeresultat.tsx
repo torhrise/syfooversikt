@@ -80,13 +80,9 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const {
       personregister,
     } = this.props;
-
-    const fnrListe = Object.keys(personregister);
-
     return (<div>
       <Toolbar buttonHandler={this.buttonHandler}/>
       <Personliste
-        fnrListe={fnrListe}
         personregister={personregister}
         checkboxHandler={this.checkboxHandler}
         markertePersoner={this.state.markertePersoner}
