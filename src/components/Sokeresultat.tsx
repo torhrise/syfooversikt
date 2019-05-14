@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import Toolbar from './toolbar/Toolbar';
 import Personliste from './Personliste';
-import { OversiktContainerProps } from '../containers/OversiktContainer';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
+import { PersonregisterState } from '../store/personregister/personregisterTypes';
 
 interface  SokeresultatState {
   markertePersoner: string[];
+}
+
+interface SokeresultatProps {
+  personregister: PersonregisterState;
+  tildelVeileder: (liste: VeilederArbeidstaker[]) => void;
 }
 
 function lagListe(markertePersoner: string[], veilederIdent: string, enhet: string): VeilederArbeidstaker[] {
@@ -18,7 +23,7 @@ function lagListe(markertePersoner: string[], veilederIdent: string, enhet: stri
   });
 }
 
-class Sokeresultat extends Component<OversiktContainerProps, SokeresultatState> {
+class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -65,11 +70,11 @@ class Sokeresultat extends Component<OversiktContainerProps, SokeresultatState> 
   }
 
   buttonHandler =  () => {
-    const { actions } = this.props;
+    const { tildelVeileder } = this.props;
     const veilederIdent = 'z990243';
     const enhet = '0315';
     const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, enhet);
-    actions.tildelVeileder(veilederArbeidstakerListe);
+    tildelVeileder(veilederArbeidstakerListe);
   }
   render() {
     const {

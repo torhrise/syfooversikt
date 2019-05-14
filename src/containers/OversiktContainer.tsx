@@ -60,6 +60,8 @@ class OversiktCont extends Component<OversiktContainerProps> {
       henterAlt,
       noeErHentet,
       altFeilet,
+      actions,
+      personregister,
     } = this.props;
 
     return (<div className="oversiktContainer">
@@ -71,8 +73,10 @@ class OversiktCont extends Component<OversiktContainerProps> {
           && <AppSpinner />
         }
         { noeErHentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && <Sokeresultat {...this.props} />
-        }
+          && <Sokeresultat
+            tildelVeileder={actions.tildelVeileder}
+            personregister={personregister}
+        />}
     </div>);
   }
 }
