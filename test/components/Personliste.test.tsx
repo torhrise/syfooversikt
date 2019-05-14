@@ -22,7 +22,6 @@ describe('Personliste', () => {
   // tslint:disable-next-line:no-empty
   const checkboxHandler = () =>  {};
   const component = shallow(<Personliste
-    fnrListe={fnrListe}
     personregister={personregister}
     checkboxHandler={checkboxHandler}
     markertePersoner={markertePersoner}
