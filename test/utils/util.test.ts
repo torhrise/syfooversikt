@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { PersonHendelseData } from '../../src/store/personregister/personregisterTypes';
-import * as testdata from '../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../data/fellesTestdata';
 import { Fodselsnummer } from '../../src/store/personNavn/personNavnTypes';
 import { hentFodselsnummerFraPersonHendelseListe } from '../../src/components/utils/util';
 
@@ -11,11 +11,11 @@ describe('utils', () => {
         {
           fnr: testdata.fnr1,
           skjermingskode: testdata.skjermingskode.ingen,
-        },
+        } as PersonHendelseData,
         {
           fnr: testdata.fnr2,
           skjermingskode: testdata.skjermingskode.egenAnsatt,
-        },
+        } as PersonHendelseData,
       ];
 
       const forventetListe: Fodselsnummer[] = [

@@ -4,7 +4,7 @@ import { hentEnhetensMotebehovSaga } from '../../../src/store/enhetensMotebehov/
 import { get } from '../../../src/api';
 import { EnhetensMotebehovActionTypes } from '../../../src/store/enhetensMotebehov/enhetensMotebehovTypes';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
-import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../../data/fellesTestdata';
 import { HOST_NAMES } from '../../../src/konstanter';
 
 describe('hentEnhetensMotebehovSagas', () => {
