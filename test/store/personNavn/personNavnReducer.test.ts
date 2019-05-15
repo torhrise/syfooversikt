@@ -6,7 +6,7 @@ import {
   hentPersonNavnHentet,
   hentPersonNavnFeilet,
 } from '../../../src/store/personNavn/personNavn_actions';
-import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../../data/fellesTestdata';
 
 describe('personNavnReducer', () => {
   describe('Henter navn paa personer', () => {

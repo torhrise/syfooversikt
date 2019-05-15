@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { EnhetensMotebehovState } from '../store/enhetensMotebehov/enhetensMotebehovTypes';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { hentEnhetensMotebehovForespurt } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
 import { AlertStripeMedMelding } from '../components/AlertStripeMedMelding';
@@ -9,15 +8,15 @@ import { ApplicationState } from '../store';
 import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import AppSpinner from '../components/AppSpinner';
 import Sokeresultat from '../components/Sokeresultat';
+import { hentEnhetensMoterForespurt } from '../store/enhetensMoter/enhetensMoter_actions';
 import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
 import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
-import { hentFodselsnummerFraMotebehovSvar } from '../components/utils/util';
 import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 
 const tekster = {
   overskrifter: {
-    enhetensOversikt: 'Møtebehov på enhet',
+    enhetensOversikt: 'Personer med hendelser',
     minOversikt: 'Denne fanen er under utvikling',
     veilederoversikt: 'Denne fanen er under utvikling',
   },
@@ -31,13 +30,16 @@ interface OversiktProps {
 }
 
 interface StateProps {
-  enhetensMotebehov: EnhetensMotebehovState;
   personregister: PersonregisterState;
+  henterAlt: boolean;
+  noeErHentet: boolean;
+  altFeilet: boolean;
 }
 
 interface DispatchProps {
   actions: {
     hentEnhetensMotebehovForespurt: typeof hentEnhetensMotebehovForespurt;
+    hentEnhetensMoterForespurt: typeof hentEnhetensMoterForespurt;
     hentPersonNavnForespurt: typeof hentPersonNavnForespurt;
     tildelVeileder: typeof pushVeilederArbeidstakerForespurt;
   };
@@ -49,30 +51,32 @@ class OversiktCont extends Component<OversiktContainerProps> {
   componentDidMount() {
     const { actions } = this.props;
     actions.hentEnhetensMotebehovForespurt();
-  }
-
-  componentDidUpdate(prevProps: OversiktContainerProps) {
-    const { enhetensMotebehov, actions } = this.props;
-    if (enhetensMotebehov.hentet && prevProps.enhetensMotebehov.henter) {
-      actions.hentPersonNavnForespurt(hentFodselsnummerFraMotebehovSvar(enhetensMotebehov.data));
-      this.setState(enhetensMotebehov);
-    }
+    actions.hentEnhetensMoterForespurt();
   }
 
   render() {
-    const { enhetensMotebehov, type } = this.props;
+    const {
+      type,
+      henterAlt,
+      noeErHentet,
+      altFeilet,
+      actions,
+      personregister,
+    } = this.props;
 
     return (<div className="oversiktContainer">
-        { enhetensMotebehov.hentingFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+        { altFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
         }
         <OversiktHeader type={type}/>
-        { enhetensMotebehov.henter
+        { henterAlt
           && <AppSpinner />
         }
-        { enhetensMotebehov.hentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && <Sokeresultat {...this.props} />
-        }
+        { noeErHentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+          && <Sokeresultat
+            tildelVeileder={actions.tildelVeileder}
+            personregister={personregister}
+        />}
     </div>);
   }
 }
@@ -84,15 +88,18 @@ const OversiktHeader = (oversiktsType: OversiktProps) => {
   </div>);
 };
 
-const mapStateToProps = ({ enhetensMotebehov, personregister }: ApplicationState, oversiktProps: OversiktProps) => ({
-  enhetensMotebehov,
+const mapStateToProps = ({ enhetensMotebehov, enhetensMoter, personregister }: ApplicationState, oversiktProps: OversiktProps) => ({
   personregister,
   oversiktProps,
+  henterAlt: enhetensMotebehov.henter && enhetensMoter.henter,
+  noeErHentet: enhetensMotebehov.hentet || enhetensMoter.hentet,
+  altFeilet: enhetensMotebehov.hentingFeilet && enhetensMoter.hentingFeilet,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: {
     hentEnhetensMotebehovForespurt: () => dispatch(hentEnhetensMotebehovForespurt()),
+    hentEnhetensMoterForespurt: () => dispatch(hentEnhetensMoterForespurt()),
     hentPersonNavnForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonNavnForespurt(fnrListe)),
     tildelVeileder: (liste: VeilederArbeidstaker[]) => dispatch(pushVeilederArbeidstakerForespurt(liste)),
   },

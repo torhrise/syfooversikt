@@ -2,15 +2,18 @@ import { expect } from 'chai';
 import { hentEnhetensMotebehovHentet } from '../../../src/store/enhetensMotebehov/enhetensMotebehov_actions';
 import { hentPersonNavnHentet } from '../../../src/store/personNavn/personNavn_actions';
 import personregisterReducer from '../../../src/store/personregister/personregisterReducer';
-import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../../data/fellesTestdata';
+import { PersonHendelseData } from '../../../src/store/personregister/personregisterTypes';
 
 describe('personregisterReducer', () => {
   describe('Henter persondata', () => {
     const initialState = Object.freeze({ });
 
     it('handterer HENT_ENHETENS_MOTEBEHOV_HENTET', () => {
-      const dataIForsteKall = [ { fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen}, { fnr: testdata.fnr2, skjermingskode: testdata.skjermingskode.diskresjonsmerket} ];
-      const dataIAndreKall = [ { fnr: testdata.fnr3, skjermingskode: testdata.skjermingskode.egenAnsatt} ];
+      const dataIForsteKall = [
+        { fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen} as PersonHendelseData,
+        { fnr: testdata.fnr2, skjermingskode: testdata.skjermingskode.diskresjonsmerket}  as PersonHendelseData];
+      const dataIAndreKall = [ { fnr: testdata.fnr3, skjermingskode: testdata.skjermingskode.egenAnsatt}  as PersonHendelseData ];
       const forsteAction = hentEnhetensMotebehovHentet(dataIForsteKall);
       const andreAction = hentEnhetensMotebehovHentet(dataIAndreKall);
       const forsteState = personregisterReducer(initialState, forsteAction);
@@ -46,9 +49,9 @@ describe('personregisterReducer', () => {
 
     it('handterer kombinasjoner', () => {
       const dataIForsteKall = [
-        { fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen },
-        { fnr: testdata.fnr2, skjermingskode: testdata.skjermingskode.diskresjonsmerket },
-        { fnr: testdata.fnr3, skjermingskode: testdata.skjermingskode.egenAnsatt } ];
+        { fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen } as PersonHendelseData,
+        { fnr: testdata.fnr2, skjermingskode: testdata.skjermingskode.diskresjonsmerket } as PersonHendelseData,
+        { fnr: testdata.fnr3, skjermingskode: testdata.skjermingskode.egenAnsatt } as PersonHendelseData];
       const dataIAndreKall = [
         { fnr: testdata.fnr1, navn: testdata.navn1 },
         { fnr: testdata.fnr2, navn: testdata.navn2 },

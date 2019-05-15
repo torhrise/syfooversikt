@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { Column, Row } from 'nav-frontend-grid';
+import {
+  Column,
+  Row,
+} from 'nav-frontend-grid';
 import { Checkbox } from 'nav-frontend-skjema';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
-import { skjermingskode } from '../utils/personDataUtil';
+import {
+  hendelsestype,
+  skjermingskode,
+} from '../utils/personDataUtil';
 
 interface PersonradProps {
   fnr: string;
@@ -26,12 +32,13 @@ class Personrad extends Component<PersonradProps> {
     } = this.props;
     return (
       <Row className="personrad">
-      <Column className="personrad__checkbox" md={'3'}>
+      <Column className="personrad__checkbox" md={'2'}>
         <Checkbox label={'Marker'} checked={!!kryssAv} onChange={(event) => {checkboxHandler(fnr);}}/>
       </Column>
-      <Column className="personrad__navn" md={'3'}>{this.props.personData.navn}</Column>
-      <Column className="personrad__fnr" md={'3'}>{lenkeTilModiaEnkeltperson(fnr)}</Column>
-      <Column className="personrad__skjermet" md={'3'}>{skjermingskode(personData)}</Column>
+      <Column className="personrad__navn" md={'2'}>{personData.navn}</Column>
+      <Column className="personrad__fnr" md={'2'}>{lenkeTilModiaEnkeltperson(fnr)}</Column>
+      <Column className="personrad__skjermet" md={'2'}>{skjermingskode(personData)}</Column>
+      <Column className="personrad__type" md={'2'}>{hendelsestype(personData)}</Column>
     </Row>);
   }
 }

@@ -1,8 +1,5 @@
 import { Reducer } from 'redux';
-import {
-  EnhetensMotebehovActionTypes,
-  MotebehovSvar,
-} from '../enhetensMotebehov/enhetensMotebehovTypes';
+import { EnhetensMotebehovActionTypes } from '../enhetensMotebehov/enhetensMotebehovTypes';
 import {
   PersonNavnActionTypes,
   PersonNavn,
@@ -10,7 +7,9 @@ import {
 import {
   PersonData,
   PersonregisterState,
+  PersonHendelseData,
 } from './personregisterTypes';
+import { EnhetensMoterActionTypes } from '../enhetensMoter/enhetensMoterTypes';
 
 const tilPersonDataMap = (personDataMapObject: any) => {
   return personDataMapObject.reduce((acc: { }, curr: { [fnr: string]: PersonData}) => {
@@ -27,12 +26,26 @@ const personregisterReducer: Reducer<PersonregisterState> = (
   switch (action.type) {
     case EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET: {
       const motebehovSvarHentet = action.data;
-      const personerSomSkalOppdateres: { [fnr: string]: PersonData } = motebehovSvarHentet.map((motebehovSvar: MotebehovSvar) => {
+      const personerSomSkalOppdateres: { [fnr: string]: PersonData } = motebehovSvarHentet.map((motebehovSvar: PersonHendelseData) => {
         return {
           [motebehovSvar.fnr]: {
             ...state[motebehovSvar.fnr],
             harSvartPaaMotebehov: true,
             skjermingskode: motebehovSvar.skjermingskode,
+          },
+        };
+      });
+      const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
+      return {...state, ...oppdatering };
+    }
+    case EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTET: {
+      const moterSvarHentet = action.data;
+      const personerSomSkalOppdateres: { [fnr: string]: PersonData } = moterSvarHentet.map((moter: PersonHendelseData) => {
+        return {
+          [moter.fnr]: {
+            ...state[moter.fnr],
+            harMote: true,
+            skjermingskode: moter.skjermingskode,
           },
         };
       });

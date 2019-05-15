@@ -1,18 +1,7 @@
-import { MotebehovSvar } from '../../store/enhetensMotebehov/enhetensMotebehovTypes';
-import { Fodselsnummer } from '../../store/personNavn/personNavnTypes';
+import { PersonHendelseData } from '../../store/personregister/personregisterTypes';
 
-export const hentFodselsnummerFraMotebehovSvar = (svarListe: MotebehovSvar[]) => {
-  return svarListe.map((motebehovSvar) => {
-    return {fnr: motebehovSvar.fnr};
+export const hentFodselsnummerFraPersonHendelseListe = (svarListe: PersonHendelseData[]) => {
+  return svarListe.map((hendelseObjekt) => {
+    return {fnr: hendelseObjekt.fnr};
   });
-};
-
-const hentFnrFraFodselsnummer = (fodselsnummerListe: Fodselsnummer[]) => {
-  return fodselsnummerListe.map((fodselsnummer) => {
-    return fodselsnummer.fnr;
-  });
-};
-
-export const hentFnrFraMotebehovSvar = (svarListe: MotebehovSvar[]) => {
-  return hentFnrFraFodselsnummer(hentFodselsnummerFraMotebehovSvar(svarListe));
 };

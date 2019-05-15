@@ -6,6 +6,7 @@ import {
 import { pushBrukerArbeidstakerSaga } from '../../../src/store/veilederArbeidstaker/veilederArbeidstakerSagas';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
 import { post } from '../../../src/api';
+import { HOST_NAMES } from '../../../src/konstanter';
 
 describe('veilederArbeidstakerSagas', () => {
   describe('fordel liste av brukere til en veileder', () => {
@@ -18,7 +19,7 @@ describe('veilederArbeidstakerSagas', () => {
       type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_FORESPURT,
       data: payload};
     const generator = pushBrukerArbeidstakerSaga(forespurtAction);
-    const url = fullNaisUrl('syfoperson', '/syfoperson/api/veilederbehandling/registrer');
+    const url = fullNaisUrl(HOST_NAMES.SYFOPERSON, '/syfoperson/api/veilederbehandling/registrer');
 
     it(`dispatch ${veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHER}`, () => {
       const nesteAction = put({

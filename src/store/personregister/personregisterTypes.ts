@@ -1,14 +1,18 @@
+export type Skjermingskode = 'INGEN' | 'DISKRESJONSMERKET' | 'EGEN_ANSATT';
+
 export interface PersonData {
   navn: string;
   harSvartPaaMotebehov: boolean;
-  skjermingskode: string;
+  harMote: boolean;
+  skjermingskode: Skjermingskode;
   markert: boolean;
-}
-
-export interface Personer {
-  [fnr: string]: PersonData;
 }
 
 export interface PersonregisterState {
   [fnr: string]: PersonData;
+}
+
+export interface PersonHendelseData {
+  fnr: string;
+  skjermingskode: Skjermingskode;
 }

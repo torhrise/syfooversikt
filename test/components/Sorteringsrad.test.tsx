@@ -13,7 +13,9 @@ describe('Sorteringsrad', () => {
   const kolonneForNavnTekst = 'Navn';
   const kolonneForFnrTekst = 'Fødselsnummer';
   const kolonneForDiskresjonskodeTekst = 'Diskresjonskode';
-  const checkAllHandler = () =>  { const kake = 3; };
+  const kolonneForTyperTekst = 'Hendelsestyper';
+  // tslint:disable-next-line:no-empty
+  const checkAllHandler = () =>  {};
   const component = shallow(<Sorteringsrad checkAllHandler={checkAllHandler}/>);
 
   it('Skal inneholde "Velg alle"-Checkbox', () => {
@@ -25,8 +27,9 @@ describe('Sorteringsrad', () => {
   });
 
   it('Skal rendre navn, fodselsnummer og skjermingskode Column-komponenter', () => {
-    expect(component.contains(<Column md={'3'}>{kolonneForNavnTekst}</Column>)).to.equal(true);
-    expect(component.contains(<Column md={'3'}>{kolonneForFnrTekst}</Column>)).to.equal(true);
-    expect(component.contains(<Column md={'3'}>{kolonneForDiskresjonskodeTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column md={'2'}>{kolonneForNavnTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column md={'2'}>{kolonneForFnrTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column md={'2'}>{kolonneForDiskresjonskodeTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column md={'2'}>{kolonneForTyperTekst}</Column>)).to.equal(true);
   });
 });
