@@ -5,7 +5,7 @@ import {
   hendelsestypeString,
   skjermingskode,
 } from '../../src/utils/personDataUtil';
-import * as testdata from '../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../data/fellesTestdata';
 
 describe('personDataUtils', () => {
   describe('skjermingskode', () => {
@@ -16,7 +16,7 @@ describe('personDataUtils', () => {
         harMote: false,
         skjermingskode: testdata.skjermingskode.egenAnsatt,
         markert: false,
-      };
+      } as PersonData;
 
       const returnertString = skjermingskode(person);
 
@@ -29,7 +29,7 @@ describe('personDataUtils', () => {
         harMote: false,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,
-      };
+      } as PersonData;
 
       const returnertString = skjermingskode(person);
 
@@ -45,7 +45,7 @@ describe('personDataUtils', () => {
         harMote: true,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,
-      };
+      } as PersonData;
 
       const returnertString = hendelsestype(person);
 
@@ -58,7 +58,7 @@ describe('personDataUtils', () => {
         harMote: false,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,
-      };
+      } as PersonData;
 
       const returnertString = hendelsestype(person);
 
@@ -71,7 +71,7 @@ describe('personDataUtils', () => {
         harMote: true,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,
-      };
+      } as PersonData;
 
       const returnertString = hendelsestype(person);
 
@@ -84,7 +84,7 @@ describe('personDataUtils', () => {
         harMote: false,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,
-      };
+      } as PersonData;
 
       const returnertString = hendelsestype(person);
 

@@ -4,7 +4,7 @@ import { hentPersonNavnSaga } from '../../../src/store/personNavn/personNavnSaga
 import { PersonNavnActionTypes } from '../../../src/store/personNavn/personNavnTypes';
 import { post } from '../../../src/api';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
-import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../../data/fellesTestdata';
 import { HOST_NAMES } from '../../../src/konstanter';
 
 describe('hentPersonNavnSagas', () => {

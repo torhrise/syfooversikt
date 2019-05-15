@@ -4,7 +4,7 @@ import { hentEnhetensMoterSaga } from '../../../src/store/enhetensMoter/enhetens
 import { get } from '../../../src/api';
 import { EnhetensMoterActionTypes } from '../../../src/store/enhetensMoter/enhetensMoterTypes';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
-import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../../data/fellesTestdata';
 import { HOST_NAMES } from '../../../src/konstanter';
 
 describe('hentEnhetensMoterSagas', () => {

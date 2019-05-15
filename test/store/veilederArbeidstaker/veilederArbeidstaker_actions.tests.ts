@@ -7,7 +7,7 @@ import {
   pushVeilederArbeidstakerPushet,
   pushVeilederArbeidstakerFeilet,
 } from '../../../src/store/veilederArbeidstaker/veilederArbeidstaker_actions';
-import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../../data/fellesTestdata';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;

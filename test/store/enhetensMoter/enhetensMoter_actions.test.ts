@@ -7,7 +7,8 @@ import {
   hentEnhetensMoterHentet,
   hentEnhetensMoterFeilet,
 } from '../../../src/store/enhetensMoter/enhetensMoter_actions';
-import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../../data/fellesTestdata';
+import { PersonHendelseData } from '../../../src/store/personregister/personregisterTypes';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -22,8 +23,9 @@ describe('enhetensMoter_actions', () => {
   });
 
   it('hentenhetensMoterHentet() skal returnere riktig action', () => {
-    const moter = [ { fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen} ];
-    expect(hentEnhetensMoterHentet(moter)).to.deep.equal({ type: EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTET, data: moter });
+    const moter = [ { fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen} as PersonHendelseData];
+    expect(hentEnhetensMoterHentet(moter)).to.deep.equal(
+      { type: EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTET, data: moter });
   });
 
   it('hentenhetensMoterFeilet() skal returnere riktig action', () => {

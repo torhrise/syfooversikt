@@ -6,7 +6,8 @@ import {
   hentEnhetensMoterHentet,
   hentEnhetensMoterFeilet,
 } from '../../../src/store/enhetensMoter/enhetensMoter_actions';
-import * as testdata from '../../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../../data/fellesTestdata';
+import { PersonHendelseData } from '../../../src/store/personregister/personregisterTypes';
 
 describe('enhetensMoterReducer', () => {
   describe('Henter moter', () => {
@@ -29,7 +30,7 @@ describe('enhetensMoterReducer', () => {
     });
 
     it('handterer HENT_ENHETENS_MOTER_HENTET', () => {
-      const moter = [{ fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen }];
+      const moter = [{ fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen } as PersonHendelseData];
       const action = hentEnhetensMoterHentet(moter);
       const nesteState = enhetensMoterReducer(initialState, action);
       expect(nesteState).to.deep.equal({

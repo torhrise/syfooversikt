@@ -6,14 +6,16 @@ import { Column } from 'nav-frontend-grid';
 import Personrad from '../../src/components/Personrad';
 import { lenkeTilModiaEnkeltperson } from '../../src/utils/lenkeUtil';
 import { hendelsestype, skjermingskode } from '../../src/utils/personDataUtil';
-import * as testdata from '../../Mock/Data/fellesTestdata.json';
+import { testdata } from '../data/fellesTestdata';
+import { PersonData } from '../../src/store/personregister/personregisterTypes';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 describe('Personrad', () => {
   const fnr = testdata.fnr1;
-  const personData = { navn: testdata.navn1, harSvartPaaMotebehov: false, harMote: false, skjermingskode: testdata.skjermingskode.ingen, markert: false };
+  const personData = { navn: testdata.navn1, harSvartPaaMotebehov: false, harMote: false,
+    skjermingskode: testdata.skjermingskode.ingen, markert: false } as PersonData;
   // tslint:disable-next-line:no-empty
   const checkboxHandler = () => {};
   const component = shallow(<Personrad
