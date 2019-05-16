@@ -20,8 +20,9 @@ if (!(window as any)._babelPolyfill) {
 const config = {
   config: {
     dataSources: {
-      veileder: `https://app${finnMiljoStreng()}.adeo.no/syfomoteadmin/api/veilederinfo`,
-      enheter: `https://app${finnMiljoStreng()}.adeo.no/syfomoteadmin/api/veilederinfo`,
+      // veileder: `https://app${finnMiljoStreng()}.adeo.no/syfomoteadmin/api/internad/veilederinfo`,
+      veileder: `https://syfomoteadmin-q1.nais.preprod.local//syfomoteadmin/api/internad/veilederinfo`,
+      enheter: `https://app${finnMiljoStreng()}.adeo.no/syfomoteadmin/api/internad/veilederinfo`,
     },
     initiellEnhet: '',
     toggles: {
