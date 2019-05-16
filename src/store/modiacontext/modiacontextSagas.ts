@@ -9,7 +9,7 @@ export function* pushModiacontextSaga(
 ) {
   yield put(actions.pusherModiaContext());
   try {
-    const path = '/modiacontextholder/api/context';
+    const path = 'https://modiacontextholder-q1.nais.preprod.local/modiacontextholder/api/context';
     yield call(
       post,
       fullAppAdeoUrl(path),
@@ -29,7 +29,7 @@ export function* aktivEnhetSaga(
 ) {
   yield put(actions.henterAktivEnhet());
   try {
-    const path = '/modiacontextholder/api/context/aktivenhet';
+    const path = 'https://modiacontextholder-q1.nais.preprod.local/modiacontextholder/api/context/aktivenhet';
     const data = yield call(
       get,
       fullAppAdeoUrl(path)
