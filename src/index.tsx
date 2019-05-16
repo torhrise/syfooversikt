@@ -1,13 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render } from 'react-dom';
-import { CONTEXT_EVENT_TYPE } from './konstanter';
+import { CONTEXT_EVENT_TYPE, HOST_NAMES } from './konstanter';
 import {
   hentAktivEnhet,
   pushModiaContext,
 } from './store/modiacontext/modiacontext_actions';
 import './styles/styles.less';
-import { finnMiljoStreng } from './utils/miljoUtil';
+import { finnMiljoStreng, fullNaisUrl } from './utils/miljoUtil';
 import AppRouter from './routers/AppRouter';
 
 import { store, history } from './store';
@@ -20,8 +20,8 @@ if (!(window as any)._babelPolyfill) {
 const config = {
   config: {
     dataSources: {
-      veileder: `https://app${finnMiljoStreng()}.adeo.no/syfomoteadmin/api/veilederinfo`,
-      enheter: `https://app${finnMiljoStreng()}.adeo.no/syfomoteadmin/api/veilederinfo`,
+      veileder: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo`)}`,
+      enheter: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo/enheter`)}`,
     },
     initiellEnhet: '',
     toggles: {
