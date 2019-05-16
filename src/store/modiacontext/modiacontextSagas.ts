@@ -1,6 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import { get, post } from '../../api/index';
-import { fullAppAdeoUrl } from '../../utils/miljoUtil';
+import { fullNaisUrl } from '../../utils/miljoUtil';
 import * as actions from './modiacontext_actions';
 import { modiacontextActionTypes } from './modiacontextTypes';
 
@@ -9,10 +9,10 @@ export function* pushModiacontextSaga(
 ) {
   yield put(actions.pusherModiaContext());
   try {
-    const path = 'https://modiacontextholder-q1.nais.preprod.local/modiacontextholder/api/context';
+    const url = `${fullNaisUrl('modiacontextholder', '/modiacontextholder/api/context')}`;
     yield call(
       post,
-      fullAppAdeoUrl(path),
+      url,
       {
         verdi: action.data.verdi,
         eventType: action.data.eventType,
@@ -29,10 +29,10 @@ export function* aktivEnhetSaga(
 ) {
   yield put(actions.henterAktivEnhet());
   try {
-    const path = 'https://modiacontextholder-q1.nais.preprod.local/modiacontextholder/api/context/aktivenhet';
+    const url = `${fullNaisUrl('modiacontextholder', '/modiacontextholder/api/context/aktivenhet')}`;
     const data = yield call(
       get,
-      fullAppAdeoUrl(path)
+      url
     );
     action.data.callback(data.aktivEnhet);
   } catch (e) {
