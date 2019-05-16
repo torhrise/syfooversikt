@@ -3,13 +3,15 @@ import { get, post } from '../../api/index';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 import * as actions from './modiacontext_actions';
 import { modiacontextActionTypes } from './modiacontextTypes';
+import { HOST_NAMES } from '../../konstanter';
 
 export function* pushModiacontextSaga(
   action: ReturnType<typeof actions.pushModiaContext>
 ) {
   yield put(actions.pusherModiaContext());
   try {
-    const url = `${fullNaisUrl('modiacontextholder', '/modiacontextholder/api/context')}`;
+    const app = HOST_NAMES.MODIACONTEXTHOLDER;
+    const url = fullNaisUrl(app,`/${app}/api/context')`);
     yield call(
       post,
       url,
@@ -29,7 +31,8 @@ export function* aktivEnhetSaga(
 ) {
   yield put(actions.henterAktivEnhet());
   try {
-    const url = `${fullNaisUrl('modiacontextholder', '/modiacontextholder/api/context/aktivenhet')}`;
+    const app = HOST_NAMES.MODIACONTEXTHOLDER;
+    const url = fullNaisUrl(app,`/${app}/api/context/aktivenhet')`);
     const data = yield call(
       get,
       url

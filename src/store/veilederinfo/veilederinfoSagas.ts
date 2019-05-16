@@ -2,13 +2,14 @@ import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import { get } from '../../api/index';
 import * as actions from './veilederinfo_actions';
 import { VeilederinfoActionTypes } from './veilederinfoTypes';
-import { fullAppAdeoUrl } from '../../utils/miljoUtil';
+import { fullNaisUrl } from '../../utils/miljoUtil';
+import { HOST_NAMES } from '../../konstanter';
 
 export function* hentVeilederinfoSaga() {
   yield put(actions.henterVeilederinfo());
   try {
-    const path = `${process.env.REACT_APP_VEILEDEROPPGAVERREST_ROOT}/veilederinfo`;
-    const url = fullAppAdeoUrl(path);
+    const app = HOST_NAMES.SYFOMOTEADMIN;
+    const url = fullNaisUrl(app,`/${app}/api/internad/veilederinfo')`);
     const data = yield call(get, url);
     yield put(actions.veilederinfoHentet(data));
   } catch (e) {
