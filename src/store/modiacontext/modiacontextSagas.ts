@@ -32,7 +32,7 @@ export function* aktivEnhetSaga(
   yield put(actions.henterAktivEnhet());
   try {
     const app = HOST_NAMES.MODIACONTEXTHOLDER;
-    const url = fullNaisUrl(app,`/${app}/api/context/aktivenhet')`);
+    const url = fullNaisUrl(app,`/${app}/api/context/aktivenhet`);
     const data = yield call(
       get,
       url
