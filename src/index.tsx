@@ -22,7 +22,7 @@ const config = {
     dataSources: {
       // veileder: `https://app${finnMiljoStreng()}.adeo.no/syfomoteadmin/api/internad/veilederinfo`,
       veileder: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, '/syfomoteadmin/api/internad/veilederinfo')}`,
-      enheter: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, '/syfomoteadmin/api/internad/enheter')}`,
+      enheter: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, '/syfomoteadmin/api/internad/veilederinfo/enheter')}`,
     },
     initiellEnhet: '',
     toggles: {
