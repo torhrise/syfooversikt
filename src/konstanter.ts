@@ -7,6 +7,7 @@ export const OVERSIKT_VISNING_TYPE = {
 };
 
 export const HOST_NAMES = {
+  MODIACONTEXTHOLDER: 'modiacontextholder',
   SYFOPERSON: 'syfoperson',
   SYFOMOTEBEHOV: 'syfomotebehov',
   SYFOMOTEADMIN: 'syfomoteadmin',
