@@ -1,4 +1,5 @@
 import React from 'react';
+import Lenke from 'nav-frontend-lenker';
 import { fullAppAdeoUrl } from './miljoUtil';
 
 const lenkeTilModiaBasertPaaFnr = (fnr: string) => {
@@ -6,8 +7,8 @@ const lenkeTilModiaBasertPaaFnr = (fnr: string) => {
   return fullAppAdeoUrl(path);
 };
 
-export const lenkeTilModiaEnkeltperson = (fnr: string) => {
-  return (<a href={lenkeTilModiaBasertPaaFnr(fnr)}>
-    {fnr}
-  </a>);
+export const lenkeTilModiaEnkeltperson = (navn: string, fnr: string) => {
+  return (<Lenke href={lenkeTilModiaBasertPaaFnr(fnr)}>
+      {navn}
+  </Lenke>);
 };

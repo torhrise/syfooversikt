@@ -35,8 +35,8 @@ class Personrad extends Component<PersonradProps> {
       <Column className="personrad__checkbox" md={'2'}>
         <Checkbox label={'Marker'} checked={!!kryssAv} onChange={(event) => {checkboxHandler(fnr);}}/>
       </Column>
-      <Column className="personrad__navn" md={'2'}>{personData.navn}</Column>
-      <Column className="personrad__fnr" md={'2'}>{lenkeTilModiaEnkeltperson(fnr)}</Column>
+      <Column className="personrad__navn" md={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
+      <Column className="personrad__fnr" md={'2'}>{fnr}</Column>
       <Column className="personrad__skjermet" md={'2'}>{skjermingskode(personData)}</Column>
       <Column className="personrad__type" md={'2'}>{hendelsestype(personData)}</Column>
     </Row>);
