@@ -9,16 +9,20 @@ import { get } from '../../api/index';
 import * as actions from './enhetensMoter_actions';
 import { EnhetensMoterActionTypes } from './enhetensMoterTypes';
 import { fullNaisUrl } from '../../utils/miljoUtil';
+import {
+  hentVeilederEnhetFraState,
+  skalHenteReducer,
+} from '../../utils/selectorUtil';
 import * as personNavnActions from '../personNavn/personNavn_actions';
 import { PersonHendelseData } from '../personregister/personregisterTypes';
 import { hentFodselsnummerFraPersonHendelseListe } from '../../components/utils/util';
 import { HOST_NAMES } from '../../konstanter';
 
-export function* hentEnhetensMoterSaga() {
+export function* hentEnhetensMoter(enhetId: string) {
   yield put(actions.hentEnhetensMoterHenter());
   try {
     const host = HOST_NAMES.SYFOMOTEADMIN;
-    const path = `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/enhet/0315/moter/brukere`;
+    const path = `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/enhet/${enhetId}/moter/brukere`;
     const url = fullNaisUrl(host, path);
     const data = yield call(get, url);
     yield put(actions.hentEnhetensMoterHentet(data));
@@ -46,10 +50,23 @@ export function* hentNavnForPersonerMedMoteUtenNavn(data: PersonHendelseData[]):
   yield put(personNavnActions.hentPersonNavnForespurt(filtrertListe));
 }
 
+export function hentetEnhet(state: any) {
+  if(skalHenteReducer(state.enhetensMoter)) {
+    return hentVeilederEnhetFraState(state);
+  }
+}
+
+export function* hentEnhetensMoterHvisEnhetHentet(): any {
+  const enhet = yield select(hentetEnhet);
+  if (!!enhet) {
+    yield hentEnhetensMoter(enhet.enhetId);
+  }
+}
+
 function* watchHentEnhetensMoter() {
   yield takeEvery(
     EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_FORESPURT,
-    hentEnhetensMoterSaga
+    hentEnhetensMoterHvisEnhetHentet
   );
 }
 

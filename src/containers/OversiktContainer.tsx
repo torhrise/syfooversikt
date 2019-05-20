@@ -12,6 +12,7 @@ import { hentEnhetensMoterForespurt } from '../store/enhetensMoter/enhetensMoter
 import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
 import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
 import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
+import { hentVeilederenheter } from '../store/veilederenheter/veilederenheter_actions';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 
 const tekster = {
@@ -42,6 +43,7 @@ interface DispatchProps {
     hentEnhetensMoterForespurt: typeof hentEnhetensMoterForespurt;
     hentPersonNavnForespurt: typeof hentPersonNavnForespurt;
     tildelVeileder: typeof pushVeilederArbeidstakerForespurt;
+    hentVeilederenheter: typeof hentVeilederenheter;
   };
 }
 
@@ -49,6 +51,11 @@ export type OversiktContainerProps = OversiktProps & StateProps & DispatchProps;
 
 class OversiktCont extends Component<OversiktContainerProps> {
   componentDidMount() {
+    const { actions } = this.props;
+    actions.hentVeilederenheter();
+  }
+
+  componentDidUpdate() {
     const { actions } = this.props;
     actions.hentEnhetensMotebehovForespurt();
     actions.hentEnhetensMoterForespurt();
@@ -63,7 +70,6 @@ class OversiktCont extends Component<OversiktContainerProps> {
       actions,
       personregister,
     } = this.props;
-
     return (<div className="oversiktContainer">
         { altFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
@@ -88,26 +94,25 @@ const OversiktHeader = (oversiktsType: OversiktProps) => {
   </div>);
 };
 
-const mapStateToProps = ({ enhetensMotebehov, enhetensMoter, personregister }: ApplicationState, oversiktProps: OversiktProps) => ({
-  personregister,
-  oversiktProps,
-  henterAlt: enhetensMotebehov.henter && enhetensMoter.henter,
-  noeErHentet: enhetensMotebehov.hentet || enhetensMoter.hentet,
-  altFeilet: enhetensMotebehov.hentingFeilet && enhetensMoter.hentingFeilet,
-});
-
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: {
     hentEnhetensMotebehovForespurt: () => dispatch(hentEnhetensMotebehovForespurt()),
     hentEnhetensMoterForespurt: () => dispatch(hentEnhetensMoterForespurt()),
     hentPersonNavnForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonNavnForespurt(fnrListe)),
+    hentVeilederenheter: () => dispatch(hentVeilederenheter()),
     tildelVeileder: (liste: VeilederArbeidstaker[]) => dispatch(pushVeilederArbeidstakerForespurt(liste)),
   },
 });
 
-const OversiktContainer = connect(
+const mapStateToProps = ({ enhetensMotebehov, enhetensMoter, personregister, veilederenheter }: ApplicationState, oversiktProps: OversiktProps) => ({
+  personregister,
+  oversiktProps,
+  henterAlt: veilederenheter.henter || (enhetensMotebehov.henter && enhetensMoter.henter),
+  noeErHentet: veilederenheter.hentet && (enhetensMotebehov.hentet || enhetensMoter.hentet),
+  altFeilet: veilederenheter.hentingFeilet || (enhetensMotebehov.hentingFeilet && enhetensMoter.hentingFeilet),
+});
+
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(OversiktCont);
-
-export default OversiktContainer;
