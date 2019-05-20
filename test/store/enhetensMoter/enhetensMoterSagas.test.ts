@@ -1,14 +1,17 @@
 import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
-import { hentEnhetensMoterSaga } from '../../../src/store/enhetensMoter/enhetensMoterSagas';
+import { hentEnhetensMoter } from '../../../src/store/enhetensMoter/enhetensMoterSagas';
 import { get } from '../../../src/api';
 import { EnhetensMoterActionTypes } from '../../../src/store/enhetensMoter/enhetensMoterTypes';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
-import { testdata } from '../../data/fellesTestdata';
 import { HOST_NAMES } from '../../../src/konstanter';
+import {
+  enhet,
+  testdata,
+} from '../../data/fellesTestdata';
 
 describe('hentEnhetensMoterSagas', () => {
-  const generator = hentEnhetensMoterSaga();
+  const generator = hentEnhetensMoter(enhet.enhetId);
 
   it(`Skal dispatche ${EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTER}`, () => {
     const nesteAction = put({ type: EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTER });
@@ -16,7 +19,7 @@ describe('hentEnhetensMoterSagas', () => {
   });
 
   it('Skal dernest kalle REST-tjenesten', () => {
-    const url = fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, '/syfomoteadmin/api/enhet/0315/moter/brukere');
+    const url = fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `/syfomoteadmin/api/enhet/${enhet.enhetId}/moter/brukere`);
     const nesteKall = call(get, url);
     expect(generator.next().value).to.deep.equal(nesteKall);
   });
