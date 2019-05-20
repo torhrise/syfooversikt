@@ -10,7 +10,7 @@ export function* hentVeilederinfoSaga() {
   try {
     const host = HOST_NAMES.SYFOMOTEADMIN;
     const path = `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo`;
-    const url = fullNaisUrl(host,`/${path}/api/internad/veilederinfo`);
+    const url = fullNaisUrl(host,path);
     const data = yield call(get, url);
     yield put(actions.veilederinfoHentet(data));
   } catch (e) {
