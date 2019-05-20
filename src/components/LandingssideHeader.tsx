@@ -1,14 +1,8 @@
 import React from 'react';
 
-interface LandingssideHeaderProps {
-  bilde: string;
-}
-
-const LandingssideHeader = (props: LandingssideHeaderProps) => {
-  const { bilde } = props;
+const LandingssideHeader = () => {
   return (<div className="landingsside__header">
-      <h1>Syfooversikt</h1>
-      <img className="header__bilde" src={bilde} alt="veileder" />
+      <h1>Sykefraværsoppfølging</h1>
   </div>);
 };
 

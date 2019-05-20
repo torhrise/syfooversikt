@@ -7,7 +7,7 @@ export class Landingsside extends Component {
   public render() {
     return (<Side tittel="">
         <div>
-          <LandingssideHeader bilde={'/syfooversikt/src/img/veileder.svg'} />
+          <LandingssideHeader />
           <OversiktVelger/>
         </div>
     </Side>);

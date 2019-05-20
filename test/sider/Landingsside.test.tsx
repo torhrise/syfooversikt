@@ -14,7 +14,7 @@ describe('Landingsside', () => {
   it('Skal rendre LandingssideHeader', () => {
     expect(
       component.contains(
-        <LandingssideHeader bilde={'/syfooversikt/src/img/veileder.svg'} />
+        <LandingssideHeader />
       )
     ).to.equal(true);
   });
