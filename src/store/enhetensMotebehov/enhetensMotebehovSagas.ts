@@ -10,15 +10,19 @@ import * as actions from './enhetensMotebehov_actions';
 import * as personNavnActions from '../personNavn/personNavn_actions';
 import { EnhetensMotebehovActionTypes } from './enhetensMotebehovTypes';
 import { fullNaisUrl } from '../../utils/miljoUtil';
+import {
+  hentVeilederEnhetFraState,
+  skalHenteReducer,
+} from '../../utils/selectorUtil';
 import { hentFodselsnummerFraPersonHendelseListe } from '../../components/utils/util';
 import { PersonHendelseData } from '../personregister/personregisterTypes';
 import { HOST_NAMES } from '../../konstanter';
 
-export function* hentEnhetensMotebehovSaga() {
+export function* hentEnhetensMotebehov(enhetId: string) {
   yield put(actions.hentEnhetensMotebehovHenter());
   try {
     const host = HOST_NAMES.SYFOMOTEBEHOV;
-    const path = `${process.env.REACT_APP_SYFOMOTEBEHOVREST_ROOT}/enhet/0315/motebehov/brukere`;
+    const path = `${process.env.REACT_APP_SYFOMOTEBEHOVREST_ROOT}/enhet/${enhetId}/motebehov/brukere`;
     const url = fullNaisUrl(host, path);
     const data = yield call(get, url);
     yield put(actions.hentEnhetensMotebehovHentet(data));
@@ -46,10 +50,23 @@ export function* hentNavnForPersonerUtenNavn(data: PersonHendelseData[]): any {
   yield put(personNavnActions.hentPersonNavnForespurt(filtrertListe));
 }
 
+export function hentetEnhet(state: any) {
+  if(skalHenteReducer(state.enhetensMotebehov)) {
+    return hentVeilederEnhetFraState(state);
+  }
+}
+
+export function* hentEnhetensMotebehovHvisEnhetHentet(): any {
+  const enhet = yield select(hentetEnhet);
+  if (!!enhet) {
+    yield hentEnhetensMotebehov(enhet.enhetId);
+  }
+}
+
 function* watchHentEnhetensMotebehov() {
   yield takeEvery(
     EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_FORESPURT,
-    hentEnhetensMotebehovSaga
+    hentEnhetensMotebehovHvisEnhetHentet
   );
 }
 

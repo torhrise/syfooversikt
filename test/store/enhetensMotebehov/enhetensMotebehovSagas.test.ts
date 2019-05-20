@@ -1,14 +1,17 @@
 import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
-import { hentEnhetensMotebehovSaga } from '../../../src/store/enhetensMotebehov/enhetensMotebehovSagas';
+import { hentEnhetensMotebehov } from '../../../src/store/enhetensMotebehov/enhetensMotebehovSagas';
 import { get } from '../../../src/api';
 import { EnhetensMotebehovActionTypes } from '../../../src/store/enhetensMotebehov/enhetensMotebehovTypes';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
-import { testdata } from '../../data/fellesTestdata';
 import { HOST_NAMES } from '../../../src/konstanter';
+import {
+  enhet,
+  testdata,
+} from '../../data/fellesTestdata';
 
 describe('hentEnhetensMotebehovSagas', () => {
-  const generator = hentEnhetensMotebehovSaga();
+  const generator = hentEnhetensMotebehov(enhet.enhetId);
 
   it(`Skal dispatche ${EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTER}`, () => {
     const nesteAction = put({ type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTER });
@@ -16,7 +19,7 @@ describe('hentEnhetensMotebehovSagas', () => {
   });
 
   it('Skal dernest kalle REST-tjenesten', () => {
-    const url = fullNaisUrl(HOST_NAMES.SYFOMOTEBEHOV, '/syfomotebehov/api/enhet/0315/motebehov/brukere');
+    const url = fullNaisUrl(HOST_NAMES.SYFOMOTEBEHOV, `/syfomotebehov/api/enhet/${enhet.enhetId}/motebehov/brukere`);
     const nesteKall = call(get, url);
     expect(generator.next().value).to.deep.equal(nesteKall);
   });

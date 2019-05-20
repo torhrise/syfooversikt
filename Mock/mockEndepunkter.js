@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 
 const mockData = {};
+const ENHETER = 'enheter';
 const MOTEBEHOV = 'motebehov';
 const PERSON_NAVN = 'personNavn';
 const MOTER = 'moter';
@@ -13,6 +14,7 @@ const lastFilTilMinne = (filnavn) => {
   });
 };
 
+lastFilTilMinne(ENHETER);
 lastFilTilMinne(MOTEBEHOV);
 lastFilTilMinne(PERSON_NAVN);
 lastFilTilMinne(MOTER);
@@ -36,6 +38,11 @@ function mockForLokal(server) {
   server.get('/syfomoteadmin/api/enhet/0315/moter/brukere', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(mockData[MOTER]));
+  });
+
+  server.get('/syfomoteadmin/api/internad/veilederinfo/enheter', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(mockData[ENHETER]));
   });
 }
 
