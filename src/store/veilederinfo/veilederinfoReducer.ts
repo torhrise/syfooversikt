@@ -1,8 +1,6 @@
 import { Reducer } from 'redux';
-import {
-  VeilederinfoActionTypes,
-  VeilederinfoState,
-} from './veilederinfoTypes';
+import { VeilederinfoState } from './veilederinfoTypes';
+import { VeilederinfoActionTypes } from './veilederinfo_actions';
 
 const initiellState: VeilederinfoState = {
   hentet: false,

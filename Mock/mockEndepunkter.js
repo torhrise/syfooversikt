@@ -6,6 +6,7 @@ const ENHETER = 'enheter';
 const MOTEBEHOV = 'motebehov';
 const PERSON_NAVN = 'personNavn';
 const MOTER = 'moter';
+const VEILEDERINFO = 'veilederinfo';
 
 const lastFilTilMinne = (filnavn) => {
   fs.readFile(path.join(__dirname, `/data/${filnavn}.json`), (err, data) => {
@@ -18,9 +19,10 @@ lastFilTilMinne(ENHETER);
 lastFilTilMinne(MOTEBEHOV);
 lastFilTilMinne(PERSON_NAVN);
 lastFilTilMinne(MOTER);
+lastFilTilMinne(VEILEDERINFO);
 
 function mockForLokal(server) {
-  server.get('/syfomotebehov/api/enhet/0315/motebehov/brukere', (req, res) => {
+  server.get('/syfomotebehov/api/enhet/:id/motebehov/brukere', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(mockData[MOTEBEHOV]));
   });
@@ -35,9 +37,14 @@ function mockForLokal(server) {
     res.send();
   });
 
-  server.get('/syfomoteadmin/api/enhet/0315/moter/brukere', (req, res) => {
+  server.get('/syfomoteadmin/api/enhet/:id/moter/brukere', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(mockData[MOTER]));
+  });
+
+  server.get('/syfomoteadmin/api/internad/veilederinfo', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(mockData[VEILEDERINFO]));
   });
 
   server.get('/syfomoteadmin/api/internad/veilederinfo/enheter', (req, res) => {

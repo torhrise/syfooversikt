@@ -1,7 +1,7 @@
 import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import { get } from '../../api/index';
 import * as actions from './veilederinfo_actions';
-import { VeilederinfoActionTypes } from './veilederinfoTypes';
+import { VeilederinfoActionTypes } from './veilederinfo_actions';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
 
