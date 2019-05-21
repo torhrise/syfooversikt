@@ -20,3 +20,8 @@ export const personregister: PersonregisterState = {
   [testdata.fnr2]: { navn: testdata.navn2, harSvartPaaMotebehov: false, harMote: false,
     skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false } as PersonData,
 };
+
+export const enhet = {
+  enhetId: '0101',
+  navn: 'Enhet',
+};
