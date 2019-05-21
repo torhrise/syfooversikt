@@ -19,7 +19,7 @@ export function* hentPersonNavnSaga(action: ReturnType<typeof actions.hentPerson
 
 function* watchHentPersonNavn() {
   yield takeEvery(
-      actions.PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT,
+    actions.PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT,
     hentPersonNavnSaga
   );
 }
