@@ -17,7 +17,6 @@ import {
 import AppRouter from './routers/AppRouter';
 
 import { store, history } from './store';
-import { pushVeilederArbeidstakerForespurt } from './store/veilederArbeidstaker/veilederArbeidstaker_actions';
 
 if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires

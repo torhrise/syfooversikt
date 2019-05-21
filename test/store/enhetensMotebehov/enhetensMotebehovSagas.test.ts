@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
 import { hentEnhetensMotebehov } from '../../../src/store/enhetensMotebehov/enhetensMotebehovSagas';
 import { get } from '../../../src/api';
-import { EnhetensMotebehovActionTypes } from '../../../src/store/enhetensMotebehov/enhetensMotebehovTypes';
+import { EnhetensMotebehovActionTypes } from '../../../src/store/enhetensMotebehov/enhetensMotebehov_actions';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
 import { HOST_NAMES } from '../../../src/konstanter';
 import {

@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import { veilederArbeidstakerActionTypes } from '../../../src/store/veilederArbeidstaker/veilederArbeidstakerTypes';
+import { veilederArbeidstakerActionTypes } from '../../../src/store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import {
   pushVeilederArbeidstakerForespurt,
   pushVeilederArbeidstakerPusher,

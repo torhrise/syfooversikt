@@ -1,8 +1,6 @@
 import { Reducer } from 'redux';
-import {
-  EnhetensMoterActionTypes,
-  EnhetensMoterState,
-} from './enhetensMoterTypes';
+import { EnhetensMoterState } from './enhetensMoterTypes';
+import { EnhetensMoterActionTypes } from './enhetensMoter_actions';
 
 const initiellState: EnhetensMoterState = {
   hentet: false,

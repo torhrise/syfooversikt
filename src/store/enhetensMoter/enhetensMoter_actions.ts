@@ -1,5 +1,11 @@
-import { EnhetensMoterActionTypes } from './enhetensMoterTypes';
 import { PersonHendelseData } from '../personregister/personregisterTypes';
+
+export const enum EnhetensMoterActionTypes {
+  HENT_ENHETENS_MOTER_FORESPURT = 'HENT_ENHETENS_MOTER_FORESPURT',
+  HENT_ENHETENS_MOTER_HENTER = 'HENT_ENHETENS_MOTER_HENTER',
+  HENT_ENHETENS_MOTER_FEILET = 'HENT_ENHETENS_MOTER_FEILET',
+  HENT_ENHETENS_MOTER_HENTET = 'HENT_ENHETENS_MOTER_HENTET',
+}
 
 export function hentEnhetensMoterForespurt() {
   return {

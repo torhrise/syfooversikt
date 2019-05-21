@@ -1,7 +1,6 @@
 import { call, fork, put, takeEvery } from 'redux-saga/effects';
 import { post } from '../../api/index';
 import * as actions from './personNavn_actions';
-import { PersonNavnActionTypes } from './personNavnTypes';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
 
@@ -20,7 +19,7 @@ export function* hentPersonNavnSaga(action: ReturnType<typeof actions.hentPerson
 
 function* watchHentPersonNavn() {
   yield takeEvery(
-    PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT,
+    actions.PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT,
     hentPersonNavnSaga
   );
 }

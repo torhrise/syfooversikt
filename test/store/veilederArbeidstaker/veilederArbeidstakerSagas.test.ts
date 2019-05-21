@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { veilederArbeidstakerActionTypes } from '../../../src/store/veilederArbeidstaker/veilederArbeidstakerTypes';
+import { veilederArbeidstakerActionTypes } from '../../../src/store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import {
   call,
   put } from 'redux-saga/effects';

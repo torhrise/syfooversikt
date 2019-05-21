@@ -2,7 +2,6 @@ import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import { get, post } from '../../api/index';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 import * as actions from './modiacontext_actions';
-import { modiacontextActionTypes } from './modiacontextTypes';
 import { HOST_NAMES } from '../../konstanter';
 
 export function* pushModiacontextSaga(
@@ -47,14 +46,14 @@ export function* aktivEnhetSaga(
 
 function* watchPushModiacontext() {
   yield takeEvery(
-    modiacontextActionTypes.PUSH_MODIACONTEXT_FORESPURT,
+      actions.modiacontextActionTypes.PUSH_MODIACONTEXT_FORESPURT,
     pushModiacontextSaga
   );
 }
 
 function* watchAktivEnhet() {
   yield takeEvery(
-    modiacontextActionTypes.HENT_AKTIVENHET_FORESPURT,
+    actions.modiacontextActionTypes.HENT_AKTIVENHET_FORESPURT,
     aktivEnhetSaga
   );
 }

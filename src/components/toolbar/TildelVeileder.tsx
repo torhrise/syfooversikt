@@ -7,7 +7,6 @@ const tekster = {
 };
 
 const TildelVeileder = (props: ToolbarProps) => {
-
   return (<Hovedknapp onClick={() => props.buttonHandler()} mini>
     {tekster.knappTekst}
   </Hovedknapp>);

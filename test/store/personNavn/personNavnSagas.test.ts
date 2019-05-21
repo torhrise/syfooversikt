@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
 import { hentPersonNavnSaga } from '../../../src/store/personNavn/personNavnSagas';
-import { PersonNavnActionTypes } from '../../../src/store/personNavn/personNavnTypes';
+import { PersonNavnActionTypes } from '../../../src/store/personNavn/personNavn_actions';
 import { post } from '../../../src/api';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
 import { testdata } from '../../data/fellesTestdata';
