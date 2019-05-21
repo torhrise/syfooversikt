@@ -7,7 +7,6 @@ import {
 } from 'redux-saga/effects';
 import { post } from '../../api/index';
 import * as actions from './veilederArbeidstaker_actions';
-import { veilederArbeidstakerActionTypes } from './veilederArbeidstakerTypes';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
 
@@ -27,7 +26,7 @@ export function* pushBrukerArbeidstakerSaga(
 
 function* watchPushVeilederArbeidstaker() {
   yield takeEvery(
-    veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_FORESPURT,
+      actions.veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_FORESPURT,
     pushBrukerArbeidstakerSaga
   );
 }

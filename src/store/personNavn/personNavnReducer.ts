@@ -1,8 +1,6 @@
 import { Reducer } from 'redux';
-import {
-  PersonNavnActionTypes,
-  PersonNavnState,
-} from './personNavnTypes';
+import { PersonNavnState } from './personNavnTypes';
+import { PersonNavnActionTypes } from './personNavn_actions';
 
 const initiellState: PersonNavnState = {
   hentet: false,

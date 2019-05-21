@@ -8,7 +8,6 @@ import {
 import { get } from '../../api/index';
 import * as actions from './enhetensMotebehov_actions';
 import * as personNavnActions from '../personNavn/personNavn_actions';
-import { EnhetensMotebehovActionTypes } from './enhetensMotebehovTypes';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 import {
   hentVeilederEnhetFraState,
@@ -65,7 +64,7 @@ export function* hentEnhetensMotebehovHvisEnhetHentet(): any {
 
 function* watchHentEnhetensMotebehov() {
   yield takeEvery(
-    EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_FORESPURT,
+    actions.EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_FORESPURT,
     hentEnhetensMotebehovHvisEnhetHentet
   );
 }

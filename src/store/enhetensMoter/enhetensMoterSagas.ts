@@ -7,7 +7,6 @@ import {
 } from 'redux-saga/effects';
 import { get } from '../../api/index';
 import * as actions from './enhetensMoter_actions';
-import { EnhetensMoterActionTypes } from './enhetensMoterTypes';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 import {
   hentVeilederEnhetFraState,
@@ -65,7 +64,7 @@ export function* hentEnhetensMoterHvisEnhetHentet(): any {
 
 function* watchHentEnhetensMoter() {
   yield takeEvery(
-    EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_FORESPURT,
+    actions.EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_FORESPURT,
     hentEnhetensMoterHvisEnhetHentet
   );
 }

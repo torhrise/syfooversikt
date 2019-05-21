@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
 import { hentEnhetensMoter } from '../../../src/store/enhetensMoter/enhetensMoterSagas';
 import { get } from '../../../src/api';
-import { EnhetensMoterActionTypes } from '../../../src/store/enhetensMoter/enhetensMoterTypes';
+import { EnhetensMoterActionTypes } from '../../../src/store/enhetensMoter/enhetensMoter_actions';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
 import { HOST_NAMES } from '../../../src/konstanter';
 import {

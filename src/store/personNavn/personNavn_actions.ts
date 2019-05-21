@@ -1,8 +1,14 @@
 import {
   PersonNavn,
   Fodselsnummer,
-  PersonNavnActionTypes
 } from './personNavnTypes';
+
+export const enum PersonNavnActionTypes {
+  HENT_PERSON_NAVN_FORESPURT = 'HENT_PERSON_NAVN_FORESPURT',
+  HENT_PERSON_NAVN_HENTER = 'HENT_PERSON_NAVN_HENTER',
+  HENT_PERSON_NAVN_FEILET = 'HENT_PERSON_NAVN_FEILET',
+  HENT_PERSON_NAVN_HENTET = 'HENT_PERSON_NAVN_HENTET',
+}
 
 export function hentPersonNavnForespurt(data: Fodselsnummer[]) {
   return {

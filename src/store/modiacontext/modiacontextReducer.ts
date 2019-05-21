@@ -1,8 +1,6 @@
 import { Reducer } from 'redux';
-import {
-  modiacontextActionTypes,
-  ModiacontextState,
-} from './modiacontextTypes';
+import { ModiacontextState } from './modiacontextTypes';
+import { modiacontextActionTypes } from './modiacontext_actions';
 
 const initiellState: ModiacontextState = {
   pushet: false,

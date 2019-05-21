@@ -1,15 +1,13 @@
 import { Reducer } from 'redux';
-import { EnhetensMotebehovActionTypes } from '../enhetensMotebehov/enhetensMotebehovTypes';
-import {
-  PersonNavnActionTypes,
-  PersonNavn,
-} from '../personNavn/personNavnTypes';
+import { EnhetensMotebehovActionTypes } from '../enhetensMotebehov/enhetensMotebehov_actions';
+import { PersonNavn } from '../personNavn/personNavnTypes';
+import { PersonNavnActionTypes } from '../personNavn/personNavn_actions';
 import {
   PersonData,
   PersonregisterState,
   PersonHendelseData,
 } from './personregisterTypes';
-import { EnhetensMoterActionTypes } from '../enhetensMoter/enhetensMoterTypes';
+import { EnhetensMoterActionTypes } from '../enhetensMoter/enhetensMoter_actions';
 
 const tilPersonDataMap = (personDataMapObject: any) => {
   return personDataMapObject.reduce((acc: { }, curr: { [fnr: string]: PersonData}) => {

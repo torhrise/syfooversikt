@@ -7,13 +7,6 @@ export interface PersonNavn {
   navn: string;
 }
 
-export const enum PersonNavnActionTypes {
-  HENT_PERSON_NAVN_FORESPURT = 'HENT_PERSON_NAVN_FORESPURT',
-  HENT_PERSON_NAVN_HENTER = 'HENT_PERSON_NAVN_HENTER',
-  HENT_PERSON_NAVN_FEILET = 'HENT_PERSON_NAVN_FEILET',
-  HENT_PERSON_NAVN_HENTET = 'HENT_PERSON_NAVN_HENTET',
-}
-
 export interface PersonNavnState {
   readonly hentet: boolean;
   readonly henter: boolean;

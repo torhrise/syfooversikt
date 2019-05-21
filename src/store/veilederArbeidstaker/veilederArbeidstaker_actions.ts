@@ -1,7 +1,11 @@
-import {
-  veilederArbeidstakerActionTypes,
-  VeilederArbeidstaker,
-} from './veilederArbeidstakerTypes';
+import { VeilederArbeidstaker } from './veilederArbeidstakerTypes';
+
+export const enum veilederArbeidstakerActionTypes {
+  PUSH_VEILEDERARBEIDSTAKER_PUSHER = 'PUSH_VEILEDERARBEIDSTAKER_PUSHER',
+  PUSH_VEILEDERARBEIDSTAKER_PUSHET = 'PUSH_VEILEDERARBEIDSTAKER_PUSHET',
+  PUSH_VEILEDERARBEIDSTAKER_FORESPURT = 'PUSH_VEILEDERARBEIDSTAKER_FORESPURT',
+  PUSH_VEILEDERARBEIDSTAKER_FEILET = 'PUSH_VEILEDERARBEIDSTAKER_FEILET',
+}
 
 export function pushVeilederArbeidstakerForespurt(data: VeilederArbeidstaker[]) {
   return {

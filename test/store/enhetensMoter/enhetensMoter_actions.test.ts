@@ -1,6 +1,6 @@
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import { EnhetensMoterActionTypes } from '../../../src/store/enhetensMoter/enhetensMoterTypes';
+import { EnhetensMoterActionTypes } from '../../../src/store/enhetensMoter/enhetensMoter_actions';
 import {
   hentEnhetensMoterForespurt,
   hentEnhetensMoterHenter,

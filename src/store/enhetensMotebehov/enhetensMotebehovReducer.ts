@@ -1,8 +1,6 @@
 import { Reducer } from 'redux';
-import {
-  EnhetensMotebehovActionTypes,
-  EnhetensMotebehovState,
-} from './enhetensMotebehovTypes';
+import { EnhetensMotebehovState } from './enhetensMotebehovTypes';
+import { EnhetensMotebehovActionTypes } from './enhetensMotebehov_actions';
 
 const initiellState: EnhetensMotebehovState = {
   hentet: false,
