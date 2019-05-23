@@ -7,12 +7,14 @@ import { EnhetensMotebehovState } from './enhetensMotebehov/enhetensMotebehovTyp
 import { EnhetensMoterState } from './enhetensMoter/enhetensMoterTypes';
 import { PersonNavnState } from './personNavn/personNavnTypes';
 import { PersonregisterState } from './personregister/personregisterTypes';
+import { EnhetNavnState } from './enhetNavn/enhetNavnTypes';
 import modiacontextReducer from './modiacontext/modiacontextReducer';
 import veilederenheterReducer from './veilederenheter/veilederenheterReducer';
 import veilederinfoReducer from './veilederinfo/veilederinfoReducer';
 import enhetensMotebehovReducer from './enhetensMotebehov/enhetensMotebehovReducer';
 import enhetensMoterReducer from './enhetensMoter/enhetensMoterReducer';
 import personNavnReducer from './personNavn/personNavnReducer';
+import enhetNavnReducer from './enhetNavn/enhetNavnReducer';
 import personregisterReducer from './personregister/personregisterReducer';
 import modiacontextSagas from './modiacontext/modiacontextSagas';
 import veilederenheterSagas from './veilederenheter/veilederenheterSagas';
@@ -23,6 +25,7 @@ import personNavnSagas from './personNavn/personNavnSagas';
 import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
 import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstakerSagas';
+import enhetNavnSagas from './enhetNavn/enhetNavnSagas';
 
 export interface ApplicationState {
   modiacontext: ModiacontextState;
@@ -32,6 +35,7 @@ export interface ApplicationState {
   enhetensMoter: EnhetensMoterState;
   personNavn: PersonNavnState;
   personregister: PersonregisterState;
+  enhetNavn: EnhetNavnState;
 }
 
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
@@ -46,6 +50,7 @@ export const rootReducer = combineReducers<ApplicationState>({
   enhetensMoter: enhetensMoterReducer,
   personNavn: personNavnReducer,
   personregister: personregisterReducer,
+  enhetNavn: enhetNavnReducer,
 });
 
 export function* rootSaga() {
@@ -58,6 +63,7 @@ export function* rootSaga() {
     fork(personNavnSagas),
     fork(personNavnSagas),
     fork(veilederArbeidstakerSagas),
+    fork(enhetNavnSagas),
   ]);
 }
 
