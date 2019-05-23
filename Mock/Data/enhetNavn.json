@@ -1,0 +1,19 @@
+{
+  "enhetId": 100000049,
+  "navn": "NAV Grünerløkka",
+  "enhetNr": "0315",
+  "antallRessurser": 426,
+  "status": "Aktiv",
+  "orgNivaa": "EN",
+  "type": "LOKAL",
+  "organisasjonsnummer": "994672851",
+  "underEtableringDato": "1970-01-01",
+  "aktiveringsdato": "1970-01-01",
+  "underAvviklingDato": null,
+  "nedleggelsesdato": null,
+  "oppgavebehandler": true,
+  "versjon": 8,
+  "sosialeTjenester": "--> Åpningstider i julen\n24. desember: 9 - 1130\n27. desember: 9 - 1330\n28. desember: 9 - 1330\n31. desember: 9 - 1130\n\nBetjenes ikke av KS. Bruker skal ringe eksternt nummer tlf: 21 80 21 80. KS skal IKKE sende GOSYS-oppgaver til kommunalt ansatte i Oslo.\n\nArbeid og Ytelser (4403) registrerer Del A for Nav kontorene i Oslo. Spørsmål skal til NAV kontoret.",
+  "kanalstrategi": "--> Åpningstider i julen\n24. desember: 9 - 1130\n27. desember: 9 - 1330\n28. desember: 9 - 1330\n31. desember: 9 - 1130\n\nIngen får levert dokumentasjon (noen unntak, se informasjon under sosiale henvendelser), får opplysninger om saken sin eller utbetalinger.\nBrukere bes om å benytte nav.no eller ringe til NAV/veileder for å avtale tidspunkt for en samtale.\n\nTjenester som krever oppmøte (se «oppmøte i NAV-kontoret» under rutiner A-Å, tjenestepakke generell del) blir betjent i åpningstiden.\n\n8 PCer tilgjengelig i V/P som bruker kan benytte til selvbetjening.",
+  "orgNrTilKommunaltNavKontor": "870534612"
+}
