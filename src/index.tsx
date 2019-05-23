@@ -17,7 +17,7 @@ import {
 import AppRouter from './routers/AppRouter';
 
 import { store, history } from './store';
-import { hentEnhetNavnForespurt } from './store/enhetNavn/enhetNavn_actions';
+import { hentVeilederNavnForespurt, hentVeilederNavnHentet } from './store/veilederNavn/veilederNavn_actions';
 
 if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
@@ -53,6 +53,8 @@ const config = {
     },
   },
 };
+
+store.dispatch(hentVeilederNavnForespurt({ident: 'Z990243'}));
 
 store.dispatch(
   hentAktivEnhet({

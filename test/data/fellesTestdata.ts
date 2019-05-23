@@ -25,3 +25,17 @@ export const enhet = {
   enhetId: '0101',
   navn: 'Enhet',
 };
+
+export const veilederNavn1 = {
+  ident: 'Z999999',
+  fornavn: 'Dana',
+  navn: 'Katherine',
+  etternavn: 'Scully',
+};
+
+export const veilederNavn2 = {
+  ident: 'Z888888',
+  fornavn: 'Fox',
+  navn: 'William',
+  etternavn: 'Mulder',
+};

@@ -7,6 +7,7 @@ import { EnhetensMotebehovState } from './enhetensMotebehov/enhetensMotebehovTyp
 import { EnhetensMoterState } from './enhetensMoter/enhetensMoterTypes';
 import { PersonNavnState } from './personNavn/personNavnTypes';
 import { PersonregisterState } from './personregister/personregisterTypes';
+import { VeilederNavnState } from './veilederNavn/veilederNavnTypes';
 import { EnhetNavnState } from './enhetNavn/enhetNavnTypes';
 import modiacontextReducer from './modiacontext/modiacontextReducer';
 import veilederenheterReducer from './veilederenheter/veilederenheterReducer';
@@ -16,6 +17,7 @@ import enhetensMoterReducer from './enhetensMoter/enhetensMoterReducer';
 import personNavnReducer from './personNavn/personNavnReducer';
 import enhetNavnReducer from './enhetNavn/enhetNavnReducer';
 import personregisterReducer from './personregister/personregisterReducer';
+import veilederNavnReducer from './veilederNavn/veilederNavnReducer';
 import modiacontextSagas from './modiacontext/modiacontextSagas';
 import veilederenheterSagas from './veilederenheter/veilederenheterSagas';
 import veilederinfoSagas from './veilederinfo/veilederinfoSagas';
@@ -25,6 +27,7 @@ import personNavnSagas from './personNavn/personNavnSagas';
 import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
 import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstakerSagas';
+import veilederNavnSagas from './veilederNavn/veilederNavnSagas';
 import enhetNavnSagas from './enhetNavn/enhetNavnSagas';
 
 export interface ApplicationState {
@@ -35,6 +38,7 @@ export interface ApplicationState {
   enhetensMoter: EnhetensMoterState;
   personNavn: PersonNavnState;
   personregister: PersonregisterState;
+  veilederNavn: VeilederNavnState;
   enhetNavn: EnhetNavnState;
 }
 
@@ -50,6 +54,7 @@ export const rootReducer = combineReducers<ApplicationState>({
   enhetensMoter: enhetensMoterReducer,
   personNavn: personNavnReducer,
   personregister: personregisterReducer,
+  veilederNavn: veilederNavnReducer,
   enhetNavn: enhetNavnReducer,
 });
 
@@ -63,6 +68,7 @@ export function* rootSaga() {
     fork(personNavnSagas),
     fork(personNavnSagas),
     fork(veilederArbeidstakerSagas),
+    fork(veilederNavnSagas),
     fork(enhetNavnSagas),
   ]);
 }
