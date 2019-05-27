@@ -21,22 +21,28 @@ describe('personNavn_actions', () => {
     }];
     expect(pushVeilederArbeidstakerForespurt(payload)).to.deep.equal({
       type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_FORESPURT,
-      data: payload });
+      data: payload,
+    });
   });
 
   it('pushVeilederArbeidstakerPusher() skal returnere riktig action', () => {
     expect(pushVeilederArbeidstakerPusher()).to.deep.equal({
-      type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHER });
+      type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHER,
+    });
   });
 
   it('pushVeilederArbeidstakerPushet() skal returnere riktig action', () => {
-    const personNavnSvar = [ { fnr: testdata.fnr1, navn: testdata.navn1} ];
+    const personNavnSvar = [ {
+      fnr: testdata.fnr1,
+      navn: testdata.navn1,
+    } ];
     expect(pushVeilederArbeidstakerPushet()).to.deep.equal({
       type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET});
   });
 
   it('pushVeilederArbeidstakerFeilet() skal returnere riktig action', () => {
     expect(pushVeilederArbeidstakerFeilet()).to.deep.equal({
-      type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_FEILET });
+      type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_FEILET,
+    });
   });
 });

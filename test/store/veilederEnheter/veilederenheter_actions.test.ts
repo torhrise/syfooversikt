@@ -16,11 +16,15 @@ const expect = chai.expect;
 
 describe('enhetensMoter_actions', () => {
   it('hentVeilederenheter() skal returnere riktig action', () => {
-    expect(hentVeilederenheter()).to.deep.equal({ type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FORESPURT });
+    expect(hentVeilederenheter()).to.deep.equal({
+      type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FORESPURT,
+    });
   });
 
   it('hentVeilederenheterHenter() skal returnere riktig action', () => {
-    expect(hentVeilederenheterHenter()).to.deep.equal({ type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_HENTER });
+    expect(hentVeilederenheterHenter()).to.deep.equal({
+      type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_HENTER,
+    });
   });
 
   it('hentVeilederenheterHentet() skal returnere riktig action', () => {
@@ -29,11 +33,14 @@ describe('enhetensMoter_actions', () => {
         enhet
       ],
     };
-    expect(hentVeilederenheterHentet(data)).to.deep.equal(
-      { type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_HENTET, data });
+    expect(hentVeilederenheterHentet(data)).to.deep.equal({
+      type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_HENTET, data,
+    });
   });
 
   it('hentVeilederenheterFeilet() skal returnere riktig action', () => {
-    expect(hentVeilederenheterFeilet()).to.deep.equal({ type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FEILET });
+    expect(hentVeilederenheterFeilet()).to.deep.equal({
+      type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FEILET,
+    });
   });
 });

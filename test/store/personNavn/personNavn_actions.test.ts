@@ -15,19 +15,31 @@ const expect = chai.expect;
 describe('personNavn_actions', () => {
   it('hentPersonNavnForespurt() skal returnere riktig action', () => {
     const fnrListe = [{fnr: testdata.fnr1}];
-    expect(hentPersonNavnForespurt(fnrListe)).to.deep.equal({ type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT, data: fnrListe });
+    expect(hentPersonNavnForespurt(fnrListe)).to.deep.equal({
+      type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT, data: fnrListe,
+    });
   });
 
   it('hentPersonNavnHenter() skal returnere riktig action', () => {
-    expect(hentPersonNavnHenter()).to.deep.equal({ type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER });
+    expect(hentPersonNavnHenter()).to.deep.equal({
+      type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER,
+    });
   });
 
   it('hentPersonNavnHentet() skal returnere riktig action', () => {
-    const personNavnSvar = [ { fnr: testdata.fnr1, navn: testdata.navn1} ];
-    expect(hentPersonNavnHentet(personNavnSvar)).to.deep.equal({ type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET, data: personNavnSvar });
+    const personNavnSvar = [ {
+      fnr: testdata.fnr1,
+      navn: testdata.navn1,
+    } ];
+    expect(hentPersonNavnHentet(personNavnSvar)).to.deep.equal({
+      type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET,
+      data: personNavnSvar,
+    });
   });
 
   it('hentPersonNavnFeilet() skal returnere riktig action', () => {
-    expect(hentPersonNavnFeilet()).to.deep.equal({ type: PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET });
+    expect(hentPersonNavnFeilet()).to.deep.equal({
+      type: PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET,
+    });
   });
 });
