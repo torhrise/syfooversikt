@@ -15,21 +15,24 @@ const enhetensMotebehovReducer: Reducer<EnhetensMotebehovState> = (
 ) => {
   switch (action.type) {
     case EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTER: {
-      return { ...state,
+      return {
+        ...state,
         henter: true,
         hentet: false,
         hentingFeilet: false,
       };
     }
     case EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET: {
-      return { ...state,
+      return {
+        ...state,
         henter: false,
         hentet: true,
         data: action.data,
       };
     }
     case EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_FEILET: {
-      return { ...state,
+      return {
+        ...state,
         henter: false,
         hentingFeilet: true,
       };

@@ -17,34 +17,39 @@ const modiacontextReducer: Reducer<ModiacontextState> = (
 ) => {
   switch (action.type) {
     case modiacontextActionTypes.PUSH_MODIACONTEXT_FEILET: {
-      return { ...state,
+      return {
+        ...state,
         pushet: false,
         pusher: false,
         pushingFeilet: true,
       };
     }
     case modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHER: {
-      return { ...state,
+      return {
+        ...state,
         pushet: false,
         pusher: true,
         pushingFeilet: false,
       };
     }
     case modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET: {
-      return { ...state,
+      return {
+        ...state,
         pushet: true,
         pusher: false,
         pushingFeilet: false,
       };
     }
     case modiacontextActionTypes.HENT_AKTIVENHET_FEILET: {
-      return { ...state,
+      return {
+        ...state,
         henterEnhet: false,
         hentingEnhetFeilet: true,
       };
     }
     case modiacontextActionTypes.HENT_AKTIVENHET_HENTER: {
-      return { ...state,
+      return {
+        ...state,
         henterEnhet: true,
         hentingEnhetFeilet: false,
       };

@@ -15,21 +15,24 @@ const veilederinfoReducer: Reducer<VeilederinfoState> = (
 ) => {
   switch (action.type) {
     case VeilederinfoActionTypes.HENT_VEILEDERINFO_HENTER: {
-      return { ...state,
+      return {
+        ...state,
         henter: true,
         hentet: false,
         hentingFeilet: false,
       };
     }
     case VeilederinfoActionTypes.HENT_VEILEDERINFO_HENTET: {
-      return { ...state,
+      return {
+        ...state,
         henter: false,
         hentet: true,
         data: action.data,
       };
     }
     case VeilederinfoActionTypes.HENT_VEILEDERINFO_FEILET: {
-      return { ...state,
+      return {
+        ...state,
         henter: false,
         hentingFeilet: true,
       };

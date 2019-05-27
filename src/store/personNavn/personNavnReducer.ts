@@ -15,21 +15,24 @@ const personNavnReducer: Reducer<PersonNavnState> = (
 ) => {
   switch (action.type) {
     case PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER: {
-      return { ...state,
+      return {
+        ...state,
         henter: true,
         hentet: false,
         hentingFeilet: false,
       };
     }
     case PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET: {
-      return { ...state,
+      return {
+        ...state,
         henter: false,
         hentet: true,
         data: action.data,
       };
     }
     case PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET: {
-      return { ...state,
+      return {
+        ...state,
         henter: false,
         hentingFeilet: true,
       };
