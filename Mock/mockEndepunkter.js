@@ -7,6 +7,7 @@ const MOTEBEHOV = 'motebehov';
 const PERSON_NAVN = 'personNavn';
 const MOTER = 'moter';
 const VEILEDERINFO = 'veilederinfo';
+const ENHET_NAVN = 'enhetNavn';
 
 const lastFilTilMinne = (filnavn) => {
   fs.readFile(path.join(__dirname, `/data/${filnavn}.json`), (err, data) => {
@@ -20,6 +21,7 @@ lastFilTilMinne(MOTEBEHOV);
 lastFilTilMinne(PERSON_NAVN);
 lastFilTilMinne(MOTER);
 lastFilTilMinne(VEILEDERINFO);
+lastFilTilMinne(ENHET_NAVN);
 
 function mockForLokal(server) {
   server.get('/syfomotebehov/api/enhet/:id/motebehov/brukere', (req, res) => {
@@ -50,6 +52,11 @@ function mockForLokal(server) {
   server.get('/syfomoteadmin/api/internad/veilederinfo/enheter', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(mockData[ENHETER]));
+  });
+
+  server.get('/norg2/api/v1/enhet/:id', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(mockData[ENHET_NAVN]));
   });
 }
 
