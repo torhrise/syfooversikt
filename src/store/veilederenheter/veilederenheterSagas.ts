@@ -3,6 +3,7 @@ import { get } from '../../api/index';
 import * as actions from './veilederenheter_actions';
 import { fullNaisUrl } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
+import { hentNavnHvisEnhetHentet } from '../enhetNavn/enhetNavnSagas';
 
 export function* hentVeilederenheter() {
   yield put(actions.hentVeilederenheterHenter());
@@ -12,6 +13,7 @@ export function* hentVeilederenheter() {
     const url = fullNaisUrl(host,path);
     const data = yield call(get, url);
     yield put(actions.hentVeilederenheterHentet(data));
+    yield call( hentNavnHvisEnhetHentet );
   } catch (e) {
     yield put(actions.hentVeilederenheterFeilet());
   }

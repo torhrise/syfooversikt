@@ -9,9 +9,7 @@ import {
 } from '../../data/fellesTestdata';
 
 describe('hentEnhetNavnSagas henter navn på enhet gitt enhetnummer:', () => {
-  const requestBody = { enhetNr: enhet.enhetId};
-  const forespurtAction = { type: EnhetNavnActionTypes.HENT_ENHET_NAVN_FORESPURT, data: requestBody};
-  const generator = hentEnhetNavnSaga(forespurtAction);
+  const generator = hentEnhetNavnSaga(enhet.enhetId);
   const url = fullAppAdeoUrl( `${process.env.REACT_APP_NORG2REST_ROOT}/enhet/0101`);
 
   it(`dispatch ${EnhetNavnActionTypes.HENT_ENHET_NAVN_HENTER}`, () => {

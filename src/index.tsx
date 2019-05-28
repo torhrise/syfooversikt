@@ -54,8 +54,6 @@ const config = {
   },
 };
 
-store.dispatch(hentEnhetNavnForespurt({ enhetNr: '0315'}));
-
 store.dispatch(
   hentAktivEnhet({
     callback: (aktivEnhet) => {
