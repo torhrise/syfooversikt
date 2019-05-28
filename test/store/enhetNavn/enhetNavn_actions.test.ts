@@ -30,6 +30,7 @@ describe('enhetNavn_actions', () => {
   });
 
   it('hentEnhetNavnFeilet() skal returnere riktig action', () => {
-    expect(hentEnhetNavnFeilet()).to.deep.equal({ type: EnhetNavnActionTypes.HENT_ENHET_NAVN_FEILET });
+    expect(hentEnhetNavnFeilet())
+      .to.deep.equal({ type: EnhetNavnActionTypes.HENT_ENHET_NAVN_FEILET });
   });
 });
