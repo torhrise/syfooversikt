@@ -9,7 +9,10 @@ export const finnMiljoStreng = () => {
 };
 
 export const erProd = () => {
-    return window.location.href.indexOf('nais.adeo.no') > -1;
+  localStorage.setItem('erProd', window.location.href.indexOf('nais.adeo.no').toString());
+  // tslint:disable-next-line:no-console
+  console.log('erProd', window.location.href.indexOf('nais.adeo.no') > -1);
+  return window.location.href.indexOf('nais.adeo.no') > -1;
 };
 
 export const erLokal = () => {

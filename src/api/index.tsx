@@ -45,7 +45,11 @@ export function get(url: string) {
             if (res.status === 401) {
                 log(res, 'Redirect til login');
                 lagreRedirectUrlILocalStorage(window.location.href);
-                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
+                const loginserviceeUrl = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
+                localStorage.setItem('loginserviceeUrl', loginserviceeUrl);
+                // tslint:disable-next-line:no-console
+                console.log('loginserviceeUrl', loginserviceeUrl);
+                window.location.href = loginserviceeUrl;
             } else if (res.status > 400) {
                 log(res);
                 throw new Error('Forespørsel feilet');
