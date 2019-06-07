@@ -39,17 +39,16 @@ export const lagreRedirectUrlILocalStorage = (href: string) => {
 
 export function get(url: string) {
     return fetch(url, {
-        credentials: 'include',
     })
         .then((res) => {
             if (res.status === 401) {
                 log(res, 'Redirect til login');
                 lagreRedirectUrlILocalStorage(window.location.href);
-                const loginserviceeUrl = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
-                localStorage.setItem('loginserviceeUrl', loginserviceeUrl);
+                const loginserviceUrl = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
+                localStorage.setItem('loginserviceeUrl', loginserviceUrl);
                 // tslint:disable-next-line:no-console
-                console.log('loginserviceeUrl', loginserviceeUrl);
-                window.location.href = loginserviceeUrl;
+                console.log('loginserviceeUrl', loginserviceUrl);
+                window.location.href = loginserviceUrl;
             } else if (res.status > 400) {
                 log(res);
                 throw new Error('Forespørsel feilet');
