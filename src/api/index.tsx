@@ -65,8 +65,6 @@ export function post(url: string, body: object) {
         body: JSON.stringify(body),
         headers: new Headers({
             'Content-Type': 'application/json',
-            'AccessControlRequestHeaders': 'ContentType',
-            'AccessControlRequestMethod': 'POST',
         }),
     })
         .then((res) => {
