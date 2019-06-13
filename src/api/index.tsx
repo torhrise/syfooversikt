@@ -71,7 +71,7 @@ export function post(url: string, body: object) {
             if (res.status === 401) {
                 log(res, 'Redirect til login');
                 lagreRedirectUrlILocalStorage(window.location.href);
-                window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
+                // window.location.href = `${hentLoginUrl()}?redirect=${hentRedirectBaseUrl(window.location.href)}`;
                 return null;
             } else if (res.status > 400) {
                 log(res);
