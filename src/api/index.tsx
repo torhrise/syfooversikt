@@ -67,7 +67,6 @@ export function post(url: string, body: object) {
             'Content-Type': 'application/json',
             'AccessControlRequestHeaders': 'ContentType',
             'AccessControlRequestMethod': 'POST',
-            'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'),
         }),
     })
         .then((res) => {
