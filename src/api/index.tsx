@@ -65,7 +65,6 @@ export function post(url: string, body: object) {
         body: JSON.stringify(body),
         headers: new Headers({
             'Content-Type': 'application/json',
-            'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'),
         }),
     })
         .then((res) => {
