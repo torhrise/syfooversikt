@@ -55,7 +55,6 @@ function* watchPushVeilederArbeidstaker() {
 
 export default function* veilederArbeidstakerSagas() {
   yield all([
-    fork(watchPushVeilederArbeidstaker),
     fork(watchPushVeilederArbeidstakerTest)
   ]);
 }

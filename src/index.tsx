@@ -9,6 +9,7 @@ import {
   hentAktivEnhet,
   pushModiaContext,
 } from './store/modiacontext/modiacontext_actions';
+import { pushVeilederArbeidstakerForespurt } from './store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import './styles/styles.less';
 import {
   finnMiljoStreng,
@@ -63,6 +64,14 @@ store.dispatch(
       }
     },
   })
+);
+
+store.dispatch(
+    pushVeilederArbeidstakerForespurt([{
+      veilederIdent: '',
+      fnr: '',
+      enhet: '',
+    }])
 );
 
 (window as any).renderDecoratorHead && (window as any).renderDecoratorHead(config); // tslint:disable-line no-unused-expression
