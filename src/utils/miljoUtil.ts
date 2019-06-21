@@ -20,6 +20,10 @@ export const erLokal = () => {
   return window.location.host.indexOf('localhost') > -1;
 };
 
+export const erHerokuApp = () => {
+    return window.location.href.indexOf('herokuapp') > -1;
+};
+
 export const finnNaisUrl = () => {
   const miljoStreng = finnMiljoStreng();
   if (miljoStreng === '') {
@@ -29,7 +33,7 @@ export const finnNaisUrl = () => {
 };
 
 export const fullNaisUrl = (host: string, path: string) => {
-  if (erLokal()) {
+  if (erLokal() || erHerokuApp()) {
     return path;
   }
   return `https://${host}${finnNaisUrl()}${path}`;
