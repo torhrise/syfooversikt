@@ -11,6 +11,7 @@ import Sokeresultat from '../components/Sokeresultat';
 import { hentEnhetensMoterForespurt } from '../store/enhetensMoter/enhetensMoter_actions';
 import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
 import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
+import { hentPersonoversiktForespurt } from '../store/personoversikt/personoversikt_actions';
 import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import { hentVeilederenheter } from '../store/veilederenheter/veilederenheter_actions';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
@@ -46,6 +47,7 @@ interface DispatchProps {
     hentEnhetensMotebehovForespurt: typeof hentEnhetensMotebehovForespurt;
     hentEnhetensMoterForespurt: typeof hentEnhetensMoterForespurt;
     hentPersonNavnForespurt: typeof hentPersonNavnForespurt;
+    hentPersonoversiktForespurt: typeof hentPersonoversiktForespurt;
     tildelVeileder: typeof pushVeilederArbeidstakerForespurt;
     hentVeilederenheter: typeof hentVeilederenheter;
   };
@@ -63,6 +65,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
     const { actions } = this.props;
     actions.hentEnhetensMotebehovForespurt();
     actions.hentEnhetensMoterForespurt();
+    actions.hentPersonoversiktForespurt();
   }
 
   render() {
@@ -107,6 +110,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     hentEnhetensMotebehovForespurt: () => dispatch(hentEnhetensMotebehovForespurt()),
     hentEnhetensMoterForespurt: () => dispatch(hentEnhetensMoterForespurt()),
     hentPersonNavnForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonNavnForespurt(fnrListe)),
+    hentPersonoversiktForespurt: () => dispatch(hentPersonoversiktForespurt()),
     hentVeilederenheter: () => dispatch(hentVeilederenheter()),
     tildelVeileder: (liste: VeilederArbeidstaker[]) => dispatch(pushVeilederArbeidstakerForespurt(liste)),
   },
