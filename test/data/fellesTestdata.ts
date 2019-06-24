@@ -1,5 +1,8 @@
 import { PersonData, PersonregisterState } from '../../src/store/personregister/personregisterTypes';
 
+const veilederIdent = 'F_Z101010 E_Z101010';
+const veilederNav = 'Z101010';
+
 export const testdata = {
   fnr1: '99999911111',
   fnr2: '99999922222',
@@ -21,12 +24,25 @@ export const personregister: PersonregisterState = {
     skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false } as PersonData,
 };
 
+export const personoversikt = [
+  {
+    fnr: '99999933333',
+    enhet: '0315',
+    veilederIdent,
+  },
+  {
+    fnr: '99999944444',
+    enhet: '0315',
+    veilederIdent,
+  },
+];
+
 export const enhet = {
   enhetId: '0101',
   navn: 'Enhet',
 };
 
 export const veilederinfo = {
-  navn: 'F_Z101010 E_Z101010',
-  ident: 'Z101010',
+  navn: veilederIdent,
+  ident: veilederIdent,
 };

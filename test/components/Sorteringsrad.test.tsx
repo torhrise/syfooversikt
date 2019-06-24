@@ -14,6 +14,7 @@ describe('Sorteringsrad', () => {
   const kolonneForFnrTekst = 'Fødselsnummer';
   const kolonneForDiskresjonskodeTekst = 'Diskresjonskode';
   const kolonneForTyperTekst = 'Hendelsestyper';
+  const kolonneForVeilederTekst = 'Tildelt veileder';
   // tslint:disable-next-line:no-empty
   const checkAllHandler = () =>  {};
   const component = shallow(<Sorteringsrad checkAllHandler={checkAllHandler}/>);
@@ -31,5 +32,6 @@ describe('Sorteringsrad', () => {
     expect(component.contains(<Column md={'2'}>{kolonneForFnrTekst}</Column>)).to.equal(true);
     expect(component.contains(<Column md={'2'}>{kolonneForDiskresjonskodeTekst}</Column>)).to.equal(true);
     expect(component.contains(<Column md={'2'}>{kolonneForTyperTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column md={'2'}>{kolonneForVeilederTekst}</Column>)).to.equal(true);
   });
 });
