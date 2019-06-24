@@ -16,12 +16,14 @@ import enhetensMoterReducer from './enhetensMoter/enhetensMoterReducer';
 import personNavnReducer from './personNavn/personNavnReducer';
 import enhetNavnReducer from './enhetNavn/enhetNavnReducer';
 import personregisterReducer from './personregister/personregisterReducer';
+
 import modiacontextSagas from './modiacontext/modiacontextSagas';
 import veilederenheterSagas from './veilederenheter/veilederenheterSagas';
 import veilederinfoSagas from './veilederinfo/veilederinfoSagas';
 import enhetensMotebehovSagas from './enhetensMotebehov/enhetensMotebehovSagas';
 import enhetensMoterSagas from './enhetensMoter/enhetensMoterSagas';
 import personNavnSagas from './personNavn/personNavnSagas';
+import personoversiktSagas from './personoversikt/personoversiktSagas';
 import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
 import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstakerSagas';
@@ -61,7 +63,7 @@ export function* rootSaga() {
     fork(enhetensMotebehovSagas),
     fork(enhetensMoterSagas),
     fork(personNavnSagas),
-    fork(personNavnSagas),
+    fork(personoversiktSagas),
     fork(veilederArbeidstakerSagas),
     fork(enhetNavnSagas),
   ]);
