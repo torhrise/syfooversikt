@@ -6,6 +6,8 @@ export interface PersonData {
   harMote: boolean;
   skjermingskode: Skjermingskode;
   markert: boolean;
+  tildeltEnhetId: string;
+  tildeltVeilederIdent: string;
 }
 
 export interface PersonregisterState {
