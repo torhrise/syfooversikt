@@ -6,6 +6,6 @@ export const hentVeilederEnhetFraState = (state: any) => {
   const reducer = state.veilederenheter;
   return reducer
   && reducer.hentet
-      ? reducer.data.enhetliste[0]
+      ? reducer.aktivEnhet
       : undefined;
 };

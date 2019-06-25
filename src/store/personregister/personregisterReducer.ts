@@ -4,6 +4,8 @@ import { PersonNavn } from '../personNavn/personNavnTypes';
 import { PersonNavnActionTypes } from '../personNavn/personNavn_actions';
 import { VeilederArbeidstaker } from '../veilederArbeidstaker/veilederArbeidstakerTypes';
 import { veilederArbeidstakerActionTypes } from '../veilederArbeidstaker/veilederArbeidstaker_actions';
+import { PersonoversiktStatus } from '../personoversikt/personoversiktTypes';
+import { PersonoversiktActionTypes } from '../personoversikt/personoversikt_actions';
 import {
   PersonData,
   PersonregisterState,
@@ -73,6 +75,20 @@ const personregisterReducer: Reducer<PersonregisterState> = (
             ...state[tildeling.fnr],
             tildeltEnhetId: tildeling.enhet,
             tildeltVeilederIdent: tildeling.veilederIdent,
+          },
+        };
+      });
+      const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
+      return {...state, ...oppdatering };
+    }
+    case PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTET: {
+      const personoversikt = action.data;
+      const personerSomSkalOppdateres = personoversikt.map((person: PersonoversiktStatus) => {
+        return {
+          [person.fnr]: {
+            ...state[person.fnr],
+            tildeltEnhetId: person.enhet,
+            tildeltVeilederIdent: person.veilederIdent,
           },
         };
       });
