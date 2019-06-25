@@ -15,6 +15,7 @@ import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker
 import { hentVeilederenheter } from '../store/veilederenheter/veilederenheter_actions';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
+import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
 
 const tekster = {
   overskrifter: {
@@ -33,6 +34,7 @@ interface OversiktProps {
 
 interface StateProps {
   aktivEnhet: Veilederenhet;
+  aktivVeilederinfo: Veilederinfo;
   personregister: PersonregisterState;
   henterAlt: boolean;
   noeErHentet: boolean;
@@ -71,6 +73,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
       altFeilet,
       actions,
       aktivEnhet,
+      aktivVeilederinfo,
       personregister,
     } = this.props;
     return (<div className="oversiktContainer">
@@ -85,6 +88,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
           && <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
             aktivEnhet={aktivEnhet}
+            aktivVeilederinfo={aktivVeilederinfo}
             personregister={personregister}
         />}
     </div>);
@@ -108,13 +112,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-const mapStateToProps = ({ enhetensMotebehov, enhetensMoter, personregister, veilederenheter }: ApplicationState, oversiktProps: OversiktProps) => ({
+const mapStateToProps = ({ enhetensMotebehov, enhetensMoter, personregister, veilederenheter, veilederinfo }: ApplicationState, oversiktProps: OversiktProps) => ({
   personregister,
   oversiktProps,
   aktivEnhet: veilederenheter.aktivEnhet,
-  henterAlt: veilederenheter.henter || (enhetensMotebehov.henter && enhetensMoter.henter),
-  noeErHentet: veilederenheter.hentet && (enhetensMotebehov.hentet || enhetensMoter.hentet),
-  altFeilet: veilederenheter.hentingFeilet || (enhetensMotebehov.hentingFeilet && enhetensMoter.hentingFeilet),
+  aktivVeilederinfo: veilederinfo.data,
+  henterAlt: veilederenheter.henter || veilederinfo.henter || (enhetensMotebehov.henter && enhetensMoter.henter),
+  noeErHentet: veilederenheter.hentet && veilederinfo.hentet && (enhetensMotebehov.hentet || enhetensMoter.hentet),
+  altFeilet: veilederenheter.hentingFeilet || veilederinfo.hentingFeilet || (enhetensMotebehov.hentingFeilet && enhetensMoter.hentingFeilet),
 });
 
 export default connect(
