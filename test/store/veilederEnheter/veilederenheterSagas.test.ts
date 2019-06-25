@@ -7,7 +7,7 @@ import { fullNaisUrl } from '../../../src/utils/miljoUtil';
 import { enhet } from '../../data/fellesTestdata';
 import { HOST_NAMES } from '../../../src/konstanter';
 
-describe('hentEnhetensMoterSagas', () => {
+describe('veilederenheterSagas', () => {
   const generator = hentVeilederenheter();
 
   it(`Skal dispatche ${VeilederenheterActionTypes.HENT_VEILEDERENHETER_HENTER}`, () => {

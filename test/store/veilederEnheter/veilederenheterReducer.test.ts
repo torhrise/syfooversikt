@@ -10,7 +10,7 @@ import {
 import { enhet } from '../../data/fellesTestdata';
 
 describe('veilederenheterReducer', () => {
-  describe('Henter moter', () => {
+  describe('Henter veilederenhet', () => {
     const initData = { enhetliste: [] };
     const initAktivEnhet = { enhetId: '', navn: '' };
     const initialState = deepFreeze({

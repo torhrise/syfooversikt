@@ -14,7 +14,7 @@ import {
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('enhetensMoter_actions', () => {
+describe('veilederenheter_actions', () => {
   it('hentVeilederenheter() skal returnere riktig action', () => {
     expect(hentVeilederenheter()).to.deep.equal({
       type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FORESPURT,
