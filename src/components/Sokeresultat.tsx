@@ -4,6 +4,7 @@ import Personliste from './Personliste';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
+import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
 
 interface  SokeresultatState {
   markertePersoner: string[];
@@ -11,6 +12,7 @@ interface  SokeresultatState {
 
 interface SokeresultatProps {
   aktivEnhet: Veilederenhet;
+  aktivVeilederinfo: Veilederinfo;
   personregister: PersonregisterState;
   tildelVeileder: (liste: VeilederArbeidstaker[]) => void;
 }
@@ -62,10 +64,10 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
   buttonHandler =  () => {
     const {
       aktivEnhet,
+      aktivVeilederinfo,
       tildelVeileder,
     } = this.props;
-    const veilederIdent = 'z990243';
-    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, aktivEnhet.enhetId);
+    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, aktivVeilederinfo.ident, aktivEnhet.enhetId);
     tildelVeileder(veilederArbeidstakerListe);
   }
   render() {
