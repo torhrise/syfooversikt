@@ -14,6 +14,7 @@ import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
 import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import { hentVeilederenheter } from '../store/veilederenheter/veilederenheter_actions';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
+import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
 
 const tekster = {
   overskrifter: {
@@ -31,6 +32,7 @@ interface OversiktProps {
 }
 
 interface StateProps {
+  aktivEnhet: Veilederenhet;
   personregister: PersonregisterState;
   henterAlt: boolean;
   noeErHentet: boolean;
@@ -68,6 +70,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
       noeErHentet,
       altFeilet,
       actions,
+      aktivEnhet,
       personregister,
     } = this.props;
     return (<div className="oversiktContainer">
@@ -81,6 +84,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
         { noeErHentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
+            aktivEnhet={aktivEnhet}
             personregister={personregister}
         />}
     </div>);
@@ -107,6 +111,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const mapStateToProps = ({ enhetensMotebehov, enhetensMoter, personregister, veilederenheter }: ApplicationState, oversiktProps: OversiktProps) => ({
   personregister,
   oversiktProps,
+  aktivEnhet: veilederenheter.aktivEnhet,
   henterAlt: veilederenheter.henter || (enhetensMotebehov.henter && enhetensMoter.henter),
   noeErHentet: veilederenheter.hentet && (enhetensMotebehov.hentet || enhetensMoter.hentet),
   altFeilet: veilederenheter.hentingFeilet || (enhetensMotebehov.hentingFeilet && enhetensMoter.hentingFeilet),

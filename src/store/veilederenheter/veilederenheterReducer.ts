@@ -1,11 +1,31 @@
 import { Reducer } from 'redux';
-import { VeilederenheterState } from './veilederenheterTypes';
+import {
+  Veilederenhet,
+  Veilederenheter,
+  VeilederenheterState,
+} from './veilederenheterTypes';
 import { VeilederenheterActionTypes } from './veilederenheter_actions';
+
+export const sorterEnhetLavesteEnhetIdForst = (enhetliste: Veilederenhet[]): Veilederenhet[] => {
+  return [...enhetliste].sort((e1, e2) => {
+    return parseInt(e1.enhetId, 10) - parseInt(e2.enhetId,  10);
+  });
+};
+
+export const getAktivEnhet = (veilederenheter: Veilederenheter): Veilederenhet => {
+  return veilederenheter.enhetliste.length > 0
+    ? sorterEnhetLavesteEnhetIdForst(veilederenheter.enhetliste)[0]
+    : initiellState.aktivEnhet;
+};
 
 const initiellState: VeilederenheterState = {
   hentet: false,
   henter: false,
   hentingFeilet: false,
+  aktivEnhet: {
+    enhetId: '',
+    navn: '',
+  },
   data: {
     enhetliste: [],
   },
@@ -29,6 +49,7 @@ const veilederenheterReducer: Reducer<VeilederenheterState> = (
         ...state,
         henter: false,
         hentet: true,
+        aktivEnhet: getAktivEnhet(action.data),
         data: action.data,
       };
     }

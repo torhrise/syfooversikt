@@ -3,12 +3,14 @@ import Toolbar from './toolbar/Toolbar';
 import Personliste from './Personliste';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
+import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
 
 interface  SokeresultatState {
   markertePersoner: string[];
 }
 
 interface SokeresultatProps {
+  aktivEnhet: Veilederenhet;
   personregister: PersonregisterState;
   tildelVeileder: (liste: VeilederArbeidstaker[]) => void;
 }
@@ -58,10 +60,12 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
   }
 
   buttonHandler =  () => {
-    const { tildelVeileder } = this.props;
+    const {
+      aktivEnhet,
+      tildelVeileder,
+    } = this.props;
     const veilederIdent = 'z990243';
-    const enhet = '0315';
-    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, enhet);
+    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, aktivEnhet.enhetId);
     tildelVeileder(veilederArbeidstakerListe);
   }
   render() {
