@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
 import personNavnReducer from '../../../src/store/personNavn/personNavnReducer';
 import {
+  PersonNavnActionTypes,
   hentPersonNavnHenter,
   hentPersonNavnHentet,
   hentPersonNavnFeilet,
@@ -17,7 +18,7 @@ describe('personNavnReducer', () => {
       data: [],
     });
 
-    it('handterer HENT_PERSON_NAVN_HENTER', () => {
+    it(`handterer ${PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER}`, () => {
       const action = hentPersonNavnHenter();
       const nesteState = personNavnReducer(initialState, action);
       expect(nesteState).to.deep.equal({
@@ -28,7 +29,7 @@ describe('personNavnReducer', () => {
       });
     });
 
-    it('handterer HENT_PERSON_NAVN_HENTET', () => {
+    it(`handterer ${PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET}`, () => {
       const personNavnSvar = [{ fnr: testdata.fnr1, navn: testdata.navn1 }];
       const action = hentPersonNavnHentet(personNavnSvar);
       const nesteState = personNavnReducer(initialState, action);
@@ -40,7 +41,7 @@ describe('personNavnReducer', () => {
       });
     });
 
-    it('handterer HENT_PERSON_NAVN_FEILET', () => {
+    it(`handterer ${PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET}`, () => {
       const action = hentPersonNavnFeilet();
       const nesteState = personNavnReducer(initialState, action);
       expect(nesteState).to.deep.equal({

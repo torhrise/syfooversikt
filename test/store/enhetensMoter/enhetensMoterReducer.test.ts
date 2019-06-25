@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
 import enhetensMoterReducer from '../../../src/store/enhetensMoter/enhetensMoterReducer';
 import {
+  EnhetensMoterActionTypes,
   hentEnhetensMoterHenter,
   hentEnhetensMoterHentet,
   hentEnhetensMoterFeilet,
@@ -18,7 +19,7 @@ describe('enhetensMoterReducer', () => {
       data: [],
     });
 
-    it('handterer HENT_ENHETENS_MOTER_HENTER', () => {
+    it(`handterer ${EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTER}`, () => {
       const action = hentEnhetensMoterHenter();
       const nesteState = enhetensMoterReducer(initialState, action);
       expect(nesteState).to.deep.equal({
@@ -29,7 +30,7 @@ describe('enhetensMoterReducer', () => {
       });
     });
 
-    it('handterer HENT_ENHETENS_MOTER_HENTET', () => {
+    it(`handterer ${EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTET}`, () => {
       const moter = [{ fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen } as PersonHendelseData];
       const action = hentEnhetensMoterHentet(moter);
       const nesteState = enhetensMoterReducer(initialState, action);
@@ -41,7 +42,7 @@ describe('enhetensMoterReducer', () => {
       });
     });
 
-    it('handterer HENT_ENHETENS_MOTER_FEILET', () => {
+    it(`handterer ${EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_FEILET}`, () => {
       const action = hentEnhetensMoterFeilet();
       const nesteState = enhetensMoterReducer(initialState, action);
       expect(nesteState).to.deep.equal({

@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
 import enhetensMotebehovReducer from '../../../src/store/enhetensMotebehov/enhetensMotebehovReducer';
 import {
+  EnhetensMotebehovActionTypes,
   hentEnhetensMotebehovHenter,
   hentEnhetensMotebehovHentet,
   hentEnhetensMotebehovFeilet,
@@ -18,7 +19,7 @@ describe('enhetensMotebehovReducer', () => {
       data: [],
     });
 
-    it('handterer HENT_ENHETENS_MOTEBEHOV_HENTER', () => {
+    it(`handterer ${EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTER}`, () => {
       const action = hentEnhetensMotebehovHenter();
       const nesteState = enhetensMotebehovReducer(initialState, action);
       expect(nesteState).to.deep.equal({
@@ -29,7 +30,7 @@ describe('enhetensMotebehovReducer', () => {
       });
     });
 
-    it('handterer HENT_ENHETENS_MOTEBEHOV_HENTET', () => {
+    it(`handterer ${EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET}`, () => {
       const motebehovSvar = [{ fnr: testdata.fnr1, skjermingskode: testdata.skjermingskode.ingen } as PersonHendelseData];
       const action = hentEnhetensMotebehovHentet(motebehovSvar);
       const nesteState = enhetensMotebehovReducer(initialState, action);
@@ -41,7 +42,7 @@ describe('enhetensMotebehovReducer', () => {
       });
     });
 
-    it('handterer HENT_ENHETENS_MOTEBEHOV_FEILET', () => {
+    it(`handterer ${EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_FEILET}`, () => {
       const action = hentEnhetensMotebehovFeilet();
       const nesteState = enhetensMotebehovReducer(initialState, action);
       expect(nesteState).to.deep.equal({
