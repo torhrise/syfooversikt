@@ -55,7 +55,7 @@ const config = {
 };
 
 store.dispatch(
-    hentPersonoversiktForespurt('0315')
+    hentPersonoversiktForespurt('0316')
 );
 
 store.dispatch(
