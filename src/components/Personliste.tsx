@@ -11,11 +11,11 @@ interface PersonlisteProps {
   checkAllHandler: (checked: boolean) => void;
 }
 
-function erMarkert(markertePersoner: string[], fnr: string) {
+const erMarkert = (markertePersoner: string[], fnr: string) => {
   return markertePersoner.findIndex((markertPerson: string) => {
     return markertPerson === fnr;
   }) !== -1;
-}
+};
 
 const Personliste = (props: PersonlisteProps) => {
   const {

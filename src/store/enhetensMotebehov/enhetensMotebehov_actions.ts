@@ -7,27 +7,27 @@ export const enum EnhetensMotebehovActionTypes {
   HENT_ENHETENS_MOTEBEHOV_HENTET = 'HENT_ENHETENS_MOTEBEHOV_HENTET',
 }
 
-export function hentEnhetensMotebehovForespurt() {
+export const hentEnhetensMotebehovForespurt = () => {
   return {
     type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_FORESPURT,
   };
-}
+};
 
-export function hentEnhetensMotebehovHenter() {
+export const hentEnhetensMotebehovHenter = () => {
   return {
     type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTER,
   };
-}
+};
 
-export function hentEnhetensMotebehovHentet(data: PersonHendelseData[]) {
+export const hentEnhetensMotebehovHentet = (data: PersonHendelseData[]) => {
   return {
     type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET,
     data,
   };
-}
+};
 
-export function hentEnhetensMotebehovFeilet() {
+export const hentEnhetensMotebehovFeilet = () => {
   return {
     type: EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_FEILET,
   };
-}
+};

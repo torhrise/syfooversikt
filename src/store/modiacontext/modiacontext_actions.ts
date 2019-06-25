@@ -15,53 +15,53 @@ export const enum modiacontextActionTypes {
   HENT_AKTIVENHET_HENTET = 'HENT_AKTIVENHET_HENTET',
 }
 
-export function hentAktivEnhet(data: HentAktivEnhetData) {
+export const hentAktivEnhet = (data: HentAktivEnhetData) => {
   return {
     type: modiacontextActionTypes.HENT_AKTIVENHET_FORESPURT,
     data,
   };
-}
+};
 
-export function hentAktivEnhetFeilet() {
+export const hentAktivEnhetFeilet = () => {
   return {
     type: modiacontextActionTypes.HENT_AKTIVENHET_FEILET,
   };
-}
+};
 
-export function henterAktivEnhet() {
+export const henterAktivEnhet = () => {
   return {
     type: modiacontextActionTypes.HENT_AKTIVENHET_HENTER,
   };
-}
+};
 
-export function aktivEnhetHentet(data: Modiacontext) {
+export const aktivEnhetHentet = (data: Modiacontext) => {
   return {
     type: modiacontextActionTypes.HENT_AKTIVENHET_HENTET,
     data,
   };
-}
+};
 
-export function pushModiaContextFeilet() {
+export const pushModiaContextFeilet = () => {
   return {
     type: modiacontextActionTypes.PUSH_MODIACONTEXT_FEILET,
   };
-}
+};
 
-export function pusherModiaContext() {
+export const pusherModiaContext = () => {
   return {
     type: modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHER,
   };
-}
+};
 
-export function pushModiaContext(data: ModiacontextPayload) {
+export const pushModiaContext = (data: ModiacontextPayload) => {
   return {
     type: modiacontextActionTypes.PUSH_MODIACONTEXT_FORESPURT,
     data,
   };
-}
+};
 
-export function modiaContextPushet() {
+export const modiaContextPushet = () => {
   return {
     type: modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET,
   };
-}
+};

@@ -7,27 +7,27 @@ export const enum VeilederinfoActionTypes {
   HENT_VEILEDERINFO_HENTET = 'HENT_VEILEDERINFO_HENTET',
 }
 
-export function hentVeilederinfo() {
+export const hentVeilederinfo = () => {
   return {
     type: VeilederinfoActionTypes.HENT_VEILEDERINFO_FORESPURT,
   };
-}
+};
 
-export function henterVeilederinfo() {
+export const henterVeilederinfo = () => {
   return {
     type: VeilederinfoActionTypes.HENT_VEILEDERINFO_HENTER,
   };
-}
+};
 
-export function veilederinfoHentet(data: Veilederinfo) {
+export const veilederinfoHentet = (data: Veilederinfo) => {
   return {
     type: VeilederinfoActionTypes.HENT_VEILEDERINFO_HENTET,
     data,
   };
-}
+};
 
-export function hentVeilederinfoFeilet() {
+export const hentVeilederinfoFeilet = () => {
   return {
     type: VeilederinfoActionTypes.HENT_VEILEDERINFO_FEILET,
   };
-}
+};

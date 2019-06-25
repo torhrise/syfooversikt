@@ -7,27 +7,27 @@ export const enum EnhetensMoterActionTypes {
   HENT_ENHETENS_MOTER_HENTET = 'HENT_ENHETENS_MOTER_HENTET',
 }
 
-export function hentEnhetensMoterForespurt() {
+export const hentEnhetensMoterForespurt = () => {
   return {
     type: EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_FORESPURT,
   };
-}
+};
 
-export function hentEnhetensMoterHenter() {
+export const hentEnhetensMoterHenter = () => {
   return {
     type: EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTER,
   };
-}
+};
 
-export function hentEnhetensMoterHentet(data: PersonHendelseData[]) {
+export const hentEnhetensMoterHentet = (data: PersonHendelseData[]) => {
   return {
     type: EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTET,
     data,
   };
-}
+};
 
-export function hentEnhetensMoterFeilet() {
+export const hentEnhetensMoterFeilet = () => {
   return {
     type: EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_FEILET,
   };
-}
+};

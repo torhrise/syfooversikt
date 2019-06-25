@@ -10,28 +10,28 @@ export const enum PersonNavnActionTypes {
   HENT_PERSON_NAVN_HENTET = 'HENT_PERSON_NAVN_HENTET',
 }
 
-export function hentPersonNavnForespurt(data: Fodselsnummer[]) {
+export const hentPersonNavnForespurt = (data: Fodselsnummer[]) => {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT,
     data,
   };
-}
+};
 
-export function hentPersonNavnHenter() {
+export const hentPersonNavnHenter = () => {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER,
   };
-}
+};
 
-export function hentPersonNavnHentet(data: PersonNavn[]) {
+export const hentPersonNavnHentet = (data: PersonNavn[]) => {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET,
     data,
   };
-}
+};
 
-export function hentPersonNavnFeilet() {
+export const hentPersonNavnFeilet = () => {
   return {
     type: PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET,
   };
-}
+};

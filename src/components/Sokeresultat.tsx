@@ -13,7 +13,7 @@ interface SokeresultatProps {
   tildelVeileder: (liste: VeilederArbeidstaker[]) => void;
 }
 
-function lagListe(markertePersoner: string[], veilederIdent: string, enhet: string): VeilederArbeidstaker[] {
+const lagListe = (markertePersoner: string[], veilederIdent: string, enhet: string): VeilederArbeidstaker[] => {
   return markertePersoner.map( (fnr: string) => {
     return {
       veilederIdent,
@@ -21,7 +21,7 @@ function lagListe(markertePersoner: string[], veilederIdent: string, enhet: stri
       enhet,
     };
   });
-}
+};
 
 class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
   constructor(props: any) {

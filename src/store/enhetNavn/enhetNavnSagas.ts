@@ -17,11 +17,11 @@ export function* hentEnhetNavnSaga(enhetNummer: string) {
   }
 }
 
-function hentetEnhet(state: any) {
+const hentetEnhet = (state: any) => {
   if(skalHenteReducer(state.enhetNavn)) {
     return hentVeilederEnhetFraState(state);
   }
-}
+};
 
 export function* hentNavnHvisEnhetHentet(): any {
   const enhet = yield select(hentetEnhet);

@@ -31,11 +31,11 @@ export function* hentEnhetensMoter(enhetId: string) {
   }
 }
 
-export function hentPersonregister(state: any) {
+export const hentPersonregister = (state: any) => {
   return state.personregister
     ? state.personregister
     : [];
-}
+};
 
 export function* hentNavnForPersonerMedMoteUtenNavn(data: PersonHendelseData[]): any {
   const fnrListe = hentFodselsnummerFraPersonHendelseListe(data);
@@ -49,11 +49,11 @@ export function* hentNavnForPersonerMedMoteUtenNavn(data: PersonHendelseData[]):
   yield put(personNavnActions.hentPersonNavnForespurt(filtrertListe));
 }
 
-export function hentetEnhet(state: any) {
+export const hentetEnhet = (state: any)  => {
   if(skalHenteReducer(state.enhetensMoter)) {
     return hentVeilederEnhetFraState(state);
   }
-}
+};
 
 export function* hentEnhetensMoterHvisEnhetHentet(): any {
   const enhet = yield select(hentetEnhet);

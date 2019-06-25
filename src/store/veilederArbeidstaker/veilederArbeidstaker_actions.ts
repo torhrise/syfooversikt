@@ -7,27 +7,27 @@ export const enum veilederArbeidstakerActionTypes {
   PUSH_VEILEDERARBEIDSTAKER_FEILET = 'PUSH_VEILEDERARBEIDSTAKER_FEILET',
 }
 
-export function pushVeilederArbeidstakerForespurt(data: VeilederArbeidstaker[]) {
+export const pushVeilederArbeidstakerForespurt = (data: VeilederArbeidstaker[]) => {
   return {
     type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_FORESPURT,
     data,
   };
-}
+};
 
-export function pushVeilederArbeidstakerPusher() {
+export const pushVeilederArbeidstakerPusher = () => {
   return {
     type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHER,
   };
-}
+};
 
-export function pushVeilederArbeidstakerPushet() {
+export const pushVeilederArbeidstakerPushet = () => {
   return {
     type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET,
   };
-}
+};
 
-export function pushVeilederArbeidstakerFeilet() {
+export const pushVeilederArbeidstakerFeilet = () => {
   return {
     type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_FEILET,
   };
-}
+};
