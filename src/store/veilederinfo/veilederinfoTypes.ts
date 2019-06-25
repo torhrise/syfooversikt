@@ -1,4 +1,5 @@
 export interface Veilederinfo {
+  navn: string;
   ident: string;
 }
 

@@ -25,3 +25,8 @@ export const enhet = {
   enhetId: '0101',
   navn: 'Enhet',
 };
+
+export const veilederinfo = {
+  navn: 'F_Z101010 E_Z101010',
+  ident: 'Z101010',
+};
