@@ -5,6 +5,7 @@ import React from 'react';
 import Sokeresultat from '../../src/components/Sokeresultat';
 import {
   enhet,
+  veilederinfo,
   personregister,
 } from '../data/fellesTestdata';
 import Toolbar from '../../src/components/toolbar/Toolbar';
@@ -19,6 +20,7 @@ describe('Sokeresultat', () => {
 
   const component = shallow(<Sokeresultat
       aktivEnhet={enhet}
+      aktivVeilederinfo={veilederinfo}
       personregister={personregister}
       tildelVeileder={dummyFunksjon}
   />);
