@@ -22,6 +22,7 @@ const tekster = {
     veilederoversikt: 'Denne fanen er under utvikling',
   },
   feil: {
+    noeInformasjonMangler: 'Noe av informasjonen er ikke tilgjengelig og vises ikke listen',
     hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over møtebehov svar på enhet',
   },
 };
@@ -34,6 +35,7 @@ interface StateProps {
   personregister: PersonregisterState;
   henterAlt: boolean;
   noeErHentet: boolean;
+  noeHarFeilet: boolean;
   altFeilet: boolean;
 }
 
@@ -66,19 +68,23 @@ class OversiktCont extends Component<OversiktContainerProps> {
       type,
       henterAlt,
       noeErHentet,
+      noeHarFeilet,
       altFeilet,
       actions,
       personregister,
     } = this.props;
     return (<div className="oversiktContainer">
-        { altFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+        { altFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
+        }
+        { noeHarFeilet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+            && AlertStripeMedMelding(tekster.feil.noeInformasjonMangler, 'oversiktContainer__alertstripe')
         }
         <OversiktHeader type={type}/>
         { henterAlt
           && <AppSpinner />
         }
-        { noeErHentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
+        { noeErHentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
           && <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
             personregister={personregister}
@@ -104,11 +110,12 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-const mapStateToProps = ({ enhetensMotebehov, enhetensMoter, personregister, veilederenheter }: ApplicationState, oversiktProps: OversiktProps) => ({
+const mapStateToProps = ({ enhetensMotebehov, enhetensMoter, personregister, veilederenheter }: ApplicationState, oversiktProps: OversiktProps): StateProps & OversiktProps => ({
+    ...oversiktProps,
   personregister,
-  oversiktProps,
   henterAlt: veilederenheter.henter || (enhetensMotebehov.henter && enhetensMoter.henter),
   noeErHentet: veilederenheter.hentet && (enhetensMotebehov.hentet || enhetensMoter.hentet),
+  noeHarFeilet: veilederenheter.hentet && (enhetensMotebehov.hentingFeilet || enhetensMoter.hentingFeilet),
   altFeilet: veilederenheter.hentingFeilet || (enhetensMotebehov.hentingFeilet && enhetensMoter.hentingFeilet),
 });
 
