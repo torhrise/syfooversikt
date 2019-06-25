@@ -60,7 +60,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
   buttonHandler =  () => {
     const { tildelVeileder } = this.props;
     const veilederIdent = 'z990243';
-    const enhet = '0315';
+    const enhet = '0316';
     const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, enhet);
     tildelVeileder(veilederArbeidstakerListe);
   }
