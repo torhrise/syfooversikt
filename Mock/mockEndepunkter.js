@@ -34,7 +34,7 @@ function mockForLokal(server) {
     res.send(JSON.stringify(mockData[PERSON_NAVN]));
   });
 
-  server.post('/syfoperson/api/veilederbehandling/registrer', (req, res) => {
+  server.post('/api/v1/persontildeling/registrer', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send();
   });
