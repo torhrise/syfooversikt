@@ -1,31 +1,35 @@
-export const enum personoversiktActionTypes {
+import {
+  PersonoversiktStatus,
+} from './personoversiktTypes';
+
+export const enum PersonoversiktActionTypes {
   HENT_PERSONOVERSIKT_ENHET_FORESPURT = 'HENT_PERSONOVERSIKT_ENHET_FORESPURT',
   HENT_PERSONOVERSIKT_ENHET_HENTER = 'HENT_PERSONOVERSIKT_ENHET_HENTER',
   HENT_PERSONOVERSIKT_ENHET_HENTET = 'HENT_PERSONOVERSIKT_ENHET_HENTET',
   HENT_PERSONOVERSIKT_ENHET_FEILET= 'HENT_PERSONOVERSIKT_ENHET_FEILET',
 }
 
-export const hentPersonoversiktForespurt = (enhet: string) => {
+export const hentPersonoversiktForespurt = () => {
   return {
-    type: personoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FORESPURT,
-    enhet,
+    type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FORESPURT,
   };
 };
 
 export const hentPersonoversiktHenter = () => {
   return {
-    type: personoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTER,
+    type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTER,
   };
 };
 
-export const hentPersonoversiktHentet = () => {
+export const hentPersonoversiktHentet = (data: PersonoversiktStatus[]) => {
   return {
-    type: personoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTET,
+    type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTET,
+    data,
   };
 };
 
 export const hentPersonoversiktFeilet = () => {
   return {
-    type: personoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FEILET,
+    type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FEILET,
   };
 };

@@ -8,12 +8,14 @@ import { EnhetensMoterState } from './enhetensMoter/enhetensMoterTypes';
 import { PersonNavnState } from './personNavn/personNavnTypes';
 import { PersonregisterState } from './personregister/personregisterTypes';
 import { EnhetNavnState } from './enhetNavn/enhetNavnTypes';
+import { PersonoversiktStatusState } from './personoversikt/personoversiktTypes';
 import modiacontextReducer from './modiacontext/modiacontextReducer';
 import veilederenheterReducer from './veilederenheter/veilederenheterReducer';
 import veilederinfoReducer from './veilederinfo/veilederinfoReducer';
 import enhetensMotebehovReducer from './enhetensMotebehov/enhetensMotebehovReducer';
 import enhetensMoterReducer from './enhetensMoter/enhetensMoterReducer';
 import personNavnReducer from './personNavn/personNavnReducer';
+import personoversiktReducer from './personoversikt/personoversiktReducer';
 import enhetNavnReducer from './enhetNavn/enhetNavnReducer';
 import personregisterReducer from './personregister/personregisterReducer';
 
@@ -36,6 +38,7 @@ export interface ApplicationState {
   enhetensMotebehov: EnhetensMotebehovState;
   enhetensMoter: EnhetensMoterState;
   personNavn: PersonNavnState;
+  personoversikt: PersonoversiktStatusState;
   personregister: PersonregisterState;
   enhetNavn: EnhetNavnState;
 }
@@ -51,6 +54,7 @@ export const rootReducer = combineReducers<ApplicationState>({
   enhetensMotebehov: enhetensMotebehovReducer,
   enhetensMoter: enhetensMoterReducer,
   personNavn: personNavnReducer,
+  personoversikt: personoversiktReducer,
   personregister: personregisterReducer,
   enhetNavn: enhetNavnReducer,
 });

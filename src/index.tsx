@@ -17,7 +17,6 @@ import {
 import AppRouter from './routers/AppRouter';
 
 import { store, history } from './store';
-import { hentPersonoversiktForespurt } from './store/personoversikt/personoversikt_actions';
 
 if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
@@ -53,10 +52,6 @@ const config = {
     },
   },
 };
-
-store.dispatch(
-    hentPersonoversiktForespurt('0315')
-);
 
 store.dispatch(
   hentAktivEnhet({
