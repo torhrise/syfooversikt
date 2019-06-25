@@ -20,9 +20,10 @@ export const pushVeilederArbeidstakerPusher = () => {
   };
 };
 
-export const pushVeilederArbeidstakerPushet = () => {
+export const pushVeilederArbeidstakerPushet = (data: VeilederArbeidstaker[]) => {
   return {
     type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET,
+    data,
   };
 };
 

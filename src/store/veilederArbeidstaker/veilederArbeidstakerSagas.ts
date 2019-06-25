@@ -20,7 +20,7 @@ export function* pushBrukerArbeidstakerSaga(
     const host = HOST_NAMES.SYFOOVERSIKTSRV;
     const path = `${process.env.REACT_APP_SYFOOVERSIKTSRVREST_ROOT}/persontildeling/registrer`;
     yield call(post, fullNaisUrlDefault(host, path), body);
-    yield put(actions.pushVeilederArbeidstakerPushet());
+    yield put(actions.pushVeilederArbeidstakerPushet(action.data));
   } catch (e) {
     yield put(actions.pushVeilederArbeidstakerFeilet());
   }

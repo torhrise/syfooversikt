@@ -34,7 +34,9 @@ describe('veilederArbeidstakerSagas', () => {
 
     it(`dispatch ${veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET}`, () => {
       const nesteAction = put({
-        type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET});
+        type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET,
+        data: payload,
+      });
       expect(generator.next().value).to.deep.equal(nesteAction);
     });
   });

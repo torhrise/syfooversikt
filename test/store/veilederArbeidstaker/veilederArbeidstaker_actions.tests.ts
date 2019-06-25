@@ -12,7 +12,7 @@ import { testdata } from '../../data/fellesTestdata';
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('personNavn_actions', () => {
+describe('veilederArbeidstaker_actions', () => {
   it('pushVeilederArbeidstakerForespurt() skal returnere riktig action', () => {
     const payload = [{
       veilederIdent: 'Z999999',
@@ -32,12 +32,15 @@ describe('personNavn_actions', () => {
   });
 
   it('pushVeilederArbeidstakerPushet() skal returnere riktig action', () => {
-    const personNavnSvar = [ {
+    const tildelinger = [ {
       fnr: testdata.fnr1,
-      navn: testdata.navn1,
+      veilederIdent: '',
+      enhet: '',
     } ];
-    expect(pushVeilederArbeidstakerPushet()).to.deep.equal({
-      type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET});
+    expect(pushVeilederArbeidstakerPushet(tildelinger)).to.deep.equal({
+      type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET,
+      data: tildelinger,
+    });
   });
 
   it('pushVeilederArbeidstakerFeilet() skal returnere riktig action', () => {

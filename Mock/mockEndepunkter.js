@@ -35,7 +35,6 @@ function mockForLokal(server) {
   });
 
   server.post('/api/v1/persontildeling/registrer', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
     res.send();
   });
 

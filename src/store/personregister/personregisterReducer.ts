@@ -2,6 +2,8 @@ import { Reducer } from 'redux';
 import { EnhetensMotebehovActionTypes } from '../enhetensMotebehov/enhetensMotebehov_actions';
 import { PersonNavn } from '../personNavn/personNavnTypes';
 import { PersonNavnActionTypes } from '../personNavn/personNavn_actions';
+import { VeilederArbeidstaker } from '../veilederArbeidstaker/veilederArbeidstakerTypes';
+import { veilederArbeidstakerActionTypes } from '../veilederArbeidstaker/veilederArbeidstaker_actions';
 import {
   PersonData,
   PersonregisterState,
@@ -57,6 +59,20 @@ const personregisterReducer: Reducer<PersonregisterState> = (
           [personNavn.fnr]: {
             ...state[personNavn.fnr],
             navn: personNavn.navn,
+          },
+        };
+      });
+      const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
+      return {...state, ...oppdatering };
+    }
+    case veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET: {
+      const tildelinger = action.data;
+      const personerSomSkalOppdateres = tildelinger.map((tildeling: VeilederArbeidstaker) => {
+        return {
+          [tildeling.fnr]: {
+            ...state[tildeling.fnr],
+            tildeltEnhetId: tildeling.enhet,
+            tildeltVeilederIdent: tildeling.veilederIdent,
           },
         };
       });
