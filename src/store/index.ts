@@ -8,20 +8,24 @@ import { EnhetensMoterState } from './enhetensMoter/enhetensMoterTypes';
 import { PersonNavnState } from './personNavn/personNavnTypes';
 import { PersonregisterState } from './personregister/personregisterTypes';
 import { EnhetNavnState } from './enhetNavn/enhetNavnTypes';
+import { PersonoversiktStatusState } from './personoversikt/personoversiktTypes';
 import modiacontextReducer from './modiacontext/modiacontextReducer';
 import veilederenheterReducer from './veilederenheter/veilederenheterReducer';
 import veilederinfoReducer from './veilederinfo/veilederinfoReducer';
 import enhetensMotebehovReducer from './enhetensMotebehov/enhetensMotebehovReducer';
 import enhetensMoterReducer from './enhetensMoter/enhetensMoterReducer';
 import personNavnReducer from './personNavn/personNavnReducer';
+import personoversiktReducer from './personoversikt/personoversiktReducer';
 import enhetNavnReducer from './enhetNavn/enhetNavnReducer';
 import personregisterReducer from './personregister/personregisterReducer';
+
 import modiacontextSagas from './modiacontext/modiacontextSagas';
 import veilederenheterSagas from './veilederenheter/veilederenheterSagas';
 import veilederinfoSagas from './veilederinfo/veilederinfoSagas';
 import enhetensMotebehovSagas from './enhetensMotebehov/enhetensMotebehovSagas';
 import enhetensMoterSagas from './enhetensMoter/enhetensMoterSagas';
 import personNavnSagas from './personNavn/personNavnSagas';
+import personoversiktSagas from './personoversikt/personoversiktSagas';
 import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
 import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstakerSagas';
@@ -34,6 +38,7 @@ export interface ApplicationState {
   enhetensMotebehov: EnhetensMotebehovState;
   enhetensMoter: EnhetensMoterState;
   personNavn: PersonNavnState;
+  personoversikt: PersonoversiktStatusState;
   personregister: PersonregisterState;
   enhetNavn: EnhetNavnState;
 }
@@ -49,6 +54,7 @@ export const rootReducer = combineReducers<ApplicationState>({
   enhetensMotebehov: enhetensMotebehovReducer,
   enhetensMoter: enhetensMoterReducer,
   personNavn: personNavnReducer,
+  personoversikt: personoversiktReducer,
   personregister: personregisterReducer,
   enhetNavn: enhetNavnReducer,
 });
@@ -61,7 +67,7 @@ export function* rootSaga() {
     fork(enhetensMotebehovSagas),
     fork(enhetensMoterSagas),
     fork(personNavnSagas),
-    fork(personNavnSagas),
+    fork(personoversiktSagas),
     fork(veilederArbeidstakerSagas),
     fork(enhetNavnSagas),
   ]);
