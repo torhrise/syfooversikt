@@ -1,7 +1,7 @@
 import { PersonData, PersonregisterState } from '../../src/store/personregister/personregisterTypes';
 
-const veilederIdent = 'F_Z101010 E_Z101010';
-const veilederNav = 'Z101010';
+const veilederIdent = 'Z101010';
+const veilederNavn = 'F_Z101010 E_Z101010';
 
 export const testdata = {
   fnr1: '99999911111',
@@ -43,6 +43,6 @@ export const enhet = {
 };
 
 export const veilederinfo = {
-  navn: veilederIdent,
+  navn: veilederNavn,
   ident: veilederIdent,
 };
