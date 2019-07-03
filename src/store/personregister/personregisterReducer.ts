@@ -1,5 +1,4 @@
 import { Reducer } from 'redux';
-import { EnhetensMotebehovActionTypes } from '../enhetensMotebehov/enhetensMotebehov_actions';
 import { PersonNavn } from '../personNavn/personNavnTypes';
 import { PersonNavnActionTypes } from '../personNavn/personNavn_actions';
 import { VeilederArbeidstaker } from '../veilederArbeidstaker/veilederArbeidstakerTypes';
@@ -26,20 +25,6 @@ const personregisterReducer: Reducer<PersonregisterState> = (
   action
 ) => {
   switch (action.type) {
-    case EnhetensMotebehovActionTypes.HENT_ENHETENS_MOTEBEHOV_HENTET: {
-      const motebehovSvarHentet = action.data;
-      const personerSomSkalOppdateres: { [fnr: string]: PersonData } = motebehovSvarHentet.map((motebehovSvar: PersonHendelseData) => {
-        return {
-          [motebehovSvar.fnr]: {
-            ...state[motebehovSvar.fnr],
-            harSvartPaaMotebehov: true,
-            skjermingskode: motebehovSvar.skjermingskode,
-          },
-        };
-      });
-      const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
-      return {...state, ...oppdatering };
-    }
     case EnhetensMoterActionTypes.HENT_ENHETENS_MOTER_HENTET: {
       const moterSvarHentet = action.data;
       const personerSomSkalOppdateres: { [fnr: string]: PersonData } = moterSvarHentet.map((moter: PersonHendelseData) => {
@@ -89,6 +74,7 @@ const personregisterReducer: Reducer<PersonregisterState> = (
             ...state[person.fnr],
             tildeltEnhetId: person.enhet,
             tildeltVeilederIdent: person.veilederIdent,
+            harMotebehovUbehandlet: person.motebehovUbehandlet,
           },
         };
       });

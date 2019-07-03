@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
-import { hentEnhetensMotebehovForespurt } from '../store/enhetensMotebehov/enhetensMotebehov_actions';
 import { AlertStripeMedMelding } from '../components/AlertStripeMedMelding';
 import { ApplicationState } from '../store';
 import { OVERSIKT_VISNING_TYPE } from '../konstanter';
@@ -25,7 +24,7 @@ const tekster = {
     veilederoversikt: 'Denne fanen er under utvikling',
   },
   feil: {
-    hentMotebehovFeilet: 'Det skjedde en feil: Kunne ikke hente liste over møtebehov svar på enhet',
+    hentingFeilet: 'Det skjedde en feil: Kunne ikke hente liste over personer',
   },
 };
 
@@ -44,7 +43,6 @@ interface StateProps {
 
 interface DispatchProps {
   actions: {
-    hentEnhetensMotebehovForespurt: typeof hentEnhetensMotebehovForespurt;
     hentEnhetensMoterForespurt: typeof hentEnhetensMoterForespurt;
     hentPersonNavnForespurt: typeof hentPersonNavnForespurt;
     hentPersonoversiktForespurt: typeof hentPersonoversiktForespurt;
@@ -63,7 +61,6 @@ class OversiktCont extends Component<OversiktContainerProps> {
 
   componentDidUpdate() {
     const { actions } = this.props;
-    actions.hentEnhetensMotebehovForespurt();
     actions.hentEnhetensMoterForespurt();
     actions.hentPersonoversiktForespurt();
   }
@@ -81,7 +78,7 @@ class OversiktCont extends Component<OversiktContainerProps> {
     } = this.props;
     return (<div className="oversiktContainer">
         { altFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && AlertStripeMedMelding(tekster.feil.hentMotebehovFeilet, 'oversiktContainer__alertstripe')
+          && AlertStripeMedMelding(tekster.feil.hentingFeilet, 'oversiktContainer__alertstripe')
         }
         <OversiktHeader type={type}/>
         { henterAlt
@@ -107,7 +104,6 @@ const OversiktHeader = (oversiktsType: OversiktProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: {
-    hentEnhetensMotebehovForespurt: () => dispatch(hentEnhetensMotebehovForespurt()),
     hentEnhetensMoterForespurt: () => dispatch(hentEnhetensMoterForespurt()),
     hentPersonNavnForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonNavnForespurt(fnrListe)),
     hentPersonoversiktForespurt: () => dispatch(hentPersonoversiktForespurt()),
@@ -116,14 +112,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-const mapStateToProps = ({ enhetensMotebehov, enhetensMoter, personregister, veilederenheter, veilederinfo }: ApplicationState, oversiktProps: OversiktProps) => ({
+const mapStateToProps = ({ personoversikt, enhetensMoter, personregister, veilederenheter, veilederinfo }: ApplicationState, oversiktProps: OversiktProps) => ({
   personregister,
   oversiktProps,
   aktivEnhet: veilederenheter.aktivEnhet,
   aktivVeilederinfo: veilederinfo.data,
-  henterAlt: veilederenheter.henter || veilederinfo.henter || (enhetensMotebehov.henter && enhetensMoter.henter),
-  noeErHentet: veilederenheter.hentet && veilederinfo.hentet && (enhetensMotebehov.hentet || enhetensMoter.hentet),
-  altFeilet: veilederenheter.hentingFeilet || veilederinfo.hentingFeilet || (enhetensMotebehov.hentingFeilet && enhetensMoter.hentingFeilet),
+  henterAlt: veilederenheter.henter || veilederinfo.henter || (personoversikt.henter && enhetensMoter.henter),
+  noeErHentet: veilederenheter.hentet && veilederinfo.hentet && (personoversikt.hentet || enhetensMoter.hentet),
+  altFeilet: veilederenheter.hentingFeilet || veilederinfo.hentingFeilet || (personoversikt.hentingFeilet && enhetensMoter.hentingFeilet),
 });
 
 export default connect(
