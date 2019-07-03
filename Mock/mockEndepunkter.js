@@ -26,11 +26,6 @@ lastFilTilMinne(VEILEDERINFO);
 lastFilTilMinne(ENHET_NAVN);
 
 function mockForLokal(server) {
-  server.get('/syfomotebehov/api/enhet/:id/motebehov/brukere', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[MOTEBEHOV]));
-  });
-
   server.post('/syfoperson/api/person/navn', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(mockData[PERSON_NAVN]));

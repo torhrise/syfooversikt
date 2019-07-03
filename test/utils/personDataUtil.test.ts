@@ -15,7 +15,7 @@ describe('personDataUtils', () => {
     it('Skal returnere en string med skjermingskode med små bokstaver og mellomrom hvis koden ikke er INGEN', () => {
       const person: PersonData = {
         navn: testdata.navn1,
-        harSvartPaaMotebehov: false,
+        harMotebehovUbehandlet: false,
         harMote: false,
         skjermingskode: testdata.skjermingskode.egenAnsatt,
         markert: false,
@@ -28,7 +28,7 @@ describe('personDataUtils', () => {
     it('Skal returnere en tom string hvis koden er INGEN', () => {
       const person: PersonData = {
         navn: testdata.navn1,
-        harSvartPaaMotebehov: false,
+        harMotebehovUbehandlet: false,
         harMote: false,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,
@@ -44,7 +44,7 @@ describe('personDataUtils', () => {
     it('Skal returnere en string både møtebehov og møte hvis personen har begge deler', () => {
       const person: PersonData = {
         navn: testdata.navn1,
-        harSvartPaaMotebehov: true,
+        harMotebehovUbehandlet: true,
         harMote: true,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,
@@ -57,7 +57,7 @@ describe('personDataUtils', () => {
     it('Skal returnere en string med møtebehov hvis personen bare har møtebehov', () => {
       const person: PersonData = {
         navn: testdata.navn1,
-        harSvartPaaMotebehov: true,
+        harMotebehovUbehandlet: true,
         harMote: false,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,
@@ -70,7 +70,7 @@ describe('personDataUtils', () => {
     it('Skal returnere en string med møte hvis personen bare har møte', () => {
       const person: PersonData = {
         navn: testdata.navn1,
-        harSvartPaaMotebehov: false,
+        harMotebehovUbehandlet: false,
         harMote: true,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,
@@ -83,7 +83,7 @@ describe('personDataUtils', () => {
     it('Skal returnere en tom string hvis personen har ingen hendelser', () => {
       const person: PersonData = {
         navn: testdata.navn1,
-        harSvartPaaMotebehov: false,
+        harMotebehovUbehandlet: false,
         harMote: false,
         skjermingskode: testdata.skjermingskode.ingen,
         markert: false,

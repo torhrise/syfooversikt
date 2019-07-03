@@ -1,56 +1,43 @@
 import { expect } from 'chai';
-import { hentEnhetensMotebehovHentet } from '../../../src/store/enhetensMotebehov/enhetensMotebehov_actions';
 import { hentPersonNavnHentet } from '../../../src/store/personNavn/personNavn_actions';
 import personregisterReducer from '../../../src/store/personregister/personregisterReducer';
-import { testdata } from '../../data/fellesTestdata';
-import { PersonHendelseData } from '../../../src/store/personregister/personregisterTypes';
+import {
+  personoversikt,
+  testdata,
+} from '../../data/fellesTestdata';
+import {PersonHendelseData, PersonregisterState} from '../../../src/store/personregister/personregisterTypes';
+import {
+  hentPersonoversiktHentet,
+  PersonoversiktActionTypes
+} from '../../../src/store/personoversikt/personoversikt_actions';
+import {PersonoversiktStatus, PersonoversiktStatusState} from '../../../src/store/personoversikt/personoversiktTypes';
+
+const mapPersonToState = (elem: PersonoversiktStatus) => {
+  return {
+    tildeltEnhetId: elem.enhet,
+    tildeltVeilederIdent: elem.veilederIdent,
+    harMotebehovUbehandlet: elem.motebehovUbehandlet,
+  };
+};
+const mapPersonerToState = (liste: PersonoversiktStatus[]) => {
+  let state = {};
+  liste.forEach((elem) => {
+    state = {
+      ...state,
+      [elem.fnr]: mapPersonToState(elem),
+    };
+  });
+  return state;
+};
 
 describe('personregisterReducer', () => {
   describe('Henter persondata', () => {
     const initialState = Object.freeze({ });
 
-    it('handterer HENT_ENHETENS_MOTEBEHOV_HENTET', () => {
-      const dataIForsteKall = [
-        {
-          fnr: testdata.fnr1,
-          skjermingskode: testdata.skjermingskode.ingen,
-        } as PersonHendelseData,
-        {
-          fnr: testdata.fnr2,
-          skjermingskode: testdata.skjermingskode.diskresjonsmerket,
-        }  as PersonHendelseData];
-      const dataIAndreKall = [ {
-        fnr: testdata.fnr3,
-        skjermingskode: testdata.skjermingskode.egenAnsatt,
-      }  as PersonHendelseData ];
-      const forsteAction = hentEnhetensMotebehovHentet(dataIForsteKall);
-      const andreAction = hentEnhetensMotebehovHentet(dataIAndreKall);
+    it(`handterer ${PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTET}`, () => {
+      const forsteAction = hentPersonoversiktHentet(personoversikt);
       const forsteState = personregisterReducer(initialState, forsteAction);
-      expect(forsteState).to.deep.equal({
-        [testdata.fnr1]: {
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.ingen,
-        },
-        [testdata.fnr2]: {
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.diskresjonsmerket,
-        },
-      });
-      const andreState = personregisterReducer(forsteState, andreAction);
-      expect(andreState).to.deep.equal({
-        [testdata.fnr1]: {
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.ingen,
-        },
-        [testdata.fnr2]: {
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.diskresjonsmerket,
-        },
-        [testdata.fnr3]: {
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.egenAnsatt,
-        },
-      });
+      expect(forsteState).to.deep.equal(mapPersonerToState(personoversikt));
     });
 
     it('handterer HENT_PERSON_NAVN_HENTET', () => {
@@ -81,19 +68,11 @@ describe('personregisterReducer', () => {
     });
 
     it('handterer kombinasjoner', () => {
-      const dataIForsteKall = [
-        {
-          fnr: testdata.fnr1,
-          skjermingskode: testdata.skjermingskode.ingen,
-        } as PersonHendelseData,
-        {
-          fnr: testdata.fnr2,
-          skjermingskode: testdata.skjermingskode.diskresjonsmerket,
-        } as PersonHendelseData,
-        {
-          fnr: testdata.fnr3,
-          skjermingskode: testdata.skjermingskode.egenAnsatt,
-        } as PersonHendelseData];
+      const personoversiktAction = hentPersonoversiktHentet(personoversikt);
+      const forsteState = personregisterReducer(initialState, personoversiktAction);
+      const expForsteState = mapPersonerToState(personoversikt);
+      expect(forsteState).to.deep.equal(expForsteState);
+
       const dataIAndreKall = [
         {
           fnr: testdata.fnr1,
@@ -104,44 +83,27 @@ describe('personregisterReducer', () => {
           navn: testdata.navn2,
         },
         {
-          fnr: testdata.fnr3,
+          fnr: testdata.fnr4,
           navn: testdata.navn3,
         } ];
-      const hentMotebehovAction = hentEnhetensMotebehovHentet(dataIForsteKall);
       const hentPersonNavnAction = hentPersonNavnHentet(dataIAndreKall);
-      const forsteState = personregisterReducer(initialState, hentMotebehovAction);
-      expect(forsteState).to.deep.equal({
-        [testdata.fnr1]: {
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.ingen,
-        },
-        [testdata.fnr2]: {
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.diskresjonsmerket,
-        },
-        [testdata.fnr3]: {
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.egenAnsatt,
-        },
-      });
+
       const andreState = personregisterReducer(forsteState, hentPersonNavnAction);
-      expect(andreState).to.deep.equal({
+      const expAndreState = {
+        ...forsteState,
         [testdata.fnr1]: {
+          ...forsteState[testdata.fnr1],
           navn: testdata.navn1,
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr2]: {
           navn: testdata.navn2,
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.diskresjonsmerket,
         },
-        [testdata.fnr3]: {
+        [testdata.fnr4]: {
+          ...forsteState[testdata.fnr4],
           navn: testdata.navn3,
-          harSvartPaaMotebehov: true,
-          skjermingskode: testdata.skjermingskode.egenAnsatt,
         },
-      });
+      };
+      expect(andreState).to.deep.equal(expAndreState);
     });
   });
 });

@@ -1,22 +1,26 @@
 [
   {
     "fnr": "99999911111",
-    "navn":"Et navn"
+    "navn":"Korrupt Heis"
   },
   {
     "fnr": "99999922222",
-    "navn":"Et annet navn"
+    "navn":"Korrupt Bordsen"
   },
   {
     "fnr": "99999933333",
-    "navn":"Nok et navn.."
+    "navn":"Korrupt Bolle"
   },
   {
     "fnr": "99999944444",
-    "navn":"Nav N. Navnesen"
+    "navn":"Stol Bordsen"
   },
   {
     "fnr": "99999955555",
-    "navn":"Test Navn"
+    "navn":"Bord Stolesen"
+  },
+  {
+    "fnr": "99999966666",
+    "navn":"Gulv Heisen"
   }
 ]

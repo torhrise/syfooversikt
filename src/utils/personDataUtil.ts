@@ -14,7 +14,7 @@ export const hendelsestypeString = {
 };
 
 export const hendelsestype = (person: PersonData) => {
-  if (person.harSvartPaaMotebehov) {
+  if (person.harMotebehovUbehandlet) {
     if (person.harMote) {
       return hendelsestypeString.motebehovMote;
     }

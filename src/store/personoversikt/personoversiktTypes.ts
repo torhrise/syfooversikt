@@ -1,7 +1,8 @@
 export interface PersonoversiktStatus {
   fnr: string;
   enhet: string;
-  veilederIdent: string;
+  veilederIdent: string | null;
+  motebehovUbehandlet: boolean | null;
 }
 
 export interface PersonoversiktStatusState {
