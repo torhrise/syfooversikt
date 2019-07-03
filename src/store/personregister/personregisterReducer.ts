@@ -32,7 +32,6 @@ const personregisterReducer: Reducer<PersonregisterState> = (
         return {
           [motebehovSvar.fnr]: {
             ...state[motebehovSvar.fnr],
-            harSvartPaaMotebehov: true,
             skjermingskode: motebehovSvar.skjermingskode,
           },
         };
@@ -89,6 +88,7 @@ const personregisterReducer: Reducer<PersonregisterState> = (
             ...state[person.fnr],
             tildeltEnhetId: person.enhet,
             tildeltVeilederIdent: person.veilederIdent,
+            harMotebehovUbehandlet: person.motebehovUbehandlet,
           },
         };
       });

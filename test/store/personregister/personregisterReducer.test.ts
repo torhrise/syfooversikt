@@ -28,26 +28,21 @@ describe('personregisterReducer', () => {
       const forsteState = personregisterReducer(initialState, forsteAction);
       expect(forsteState).to.deep.equal({
         [testdata.fnr1]: {
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr2]: {
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.diskresjonsmerket,
         },
       });
       const andreState = personregisterReducer(forsteState, andreAction);
       expect(andreState).to.deep.equal({
         [testdata.fnr1]: {
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr2]: {
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.diskresjonsmerket,
         },
         [testdata.fnr3]: {
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.egenAnsatt,
         },
       });
@@ -112,15 +107,12 @@ describe('personregisterReducer', () => {
       const forsteState = personregisterReducer(initialState, hentMotebehovAction);
       expect(forsteState).to.deep.equal({
         [testdata.fnr1]: {
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr2]: {
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.diskresjonsmerket,
         },
         [testdata.fnr3]: {
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.egenAnsatt,
         },
       });
@@ -128,17 +120,14 @@ describe('personregisterReducer', () => {
       expect(andreState).to.deep.equal({
         [testdata.fnr1]: {
           navn: testdata.navn1,
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr2]: {
           navn: testdata.navn2,
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.diskresjonsmerket,
         },
         [testdata.fnr3]: {
           navn: testdata.navn3,
-          harSvartPaaMotebehov: true,
           skjermingskode: testdata.skjermingskode.egenAnsatt,
         },
       });
