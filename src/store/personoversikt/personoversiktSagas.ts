@@ -10,6 +10,9 @@ import * as actions from './personoversikt_actions';
 import { fullNaisUrlDefault } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
 import { skalHenteReducer } from '../../utils/selectorUtil';
+import { hentFodselsnummerFraPersonOversikt } from '../../components/utils/util';
+import * as personNavnActions from '../personNavn/personNavn_actions';
+import { PersonoversiktStatus } from './personoversiktTypes';
 
 export function* hentPersonoversikt(
     enhetId: string
@@ -20,9 +23,28 @@ export function* hentPersonoversikt(
     const path = `${process.env.REACT_APP_SYFOOVERSIKTSRVREST_ROOT}/personoversikt/enhet/${enhetId}`;
     const data = yield call(get, fullNaisUrlDefault(host, path));
     yield put(actions.hentPersonoversiktHentet(data));
+    yield call(hentNavnForPersonerUtenNavn, data);
   } catch (e) {
     yield put(actions.hentPersonoversiktFeilet());
   }
+}
+
+export const hentPersonregister = (state: any) => {
+  return state.personregister
+      ? state.personregister
+      : [];
+};
+
+export function* hentNavnForPersonerUtenNavn(data: PersonoversiktStatus[]): any {
+  const fnrListe = hentFodselsnummerFraPersonOversikt(data);
+
+  const personRegisterData = yield select(hentPersonregister);
+
+  const filtrertListe = fnrListe.filter((fnrObjekt) => {
+    return !personRegisterData[fnrObjekt.fnr] || (personRegisterData[fnrObjekt.fnr] && personRegisterData[fnrObjekt.fnr].navn === undefined);
+  });
+
+  yield put(personNavnActions.hentPersonNavnForespurt(filtrertListe));
 }
 
 const hentetAktivEnhetId = (state: any): string => {
