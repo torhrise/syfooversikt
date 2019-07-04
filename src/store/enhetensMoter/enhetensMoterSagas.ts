@@ -12,7 +12,7 @@ import {
   hentVeilederEnhetFraState,
   skalHenteReducer,
 } from '../../utils/selectorUtil';
-import * as personNavnActions from '../personNavn/personNavn_actions';
+import * as personInfoActions from '../personInfo/personInfo_actions';
 import { PersonHendelseData } from '../personregister/personregisterTypes';
 import { hentFodselsnummerFraPersonHendelseListe } from '../../components/utils/util';
 import { HOST_NAMES } from '../../konstanter';
@@ -46,7 +46,7 @@ export function* hentNavnForPersonerMedMoteUtenNavn(data: PersonHendelseData[]):
     return !personRegisterData[fnrObjekt.fnr] || (personRegisterData[fnrObjekt.fnr] && personRegisterData[fnrObjekt.fnr].navn === undefined);
   });
 
-  yield put(personNavnActions.hentPersonNavnForespurt(filtrertListe));
+  yield put(personInfoActions.hentPersonInfoForespurt(filtrertListe));
 }
 
 export const hentetEnhet = (state: any)  => {

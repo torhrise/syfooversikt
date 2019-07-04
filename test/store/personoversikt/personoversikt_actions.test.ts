@@ -12,7 +12,7 @@ import { personoversikt } from '../../data/fellesTestdata';
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('personNavn_actions', () => {
+describe('personInfo_actions', () => {
   it('hentPersonoversiktForespurt() skal returnere riktig action', () => {
     expect(hentPersonoversiktForespurt()).to.deep.equal({
       type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FORESPURT,

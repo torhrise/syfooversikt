@@ -1,20 +1,20 @@
 import { Reducer } from 'redux';
-import { PersonNavnState } from './personNavnTypes';
-import { PersonNavnActionTypes } from './personNavn_actions';
+import { PersonInfoState } from './personInfoTypes';
+import { PersonInfoActionTypes } from './personInfo_actions';
 
-const initiellState: PersonNavnState = {
+const initiellState: PersonInfoState = {
   hentet: false,
   henter: false,
   hentingFeilet: false,
   data: [],
 };
 
-const personNavnReducer: Reducer<PersonNavnState> = (
+const personInfoReducer: Reducer<PersonInfoState> = (
   state = initiellState,
   action
 ) => {
   switch (action.type) {
-    case PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER: {
+    case PersonInfoActionTypes.HENT_PERSON_INFO_HENTER: {
       return {
         ...state,
         henter: true,
@@ -22,7 +22,7 @@ const personNavnReducer: Reducer<PersonNavnState> = (
         hentingFeilet: false,
       };
     }
-    case PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET: {
+    case PersonInfoActionTypes.HENT_PERSON_INFO_HENTET: {
       return {
         ...state,
         henter: false,
@@ -30,7 +30,7 @@ const personNavnReducer: Reducer<PersonNavnState> = (
         data: action.data,
       };
     }
-    case PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET: {
+    case PersonInfoActionTypes.HENT_PERSON_INFO_FEILET: {
       return {
         ...state,
         henter: false,
@@ -43,4 +43,4 @@ const personNavnReducer: Reducer<PersonNavnState> = (
   }
 };
 
-export default personNavnReducer;
+export default personInfoReducer;
