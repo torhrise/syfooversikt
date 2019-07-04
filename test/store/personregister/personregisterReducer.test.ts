@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { hentPersonNavnHentet } from '../../../src/store/personNavn/personNavn_actions';
+import { hentPersonInfoHentet } from '../../../src/store/personInfo/personInfo_actions';
 import personregisterReducer from '../../../src/store/personregister/personregisterReducer';
 import {
   personoversikt,
@@ -39,30 +39,48 @@ describe('personregisterReducer', () => {
       expect(forsteState).to.deep.equal(mapPersonerToState(personoversikt));
     });
 
-    it('handterer HENT_PERSON_NAVN_HENTET', () => {
+    it('handterer HENT_PERSON_INFO_HENTET', () => {
       const dataIForsteKall = [ {
         fnr: testdata.fnr1,
         navn: testdata.navn1,
+        skjermingskode: testdata.skjermingskode.ingen,
       }, {
         fnr: testdata.fnr2,
         navn: testdata.navn2,
+        skjermingskode: testdata.skjermingskode.ingen,
       } ];
       const dataIAndreKall = [ {
         fnr: testdata.fnr3,
         navn: testdata.navn3,
+        skjermingskode: testdata.skjermingskode.ingen,
       } ];
-      const forsteAction = hentPersonNavnHentet(dataIForsteKall);
-      const andreAction = hentPersonNavnHentet(dataIAndreKall);
+      const forsteAction = hentPersonInfoHentet(dataIForsteKall);
+      const andreAction = hentPersonInfoHentet(dataIAndreKall);
       const forsteState = personregisterReducer(initialState, forsteAction);
       expect(forsteState).to.deep.equal({
-        [testdata.fnr1]: { navn: testdata.navn1 },
-        [testdata.fnr2]: { navn: testdata.navn2 },
+        [testdata.fnr1]: {
+          navn: testdata.navn1,
+          skjermingskode: testdata.skjermingskode.ingen,
+        },
+        [testdata.fnr2]: {
+          navn: testdata.navn2,
+          skjermingskode: testdata.skjermingskode.ingen,
+        },
       });
       const andreState = personregisterReducer(forsteState, andreAction);
       expect(andreState).to.deep.equal({
-        [testdata.fnr1]: { navn: testdata.navn1 },
-        [testdata.fnr2]: { navn: testdata.navn2 },
-        [testdata.fnr3]: { navn: testdata.navn3 },
+        [testdata.fnr1]: {
+          navn: testdata.navn1,
+          skjermingskode: testdata.skjermingskode.ingen,
+        },
+        [testdata.fnr2]: {
+          navn: testdata.navn2,
+          skjermingskode: testdata.skjermingskode.ingen,
+        },
+        [testdata.fnr3]: {
+          navn: testdata.navn3,
+          skjermingskode: testdata.skjermingskode.ingen,
+        },
       });
     });
 
@@ -76,30 +94,36 @@ describe('personregisterReducer', () => {
         {
           fnr: testdata.fnr1,
           navn: testdata.navn1,
+          skjermingskode: testdata.skjermingskode.ingen,
         },
         {
           fnr: testdata.fnr2,
           navn: testdata.navn2,
+          skjermingskode: testdata.skjermingskode.ingen,
         },
         {
           fnr: testdata.fnr4,
           navn: testdata.navn3,
+          skjermingskode: testdata.skjermingskode.ingen,
         } ];
-      const hentPersonNavnAction = hentPersonNavnHentet(dataIAndreKall);
+      const hentPersonInfoAction = hentPersonInfoHentet(dataIAndreKall);
 
-      const andreState = personregisterReducer(forsteState, hentPersonNavnAction);
+      const andreState = personregisterReducer(forsteState, hentPersonInfoAction);
       const expAndreState = {
         ...forsteState,
         [testdata.fnr1]: {
           ...forsteState[testdata.fnr1],
           navn: testdata.navn1,
+          skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr2]: {
           navn: testdata.navn2,
+          skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr4]: {
           ...forsteState[testdata.fnr4],
           navn: testdata.navn3,
+          skjermingskode: testdata.skjermingskode.ingen,
         },
       };
       expect(andreState).to.deep.equal(expAndreState);
