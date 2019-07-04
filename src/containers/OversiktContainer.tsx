@@ -8,8 +8,8 @@ import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import AppSpinner from '../components/AppSpinner';
 import Sokeresultat from '../components/Sokeresultat';
 import { hentEnhetensMoterForespurt } from '../store/enhetensMoter/enhetensMoter_actions';
-import { hentPersonNavnForespurt } from '../store/personNavn/personNavn_actions';
-import { Fodselsnummer } from '../store/personNavn/personNavnTypes';
+import { hentPersonInfoForespurt } from '../store/personInfo/personInfo_actions';
+import { Fodselsnummer } from '../store/personInfo/personInfoTypes';
 import { hentPersonoversiktForespurt } from '../store/personoversikt/personoversikt_actions';
 import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import { hentVeilederenheter } from '../store/veilederenheter/veilederenheter_actions';
@@ -44,7 +44,7 @@ interface StateProps {
 interface DispatchProps {
   actions: {
     hentEnhetensMoterForespurt: typeof hentEnhetensMoterForespurt;
-    hentPersonNavnForespurt: typeof hentPersonNavnForespurt;
+    hentPersonInfoForespurt: typeof hentPersonInfoForespurt;
     hentPersonoversiktForespurt: typeof hentPersonoversiktForespurt;
     tildelVeileder: typeof pushVeilederArbeidstakerForespurt;
     hentVeilederenheter: typeof hentVeilederenheter;
@@ -105,7 +105,7 @@ const OversiktHeader = (oversiktsType: OversiktProps) => {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: {
     hentEnhetensMoterForespurt: () => dispatch(hentEnhetensMoterForespurt()),
-    hentPersonNavnForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonNavnForespurt(fnrListe)),
+    hentPersonInfoForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonInfoForespurt(fnrListe)),
     hentPersonoversiktForespurt: () => dispatch(hentPersonoversiktForespurt()),
     hentVeilederenheter: () => dispatch(hentVeilederenheter()),
     tildelVeileder: (liste: VeilederArbeidstaker[]) => dispatch(pushVeilederArbeidstakerForespurt(liste)),

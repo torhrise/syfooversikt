@@ -4,7 +4,7 @@ const fs = require('fs');
 const mockData = {};
 const ENHETER = 'enheter';
 const MOTEBEHOV = 'motebehov';
-const PERSON_NAVN = 'personNavn';
+const PERSON_INFO = 'personInfo';
 const PERSONOVERSIKT_ENHET = 'personoversiktEnhet';
 const MOTER = 'moter';
 const VEILEDERINFO = 'veilederinfo';
@@ -19,16 +19,16 @@ const lastFilTilMinne = (filnavn) => {
 
 lastFilTilMinne(ENHETER);
 lastFilTilMinne(MOTEBEHOV);
-lastFilTilMinne(PERSON_NAVN);
+lastFilTilMinne(PERSON_INFO);
 lastFilTilMinne(PERSONOVERSIKT_ENHET);
 lastFilTilMinne(MOTER);
 lastFilTilMinne(VEILEDERINFO);
 lastFilTilMinne(ENHET_NAVN);
 
 function mockForLokal(server) {
-  server.post('/syfoperson/api/person/navn', (req, res) => {
+  server.post('/syfoperson/api/person/info', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[PERSON_NAVN]));
+    res.send(JSON.stringify(mockData[PERSON_INFO]));
   });
 
   server.get('/api/v1/personoversikt/enhet/:id', (req, res) => {

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { PersonHendelseData } from '../../src/store/personregister/personregisterTypes';
 import { testdata } from '../data/fellesTestdata';
-import { Fodselsnummer } from '../../src/store/personNavn/personNavnTypes';
+import { Fodselsnummer } from '../../src/store/personInfo/personInfoTypes';
 import { hentFodselsnummerFraPersonHendelseListe } from '../../src/components/utils/util';
 
 describe('utils', () => {

@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
-import { PersonNavn } from '../personNavn/personNavnTypes';
-import { PersonNavnActionTypes } from '../personNavn/personNavn_actions';
+import { PersonInfo } from '../personInfo/personInfoTypes';
+import { PersonInfoActionTypes } from '../personInfo/personInfo_actions';
 import { VeilederArbeidstaker } from '../veilederArbeidstaker/veilederArbeidstakerTypes';
 import { veilederArbeidstakerActionTypes } from '../veilederArbeidstaker/veilederArbeidstaker_actions';
 import { PersonoversiktStatus } from '../personoversikt/personoversiktTypes';
@@ -32,20 +32,20 @@ const personregisterReducer: Reducer<PersonregisterState> = (
           [moter.fnr]: {
             ...state[moter.fnr],
             harMote: true,
-            skjermingskode: moter.skjermingskode,
           },
         };
       });
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
       return {...state, ...oppdatering };
     }
-    case PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET: {
+    case PersonInfoActionTypes.HENT_PERSON_INFO_HENTET: {
       const navnHentet = action.data;
-      const personerSomSkalOppdateres: { [fnr: string]: PersonData } = navnHentet.map((personNavn: PersonNavn) => {
+      const personerSomSkalOppdateres: { [fnr: string]: PersonData } = navnHentet.map((personInfo: PersonInfo) => {
         return {
-          [personNavn.fnr]: {
-            ...state[personNavn.fnr],
-            navn: personNavn.navn,
+          [personInfo.fnr]: {
+            ...state[personInfo.fnr],
+            navn: personInfo.navn,
+            skjermingskode: personInfo.skjermingskode,
           },
         };
       });

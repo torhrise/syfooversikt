@@ -11,7 +11,7 @@ import { fullNaisUrlDefault } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
 import { skalHenteReducer } from '../../utils/selectorUtil';
 import { hentFodselsnummerFraPersonOversikt } from '../../components/utils/util';
-import * as personNavnActions from '../personNavn/personNavn_actions';
+import * as personInfoActions from '../personInfo/personInfo_actions';
 import { PersonoversiktStatus } from './personoversiktTypes';
 
 export function* hentPersonoversikt(
@@ -44,7 +44,7 @@ export function* hentNavnForPersonerUtenNavn(data: PersonoversiktStatus[]): any 
     return !personRegisterData[fnrObjekt.fnr] || (personRegisterData[fnrObjekt.fnr] && personRegisterData[fnrObjekt.fnr].navn === undefined);
   });
 
-  yield put(personNavnActions.hentPersonNavnForespurt(filtrertListe));
+  yield put(personInfoActions.hentPersonInfoForespurt(filtrertListe));
 }
 
 const hentetAktivEnhetId = (state: any): string => {

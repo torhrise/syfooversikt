@@ -1,16 +1,16 @@
 import { expect } from 'chai';
 import deepFreeze from 'deep-freeze';
-import personNavnReducer from '../../../src/store/personNavn/personNavnReducer';
+import personInfoReducer from '../../../src/store/personInfo/personInfoReducer';
 import {
-  PersonNavnActionTypes,
-  hentPersonNavnHenter,
-  hentPersonNavnHentet,
-  hentPersonNavnFeilet,
-} from '../../../src/store/personNavn/personNavn_actions';
+  PersonInfoActionTypes,
+  hentPersonInfoHenter,
+  hentPersonInfoHentet,
+  hentPersonInfoFeilet,
+} from '../../../src/store/personInfo/personInfo_actions';
 import { testdata } from '../../data/fellesTestdata';
 
-describe('personNavnReducer', () => {
-  describe('Henter navn paa personer', () => {
+describe('personInfoReducer', () => {
+  describe('Henter info paa personer', () => {
     const initialState = deepFreeze({
       hentet: false,
       henter: false,
@@ -18,9 +18,9 @@ describe('personNavnReducer', () => {
       data: [],
     });
 
-    it(`handterer ${PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER}`, () => {
-      const action = hentPersonNavnHenter();
-      const nesteState = personNavnReducer(initialState, action);
+    it(`handterer ${PersonInfoActionTypes.HENT_PERSON_INFO_HENTER}`, () => {
+      const action = hentPersonInfoHenter();
+      const nesteState = personInfoReducer(initialState, action);
       expect(nesteState).to.deep.equal({
         hentet: false,
         henter: true,
@@ -29,21 +29,25 @@ describe('personNavnReducer', () => {
       });
     });
 
-    it(`handterer ${PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET}`, () => {
-      const personNavnSvar = [{ fnr: testdata.fnr1, navn: testdata.navn1 }];
-      const action = hentPersonNavnHentet(personNavnSvar);
-      const nesteState = personNavnReducer(initialState, action);
+    it(`handterer ${PersonInfoActionTypes.HENT_PERSON_INFO_HENTET}`, () => {
+      const personInfoSvar = [{
+        fnr: testdata.fnr1,
+        navn: testdata.navn1,
+        skjermingskode: testdata.skjermingskode.ingen,
+      }];
+      const action = hentPersonInfoHentet(personInfoSvar);
+      const nesteState = personInfoReducer(initialState, action);
       expect(nesteState).to.deep.equal({
         hentet: true,
         henter: false,
         hentingFeilet: false,
-        data: personNavnSvar,
+        data: personInfoSvar,
       });
     });
 
-    it(`handterer ${PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET}`, () => {
-      const action = hentPersonNavnFeilet();
-      const nesteState = personNavnReducer(initialState, action);
+    it(`handterer ${PersonInfoActionTypes.HENT_PERSON_INFO_FEILET}`, () => {
+      const action = hentPersonInfoFeilet();
+      const nesteState = personInfoReducer(initialState, action);
       expect(nesteState).to.deep.equal({
         hentet: false,
         henter: false,

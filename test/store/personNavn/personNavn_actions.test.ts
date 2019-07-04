@@ -1,45 +1,46 @@
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import { PersonNavnActionTypes } from '../../../src/store/personNavn/personNavn_actions';
+import { PersonInfoActionTypes } from '../../../src/store/personInfo/personInfo_actions';
 import {
-  hentPersonNavnForespurt,
-  hentPersonNavnHenter,
-  hentPersonNavnHentet,
-  hentPersonNavnFeilet,
-} from '../../../src/store/personNavn/personNavn_actions';
+  hentPersonInfoForespurt,
+  hentPersonInfoHenter,
+  hentPersonInfoHentet,
+  hentPersonInfoFeilet,
+} from '../../../src/store/personInfo/personInfo_actions';
 import { testdata } from '../../data/fellesTestdata';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-describe('personNavn_actions', () => {
-  it('hentPersonNavnForespurt() skal returnere riktig action', () => {
+describe('personInfo_actions', () => {
+  it('hentPersonInfoForespurt() skal returnere riktig action', () => {
     const fnrListe = [{fnr: testdata.fnr1}];
-    expect(hentPersonNavnForespurt(fnrListe)).to.deep.equal({
-      type: PersonNavnActionTypes.HENT_PERSON_NAVN_FORESPURT, data: fnrListe,
+    expect(hentPersonInfoForespurt(fnrListe)).to.deep.equal({
+      type: PersonInfoActionTypes.HENT_PERSON_INFO_FORESPURT, data: fnrListe,
     });
   });
 
-  it('hentPersonNavnHenter() skal returnere riktig action', () => {
-    expect(hentPersonNavnHenter()).to.deep.equal({
-      type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTER,
+  it('hentPersonInfoHenter() skal returnere riktig action', () => {
+    expect(hentPersonInfoHenter()).to.deep.equal({
+      type: PersonInfoActionTypes.HENT_PERSON_INFO_HENTER,
     });
   });
 
-  it('hentPersonNavnHentet() skal returnere riktig action', () => {
-    const personNavnSvar = [ {
+  it('hentPersonInfoHentet() skal returnere riktig action', () => {
+    const personInfoSvar = [ {
       fnr: testdata.fnr1,
       navn: testdata.navn1,
+      skjermingskode: testdata.skjermingskode.ingen,
     } ];
-    expect(hentPersonNavnHentet(personNavnSvar)).to.deep.equal({
-      type: PersonNavnActionTypes.HENT_PERSON_NAVN_HENTET,
-      data: personNavnSvar,
+    expect(hentPersonInfoHentet(personInfoSvar)).to.deep.equal({
+      type: PersonInfoActionTypes.HENT_PERSON_INFO_HENTET,
+      data: personInfoSvar,
     });
   });
 
-  it('hentPersonNavnFeilet() skal returnere riktig action', () => {
-    expect(hentPersonNavnFeilet()).to.deep.equal({
-      type: PersonNavnActionTypes.HENT_PERSON_NAVN_FEILET,
+  it('hentPersonInfoFeilet() skal returnere riktig action', () => {
+    expect(hentPersonInfoFeilet()).to.deep.equal({
+      type: PersonInfoActionTypes.HENT_PERSON_INFO_FEILET,
     });
   });
 });

@@ -4,7 +4,7 @@ import { ModiacontextState } from './modiacontext/modiacontextTypes';
 import { VeilederenheterState } from './veilederenheter/veilederenheterTypes';
 import { VeilederinfoState } from './veilederinfo/veilederinfoTypes';
 import { EnhetensMoterState } from './enhetensMoter/enhetensMoterTypes';
-import { PersonNavnState } from './personNavn/personNavnTypes';
+import { PersonInfoState } from './personInfo/personInfoTypes';
 import { PersonregisterState } from './personregister/personregisterTypes';
 import { EnhetNavnState } from './enhetNavn/enhetNavnTypes';
 import { PersonoversiktStatusState } from './personoversikt/personoversiktTypes';
@@ -12,7 +12,7 @@ import modiacontextReducer from './modiacontext/modiacontextReducer';
 import veilederenheterReducer from './veilederenheter/veilederenheterReducer';
 import veilederinfoReducer from './veilederinfo/veilederinfoReducer';
 import enhetensMoterReducer from './enhetensMoter/enhetensMoterReducer';
-import personNavnReducer from './personNavn/personNavnReducer';
+import personInfoReducer from './personInfo/personInfoReducer';
 import personoversiktReducer from './personoversikt/personoversiktReducer';
 import enhetNavnReducer from './enhetNavn/enhetNavnReducer';
 import personregisterReducer from './personregister/personregisterReducer';
@@ -21,7 +21,7 @@ import modiacontextSagas from './modiacontext/modiacontextSagas';
 import veilederenheterSagas from './veilederenheter/veilederenheterSagas';
 import veilederinfoSagas from './veilederinfo/veilederinfoSagas';
 import enhetensMoterSagas from './enhetensMoter/enhetensMoterSagas';
-import personNavnSagas from './personNavn/personNavnSagas';
+import personInfoSagas from './personInfo/personInfoSagas';
 import personoversiktSagas from './personoversikt/personoversiktSagas';
 import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
@@ -33,7 +33,7 @@ export interface ApplicationState {
   veilederenheter: VeilederenheterState;
   veilederinfo: VeilederinfoState;
   enhetensMoter: EnhetensMoterState;
-  personNavn: PersonNavnState;
+  personInfo: PersonInfoState;
   personoversikt: PersonoversiktStatusState;
   personregister: PersonregisterState;
   enhetNavn: EnhetNavnState;
@@ -48,7 +48,7 @@ export const rootReducer = combineReducers<ApplicationState>({
   veilederenheter: veilederenheterReducer,
   veilederinfo: veilederinfoReducer,
   enhetensMoter: enhetensMoterReducer,
-  personNavn: personNavnReducer,
+  personInfo: personInfoReducer,
   personoversikt: personoversiktReducer,
   personregister: personregisterReducer,
   enhetNavn: enhetNavnReducer,
@@ -60,7 +60,7 @@ export function* rootSaga() {
     fork(veilederenheterSagas),
     fork(veilederinfoSagas),
     fork(enhetensMoterSagas),
-    fork(personNavnSagas),
+    fork(personInfoSagas),
     fork(personoversiktSagas),
     fork(veilederArbeidstakerSagas),
     fork(enhetNavnSagas),

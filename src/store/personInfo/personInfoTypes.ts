@@ -2,14 +2,15 @@ export interface Fodselsnummer {
   fnr: string;
 }
 
-export interface PersonNavn {
+export interface PersonInfo {
   fnr: string;
   navn: string;
+  skjermingskode: string;
 }
 
-export interface PersonNavnState {
+export interface PersonInfoState {
   readonly hentet: boolean;
   readonly henter: boolean;
   readonly hentingFeilet: boolean;
-  readonly data: PersonNavn[];
+  readonly data: PersonInfo[];
 }

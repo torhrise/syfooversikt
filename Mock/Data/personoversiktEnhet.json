@@ -9,13 +9,13 @@
     "fnr":"99999933333",
     "enhet": "0315",
     "veilederIdent":"Z101010",
-    "motebehovUbehandlet": true
+    "motebehovUbehandlet": null
   },
   {
     "fnr":"99999944444",
     "enhet": "0315",
     "veilederIdent":"Z101010",
-    "motebehovUbehandlet": null
+    "motebehovUbehandlet": true
   },
   {
     "fnr": "99999966666",
