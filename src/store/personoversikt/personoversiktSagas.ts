@@ -14,6 +14,12 @@ import { hentFodselsnummerFraPersonOversikt } from '../../components/utils/util'
 import * as personInfoActions from '../personInfo/personInfo_actions';
 import { PersonoversiktStatus } from './personoversiktTypes';
 
+export const filtrerPersonoversiktUbehandlede = (personoversikt: PersonoversiktStatus[]) => {
+  return personoversikt.filter((person: PersonoversiktStatus) => {
+    return person.motebehovUbehandlet !== false;
+  });
+};
+
 export function* hentPersonoversikt(
     enhetId: string
 ) {
@@ -22,8 +28,9 @@ export function* hentPersonoversikt(
     const host = HOST_NAMES.SYFOOVERSIKTSRV;
     const path = `${process.env.REACT_APP_SYFOOVERSIKTSRVREST_ROOT}/personoversikt/enhet/${enhetId}`;
     const data = yield call(get, fullNaisUrlDefault(host, path));
-    yield put(actions.hentPersonoversiktHentet(data));
-    yield call(hentNavnForPersonerUtenNavn, data);
+    const filtrertData = filtrerPersonoversiktUbehandlede(data);
+    yield put(actions.hentPersonoversiktHentet(filtrertData));
+    yield call(hentNavnForPersonerUtenNavn, filtrertData);
   } catch (e) {
     yield put(actions.hentPersonoversiktFeilet());
   }
