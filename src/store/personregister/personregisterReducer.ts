@@ -68,15 +68,19 @@ const personregisterReducer: Reducer<PersonregisterState> = (
     }
     case PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTET: {
       const personoversikt = action.data;
-      const personerSomSkalOppdateres = personoversikt.map((person: PersonoversiktStatus) => {
-        return {
-          [person.fnr]: {
-            ...state[person.fnr],
-            tildeltEnhetId: person.enhet,
-            tildeltVeilederIdent: person.veilederIdent,
-            harMotebehovUbehandlet: person.motebehovUbehandlet,
-          },
-        };
+      const personerSomSkalOppdateres = personoversikt
+          .filter((person: PersonoversiktStatus) => {
+            return person.motebehovUbehandlet !== false;
+          })
+          .map((person: PersonoversiktStatus) => {
+            return {
+              [person.fnr]: {
+                ...state[person.fnr],
+                tildeltEnhetId: person.enhet,
+                tildeltVeilederIdent: person.veilederIdent,
+                harMotebehovUbehandlet: person.motebehovUbehandlet,
+              },
+           };
       });
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
       return {...state, ...oppdatering };
