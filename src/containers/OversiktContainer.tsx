@@ -7,7 +7,6 @@ import { ApplicationState } from '../store';
 import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import AppSpinner from '../components/AppSpinner';
 import Sokeresultat from '../components/Sokeresultat';
-import { hentEnhetensMoterForespurt } from '../store/enhetensMoter/enhetensMoter_actions';
 import { hentPersonInfoForespurt } from '../store/personInfo/personInfo_actions';
 import { Fodselsnummer } from '../store/personInfo/personInfoTypes';
 import { hentPersonoversiktForespurt } from '../store/personoversikt/personoversikt_actions';
@@ -43,7 +42,6 @@ interface StateProps {
 
 interface DispatchProps {
   actions: {
-    hentEnhetensMoterForespurt: typeof hentEnhetensMoterForespurt;
     hentPersonInfoForespurt: typeof hentPersonInfoForespurt;
     hentPersonoversiktForespurt: typeof hentPersonoversiktForespurt;
     tildelVeileder: typeof pushVeilederArbeidstakerForespurt;
@@ -61,7 +59,6 @@ class OversiktCont extends Component<OversiktContainerProps> {
 
   componentDidUpdate() {
     const { actions } = this.props;
-    actions.hentEnhetensMoterForespurt();
     actions.hentPersonoversiktForespurt();
   }
 
@@ -104,7 +101,6 @@ const OversiktHeader = (oversiktsType: OversiktProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: {
-    hentEnhetensMoterForespurt: () => dispatch(hentEnhetensMoterForespurt()),
     hentPersonInfoForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonInfoForespurt(fnrListe)),
     hentPersonoversiktForespurt: () => dispatch(hentPersonoversiktForespurt()),
     hentVeilederenheter: () => dispatch(hentVeilederenheter()),
@@ -112,14 +108,14 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-const mapStateToProps = ({ personoversikt, enhetensMoter, personregister, veilederenheter, veilederinfo }: ApplicationState, oversiktProps: OversiktProps) => ({
+const mapStateToProps = ({ personoversikt, personregister, veilederenheter, veilederinfo }: ApplicationState, oversiktProps: OversiktProps) => ({
   personregister,
   oversiktProps,
   aktivEnhet: veilederenheter.aktivEnhet,
   aktivVeilederinfo: veilederinfo.data,
-  henterAlt: veilederenheter.henter || veilederinfo.henter || (personoversikt.henter && enhetensMoter.henter),
-  noeErHentet: veilederenheter.hentet && veilederinfo.hentet && (personoversikt.hentet || enhetensMoter.hentet),
-  altFeilet: veilederenheter.hentingFeilet || veilederinfo.hentingFeilet || (personoversikt.hentingFeilet && enhetensMoter.hentingFeilet),
+  henterAlt: veilederenheter.henter || veilederinfo.henter || personoversikt.henter,
+  noeErHentet: veilederenheter.hentet && veilederinfo.hentet && personoversikt.hentet,
+  altFeilet: veilederenheter.hentingFeilet || veilederinfo.hentingFeilet || personoversikt.hentingFeilet,
 });
 
 export default connect(
