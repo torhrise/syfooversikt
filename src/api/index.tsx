@@ -29,7 +29,7 @@ export const hentRedirectBaseUrl = (windowLocationHref: string) => {
     if (erProd()) {
         return 'https://syfooversikt.nais.adeo.no';
     }
-    return 'https://syfooversikt-q1.nais.preprod.local';
+    return 'https://syfooversikt.nais.preprod.local';
 
 };
 
