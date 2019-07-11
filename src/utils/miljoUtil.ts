@@ -25,11 +25,9 @@ export const erHerokuApp = () => {
 };
 
 export const finnNaisUrl = () => {
-  const miljoStreng = finnMiljoStreng();
-  if (miljoStreng === '') {
-    return '.nais.adeo.no';
-  }
-  return `${miljoStreng}.nais.preprod.local`;
+  return erPreProd() ?
+      '-q1.nais.preprod.local'
+      : '.nais.adeo.no';
 };
 
 export const fullNaisUrl = (host: string, path: string) => {
