@@ -15,6 +15,9 @@ import { hentVeilederenheter } from '../store/veilederenheter/veilederenheter_ac
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
 import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
+import SokeresultatFilter, { HendelseTypeFilters } from '../components/HendelseTypeFilter';
+import { filtrerPersonregister, Filterable, filtrerPaaFodelsnummerEllerNavn } from '../utils/hendelseFilteringUtils';
+import TekstFilter from '../components/TekstFilter';
 
 const tekster = {
   overskrifter: {
@@ -49,9 +52,25 @@ interface DispatchProps {
   };
 }
 
+interface OversiktContainerState {
+    hendelseTypeFilter?: HendelseTypeFilters;
+    tekstFilter: string;
+}
+
 export type OversiktContainerProps = OversiktProps & StateProps & DispatchProps;
 
-class OversiktCont extends Component<OversiktContainerProps> {
+class OversiktCont extends Component<OversiktContainerProps, OversiktContainerState> {
+
+  constructor(props: OversiktContainerProps) {
+    super(props);
+    this.state = {
+        hendelseTypeFilter: undefined,
+        tekstFilter: '',
+    };
+    this.onHendelsesTypeChange = this.onHendelsesTypeChange.bind(this);
+    this.onTekstFilterChange = this.onTekstFilterChange.bind(this);
+  }
+
   componentDidMount() {
     const { actions } = this.props;
     actions.hentVeilederenheter();
@@ -60,6 +79,14 @@ class OversiktCont extends Component<OversiktContainerProps> {
   componentDidUpdate() {
     const { actions } = this.props;
     actions.hentPersonoversiktForespurt();
+  }
+
+  onHendelsesTypeChange = (filter: HendelseTypeFilters) => {
+    this.setState({ hendelseTypeFilter: filter });
+  }
+
+  onTekstFilterChange = (tekstFilter: string) => {
+      this.setState({ tekstFilter });
   }
 
   render() {
@@ -73,30 +100,45 @@ class OversiktCont extends Component<OversiktContainerProps> {
       aktivVeilederinfo,
       personregister,
     } = this.props;
-    return (<div className="oversiktContainer">
-        { altFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && AlertStripeMedMelding(tekster.feil.hentingFeilet, 'oversiktContainer__alertstripe')
-        }
-        <OversiktHeader type={type}/>
-        { henterAlt
-          && <AppSpinner />
-        }
-        { noeErHentet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT
-          && <Sokeresultat
-            tildelVeileder={actions.tildelVeileder}
-            aktivEnhet={aktivEnhet}
-            aktivVeilederinfo={aktivVeilederinfo}
-            personregister={personregister}
-        />}
-    </div>);
+
+    const filtrertListe = new Filterable<PersonregisterState>(personregister)
+        .applyFilter((v) => filtrerPersonregister(v, this.state.hendelseTypeFilter))
+        .applyFilter((v) => filtrerPaaFodelsnummerEllerNavn(v, this.state.tekstFilter))
+        .value;
+
+    return (
+      <div className="oversiktContainer">
+        {altFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT &&
+          AlertStripeMedMelding(
+            tekster.feil.hentingFeilet,
+            'oversiktContainer__alertstripe'
+          )}
+        <OversiktHeader type={type} />
+        {henterAlt && <AppSpinner />}
+        {noeErHentet && type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && (
+          <div className="oversiktContainer__innhold">
+            <div className="sokeresultatFilter">
+                <TekstFilter className="sokeresultatFilter__panel" onFilterChange={this.onTekstFilterChange} />
+                <SokeresultatFilter className="sokeresultatFilter__panel" onFilterChange={this.onHendelsesTypeChange} />
+            </div>
+            <Sokeresultat
+              tildelVeileder={actions.tildelVeileder}
+              aktivEnhet={aktivEnhet}
+              aktivVeilederinfo={aktivVeilederinfo}
+              personregister={filtrertListe}
+            />
+          </div>
+        )}
+      </div>
+    );
   }
 }
 
 const OversiktHeader = (oversiktsType: OversiktProps) => {
   const { type } = oversiktsType;
   return (<div>
-      {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && <h2>{tekster.overskrifter.enhetensOversikt}</h2>}
-  </div>);
+      {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && (<h2>{tekster.overskrifter.enhetensOversikt}</h2>)}
+    </div>);
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
@@ -104,7 +146,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     hentPersonInfoForespurt: (fnrListe: Fodselsnummer[]) => dispatch(hentPersonInfoForespurt(fnrListe)),
     hentPersonoversiktForespurt: () => dispatch(hentPersonoversiktForespurt()),
     hentVeilederenheter: () => dispatch(hentVeilederenheter()),
-    tildelVeileder: (liste: VeilederArbeidstaker[]) => dispatch(pushVeilederArbeidstakerForespurt(liste)),
+    tildelVeileder: (liste: VeilederArbeidstaker[]) =>
+      dispatch(pushVeilederArbeidstakerForespurt(liste)),
   },
 });
 
