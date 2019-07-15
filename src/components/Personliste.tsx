@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from 'nav-frontend-grid';
 import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
@@ -8,6 +8,7 @@ interface PersonlisteProps {
   personregister: PersonregisterState;
   checkboxHandler: (fnr: string ) => void;
   markertePersoner: string[];
+  alleMarkert: boolean;
   checkAllHandler: (checked: boolean) => void;
 }
 
@@ -23,10 +24,13 @@ const Personliste = (props: PersonlisteProps) => {
     checkboxHandler,
     markertePersoner,
     checkAllHandler,
+    alleMarkert,
   } = props;
+
   const fnrListe = Object.keys(personregister);
+
   return (<Container className="personliste">
-    <Sorteringsrad checkAllHandler={checkAllHandler} />
+    <Sorteringsrad checked={alleMarkert} checkAllHandler={checkAllHandler} />
     {
       fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad

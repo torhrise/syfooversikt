@@ -15,13 +15,14 @@ const tekster = {
 };
 
 interface SorteringsradProps {
-  checkAllHandler: (checked: boolean) => void;
+    checked: boolean;
+    checkAllHandler: (checked: boolean) => void;
 }
 
 const Sorteringsrad = (props: SorteringsradProps) => {
   return (<Row className="sorteringsrad">
     <Column md={'2'}>
-      <Checkbox label={tekster.velgalle} onChange={(event) => {props.checkAllHandler(event.target.checked);}} />
+      <Checkbox label={tekster.velgalle} checked={props.checked} onChange={(event) => {props.checkAllHandler(event.target.checked);}} />
     </Column>
     <Column md={'2'}>{tekster.navn}</Column>
     <Column md={'2'}>{tekster.fodselsnummer}</Column>

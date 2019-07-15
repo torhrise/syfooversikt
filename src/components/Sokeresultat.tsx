@@ -8,6 +8,7 @@ import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
 
 interface  SokeresultatState {
   markertePersoner: string[];
+  alleMarkert: boolean;
 }
 
 interface SokeresultatProps {
@@ -32,6 +33,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     super(props);
     this.state = {
       markertePersoner: [],
+      alleMarkert: false,
     };
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.checkAllHandler = this.checkAllHandler.bind(this);
@@ -39,10 +41,12 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
 
   checkboxHandler =  (fnr: string ) => {
     this.setState((prevState) => {
-      const markertePersoner = personErIkkeMarkert(prevState, fnr)
+      const markertePersoner: string[] = personErIkkeMarkert(prevState, fnr)
         ? [...prevState.markertePersoner, fnr]
         :  fjernMarkertPerson(prevState, fnr);
-      return { markertePersoner };
+
+      const alleMarkert = markertePersoner.length === Object.keys(this.props.personregister).length;
+      return { markertePersoner, alleMarkert };
     });
   }
 
@@ -56,8 +60,9 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const markertePersoner = checked
       ? fnrListe
       : [];
+    const alleMarkert = checked;
     this.setState(() => {
-      return { markertePersoner };
+      return { markertePersoner, alleMarkert };
     });
   }
 
@@ -74,9 +79,15 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const {
       personregister,
     } = this.props;
+
+    const {
+        alleMarkert,
+    } = this.state;
+
     return (<div className="Sokeresultat__container">
       <Toolbar buttonHandler={this.buttonHandler}/>
       <Personliste
+        alleMarkert={alleMarkert}
         personregister={personregister}
         checkboxHandler={this.checkboxHandler}
         markertePersoner={this.state.markertePersoner}
