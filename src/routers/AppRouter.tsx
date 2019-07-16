@@ -1,6 +1,7 @@
 import React from 'react';
-import { Route, Router } from 'react-router';
+import { Route, Router, Switch } from 'react-router';
 import { Landingsside } from '../sider/Landingsside';
+import ManglerTilgangside from '../sider/ManglerTilgangside';
 
 interface AppRouterProps {
   history: any;
@@ -8,7 +9,10 @@ interface AppRouterProps {
 
 const AppRouter = ({ history }: AppRouterProps) => {
   return (<Router history={history}>
-      <Route path="*" component={Landingsside} />
+      <Switch>
+        <Route path="/na" component={ManglerTilgangside} />
+        <Route path="*" component={Landingsside} />
+      </Switch>
   </Router>);
 };
 
