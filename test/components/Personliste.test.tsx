@@ -17,6 +17,7 @@ describe('Personliste', () => {
   // tslint:disable-next-line:no-empty
   const checkboxHandler = () =>  {};
   const component = shallow(<Personliste
+    alleMarkert={false}
     personregister={personregister}
     checkboxHandler={checkboxHandler}
     markertePersoner={markertePersoner}
@@ -24,7 +25,7 @@ describe('Personliste', () => {
   />);
 
   it('Skal rendre Sorteringsrad', () => {
-    expect(component.contains(<Sorteringsrad checkAllHandler={checkAllHandler}/>)).to.equal(true);
+    expect(component.contains(<Sorteringsrad checked={false} checkAllHandler={checkAllHandler}/>)).to.equal(true);
   });
 
   it('Skal rendre Personrad-komponenter med riktig persondata', () => {
