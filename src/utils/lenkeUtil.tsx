@@ -13,7 +13,7 @@ const formaterNavn = (navn?: string) => {
   const etternavn = arr.pop();
   if (arr.length > 0) {
     const fornavn = arr.join(' ');
-    return `${fornavn}, ${etternavn}`;
+    return `${etternavn}, ${fornavn}`;
   }
   return etternavn;
 };
