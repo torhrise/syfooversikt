@@ -7,8 +7,19 @@ const lenkeTilModiaBasertPaaFnr = (fnr: string) => {
   return fullAppAdeoUrl(path);
 };
 
+const formaterNavn = (navn?: string) => {
+  if (!navn) return '';
+  const arr = navn.split(' ');
+  const etternavn = arr.pop();
+  if (arr.length > 0) {
+    const fornavn = arr.join(' ');
+    return `${etternavn}, ${fornavn}`;
+  }
+  return etternavn;
+};
+
 export const lenkeTilModiaEnkeltperson = (navn: string, fnr: string) => {
   return (<Lenke href={lenkeTilModiaBasertPaaFnr(fnr)}>
-      {navn}
+      {formaterNavn(navn)}
   </Lenke>);
 };
