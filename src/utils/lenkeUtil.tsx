@@ -9,16 +9,12 @@ const lenkeTilModiaBasertPaaFnr = (fnr: string) => {
 
 const formaterNavn = (navn?: string) => {
   if (!navn) return '';
-  // tslint:disable-next-line: no-console
-  console.log(navn);
   const arr = navn.split(' ');
   const etternavn = arr.pop();
   if (arr.length > 0) {
     const fornavn = arr.join(' ');
     return `${fornavn}, ${etternavn}`;
   }
-  // tslint:disable-next-line: no-console
-  console.log(arr);
   return etternavn;
 };
 
