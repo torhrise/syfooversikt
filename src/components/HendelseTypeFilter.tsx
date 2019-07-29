@@ -64,6 +64,11 @@ export default ({ onFilterChange: onValgteElementerChange, className }: Props) =
 
 const genererHendelseCheckbokser = (elementer: CheckboksElement[], onCheckedChange: (klikketElement: CheckboksElement, checked: boolean) => void) => (
     elementer.map((k) => {
-        return <Checkbox label={k.tekst} id={k.key} key={k.key} onChange={(e) => onCheckedChange(k, e.target.checked)} />;
+        return (<Checkbox
+            label={k.tekst}
+            id={k.key}
+            key={k.key}
+            onChange={(e) => onCheckedChange(k, e.target.checked)}
+        />);
     })
 );

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import { Input } from 'nav-frontend-skjema';
 import { Panel } from 'nav-frontend-paneler';
-import classNames from 'classnames';
 
 interface Props extends React.PropsWithoutRef<any> {
     initialValue?: string;
