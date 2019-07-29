@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+  Fragment,
+} from 'react';
 import cn from 'classnames';
 import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import OversiktContainer from '../containers/OversiktContainer';
@@ -32,7 +35,7 @@ class OversiktVelger extends Component<{}, StateProps> {
 
   render() {
     const visning = this.state.visning;
-    return (<div>
+    return (<Fragment>
       <div className="oversiktVelger">
         <ul>
           <li>
@@ -48,7 +51,7 @@ class OversiktVelger extends Component<{}, StateProps> {
         </ul>
       </div>
       <OversiktContainer type={visning}/>
-    </div>);
+    </Fragment>);
   }
 }
 

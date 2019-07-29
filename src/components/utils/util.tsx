@@ -2,13 +2,13 @@ import { PersonHendelseData } from '../../store/personregister/personregisterTyp
 import { PersonoversiktStatus } from '../../store/personoversikt/personoversiktTypes';
 
 export const hentFodselsnummerFraPersonHendelseListe = (svarListe: PersonHendelseData[]) => {
-  return svarListe.map((hendelseObjekt) => {
-    return {fnr: hendelseObjekt.fnr};
-  });
+  return svarListe.map((hendelseObjekt) => ({
+    fnr: hendelseObjekt.fnr,
+  }));
 };
 
 export const hentFodselsnummerFraPersonOversikt = (personListe: PersonoversiktStatus[]) => {
-  return personListe.map((person) => {
-    return {fnr: person.fnr};
-  });
+  return personListe.map((person) => ({
+    fnr: person.fnr,
+  }));
 };
