@@ -7,27 +7,19 @@ export const enum PersonoversiktActionTypes {
   HENT_PERSONOVERSIKT_ENHET_FEILET= 'HENT_PERSONOVERSIKT_ENHET_FEILET',
 }
 
-export const hentPersonoversiktForespurt = () => {
-  return {
-    type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FORESPURT,
-  };
-};
+export const hentPersonoversiktForespurt = () => ({
+  type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FORESPURT,
+});
 
-export const hentPersonoversiktHenter = () => {
-  return {
+export const hentPersonoversiktHenter = () => ({
     type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTER,
-  };
-};
+});
 
-export const hentPersonoversiktHentet = (data: PersonoversiktStatus[]) => {
-  return {
-    type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTET,
-    data,
-  };
-};
+export const hentPersonoversiktHentet = (data: PersonoversiktStatus[]) => ({
+  type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTET,
+  data,
+});
 
-export const hentPersonoversiktFeilet = () => {
-  return {
-    type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FEILET,
-  };
-};
+export const hentPersonoversiktFeilet = () => ({
+  type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FEILET,
+});

@@ -26,45 +26,39 @@ const personregisterReducer: Reducer<PersonregisterState> = (
   switch (action.type) {
     case PersonInfoActionTypes.HENT_PERSON_INFO_HENTET: {
       const navnHentet = action.data;
-      const personerSomSkalOppdateres: { [fnr: string]: PersonData } = navnHentet.map((personInfo: PersonInfo) => {
-        return {
-          [personInfo.fnr]: {
-            ...state[personInfo.fnr],
-            navn: personInfo.navn,
-            skjermingskode: personInfo.skjermingskode,
-          },
-        };
-      });
+      const personerSomSkalOppdateres: { [fnr: string]: PersonData } = navnHentet.map((personInfo: PersonInfo) => ({
+        [personInfo.fnr]: {
+          ...state[personInfo.fnr],
+          navn: personInfo.navn,
+          skjermingskode: personInfo.skjermingskode,
+        },
+      }));
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
       return {...state, ...oppdatering };
     }
     case veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET: {
       const tildelinger = action.data;
-      const personerSomSkalOppdateres = tildelinger.map((tildeling: VeilederArbeidstaker) => {
-        return {
-          [tildeling.fnr]: {
-            ...state[tildeling.fnr],
-            tildeltEnhetId: tildeling.enhet,
-            tildeltVeilederIdent: tildeling.veilederIdent,
-          },
-        };
-      });
+      const personerSomSkalOppdateres = tildelinger.map((tildeling: VeilederArbeidstaker) => ({
+        [tildeling.fnr]: {
+          ...state[tildeling.fnr],
+          tildeltEnhetId: tildeling.enhet,
+          tildeltVeilederIdent: tildeling.veilederIdent,
+        },
+      }));
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
       return {...state, ...oppdatering };
     }
     case PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTET: {
       const personoversikt = action.data;
-      const personerSomSkalOppdateres = personoversikt.map((person: PersonoversiktStatus) => {
-        return {
-          [person.fnr]: {
-            ...state[person.fnr],
-            tildeltEnhetId: person.enhet,
-            tildeltVeilederIdent: person.veilederIdent,
-            harMotebehovUbehandlet: person.motebehovUbehandlet,
-            harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
-          },
-        };
-      });
+      const personerSomSkalOppdateres = personoversikt.map((person: PersonoversiktStatus) => ({
+        [person.fnr]: {
+          ...state[person.fnr],
+          tildeltEnhetId: person.enhet,
+          tildeltVeilederIdent: person.veilederIdent,
+          harMotebehovUbehandlet: person.motebehovUbehandlet,
+          harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
+        },
+      }));
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
       return {...state, ...oppdatering };
     }

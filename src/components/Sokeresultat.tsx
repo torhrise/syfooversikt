@@ -19,13 +19,11 @@ interface SokeresultatProps {
 }
 
 const lagListe = (markertePersoner: string[], veilederIdent: string, enhet: string): VeilederArbeidstaker[] => {
-  return markertePersoner.map( (fnr: string) => {
-    return {
-      veilederIdent,
-      fnr,
-      enhet,
-    };
-  });
+  return markertePersoner.map( (fnr: string) => ({
+    veilederIdent,
+    fnr,
+    enhet,
+  }));
 };
 
 class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
@@ -61,9 +59,10 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
       ? fnrListe
       : [];
     const alleMarkert = checked;
-    this.setState(() => {
-      return { markertePersoner, alleMarkert };
-    });
+    this.setState(() => ({
+      markertePersoner,
+      alleMarkert,
+    }));
   }
 
   buttonHandler =  () => {
