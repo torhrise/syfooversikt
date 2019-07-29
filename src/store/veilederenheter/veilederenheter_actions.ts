@@ -7,27 +7,19 @@ export const enum VeilederenheterActionTypes {
   HENT_VEILEDERENHETER_FEILET = 'HENT_VEILEDERENHETER_FEILET',
 }
 
-export const hentVeilederenheter = () => {
-  return {
-    type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FORESPURT,
-  };
-};
+export const hentVeilederenheter = () => ({
+  type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FORESPURT,
+});
 
-export const hentVeilederenheterHenter = () => {
-  return {
-    type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_HENTER,
-  };
-};
+export const hentVeilederenheterHenter = () => ({
+  type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_HENTER,
+});
 
-export const hentVeilederenheterHentet = (data: Veilederenheter) => {
-  return {
-    type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_HENTET,
-    data,
-  };
-};
+export const hentVeilederenheterHentet = (data: Veilederenheter) => ({
+  type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_HENTET,
+  data,
+});
 
-export const hentVeilederenheterFeilet = () => {
-  return {
-    type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FEILET,
-  };
-};
+export const hentVeilederenheterFeilet = () => ({
+  type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FEILET,
+});

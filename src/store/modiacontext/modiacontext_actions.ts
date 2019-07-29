@@ -15,53 +15,37 @@ export const enum modiacontextActionTypes {
   HENT_AKTIVENHET_HENTET = 'HENT_AKTIVENHET_HENTET',
 }
 
-export const hentAktivEnhet = (data: HentAktivEnhetData) => {
-  return {
-    type: modiacontextActionTypes.HENT_AKTIVENHET_FORESPURT,
-    data,
-  };
-};
+export const hentAktivEnhet = (data: HentAktivEnhetData) => ({
+  type: modiacontextActionTypes.HENT_AKTIVENHET_FORESPURT,
+  data,
+});
 
-export const hentAktivEnhetFeilet = () => {
-  return {
-    type: modiacontextActionTypes.HENT_AKTIVENHET_FEILET,
-  };
-};
+export const hentAktivEnhetFeilet = () => ({
+  type: modiacontextActionTypes.HENT_AKTIVENHET_FEILET,
+});
 
-export const henterAktivEnhet = () => {
-  return {
-    type: modiacontextActionTypes.HENT_AKTIVENHET_HENTER,
-  };
-};
+export const henterAktivEnhet = () => ({
+  type: modiacontextActionTypes.HENT_AKTIVENHET_HENTER,
+});
 
-export const aktivEnhetHentet = (data: Modiacontext) => {
-  return {
-    type: modiacontextActionTypes.HENT_AKTIVENHET_HENTET,
-    data,
-  };
-};
+export const aktivEnhetHentet = (data: Modiacontext) => ({
+  type: modiacontextActionTypes.HENT_AKTIVENHET_HENTET,
+  data,
+});
 
-export const pushModiaContextFeilet = () => {
-  return {
-    type: modiacontextActionTypes.PUSH_MODIACONTEXT_FEILET,
-  };
-};
+export const pushModiaContextFeilet = () => ({
+  type: modiacontextActionTypes.PUSH_MODIACONTEXT_FEILET,
+});
 
-export const pusherModiaContext = () => {
-  return {
-    type: modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHER,
-  };
-};
+export const pusherModiaContext = () => ({
+  type: modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHER,
+});
 
-export const pushModiaContext = (data: ModiacontextPayload) => {
-  return {
-    type: modiacontextActionTypes.PUSH_MODIACONTEXT_FORESPURT,
-    data,
-  };
-};
+export const pushModiaContext = (data: ModiacontextPayload) => ({
+  type: modiacontextActionTypes.PUSH_MODIACONTEXT_FORESPURT,
+  data,
+});
 
-export const modiaContextPushet = () => {
-  return {
-    type: modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET,
-  };
-};
+export const modiaContextPushet = () => ({
+  type: modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET,
+});

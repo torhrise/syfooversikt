@@ -11,14 +11,12 @@ import {
 } from '../../../src/store/personoversikt/personoversikt_actions';
 import { PersonoversiktStatus } from '../../../src/store/personoversikt/personoversiktTypes';
 
-const mapPersonToState = (person: PersonoversiktStatus) => {
-  return {
-    tildeltEnhetId: person.enhet,
-    tildeltVeilederIdent: person.veilederIdent,
-    harMotebehovUbehandlet: person.motebehovUbehandlet,
-    harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
-  };
-};
+const mapPersonToState = (person: PersonoversiktStatus) => ({
+  tildeltEnhetId: person.enhet,
+  tildeltVeilederIdent: person.veilederIdent,
+  harMotebehovUbehandlet: person.motebehovUbehandlet,
+  harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
+});
 const mapPersonerToState = (liste: PersonoversiktStatus[]) => {
   let state = {};
   liste.forEach((person) => {
