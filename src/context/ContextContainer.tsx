@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { ApplicationState } from '../store';
 import { CONTEXT_EVENT_TYPE } from '../konstanter';
-import { AlertStripeMedMelding } from '../components/AlertStripeMedMelding';
+import { AlertStripeAdvarsel } from '../components/AlertStripeAdvarsel';
 import { hentAktivEnhet } from '../store/modiacontext/modiacontext_actions';
 import { HentAktivEnhetData } from '../store/modiacontext/modiacontextTypes';
 import { hentVeilederinfo } from '../store/veilederinfo/veilederinfo_actions';
@@ -64,9 +64,12 @@ class Context extends Component<ContextContainerProps> {
     const { veilederinfo } = this.props;
 
     return (<div className="contextContainer">
-        { veilederinfo.hentingFeilet
-          && AlertStripeMedMelding(tekster.feil.hentVeilederIdentFeilet, 'contextContainer__alertstripe')
-        }
+      {veilederinfo.hentingFeilet &&
+        AlertStripeAdvarsel(
+          tekster.feil.hentVeilederIdentFeilet,
+'contextContainer__alertstripe'
+        )
+      }
     </div>);
   }
 }

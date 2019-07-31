@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
-import { AlertStripeMedMelding } from '../components/AlertStripeMedMelding';
+import { AlertStripeAdvarsel } from '../components/AlertStripeAdvarsel';
 import { ApplicationState } from '../store';
 import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import AppSpinner from '../components/AppSpinner';
@@ -109,7 +109,7 @@ class OversiktCont extends Component<OversiktContainerProps, OversiktContainerSt
     return (
       <div className="oversiktContainer">
         {altFeilet && OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT &&
-          AlertStripeMedMelding(
+          AlertStripeAdvarsel(
             tekster.feil.hentingFeilet,
             'oversiktContainer__alertstripe'
           )}
