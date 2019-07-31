@@ -47,6 +47,7 @@ export const fullNaisUrlDefault = (host: string, path: string) => {
 };
 
 export const fullAppAdeoUrl = (path: string) => {
+  console.log('Miljostreng: ', finnMiljoStreng(), ' erProd: ', erProd(), ' erPreProd: ', erPreProd(), ' erLokal: ', erLokal()); // tslint:disable-line no-console
   if (erLokal()) {
     return path;
   }
