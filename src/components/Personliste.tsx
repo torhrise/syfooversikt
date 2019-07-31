@@ -29,7 +29,7 @@ const Personliste = (props: PersonlisteProps) => {
 
   const fnrListe = Object.keys(personregister);
 
-  return (<Container className="personliste">
+  return (<section className="personliste">
     <Sorteringsrad checked={alleMarkert} checkAllHandler={checkAllHandler} />
     {
       fnrListe.map((fnr: string, idx: number) => {
@@ -42,7 +42,7 @@ const Personliste = (props: PersonlisteProps) => {
         />);
       })
     }
-  </Container>);
+  </section>);
 };
 
 export default Personliste;
