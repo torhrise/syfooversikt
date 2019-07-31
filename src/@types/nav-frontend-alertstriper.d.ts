@@ -8,7 +8,7 @@ declare module 'nav-frontend-alertstriper' {
   }
 
   interface AlertStripeMedTypeOgSolidProps extends AlertStripeProps {
-    type: 'advarsel' | 'suksess' | 'info';
+    type: 'advarsel' | 'suksess' | 'info' | 'feil';
     solid?: boolean;
   }
 
