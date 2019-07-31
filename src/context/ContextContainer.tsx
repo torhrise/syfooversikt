@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import React, { useEffect } from 'react';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 import { ApplicationState } from '../store';
 import { CONTEXT_EVENT_TYPE } from '../konstanter';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
@@ -19,21 +21,18 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  actions: {
-    hentAktivEnhet: typeof hentAktivEnhet;
-    hentVeilederinfo: typeof hentVeilederinfo;
-  };
+  doHentEnhet: typeof hentAktivEnhet;
 }
 
 type ContextContainerProps = StateProps & DispatchProps;
 
 const opprettWSConnection = (props: ContextContainerProps) => {
-  const { actions, veilederinfo } = props;
+  const { doHentEnhet, veilederinfo } = props;
   const ident = veilederinfo.data.ident;
 
   opprettWebsocketConnection(ident, (wsCallback) => {
     if (wsCallback.data === CONTEXT_EVENT_TYPE.NY_AKTIV_ENHET) {
-      actions.hentAktivEnhet({
+      doHentEnhet({
         callback: (aktivEnhet) => {
           if (config.config.initiellEnhet !== aktivEnhet) {
             config.config.initiellEnhet = aktivEnhet;
@@ -45,49 +44,30 @@ const opprettWSConnection = (props: ContextContainerProps) => {
   });
 };
 
-class Context extends Component<ContextContainerProps> {
-  componentDidMount() {
-    const { actions } = this.props;
-    actions.hentVeilederinfo();
-  }
+const Context = () => {
+  const veilederinfo = useSelector((state: ApplicationState) => state.veilederinfo);
+  const dispatch = useDispatch();
+  const actionhentEnhet = (data: HentAktivEnhetData) =>
+      dispatch(hentAktivEnhet(data));
 
-  componentDidUpdate(nextProps: ContextContainerProps) {
-    const { actions, veilederinfo } = this.props;
+  useEffect(() => {
+    dispatch(hentVeilederinfo());
+  }, []);
 
-    if (!veilederinfo.hentet && nextProps.veilederinfo.hentet) {
-      this.setState(veilederinfo);
-      opprettWSConnection({ actions, veilederinfo });
+  useEffect(() => {
+    if (veilederinfo.hentet) {
+      opprettWSConnection({ doHentEnhet: actionhentEnhet, veilederinfo });
     }
-  }
+  }, [veilederinfo.hentet]);
 
-  render() {
-    const { veilederinfo } = this.props;
-
-    return (<div className="contextContainer">
-      {veilederinfo.hentingFeilet && AlertStripeRod(
+  return (
+    <div className="contextContainer">
+      {veilederinfo.hentingFeilet &&
+        AlertStripeRod(
           tekster.feil.hentVeilederIdentFeilet,
             'contextContainer__alertstripe'
-        )
-      }
+        )}
     </div>);
-  }
-}
+};
 
-const mapStateToProps = ({ veilederinfo }: ApplicationState) => ({
-  veilederinfo,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  actions: {
-    hentAktivEnhet: (data: HentAktivEnhetData) =>
-      dispatch(hentAktivEnhet(data)),
-    hentVeilederinfo: () => dispatch(hentVeilederinfo()),
-  },
-});
-
-const ContextContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Context);
-
-export default ContextContainer;
+export default Context;
