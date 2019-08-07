@@ -51,7 +51,6 @@ const getPropsFromState = (
   henterAlt: veilederenheter.henter || veilederinfo.henter || personoversikt.henter,
   noeErHentet: veilederenheter.hentet && veilederinfo.hentet && personoversikt.hentet,
   hentVeilederenheterFeilet: veilederenheter.hentingFeilet,
-  hentVeilederenheterHentet: veilederenheter.hentet,
   altFeilet: veilederinfo.hentingFeilet || personoversikt.hentingFeilet,
 });
 
