@@ -29,6 +29,7 @@ const tekster = {
     veilederoversikt: 'Denne fanen er under utvikling',
   },
   feil: {
+    hentVeilederenheterFeilet: 'Det skjedde en feil: Kunne ikke hente dine enheter',
     hentingFeilet: 'Det skjedde en feil: Kunne ikke hente liste over personer',
   },
 };
@@ -49,7 +50,9 @@ const getPropsFromState = (
   aktivVeilederinfo: veilederinfo.data,
   henterAlt: veilederenheter.henter || veilederinfo.henter || personoversikt.henter,
   noeErHentet: veilederenheter.hentet && veilederinfo.hentet && personoversikt.hentet,
-  altFeilet: veilederenheter.hentingFeilet || veilederinfo.hentingFeilet || personoversikt.hentingFeilet,
+  hentVeilederenheterFeilet: veilederenheter.hentingFeilet,
+  hentVeilederenheterHentet: veilederenheter.hentet,
+  altFeilet: veilederinfo.hentingFeilet || personoversikt.hentingFeilet,
 });
 
 const OversiktContainer = ({type}: OversiktProps) => {
@@ -65,6 +68,7 @@ const OversiktContainer = ({type}: OversiktProps) => {
     aktivEnhet,
     aktivVeilederinfo,
     personregister,
+    hentVeilederenheterFeilet,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
   const dispatch = useDispatch();
@@ -87,6 +91,18 @@ const OversiktContainer = ({type}: OversiktProps) => {
       .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
       .applyFilter((v) => filtrerPaaFodelsnummerEllerNavn(v, tekstFilter))
       .value;
+
+  if (hentVeilederenheterFeilet) {
+    return (
+      <div className="oversiktContainer">
+        {hentVeilederenheterFeilet &&
+          AlertStripeRod(
+            tekster.feil.hentVeilederenheterFeilet,
+            'oversiktContainer__alertstripe'
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="oversiktContainer">
