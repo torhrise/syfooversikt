@@ -22,7 +22,7 @@ if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
 }
 
-const config = {
+export const config = {
   config: {
     dataSources: {
       veileder: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo`)}`,
