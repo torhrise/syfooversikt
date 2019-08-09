@@ -68,7 +68,7 @@ const OversiktContainer = ({type}: OversiktProps) => {
   return (
     <div className="oversiktContainer">
       {aktivEnhetFeilet && (
-        <VeilederFeiletError />
+        <AktivEnhetFeiletError />
       )}
       {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && !aktivEnhetFeilet && (
         <EnhetensOversiktContainer />
@@ -77,7 +77,7 @@ const OversiktContainer = ({type}: OversiktProps) => {
   );
 };
 
-const VeilederFeiletError = () => (AlertStripeRod(
+const AktivEnhetFeiletError = () => (AlertStripeRod(
   tekster.feil.hentVeilederenheterFeilet,
   'oversiktContainer__alertstripe'
 ));

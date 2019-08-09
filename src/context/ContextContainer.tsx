@@ -11,7 +11,7 @@ import { HentAktivEnhetData } from '../store/modiacontext/modiacontextTypes';
 import { hentVeilederinfo } from '../store/veilederinfo/veilederinfo_actions';
 import { VeilederinfoState } from '../store/veilederinfo/veilederinfoTypes';
 import { opprettWebsocketConnection } from './contextHolder';
-import { config } from '../index';
+import { config } from '../global';
 
 const tekster = {
   feil: { hentVeilederIdentFeilet: 'Det skjedde en feil: Vi fant ikke din ident' },
