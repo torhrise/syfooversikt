@@ -81,7 +81,6 @@ const getPropsFromState = (state: ApplicationState) => ({
   personregister: state.personregister,
   aktivEnhet: state.veilederenheter.aktivEnhet,
   aktivEnhetFeilet: state.veilederenheter.hentingFeilet,
-//   aktivEnhetFeilet: true,
   aktivVeilederinfo: state.veilederinfo.data,
   henterAlt: state.veilederenheter.henter || state.veilederinfo.henter || state.personoversikt.henter,
   noeErHentet: state.veilederenheter.hentet && state.veilederinfo.hentet && state.personoversikt.hentet,
