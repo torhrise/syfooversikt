@@ -6,7 +6,7 @@ import Sokeresultat from '../components/Sokeresultat';
 import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import SokeresultatFilter, { HendelseTypeFilters } from '../components/HendelseTypeFilter';
-import { filtrerPersonregister, Filterable, filtrerPaaFodelsnummerEllerNavn } from '../utils/hendelseFilteringUtils';
+import { filtrerPersonregister, Filterable, filtrerPaaFodselsnummerEllerNavn } from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
 import OversiktHeader from '../components/OversiktHeader';
 import { ApplicationState } from '../store';
@@ -40,7 +40,7 @@ export default () => {
 
   const filtrertListe = new Filterable<PersonregisterState>(personregister)
       .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
-      .applyFilter((v) => filtrerPaaFodelsnummerEllerNavn(v, tekstFilter))
+      .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter))
       .value;
 
   return (

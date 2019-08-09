@@ -15,9 +15,7 @@ export class Filterable<T> {
     }
 }
 
-// type Filterable<T> = (arg: T) => Filterable<T>;
-
-export const filtrerPaaFodelsnummerEllerNavn = (personregister: PersonregisterState, sok: string): PersonregisterState => {
+export const filtrerPaaFodselsnummerEllerNavn = (personregister: PersonregisterState, sok: string): PersonregisterState => {
     if (sok.length === 0) {
         return personregister;
     }
