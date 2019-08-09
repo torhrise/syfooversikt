@@ -15,43 +15,31 @@ import {
   fullNaisUrl,
 } from './utils/miljoUtil';
 import AppRouter from './routers/AppRouter';
-
+import { config, setEventHandlersOnConfig } from './global';
 import { store, history } from './store';
 
 if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
 }
 
-const config = {
-  config: {
-    dataSources: {
-      veileder: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo`)}`,
-      enheter: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo/enheter`)}`,
-    },
-    initiellEnhet: '',
-    toggles: {
-      visEnhetVelger: true,
-      visVeileder: true,
-      visSokefelt: true,
-      toggleSendEventVedEnEnhet: false,
-    },
-    handlePersonsokSubmit: (nyttFnr: string) => {
-      (window as any).location = `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/${nyttFnr}`;
-    },
-    applicationName: 'Oppfølging',
-    handleChangeEnhet: (data: string) => {
-      if (config.config.initiellEnhet !== data) {
-        store.dispatch(
-          pushModiaContext({
-            verdi: data,
-            eventType: CONTEXT_EVENT_TYPE.NY_AKTIV_ENHET,
-          })
-        );
-        config.config.initiellEnhet = data;
-      }
-    },
-  },
+
+const handleChangeEnhet = (data: string) => {
+  if (config.config.initiellEnhet !== data) {
+    store.dispatch(
+      pushModiaContext({
+        verdi: data,
+        eventType: CONTEXT_EVENT_TYPE.NY_AKTIV_ENHET,
+      })
+    );
+    config.config.initiellEnhet = data;
+  }
 };
+
+const handlePersonsokSubmit = (nyttFnr: string) => {
+  (window as any).location = `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/${nyttFnr}`;
+};
+
+setEventHandlersOnConfig(handlePersonsokSubmit, handleChangeEnhet);
 
 store.dispatch(
   hentAktivEnhet({

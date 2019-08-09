@@ -63,7 +63,7 @@ export function* rootSaga() {
 
 const history = createHashHistory();
 
-const initialState = window.initialReduxState;
+const initialState = (window as any).initialReduxState;
 const store = configureStore(history, initialState);
 
 export { store, history };
