@@ -1,14 +1,25 @@
 import * as React from 'react';
+import styled from 'styled-components';
 import TildelVeileder from './TildelVeileder';
 
 export interface ToolbarProps {
   buttonHandler: () => void;
 }
 
-const Toolbar = (props: ToolbarProps) => (<section className="toolbar blokk-xs">
-  <div className="toolbar__element toolbar--skille-mellom-elementer">
+const Innhold = styled.section`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const Element = styled.div`
+  display: flex;
+`;
+
+const Toolbar = (props: ToolbarProps) => (<Innhold className="panel blokk-xs">
+  <Element>
     <TildelVeileder {...props}/>
-  </div>
-</section>);
+  </Element>
+</Innhold>);
 
 export default Toolbar;
