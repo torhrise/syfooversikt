@@ -22,7 +22,6 @@ if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
 }
 
-
 const handleChangeEnhet = (data: string) => {
   if (config.config.initiellEnhet !== data) {
     store.dispatch(
