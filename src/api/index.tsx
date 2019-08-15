@@ -51,6 +51,8 @@ export function get(url: string) {
             } else if (res.status > 400) {
                 log(res);
                 throw new Error('Forespørsel feilet');
+            } else if(res.status === 204) {
+                return [];
             }
             return res.json();
         })
