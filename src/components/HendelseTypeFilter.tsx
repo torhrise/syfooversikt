@@ -3,8 +3,9 @@ import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
 import { Checkbox } from 'nav-frontend-skjema';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { filtrerPersonregister } from '../utils/hendelseFilteringUtils';
+import countFilterAction from '../metrics/countFilterAction';
 
-const HendelseTekster: any = {
+export const HendelseTekster: any = {
     MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
     MOTEPLANLEGGER_SVAR: 'Svar møteplanlegger', // Svar fra møteplanlegger
     UFORDELTE_BRUKERE: 'Ufordelte brukere', // Ikke tildelt veileder
@@ -61,6 +62,10 @@ export default ({ onFilterChange: onValgteElementerChange, className, personRegi
         const nyttFilter = lagNyttFilter(filter, element.tekst, checked);
         setFilter(nyttFilter);
         onValgteElementerChange(nyttFilter);
+
+        if (checked) {
+            countFilterAction(element.tekst).next();
+        }
     };
 
     return (
