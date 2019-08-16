@@ -6,6 +6,12 @@ export const skjermingskode = (person: PersonData) => {
     : '';
 };
 
+export const veilederEllerUfordelt = (person: PersonData) => {
+  return person.veileder
+    ? person.veileder.etternavn + ', ' + person.veileder.fornavn
+    : 'Ufordelt bruker';
+};
+
 export const hendelsestypeString = {
   motebehovMote: 'Møtebehov/Møte',
   motebehov: 'Møtebehov',

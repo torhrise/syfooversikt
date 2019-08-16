@@ -8,7 +8,7 @@ import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
   hendelsestype,
-  skjermingskode,
+  skjermingskode, veilederEllerUfordelt,
 } from '../utils/personDataUtil';
 
 interface PersonradProps {
@@ -41,7 +41,7 @@ class Personrad extends Component<PersonradProps> {
           <Column className="personrad__navn" md={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
           <Column className="personrad__fnr" md={'2'}>{fnr}</Column>
           <Column className="personrad__veileder" md={'2'}>{personData.tildeltVeilederIdent}</Column>
-          <Column className="personrad__veiledernavn" md={'2'}>Knott, Gul</Column>
+          <Column className="personrad__veiledernavn" md={'2'}>{veilederEllerUfordelt(personData)}</Column>
         </div>
         <Column className="personrad__skjermet personliste__gutter-right" md={'1'}>{skjermingskode(personData)}</Column>
       </Row>);

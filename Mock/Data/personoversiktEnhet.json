@@ -17,6 +17,13 @@
     "fnr":"99999933333",
     "enhet": "0315",
     "veilederIdent":"Z101010",
+    "veileder": {
+      "ident":  "Z101010",
+      "fornavn":  "Vera",
+      "etternavn":  "Veileder",
+      "enhetNr":  "0315",
+      "enhetNavn":  "Nav X-files"
+    },
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": true
   },
@@ -24,6 +31,13 @@
     "fnr":"99999944444",
     "enhet": "0315",
     "veilederIdent":"Z101010",
+    "veileder": {
+      "ident":  "Z101010",
+      "fornavn":  "Vera",
+      "etternavn":  "Veileder",
+      "enhetNr":  "0315",
+      "enhetNavn":  "Nav X-files"
+    },
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": true
   },
