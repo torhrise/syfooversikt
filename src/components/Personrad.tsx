@@ -32,18 +32,18 @@ class Personrad extends Component<PersonradProps> {
     } = this.props;
     return (
       <Row className="personrad personliste__element personliste--border-bottom-thin">
-        <Column className="personrad__checkbox personliste__gutter-left personliste--min-width-enhet" md={'1'}>
+        <Column className="personrad__checkbox personliste__gutter-left personliste--min-width-enhet" xs={'1'}>
           <Checkbox label={''} checked={!!kryssAv} onChange={(event) => {
             checkboxHandler(fnr);
           }}/>
         </Column>
         <div className="personliste__innhold flex flex--center">
-          <Column className="personrad__navn" md={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
-          <Column className="personrad__fnr" md={'2'}>{fnr}</Column>
-          <Column className="personrad__veileder" md={'2'}>{personData.tildeltVeilederIdent}</Column>
-          <Column className="personrad__veiledernavn" md={'2'}>{veilederEllerUfordelt(personData)}</Column>
+          <Column className="personrad__navn" xs={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
+          <Column className="personrad__fnr" xs={'2'}>{fnr}</Column>
+          <Column className="personrad__veileder" xs={'2'}>{personData.tildeltVeilederIdent}</Column>
+          <Column className="personrad__veiledernavn" xs={'2'}>{veilederEllerUfordelt(personData)}</Column>
         </div>
-        <Column className="personrad__skjermet personliste__gutter-right" md={'1'}>{skjermingskode(personData)}</Column>
+        <Column className="personrad__skjermet personliste__gutter-right" xs={'1'}>{skjermingskode(personData)}</Column>
       </Row>);
   }
 }
