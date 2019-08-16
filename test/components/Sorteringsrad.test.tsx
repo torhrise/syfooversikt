@@ -9,7 +9,6 @@ chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 describe('Sorteringsrad', () => {
-  const checkboxVelgAlleTekst = 'Velg alle';
   const kolonneForNavnTekst = 'Navn';
   const kolonneForFnrTekst = 'Fødselsnummer';
   const kolonneForDiskresjonskodeTekst = 'Diskresjonskode';
@@ -18,10 +17,6 @@ describe('Sorteringsrad', () => {
   // tslint:disable-next-line:no-empty
   const checkAllHandler = () =>  {};
   const component = shallow(<Sorteringsrad checked={false} checkAllHandler={checkAllHandler}/>);
-
-  it('Skal inneholde "Velg alle"-Checkbox', () => {
-    expect(component.find({label: checkboxVelgAlleTekst})).to.have.length(1);
-  });
 
   it('Skal inneholde komponent med "sorteringsrad"-klasse', () => {
     expect(component.find('.sorteringsrad')).to.have.length(1);

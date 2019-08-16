@@ -31,16 +31,20 @@ class Personrad extends Component<PersonradProps> {
       kryssAv,
     } = this.props;
     return (
-      <Row className="personrad">
-      <Column className="personrad__checkbox" md={'2'}>
-        <Checkbox label={'Marker'} checked={!!kryssAv} onChange={(event) => {checkboxHandler(fnr);}}/>
-      </Column>
-      <Column className="personrad__navn" md={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
-      <Column className="personrad__fnr" md={'2'}>{fnr}</Column>
-      <Column className="personrad__skjermet" md={'2'}>{skjermingskode(personData)}</Column>
-      <Column className="personrad__type" md={'2'}>{hendelsestype(personData)}</Column>
-      <Column className="personrad__veileder" md={'2'}>{personData.tildeltVeilederIdent}</Column>
-    </Row>);
+      <Row className="personrad personliste__element personliste--border-bottom-thin">
+        <Column className="personrad__checkbox personliste__gutter-left personliste--min-width-enhet" md={'1'}>
+          <Checkbox label={''} checked={!!kryssAv} onChange={(event) => {
+            checkboxHandler(fnr);
+          }}/>
+        </Column>
+        <div className="personliste__innhold flex flex--center">
+          <Column className="personrad__navn" md={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
+          <Column className="personrad__fnr" md={'2'}>{fnr}</Column>
+          <Column className="personrad__veileder" md={'2'}>{personData.tildeltVeilederIdent}</Column>
+          <Column className="personrad__veiledernavn" md={'2'}>Knott, Gul</Column>
+        </div>
+        <Column className="personrad__skjermet personliste__gutter-right" md={'1'}>{skjermingskode(personData)}</Column>
+      </Row>);
   }
 }
 
