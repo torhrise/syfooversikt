@@ -87,6 +87,15 @@ const startServer = (html) => {
         res.sendStatus(200);
     });
 
+    server.get('/metric/count', (req, res) => {
+        const counter = new prometheus.Counter({
+            name: 'syfooversikt_metric_name',
+            help: 'metric_help'
+        });
+        counter.inc();
+        res.sendStatus(200);
+    });
+
     if (env === 'local' || env === 'opplaering') {
         console.log('Setter opp lokale mock-endepunkter');
         require('./Mock/mockEndepunkter').mockForLokal(server);
