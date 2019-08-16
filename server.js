@@ -6,9 +6,11 @@ const mustacheExpress = require('mustache-express');
 const Promise = require('promise');
 const prometheus = require('prom-client');
 
+const counters = require('./counters');
+
 // Prometheus metrics
 const collectDefaultMetrics = prometheus.collectDefaultMetrics;
-collectDefaultMetrics({timeout: 5000});
+collectDefaultMetrics({ timeout: 5000 });
 
 const httpRequestDurationMicroseconds = new prometheus.Histogram({
     name: 'http_request_duration_ms',
@@ -84,6 +86,11 @@ const startServer = (html) => {
         res.sendStatus(200);
     });
     server.get('/health/isReady', (req, res) => {
+        res.sendStatus(200);
+    });
+
+    server.get('/metrics/actions/filters/motebehov', (req, res) => {
+        counters.userFilterMotebehovCounter.inc(1, new Date());
         res.sendStatus(200);
     });
 
