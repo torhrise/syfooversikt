@@ -38,7 +38,6 @@ class Personrad extends Component<PersonradProps> {
       <Column className="personrad__navn" md={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
       <Column className="personrad__fnr" md={'2'}>{fnr}</Column>
       <Column className="personrad__skjermet" md={'2'}>{skjermingskode(personData)}</Column>
-      <Column className="personrad__type" md={'2'}>{hendelsestype(personData)}</Column>
       <Column className="personrad__veileder" md={'2'}>{personData.tildeltVeilederIdent}</Column>
     </Row>);
   }

@@ -10,7 +10,6 @@ const tekster = {
   navn: 'Navn',
   fodselsnummer: 'Fødselsnummer',
   diskresjonskode: 'Diskresjonskode',
-  typer: 'Hendelsestyper',
   veileder: 'Tildelt veileder',
 };
 
@@ -27,7 +26,6 @@ const Sorteringsrad = (props: SorteringsradProps) => {
     <Column md={'2'}>{tekster.navn}</Column>
     <Column md={'2'}>{tekster.fodselsnummer}</Column>
     <Column md={'2'}>{tekster.diskresjonskode}</Column>
-    <Column md={'2'}>{tekster.typer}</Column>
     <Column md={'2'}>{tekster.veileder}</Column>
   </Row>);
 };
