@@ -16,7 +16,19 @@ const userFilterMotebehovCounter = new Counter({
     help: 'Number of times the filter for showing users requesting a meeting was selected'
 });
 
+const userFilterMoteplanleggerCounter = new Counter({
+    name: 'syfooversikt_bruker_filter_moteplanlegger',
+    help: 'Number of times the filter for showing users requesting a meeting was selected'
+});
+
+const userFilterUfordelteCounter = new Counter({
+    name: 'syfooversikt_bruker_filter_ufordelte',
+    help: 'Number of times the filter for showing users requesting a meeting was selected'
+});
+
 module.exports = {
     httpRequestDurationMicroseconds,
     userFilterMotebehovCounter,
+    userFilterMoteplanleggerCounter,
+    userFilterUfordelteCounter,
 };
