@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import AppSpinner from '../components/AppSpinner';
 import Sokeresultat from '../components/Sokeresultat';
 import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import SokeresultatFilter, { HendelseTypeFilters } from '../components/HendelseTypeFilter';
-import { filtrerPersonregister, Filterable, filtrerPaaFodselsnummerEllerNavn } from '../utils/hendelseFilteringUtils';
+import {
+  Filterable,
+  filtrerPersonregister,
+  filtrerPaaFodselsnummerEllerNavn,
+} from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
-import OversiktHeader from '../components/OversiktHeader';
 import { ApplicationState } from '../store';
-import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
 import { AlertStripeWarning } from '../components/AlertStripeWarning';
 
@@ -62,7 +67,6 @@ export default () => {
 
   return (
     <div>
-      <OversiktHeader type={OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT} />
       {info(altFeilet, hentetIngenPersoner)}
       {henterAlt && <AppSpinner />}
       {noeErHentet && (
