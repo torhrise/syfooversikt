@@ -4,25 +4,9 @@ const express = require('express');
 const path = require('path');
 const mustacheExpress = require('mustache-express');
 const Promise = require('promise');
-const prom_client = require('prom-client');
+const metrics = require('./server/metrics');
 
-const counters = require('./counters');
-
-// Prometheus metrics
-const setupMetrics = () => {
-    const collectDefaultMetrics = prom_client.collectDefaultMetrics;
-    collectDefaultMetrics({ timeout: 5000 });
-
-    const Registry = prom_client.Registry;
-    const register = new Registry();
-
-    register.registerMetric(counters.httpRequestDurationMicroseconds);
-    register.registerMetric(counters.userFilterMotebehovCounter);
-
-    collectDefaultMetrics({ register });
-    return register;
-};
-const prometheus = setupMetrics();
+const prometheus = metrics.prometheus;
 
 const server = express();
 
@@ -60,6 +44,8 @@ function nocache(req, res, next) {
 }
 
 const startServer = (html) => {
+    metrics.setup(server);
+
     server.use(
         '/syfooversikt/resources',
         express.static(path.resolve(__dirname, 'dist/resources')),
@@ -81,20 +67,10 @@ const startServer = (html) => {
         },
     );
 
-    server.get('/actuator/metrics', (req, res) => {
-        res.set('Content-Type', prometheus.register.contentType);
-        res.end(prometheus.metrics());
-    });
-
     server.get('/health/isAlive', (req, res) => {
         res.sendStatus(200);
     });
     server.get('/health/isReady', (req, res) => {
-        res.sendStatus(200);
-    });
-
-    server.get('/metrics/actions/filters/motebehov', (req, res) => {
-        prometheus.getSingleMetric('syfooversikt_bruker_filter_motebehov').inc(1, new Date());
         res.sendStatus(200);
     });
 
