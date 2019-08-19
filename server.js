@@ -4,21 +4,25 @@ const express = require('express');
 const path = require('path');
 const mustacheExpress = require('mustache-express');
 const Promise = require('promise');
-const prometheus = require('prom-client');
+const prom_client = require('prom-client');
 
 const counters = require('./counters');
 
 // Prometheus metrics
-const collectDefaultMetrics = prometheus.collectDefaultMetrics;
-collectDefaultMetrics({ timeout: 5000 });
+const setupMetrics = () => {
+    const collectDefaultMetrics = prom_client.collectDefaultMetrics;
+    collectDefaultMetrics({ timeout: 5000 });
 
-const httpRequestDurationMicroseconds = new prometheus.Histogram({
-    name: 'http_request_duration_ms',
-    help: 'Duration of HTTP requests in ms',
-    labelNames: ['route'],
-    // buckets for response time from 0.1ms to 500ms
-    buckets: [0.10, 5, 15, 50, 100, 200, 300, 400, 500],
-});
+    const Registry = prom_client.Registry;
+    const register = new Registry();
+
+    register.registerMetric(counters.httpRequestDurationMicroseconds);
+    register.registerMetric(counters.userFilterMotebehovCounter);
+
+    collectDefaultMetrics({ register });
+    return register;
+};
+const prometheus = setupMetrics();
 
 const server = express();
 
@@ -71,7 +75,7 @@ const startServer = (html) => {
         nocache,
         (req, res) => {
             res.send(html);
-            httpRequestDurationMicroseconds
+            prometheus.httpRequestDurationMicroseconds
                 .labels(req.route.path)
                 .observe(10);
         },
@@ -79,7 +83,7 @@ const startServer = (html) => {
 
     server.get('/actuator/metrics', (req, res) => {
         res.set('Content-Type', prometheus.register.contentType);
-        res.end(prometheus.register.metrics());
+        res.end(prometheus.metrics());
     });
 
     server.get('/health/isAlive', (req, res) => {
@@ -90,7 +94,7 @@ const startServer = (html) => {
     });
 
     server.get('/metrics/actions/filters/motebehov', (req, res) => {
-        counters.userFilterMotebehovCounter.inc(1, new Date());
+        prometheus.getSingleMetric('syfooversikt_bruker_filter_motebehov').inc(1, new Date());
         res.sendStatus(200);
     });
 
