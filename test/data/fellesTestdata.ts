@@ -1,6 +1,7 @@
 import {
   PersonData,
-  PersonregisterState, Veileder,
+  PersonregisterState,
+  Veileder,
 } from '../../src/store/personregister/personregisterTypes';
 import { PersonoversiktStatus } from '../../src/store/personoversikt/personoversiktTypes';
 
