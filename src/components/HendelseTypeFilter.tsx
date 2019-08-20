@@ -41,7 +41,6 @@ const lagNyttFilter = (forrigeFilter: HendelseTypeFilters, tekst: string, checke
 interface CheckboksElement {
     tekst: string;
     key: string;
-    antall: number;
 }
 
 export default ({ onFilterChange: onValgteElementerChange, className, personRegister: hendelseListe }: Props) => {
