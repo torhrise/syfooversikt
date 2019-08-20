@@ -8,7 +8,7 @@ export const skjermingskode = (person: PersonData) => {
 
 export const veilederEllerUfordelt = (person: PersonData) => {
   return person.veileder
-    ? person.veileder.etternavn + ', ' + person.veileder.fornavn
+    ? `${person.veileder.etternavn}, ${person.veileder.fornavn}`
     : 'Ufordelt bruker';
 };
 
