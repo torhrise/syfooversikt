@@ -79,6 +79,7 @@ export default () => {
               <SokeresultatFilter
                   className="sokeresultatFilter__panel"
                   onFilterChange={onHendelsesTypeChange}
+                  personRegister={personregister}
               />
           </div>
           <Sokeresultat
