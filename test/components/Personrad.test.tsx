@@ -5,7 +5,7 @@ import React from 'react';
 import { Column } from 'nav-frontend-grid';
 import Personrad from '../../src/components/Personrad';
 import { lenkeTilModiaEnkeltperson } from '../../src/utils/lenkeUtil';
-import { hendelsestype, skjermingskode } from '../../src/utils/personDataUtil';
+import { skjermingskode } from '../../src/utils/personDataUtil';
 import { testdata } from '../data/fellesTestdata';
 import { PersonData } from '../../src/store/personregister/personregisterTypes';
 

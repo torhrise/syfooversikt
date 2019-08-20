@@ -1,22 +1,43 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  useDispatch,
+  useSelector,
+} from 'react-redux';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import AppSpinner from '../components/AppSpinner';
 import Sokeresultat from '../components/Sokeresultat';
 import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import SokeresultatFilter, { HendelseTypeFilters } from '../components/HendelseTypeFilter';
-import { filtrerPersonregister, Filterable, filtrerPaaFodselsnummerEllerNavn } from '../utils/hendelseFilteringUtils';
+import {
+  Filterable,
+  filtrerPersonregister,
+  filtrerPaaFodselsnummerEllerNavn,
+} from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
-import OversiktHeader from '../components/OversiktHeader';
 import { ApplicationState } from '../store';
-import { OVERSIKT_VISNING_TYPE } from '../konstanter';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
+import { AlertStripeWarning } from '../components/AlertStripeWarning';
 
 const tekster = {
     feil: {
       hentEnhetensOversiktFeilet: 'Det skjedde en feil: Kunne ikke hente enhetens oversikt',
+      hentetIngenPersoner: 'Det er ingen personer knyttet til enhet med hendelser',
     },
+};
+
+const info = (altFeilet: boolean, hentetIngenPersoner: boolean) => {
+  if (altFeilet) {
+    return AlertStripeRod(
+        tekster.feil.hentEnhetensOversiktFeilet,
+        'oversiktContainer__alertstripe'
+    );
+  } else if(hentetIngenPersoner) {
+    return AlertStripeWarning(
+        tekster.feil.hentetIngenPersoner,
+        'oversiktContainer__alertstripe'
+    );
+  }
 };
 
 export default () => {
@@ -34,6 +55,7 @@ export default () => {
     aktivEnhet,
     aktivVeilederinfo,
     henterAlt,
+    hentetIngenPersoner,
     noeErHentet,
     altFeilet,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
@@ -45,8 +67,7 @@ export default () => {
 
   return (
     <div>
-      <OversiktHeader type={OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT} />
-      {altFeilet && <HenteOversiktFeiletError />}
+      {info(altFeilet, hentetIngenPersoner)}
       {henterAlt && <AppSpinner />}
       {noeErHentet && (
         <div className="oversiktContainer__innhold">
@@ -72,11 +93,6 @@ export default () => {
   );
 };
 
-const HenteOversiktFeiletError = () => (AlertStripeRod(
-    tekster.feil.hentEnhetensOversiktFeilet,
-    'oversiktContainer__alertstripe'
-));
-
 const getPropsFromState = (state: ApplicationState) => ({
   personregister: state.personregister,
   aktivEnhet: state.veilederenheter.aktivEnhet,
@@ -85,4 +101,5 @@ const getPropsFromState = (state: ApplicationState) => ({
   henterAlt: state.veilederenheter.henter || state.veilederinfo.henter || state.personoversikt.henter,
   noeErHentet: state.veilederenheter.hentet && state.veilederinfo.hentet && state.personoversikt.hentet,
   altFeilet: state.veilederinfo.hentingFeilet || state.personoversikt.hentingFeilet,
+  hentetIngenPersoner: state.personoversikt.hentet && state.personoversikt.data.length === 0,
 });

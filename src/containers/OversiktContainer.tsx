@@ -1,6 +1,5 @@
 import React, {
   useEffect,
-  useState,
 } from 'react';
 import {
   useDispatch,
@@ -15,7 +14,6 @@ import EnhetensOversiktContainer from './EnhetensOversiktContainer';
 
 const tekster = {
   overskrifter: {
-    enhetensOversikt: 'Personer med hendelser',
     minOversikt: 'Denne fanen er under utvikling',
     veilederoversikt: 'Denne fanen er under utvikling',
   },

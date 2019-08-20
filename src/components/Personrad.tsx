@@ -8,7 +8,8 @@ import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
   hendelsestype,
-  skjermingskode, veilederEllerUfordelt,
+  skjermingskode,
+  veilederEllerUfordelt,
 } from '../utils/personDataUtil';
 
 interface PersonradProps {
