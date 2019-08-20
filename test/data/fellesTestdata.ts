@@ -1,12 +1,19 @@
 import {
   PersonData,
-  PersonregisterState,
+  PersonregisterState, Veileder,
 } from '../../src/store/personregister/personregisterTypes';
 import { PersonoversiktStatus } from '../../src/store/personoversikt/personoversiktTypes';
 
 const veilederIdent = 'Z101010';
 const veilederNavn = 'F_Z101010 E_Z101010';
 const enhetId = '0315';
+const veileder: Veileder = {
+  ident: 'Z101010',
+  fornavn: 'Dana',
+  etternavn: 'Scully',
+  enhetNr: enhetId,
+  enhetNavn: 'NAV X-Files',
+}
 
 export const testdata = {
   fnr1: '99999911111',
@@ -37,12 +44,14 @@ export const personoversikt = [
     fnr: testdata.fnr1,
     enhet: enhetId,
     veilederIdent: null,
+    veileder: null,
     motebehovUbehandlet: true,
   } as PersonoversiktStatus,
   {
     fnr: testdata.fnr4,
     enhet: enhetId,
     veilederIdent,
+    veileder,
     motebehovUbehandlet: null,
   } as PersonoversiktStatus,
 ];

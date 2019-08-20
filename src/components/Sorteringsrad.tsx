@@ -23,7 +23,7 @@ interface SorteringsradProps {
 const Sorteringsrad = (props: SorteringsradProps) => {
   return (
     <>
-      <Row className=" personliste__overskriftheader personliste--borders">
+      <Row className="personliste__overskriftheader personliste--borders">
         <Column xs={'1'} className="personliste__gutter-left personliste--min-width-enhet"/>
         <div className="personliste__innhold">
           <Column xs={'4'}>{tekster.overskriftBruker}</Column>
@@ -40,7 +40,7 @@ const Sorteringsrad = (props: SorteringsradProps) => {
         <div className="personliste__innhold">
           <Column xs={'2'}>{tekster.navn}</Column>
           <Column xs={'2'}>{tekster.fodselsnummer}</Column>
-          <Column xs={'2'}>{tekster.ident} </Column>
+          <Column xs={'2'}>{tekster.ident}</Column>
           <Column xs={'2'}>{tekster.veileder}</Column>
         </div>
         <Column xs={'1'} className="personliste__gutter-right"/>
