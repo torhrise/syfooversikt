@@ -1,7 +1,10 @@
+import { Veileder } from '../personregister/personregisterTypes';
+
 export interface PersonoversiktStatus {
   fnr: string;
   enhet: string;
   veilederIdent: string | null;
+  veileder: Veileder | null;
   motebehovUbehandlet: boolean | null;
   moteplanleggerUbehandlet: boolean | null;
 }
