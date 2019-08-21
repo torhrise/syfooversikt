@@ -1,9 +1,9 @@
 import {
   PersonData,
   PersonregisterState,
-  Veileder,
 } from '../../src/store/personregister/personregisterTypes';
 import { PersonoversiktStatus } from '../../src/store/personoversikt/personoversiktTypes';
+import { Veileder } from '../../src/store/veiledere/veiledereTypes';
 
 const veilederIdent = 'Z101010';
 const veilederNavn = 'F_Z101010 E_Z101010';
@@ -14,7 +14,7 @@ const veileder: Veileder = {
   etternavn: 'Scully',
   enhetNr: enhetId,
   enhetNavn: 'NAV X-Files',
-}
+};
 
 export const testdata = {
   fnr1: '99999911111',
@@ -45,14 +45,12 @@ export const personoversikt = [
     fnr: testdata.fnr1,
     enhet: enhetId,
     veilederIdent: null,
-    veileder: null,
     motebehovUbehandlet: true,
   } as PersonoversiktStatus,
   {
     fnr: testdata.fnr4,
     enhet: enhetId,
     veilederIdent,
-    veileder,
     motebehovUbehandlet: null,
   } as PersonoversiktStatus,
 ];
@@ -66,3 +64,25 @@ export const veilederinfo = {
   navn: veilederNavn,
   ident: veilederIdent,
 };
+
+export const veiledere = [
+  {
+    ident: 'Z999999',
+    fornavn: 'Veil',
+    etternavn: 'Eder',
+    enhetNr: '0314',
+    enhetNavn: 'NAV Sagene',
+  },
+  {
+    ident: 'Z000000',
+    fornavn: 'NAV',
+    etternavn: 'Ansatt',
+    enhetNr: '0314',
+    enhetNavn: 'NAV Sagene',
+  }
+];
+
+export const markertePersoner = [
+  '99999911111',
+  '99999922222',
+];

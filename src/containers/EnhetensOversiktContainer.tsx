@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 import {
   useDispatch,
   useSelector,
@@ -19,6 +22,7 @@ import TekstFilter from '../components/TekstFilter';
 import { ApplicationState } from '../store';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
 import { AlertStripeWarning } from '../components/AlertStripeWarning';
+import { hentVeiledere } from '../store/veiledere/veiledere_actions';
 
 const tekster = {
     feil: {
@@ -67,6 +71,7 @@ export default () => {
   const dispatch = useDispatch();
   const actions = {
     tildelVeileder: (liste: VeilederArbeidstaker[]) => dispatch(pushVeilederArbeidstakerForespurt(liste)),
+    hentVeiledere: () => dispatch(hentVeiledere()),
   };
 
   const {
@@ -77,7 +82,12 @@ export default () => {
     hentetIngenPersoner,
     noeErHentet,
     altFeilet,
+    veiledere,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
+
+  useEffect(() => {
+    actions.hentVeiledere();
+  }, [aktivEnhet.enhetId]);
 
   const filtrertListe = new Filterable<PersonregisterState>(personregister)
       .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
@@ -104,6 +114,7 @@ export default () => {
             aktivEnhet={aktivEnhet}
             aktivVeilederinfo={aktivVeilederinfo}
             personregister={filtrertListe}
+            veiledere={veiledere}
           />
         </OversiktContainerInnhold>
       )}
@@ -119,5 +130,6 @@ const getPropsFromState = (state: ApplicationState) => ({
   henterAlt: state.veilederenheter.henter || state.veilederinfo.henter || state.personoversikt.henter,
   noeErHentet: state.veilederenheter.hentet && state.veilederinfo.hentet && state.personoversikt.hentet,
   altFeilet: state.veilederinfo.hentingFeilet || state.personoversikt.hentingFeilet,
+  veiledere: state.veiledere.data,
   hentetIngenPersoner: state.personoversikt.hentet && state.personoversikt.data.length === 0,
 });

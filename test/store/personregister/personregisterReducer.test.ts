@@ -10,12 +10,10 @@ import {
   PersonoversiktActionTypes
 } from '../../../src/store/personoversikt/personoversikt_actions';
 import { PersonoversiktStatus } from '../../../src/store/personoversikt/personoversiktTypes';
-import { Veileder } from '../../../src/store/personregister/personregisterTypes';
 
 const mapPersonToState = (person: PersonoversiktStatus) => ({
   tildeltEnhetId: person.enhet,
   tildeltVeilederIdent: person.veilederIdent,
-  veileder: person.veileder,
   harMotebehovUbehandlet: person.motebehovUbehandlet,
   harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
 });
