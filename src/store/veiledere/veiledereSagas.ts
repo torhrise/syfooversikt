@@ -2,12 +2,9 @@ import { call, fork, put, select, takeEvery } from 'redux-saga/effects';
 import { get } from '../../api/index';
 import * as actions from './veiledere_actions';
 import { VeiledereActionTypes } from './veiledere_actions';
-import { fullNaisUrl } from '../../utils/miljoUtil';
+import { fullNaisUrlDefault } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
-import {
-  hentVeilederEnhetFraState,
-  skalHenteReducer,
-} from '../../utils/selectorUtil';
+import { skalHenteReducer } from '../../utils/selectorUtil';
 
 export function* hentVeiledereSaga(
   enhetId: string,
@@ -16,7 +13,7 @@ export function* hentVeiledereSaga(
   try {
     const host = HOST_NAMES.SYFOVEILEDER;
     const path = `${process.env.REACT_APP_SYFOVEILEDER_ROOT}/veiledere/enhet/${enhetId}`;
-    const url = fullNaisUrl(host,path);
+    const url = fullNaisUrlDefault(host,path);
     const data = yield call(get, url);
     yield put(actions.veiledereHentet(data));
   } catch (e) {
