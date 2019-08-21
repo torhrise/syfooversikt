@@ -77,7 +77,7 @@ const startServer = (html) => {
         nocache,
         (req, res) => {
             res.send(html);
-            prometheus.httpRequestDurationMicroseconds
+            prometheus.getSingleMetric('http_request_duration_ms')
                 .labels(req.route.path)
                 .observe(10);
         },
