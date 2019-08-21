@@ -3,6 +3,8 @@ const prom_client = require('prom-client');
 const Histogram = prom_client.Histogram;
 const Counter = prom_client.Counter;
 
+const APP_METRIC_PREFIX = 'syfooversikt_';
+
 const httpRequestDurationMicroseconds = new Histogram({
     name: 'http_request_duration_ms',
     help: 'Duration of HTTP requests in ms',
@@ -12,17 +14,17 @@ const httpRequestDurationMicroseconds = new Histogram({
 });
 
 const userFilterMotebehovCounter = new Counter({
-    name: 'syfooversikt_bruker_filter_motebehov',
+    name: `${APP_METRIC_PREFIX}_bruker_filter_motebehov`,
     help: 'Number of times the filter for showing users requesting a meeting was selected'
 });
 
 const userFilterMoteplanleggerCounter = new Counter({
-    name: 'syfooversikt_bruker_filter_moteplanlegger',
+    name: `${APP_METRIC_PREFIX}bruker_filter_moteplanlegger`,
     help: 'Number of times the filter for showing users requesting a meeting was selected'
 });
 
 const userFilterUfordelteCounter = new Counter({
-    name: 'syfooversikt_bruker_filter_ufordelte',
+    name: `${APP_METRIC_PREFIX}bruker_filter_ufordelte`,
     help: 'Number of times the filter for showing users requesting a meeting was selected'
 });
 
