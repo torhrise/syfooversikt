@@ -1,6 +1,8 @@
 import React, { useState, ComponentPropsWithoutRef } from 'react';
 import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
 import { Checkbox } from 'nav-frontend-skjema';
+import { PersonregisterState } from '../store/personregister/personregisterTypes';
+import { filtrerPersonregister } from '../utils/hendelseFilteringUtils';
 
 const HendelseTekster: any = {
     MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
@@ -10,6 +12,7 @@ const HendelseTekster: any = {
 
 interface Props extends ComponentPropsWithoutRef<any> {
     onFilterChange: (filter: HendelseTypeFilters) => void;
+    personRegister?: PersonregisterState;
 }
 
 export interface HendelseTypeFilters {
@@ -18,8 +21,17 @@ export interface HendelseTypeFilters {
     ufordeltBruker: boolean;
 }
 
-const lagNyttFilter = (forrigeFilter: HendelseTypeFilters, tekst: string, checked: boolean) => {
-    const filter = {...forrigeFilter};
+const enkeltFilterFraTekst = (tekst: string, checked: boolean): HendelseTypeFilters => {
+    const filter: HendelseTypeFilters = {
+        onskerMote: false,
+        svartMote: false,
+        ufordeltBruker: false,
+    };
+    return lagNyttFilter(filter, tekst, checked);
+};
+
+const lagNyttFilter = (forrigeFilter: HendelseTypeFilters, tekst: string, checked: boolean): HendelseTypeFilters => {
+    const filter = { ...forrigeFilter };
     if (tekst === HendelseTekster.MOTEBEHOV) filter.onskerMote = checked;
     if (tekst === HendelseTekster.MOTEPLANLEGGER_SVAR) filter.svartMote = checked;
     if (tekst === HendelseTekster.UFORDELTE_BRUKERE) filter.ufordeltBruker = checked;
@@ -31,14 +43,14 @@ interface CheckboksElement {
     key: string;
 }
 
-export default ({ onFilterChange: onValgteElementerChange, className }: Props) => {
+export default ({ onFilterChange: onValgteElementerChange, className, personRegister }: Props) => {
 
     const initialFilter: HendelseTypeFilters = {
         onskerMote: false,
         svartMote: false,
         ufordeltBruker: false,
     };
-    const [ filter, setFilter ] = useState<HendelseTypeFilters>(initialFilter);
+    const [filter, setFilter] = useState<HendelseTypeFilters>(initialFilter);
 
     const elementer = Object.keys(HendelseTekster).map((key) => {
         const tekst: string = HendelseTekster[key];
@@ -52,23 +64,29 @@ export default ({ onFilterChange: onValgteElementerChange, className }: Props) =
     };
 
     return (
-            <div className={...className}>
-                <EkspanderbartPanel apen tittel="Hendelse">
-                    <div>
-                        {genererHendelseCheckbokser(elementer, onCheckedChange)}
-                    </div>
-                </EkspanderbartPanel>
-            </div>
+        <div className={...className}>
+            <EkspanderbartPanel apen tittel="Hendelse">
+                <div>
+                    {genererHendelseCheckbokser(elementer, onCheckedChange, personRegister)}
+                </div>
+            </EkspanderbartPanel>
+        </div>
     );
 };
 
-const genererHendelseCheckbokser = (elementer: CheckboksElement[], onCheckedChange: (klikketElement: CheckboksElement, checked: boolean) => void) => (
-    elementer.map((k) => {
+const genererHendelseCheckbokser = (
+    elementer: CheckboksElement[],
+    onCheckedChange: (klikketElement: CheckboksElement, checked: boolean) => void,
+    personRegister?: PersonregisterState) => {
+    return elementer.map((checkboksElement) => {
+        const filter = enkeltFilterFraTekst(checkboksElement.tekst, true);
+        const antall = Object.keys(filtrerPersonregister(personRegister || {}, filter)).length;
+        const labelNode = (<div>{checkboksElement.tekst} <strong>({antall})</strong></div>);
         return (<Checkbox
-            label={k.tekst}
-            id={k.key}
-            key={k.key}
-            onChange={(e) => onCheckedChange(k, e.target.checked)}
+            label={labelNode}
+            id={checkboksElement.key}
+            key={checkboksElement.key}
+            onChange={(e) => onCheckedChange(checkboksElement, e.target.checked)}
         />);
-    })
-);
+    });
+};
