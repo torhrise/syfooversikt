@@ -8,6 +8,15 @@ export interface PersonData {
   markert: boolean;
   tildeltEnhetId: string;
   tildeltVeilederIdent: string;
+  veileder: Veileder;
+}
+
+export interface Veileder {
+  ident: string;
+  fornavn: string;
+  etternavn: string;
+  enhetNr: string;
+  enhetNavn: string;
 }
 
 export interface PersonregisterState {

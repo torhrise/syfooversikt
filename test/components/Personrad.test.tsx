@@ -5,7 +5,7 @@ import React from 'react';
 import { Column } from 'nav-frontend-grid';
 import Personrad from '../../src/components/Personrad';
 import { lenkeTilModiaEnkeltperson } from '../../src/utils/lenkeUtil';
-import {  skjermingskode } from '../../src/utils/personDataUtil';
+import { skjermingskode } from '../../src/utils/personDataUtil';
 import { testdata } from '../data/fellesTestdata';
 import { PersonData } from '../../src/store/personregister/personregisterTypes';
 
@@ -30,8 +30,9 @@ describe('Personrad', () => {
   });
 
   it('Skal rendre Column-komponenter med riktig navn, fodselsnummer og skjermingskode', () => {
-    expect(component.contains(<Column className="personrad__navn" md={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>)).to.equal(true);
-    expect(component.contains(<Column className="personrad__fnr" md={'2'}>{fnr}</Column>)).to.equal(true);
-    expect(component.contains(<Column className="personrad__skjermet" md={'2'}>{skjermingskode(personData)}</Column>)).to.equal(true);
+    expect(component.contains(<Column className="personrad__navn" xs={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>)).to.equal(true);
+    expect(component.contains(<Column className="personrad__fnr" xs={'2'}>{fnr}</Column>)).to.equal(true);
+    expect(component.contains(<Column className="personrad__skjermet personliste__gutter-right" xs={'1'}>{skjermingskode(personData)}</Column>)).to.equal(true);
+    expect(component.contains(<Column className="personrad__veileder" xs={'2'}>{personData.tildeltVeilederIdent}</Column>)).to.equal(true);
   });
 });

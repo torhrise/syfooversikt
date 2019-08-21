@@ -55,6 +55,7 @@ const personregisterReducer: Reducer<PersonregisterState> = (
           ...state[person.fnr],
           tildeltEnhetId: person.enhet,
           tildeltVeilederIdent: person.veilederIdent,
+          veileder: person.veileder,
           harMotebehovUbehandlet: person.motebehovUbehandlet,
           harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
         },

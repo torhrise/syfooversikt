@@ -6,28 +6,47 @@ import {
 } from 'nav-frontend-grid';
 
 const tekster = {
-  velgalle: 'Velg alle',
-  navn: 'Navn',
+  pakrevdLabelTom: '',
+  navn: 'Etternavn, Fornavn',
   fodselsnummer: 'Fødselsnummer',
-  diskresjonskode: 'Diskresjonskode',
-  veileder: 'Tildelt veileder',
+  ident: 'NAV-ident',
+  veileder: 'Veileder',
+  overskriftBruker: 'Bruker',
+  overskriftVeileder: 'Veileder',
 };
 
 interface SorteringsradProps {
-    checked: boolean;
-    checkAllHandler: (checked: boolean) => void;
+  checked: boolean;
+  checkAllHandler: (checked: boolean) => void;
 }
 
 const Sorteringsrad = (props: SorteringsradProps) => {
-  return (<Row className="sorteringsrad">
-    <Column md={'2'}>
-      <Checkbox label={tekster.velgalle} checked={props.checked} onChange={(event) => {props.checkAllHandler(event.target.checked);}} />
-    </Column>
-    <Column md={'2'}>{tekster.navn}</Column>
-    <Column md={'2'}>{tekster.fodselsnummer}</Column>
-    <Column md={'2'}>{tekster.diskresjonskode}</Column>
-    <Column md={'2'}>{tekster.veileder}</Column>
-  </Row>);
+  return (
+    <>
+      <Row className="personliste__overskriftheader personliste--borders">
+        <Column xs={'1'} className="personliste__gutter-left personliste--min-width-enhet"/>
+        <div className="personliste__innhold">
+          <Column xs={'4'}>{tekster.overskriftBruker}</Column>
+          <Column xs={'4'}>{tekster.overskriftVeileder}</Column>
+        </div>
+        <Column xs={'1'} className="personliste__gutter-right"/>
+      </Row>
+      <Row className="personliste__sorteringheader personliste--border-bottom">
+        <Column xs={'1'} className="personliste__gutter-left personliste--min-width-enhet">
+          <Checkbox className="skjemaelement--overskrift" label={tekster.pakrevdLabelTom} checked={props.checked} onChange={(event) => {
+            props.checkAllHandler(event.target.checked);
+          }}/>
+        </Column>
+        <div className="personliste__innhold">
+          <Column xs={'2'}>{tekster.navn}</Column>
+          <Column xs={'2'}>{tekster.fodselsnummer}</Column>
+          <Column xs={'2'}>{tekster.ident}</Column>
+          <Column xs={'2'}>{tekster.veileder}</Column>
+        </div>
+        <Column xs={'1'} className="personliste__gutter-right"/>
+      </Row>
+    </>
+  );
 };
 
 export default Sorteringsrad;

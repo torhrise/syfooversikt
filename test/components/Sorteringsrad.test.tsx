@@ -9,27 +9,22 @@ chai.use(chaiEnzyme());
 const expect = chai.expect;
 
 describe('Sorteringsrad', () => {
-  const checkboxVelgAlleTekst = 'Velg alle';
-  const kolonneForNavnTekst = 'Navn';
+  const kolonneForNavnTekst = 'Etternavn, Fornavn';
   const kolonneForFnrTekst = 'Fødselsnummer';
-  const kolonneForDiskresjonskodeTekst = 'Diskresjonskode';
-  const kolonneForVeilederTekst = 'Tildelt veileder';
+  const kolonneForIdent= 'NAV-ident';
+  const kolonneForVeilederTekst = 'Veileder';
   // tslint:disable-next-line:no-empty
   const checkAllHandler = () =>  {};
   const component = shallow(<Sorteringsrad checked={false} checkAllHandler={checkAllHandler}/>);
 
-  it('Skal inneholde "Velg alle"-Checkbox', () => {
-    expect(component.find({label: checkboxVelgAlleTekst})).to.have.length(1);
-  });
-
   it('Skal inneholde komponent med "sorteringsrad"-klasse', () => {
-    expect(component.find('.sorteringsrad')).to.have.length(1);
+    expect(component.find('.personliste__sorteringheader')).to.have.length(1);
   });
 
-  it('Skal rendre navn, fodselsnummer og skjermingskode Column-komponenter', () => {
-    expect(component.contains(<Column md={'2'}>{kolonneForNavnTekst}</Column>)).to.equal(true);
-    expect(component.contains(<Column md={'2'}>{kolonneForFnrTekst}</Column>)).to.equal(true);
-    expect(component.contains(<Column md={'2'}>{kolonneForDiskresjonskodeTekst}</Column>)).to.equal(true);
-    expect(component.contains(<Column md={'2'}>{kolonneForVeilederTekst}</Column>)).to.equal(true);
+  it('Skal rendre navn, fodselsnummer, veilederident og veiledernavn Column-komponenter', () => {
+    expect(component.contains(<Column xs={'2'}>{kolonneForNavnTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column xs={'2'}>{kolonneForFnrTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column xs={'2'}>{kolonneForIdent}</Column>)).to.equal(true);
+    expect(component.contains(<Column xs={'2'}>{kolonneForVeilederTekst}</Column>)).to.equal(true);
   });
 });
