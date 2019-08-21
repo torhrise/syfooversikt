@@ -1,8 +1,9 @@
 import React, { useState, ComponentPropsWithoutRef } from 'react';
 import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
 import { Checkbox } from 'nav-frontend-skjema';
+import countFilterAction from '../metrics/countFilterAction';
 
-const HendelseTekster: any = {
+export const HendelseTekster: any = {
     MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
     MOTEPLANLEGGER_SVAR: 'Svar møteplanlegger', // Svar fra møteplanlegger
     UFORDELTE_BRUKERE: 'Ufordelte brukere', // Ikke tildelt veileder
@@ -49,6 +50,10 @@ export default ({ onFilterChange: onValgteElementerChange, className }: Props) =
         const nyttFilter = lagNyttFilter(filter, element.tekst, checked);
         setFilter(nyttFilter);
         onValgteElementerChange(nyttFilter);
+
+        if (checked) {
+            countFilterAction(element.tekst).next();
+        }
     };
 
     return (
