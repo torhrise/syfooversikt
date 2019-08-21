@@ -1,0 +1,37 @@
+[
+  {
+    "ident": "Z999991",
+    "fornavn": "Veil",
+    "etternavn": "Eder",
+    "enhetNr": "0314",
+    "enhetNavn": "NAV Sagene"
+  },
+  {
+    "ident": "Z000000",
+    "fornavn": "NAV",
+    "etternavn": "Ansatt",
+    "enhetNr": "0314",
+    "enhetNavn": "NAV Sagene"
+  },
+  {
+    "ident": "-----",
+    "fornavn": "Bør",
+    "etternavn": "Børson",
+    "enhetNr": "0314",
+    "enhetNavn": "NAV Sagene"
+  },
+  {
+    "ident": "Wienerbrød",
+    "fornavn": "Støren",
+    "etternavn": "Bakeri",
+    "enhetNr": "0314",
+    "enhetNavn": "NAV Sagene"
+  },
+  {
+    "ident":"Z101010",
+    "fornavn": "F_Z101010",
+    "etternavn": "E_Z101010",
+    "enhetNr": "0314",
+    "enhetNavn": "NAV Sagene"
+  }
+]

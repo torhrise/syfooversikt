@@ -1,6 +1,7 @@
 import { combineReducers, Dispatch, Action, AnyAction } from 'redux';
 import { all, fork } from 'redux-saga/effects';
 import { ModiacontextState } from './modiacontext/modiacontextTypes';
+import { VeiledereState } from './veiledere/veiledereTypes';
 import { VeilederenheterState } from './veilederenheter/veilederenheterTypes';
 import { VeilederinfoState } from './veilederinfo/veilederinfoTypes';
 import { PersonInfoState } from './personInfo/personInfoTypes';
@@ -8,6 +9,7 @@ import { PersonregisterState } from './personregister/personregisterTypes';
 import { EnhetNavnState } from './enhetNavn/enhetNavnTypes';
 import { PersonoversiktStatusState } from './personoversikt/personoversiktTypes';
 import modiacontextReducer from './modiacontext/modiacontextReducer';
+import veiledereReducer from './veiledere/veiledereReducer';
 import veilederenheterReducer from './veilederenheter/veilederenheterReducer';
 import veilederinfoReducer from './veilederinfo/veilederinfoReducer';
 import personInfoReducer from './personInfo/personInfoReducer';
@@ -16,6 +18,7 @@ import enhetNavnReducer from './enhetNavn/enhetNavnReducer';
 import personregisterReducer from './personregister/personregisterReducer';
 
 import modiacontextSagas from './modiacontext/modiacontextSagas';
+import veiledereSagas from './veiledere/veiledereSagas';
 import veilederenheterSagas from './veilederenheter/veilederenheterSagas';
 import veilederinfoSagas from './veilederinfo/veilederinfoSagas';
 import personInfoSagas from './personInfo/personInfoSagas';
@@ -27,6 +30,7 @@ import enhetNavnSagas from './enhetNavn/enhetNavnSagas';
 
 export interface ApplicationState {
   modiacontext: ModiacontextState;
+  veiledere: VeiledereState;
   veilederenheter: VeilederenheterState;
   veilederinfo: VeilederinfoState;
   personInfo: PersonInfoState;
@@ -41,6 +45,7 @@ export interface ConnectedReduxProps<A extends Action = AnyAction> {
 
 export const rootReducer = combineReducers<ApplicationState>({
   modiacontext: modiacontextReducer,
+  veiledere: veiledereReducer,
   veilederenheter: veilederenheterReducer,
   veilederinfo: veilederinfoReducer,
   personInfo: personInfoReducer,
@@ -52,6 +57,7 @@ export const rootReducer = combineReducers<ApplicationState>({
 export function* rootSaga() {
   yield all([
     fork(modiacontextSagas),
+    fork(veiledereSagas),
     fork(veilederenheterSagas),
     fork(veilederinfoSagas),
     fork(personInfoSagas),

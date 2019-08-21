@@ -10,6 +10,7 @@ import {
   PersonregisterState,
   PersonHendelseData,
 } from './personregisterTypes';
+import { VeiledereActionTypes } from '../veiledere/veiledere_actions';
 
 const tilPersonDataMap = (personDataMapObject: any) => {
   return personDataMapObject.reduce((acc: { }, curr: { [fnr: string]: PersonData}) => {
@@ -55,7 +56,6 @@ const personregisterReducer: Reducer<PersonregisterState> = (
           ...state[person.fnr],
           tildeltEnhetId: person.enhet,
           tildeltVeilederIdent: person.veilederIdent,
-          veileder: person.veileder,
           harMotebehovUbehandlet: person.motebehovUbehandlet,
           harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
         },

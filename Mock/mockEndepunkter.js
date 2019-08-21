@@ -8,6 +8,7 @@ const PERSON_INFO = 'personInfo';
 const PERSONOVERSIKT_ENHET = 'personoversiktEnhet';
 const VEILEDERINFO = 'veilederinfo';
 const ENHET_NAVN = 'enhetNavn';
+const VEILEDERE = 'veiledere';
 
 const lastFilTilMinne = (filnavn) => {
   fs.readFile(path.join(__dirname, `/Data/${filnavn}.json`), (err, data) => {
@@ -22,6 +23,7 @@ lastFilTilMinne(PERSON_INFO);
 lastFilTilMinne(PERSONOVERSIKT_ENHET);
 lastFilTilMinne(VEILEDERINFO);
 lastFilTilMinne(ENHET_NAVN);
+lastFilTilMinne(VEILEDERE);
 
 function mockForLokal(server) {
   server.post('/syfoperson/api/person/info', (req, res) => {
@@ -52,6 +54,11 @@ function mockForLokal(server) {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(mockData[ENHET_NAVN]));
   });
+
+  server.get('/syfoveileder/api/veiledere/enhet/:enhet', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(mockData[VEILEDERE]));
+  })
 }
 
 module.exports = {
