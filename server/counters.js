@@ -4,6 +4,11 @@ const Histogram = prom_client.Histogram;
 const Counter = prom_client.Counter;
 
 const APP_METRIC_PREFIX = 'syfooversikt_';
+const METRIC_FILTER_INFIX = 'bruker_filter_';
+
+const getMetricName = (infix, name) => {
+    return `${APP_METRIC_PREFIX}${infix}${name}`;
+};
 
 const httpRequestDurationMicroseconds = new Histogram({
     name: 'http_request_duration_ms',
@@ -14,21 +19,22 @@ const httpRequestDurationMicroseconds = new Histogram({
 });
 
 const userFilterMotebehovCounter = new Counter({
-    name: `${APP_METRIC_PREFIX}_bruker_filter_motebehov`,
+    name: getMetricName(METRIC_FILTER_INFIX, 'motebehov'),
     help: 'Number of times the filter for showing users requesting a meeting was selected'
 });
 
 const userFilterMoteplanleggerCounter = new Counter({
-    name: `${APP_METRIC_PREFIX}bruker_filter_moteplanlegger`,
+    name: getMetricName(METRIC_FILTER_INFIX, 'moteplanlegger'),
     help: 'Number of times the filter for showing users requesting a meeting was selected'
 });
 
 const userFilterUfordelteCounter = new Counter({
-    name: `${APP_METRIC_PREFIX}bruker_filter_ufordelte`,
+    name: getMetricName(METRIC_FILTER_INFIX, 'ufordelte'),
     help: 'Number of times the filter for showing users requesting a meeting was selected'
 });
 
 module.exports = {
+    APP_METRIC_PREFIX,
     httpRequestDurationMicroseconds,
     userFilterMotebehovCounter,
     userFilterMoteplanleggerCounter,

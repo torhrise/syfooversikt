@@ -4,9 +4,27 @@ const express = require('express');
 const path = require('path');
 const mustacheExpress = require('mustache-express');
 const Promise = require('promise');
-const metrics = require('./server/metrics');
+const prom_client = require('prom-client');
+const counters = require('./server/counters');
+// const metrics = require('./server/metrics');
 
-const prometheus = metrics.prometheus;
+// Prometheus metrics
+const setupMetrics = () => {
+    const collectDefaultMetrics = prom_client.collectDefaultMetrics;
+    collectDefaultMetrics({ timeout: 5000 });
+
+    const Registry = prom_client.Registry;
+    const register = new Registry();
+
+    register.registerMetric(counters.httpRequestDurationMicroseconds);
+    register.registerMetric(counters.userFilterMotebehovCounter);
+    register.registerMetric(counters.userFilterMoteplanleggerCounter);
+    register.registerMetric(counters.userFilterUfordelteCounter);
+
+    collectDefaultMetrics({ register });
+    return register;
+};
+const prometheus = setupMetrics();
 
 const server = express();
 
@@ -44,8 +62,6 @@ function nocache(req, res, next) {
 }
 
 const startServer = (html) => {
-    metrics.setup(server);
-
     server.use(
         '/syfooversikt/resources',
         express.static(path.resolve(__dirname, 'dist/resources')),
@@ -71,6 +87,22 @@ const startServer = (html) => {
         res.sendStatus(200);
     });
     server.get('/health/isReady', (req, res) => {
+        res.sendStatus(200);
+    });
+
+    server.get('/actuator/metrics', (req, res) => {
+        res.set('Content-Type', prometheus.register.contentType);
+        res.end(prometheus.metrics());
+    });
+
+    server.get('/metrics/actions/filters/:type', (req, res) => {
+        const counterPostfix = req.params.type
+            ? req.params.type
+            : '';
+        const counterKey = `${counters.APP_METRIC_PREFIX}bruker_filter_${counterPostfix}`;
+        // tslint:disable-next-line
+        console.log('counterKey', counterKey);
+        prometheus.getSingleMetric(counterKey).inc(1, new Date());
         res.sendStatus(200);
     });
 
