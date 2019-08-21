@@ -5,7 +5,11 @@ import React from 'react';
 import Personliste from '../../src/components/Personliste';
 import Sorteringsrad from '../../src/components/Sorteringsrad';
 import Personrad from '../../src/components/Personrad';
-import { testdata, personregister } from '../data/fellesTestdata';
+import {
+  testdata,
+  personregister,
+  veiledere,
+} from '../data/fellesTestdata';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -22,6 +26,7 @@ describe('Personliste', () => {
     checkboxHandler={checkboxHandler}
     markertePersoner={markertePersoner}
     checkAllHandler={checkAllHandler}
+    veiledere={veiledere}
   />);
 
   it('Skal rendre Sorteringsrad', () => {

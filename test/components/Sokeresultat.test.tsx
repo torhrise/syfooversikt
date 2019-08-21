@@ -7,6 +7,8 @@ import {
   enhet,
   veilederinfo,
   personregister,
+  veiledere,
+  markertePersoner,
 } from '../data/fellesTestdata';
 import Toolbar from '../../src/components/toolbar/Toolbar';
 import Personliste from '../../src/components/Personliste';
@@ -23,10 +25,17 @@ describe('Sokeresultat', () => {
       aktivVeilederinfo={veilederinfo}
       personregister={personregister}
       tildelVeileder={dummyFunksjon}
+      veiledere={veiledere}
   />);
 
   it('Skal inneholde knapperad', () => {
-    expect(component.contains( <Toolbar buttonHandler={dummyFunksjon} />));
+    expect(component.contains( <Toolbar
+      aktivVeilederInfo={veilederinfo}
+      buttonHandler={dummyFunksjon}
+      checkAllHandler={dummyFunksjon}
+      veiledere={veiledere}
+      markertePersoner={markertePersoner}
+    />));
   });
   it('Skal inneholde liste av personer', () => {
     expect(component.find(Personliste)).to.have.length(1);

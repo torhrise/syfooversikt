@@ -11,4 +11,5 @@ export const HOST_NAMES = {
   SYFOOVERSIKTSRV: 'syfooversiktsrv',
   SYFOPERSON: 'syfoperson',
   SYFOMOTEADMIN: 'syfomoteadmin',
+  SYFOVEILEDER: 'syfoveileder',
 };
