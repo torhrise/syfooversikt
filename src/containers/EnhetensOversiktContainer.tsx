@@ -3,6 +3,7 @@ import {
   useDispatch,
   useSelector,
 } from 'react-redux';
+import styled from 'styled-components';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import AppSpinner from '../components/AppSpinner';
 import Sokeresultat from '../components/Sokeresultat';
@@ -40,6 +41,24 @@ const info = (altFeilet: boolean, hentetIngenPersoner: boolean) => {
   }
 };
 
+const OversiktContainerInnhold = styled.div`
+  display: flex;
+`;
+
+const SokeresultatFiltre = styled.div`
+  flex: 1;
+  min-width: 18rem;
+  margin-right: 2rem;
+`;
+
+const TekstFilterStyled = styled(TekstFilter)`
+  margin-bottom: 1rem
+`;
+
+const HendelseFilterStyled = styled(SokeresultatFilter)`
+  margin-bottom: 1rem
+`;
+
 export default () => {
   const initHendelseTypeFilter = {} as HendelseTypeFilters;
   const [ hendelseTypeFilter, onHendelsesTypeChange ] = useState(initHendelseTypeFilter);
@@ -70,25 +89,23 @@ export default () => {
       {info(altFeilet, hentetIngenPersoner)}
       {henterAlt && <AppSpinner />}
       {noeErHentet && (
-        <div className="oversiktContainer__innhold">
-          <div className="sokeresultatFilter">
-              <TekstFilter
-                  className="sokeresultatFilter__panel"
+        <OversiktContainerInnhold>
+          <SokeresultatFiltre>
+              <TekstFilterStyled
                   onFilterChange={onTekstFilterChange}
               />
-              <SokeresultatFilter
-                  className="sokeresultatFilter__panel"
+              <HendelseFilterStyled
                   onFilterChange={onHendelsesTypeChange}
                   personRegister={personregister}
               />
-          </div>
+          </SokeresultatFiltre>
           <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
             aktivEnhet={aktivEnhet}
             aktivVeilederinfo={aktivVeilederinfo}
             personregister={filtrertListe}
           />
-        </div>
+        </OversiktContainerInnhold>
       )}
     </div>
   );

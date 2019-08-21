@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import Toolbar from './toolbar/Toolbar';
 import Personliste from './Personliste';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
@@ -25,6 +26,10 @@ const lagListe = (markertePersoner: string[], veilederIdent: string, enhet: stri
     enhet,
   }));
 };
+
+const SokeresultatContainer = styled.div`
+  flex: 3;
+`;
 
 class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
   constructor(props: SokeresultatProps) {
@@ -83,7 +88,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
         alleMarkert,
     } = this.state;
 
-    return (<div className="Sokeresultat__container">
+    return (<SokeresultatContainer>
       <Toolbar buttonHandler={this.buttonHandler}/>
       <Personliste
         alleMarkert={alleMarkert}
@@ -92,7 +97,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
         markertePersoner={this.state.markertePersoner}
         checkAllHandler={this.checkAllHandler}
       />
-    </div>);
+    </SokeresultatContainer>);
   }
 }
 
