@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Container } from 'nav-frontend-grid';
 import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
-import { PersonregisterState } from '../store/personregister/personregisterTypes';
+import { PersonData, PersonregisterState } from '../store/personregister/personregisterTypes';
+import { Veileder } from '../store/veiledere/veiledereTypes';
 
 interface PersonlisteProps {
   personregister: PersonregisterState;
@@ -10,6 +11,7 @@ interface PersonlisteProps {
   markertePersoner: string[];
   alleMarkert: boolean;
   checkAllHandler: (checked: boolean) => void;
+  veiledere: Veileder[];
 }
 
 const erMarkert = (markertePersoner: string[], fnr: string) => {
@@ -18,6 +20,15 @@ const erMarkert = (markertePersoner: string[], fnr: string) => {
   }) !== -1;
 };
 
+const veilederForPerson = ((veiledere: Veileder[], person: PersonData) => {
+  if (person.tildeltVeilederIdent) {
+    return veiledere.find((veileder) => {
+      return veileder.ident === person.tildeltVeilederIdent;
+    });
+  }
+  return undefined;
+});
+
 const Personliste = (props: PersonlisteProps) => {
   const {
     personregister,
@@ -25,6 +36,7 @@ const Personliste = (props: PersonlisteProps) => {
     markertePersoner,
     checkAllHandler,
     alleMarkert,
+    veiledere,
   } = props;
 
   const fnrListe = Object.keys(personregister);
@@ -39,6 +51,7 @@ const Personliste = (props: PersonlisteProps) => {
           personData={personregister[fnr]}
           checkboxHandler={checkboxHandler}
           kryssAv={erMarkert(markertePersoner, fnr)}
+          veileder={veilederForPerson(veiledere, personregister[fnr])}
         />);
       })
     }

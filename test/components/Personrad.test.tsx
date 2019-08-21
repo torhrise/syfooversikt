@@ -5,8 +5,11 @@ import React from 'react';
 import { Column } from 'nav-frontend-grid';
 import Personrad from '../../src/components/Personrad';
 import { lenkeTilModiaEnkeltperson } from '../../src/utils/lenkeUtil';
-import { skjermingskode } from '../../src/utils/personDataUtil';
-import { testdata } from '../data/fellesTestdata';
+import { skjermingskode, veilederEllerUfordelt } from '../../src/utils/personDataUtil';
+import {
+  testdata,
+  veiledere,
+} from '../data/fellesTestdata';
 import { PersonData } from '../../src/store/personregister/personregisterTypes';
 
 chai.use(chaiEnzyme());
@@ -23,6 +26,7 @@ describe('Personrad', () => {
     personData={personData}
     checkboxHandler={checkboxHandler}
     kryssAv={false}
+    veileder={veiledere[0]}
   />);
 
   it('Skal inneholde komponent med "personrad"-klasse', () => {
@@ -34,5 +38,6 @@ describe('Personrad', () => {
     expect(component.contains(<Column className="personrad__fnr" xs={'2'}>{fnr}</Column>)).to.equal(true);
     expect(component.contains(<Column className="personrad__skjermet personliste__gutter-right" xs={'1'}>{skjermingskode(personData)}</Column>)).to.equal(true);
     expect(component.contains(<Column className="personrad__veileder" xs={'2'}>{personData.tildeltVeilederIdent}</Column>)).to.equal(true);
+    expect(component.contains(<Column className="personrad__veiledernavn" xs={'2'}>{veilederEllerUfordelt(veiledere[0])}</Column>)).to.equal(true);
   });
 });

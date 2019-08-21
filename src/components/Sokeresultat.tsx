@@ -6,6 +6,7 @@ import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbe
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
 import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
+import { Veileder } from '../store/veiledere/veiledereTypes';
 
 interface  SokeresultatState {
   markertePersoner: string[];
@@ -17,6 +18,7 @@ interface SokeresultatProps {
   aktivVeilederinfo: Veilederinfo;
   personregister: PersonregisterState;
   tildelVeileder: (liste: VeilederArbeidstaker[]) => void;
+  veiledere: Veileder[];
 }
 
 const lagListe = (markertePersoner: string[], veilederIdent: string, enhet: string): VeilederArbeidstaker[] => {
@@ -70,32 +72,41 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     }));
   }
 
-  buttonHandler =  () => {
+  buttonHandler = (veilederIdent: string) => {
     const {
       aktivEnhet,
-      aktivVeilederinfo,
       tildelVeileder,
     } = this.props;
-    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, aktivVeilederinfo.ident, aktivEnhet.enhetId);
+    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, aktivEnhet.enhetId);
     tildelVeileder(veilederArbeidstakerListe);
   }
   render() {
     const {
       personregister,
+      veiledere,
+      aktivVeilederinfo,
     } = this.props;
 
     const {
         alleMarkert,
+        markertePersoner,
     } = this.state;
 
     return (<SokeresultatContainer>
-      <Toolbar buttonHandler={this.buttonHandler}/>
+      <Toolbar
+        aktivVeilederInfo={aktivVeilederinfo}
+        buttonHandler={this.buttonHandler}
+        checkAllHandler={this.checkAllHandler}
+        veiledere={veiledere}
+        markertePersoner={markertePersoner}
+      />
       <Personliste
         alleMarkert={alleMarkert}
         personregister={personregister}
         checkboxHandler={this.checkboxHandler}
-        markertePersoner={this.state.markertePersoner}
+        markertePersoner={markertePersoner}
         checkAllHandler={this.checkAllHandler}
+        veiledere={veiledere}
       />
     </SokeresultatContainer>);
   }

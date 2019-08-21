@@ -11,12 +11,14 @@ import {
   skjermingskode,
   veilederEllerUfordelt,
 } from '../utils/personDataUtil';
+import { Veileder } from '../store/veiledere/veiledereTypes';
 
 interface PersonradProps {
   fnr: string;
   personData: PersonData;
   checkboxHandler: (fnr: string) => void;
   kryssAv: boolean;
+  veileder?: Veileder;
 }
 
 class Personrad extends Component<PersonradProps> {
@@ -30,6 +32,7 @@ class Personrad extends Component<PersonradProps> {
       checkboxHandler,
       personData,
       kryssAv,
+      veileder,
     } = this.props;
     return (
       <Row className="personrad personliste__element personliste--border-bottom-thin">
@@ -42,7 +45,7 @@ class Personrad extends Component<PersonradProps> {
           <Column className="personrad__navn" xs={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
           <Column className="personrad__fnr" xs={'2'}>{fnr}</Column>
           <Column className="personrad__veileder" xs={'2'}>{personData.tildeltVeilederIdent}</Column>
-          <Column className="personrad__veiledernavn" xs={'2'}>{veilederEllerUfordelt(personData)}</Column>
+          <Column className="personrad__veiledernavn" xs={'2'}>{veilederEllerUfordelt(veileder)}</Column>
         </div>
         <Column className="personrad__skjermet personliste__gutter-right" xs={'1'}>{skjermingskode(personData)}</Column>
       </Row>);
