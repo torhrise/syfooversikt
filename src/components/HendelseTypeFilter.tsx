@@ -43,7 +43,7 @@ interface CheckboksElement {
     key: string;
 }
 
-export default ({ onFilterChange: onValgteElementerChange, className, personRegister: hendelseListe }: Props) => {
+export default ({ onFilterChange: onValgteElementerChange, className, personRegister }: Props) => {
 
     const initialFilter: HendelseTypeFilters = {
         onskerMote: false,
@@ -67,7 +67,7 @@ export default ({ onFilterChange: onValgteElementerChange, className, personRegi
         <div className={...className}>
             <EkspanderbartPanel apen tittel="Hendelse">
                 <div>
-                    {genererHendelseCheckbokser(elementer, onCheckedChange, hendelseListe)}
+                    {genererHendelseCheckbokser(elementer, onCheckedChange, personRegister)}
                 </div>
             </EkspanderbartPanel>
         </div>
@@ -78,15 +78,15 @@ const genererHendelseCheckbokser = (
     elementer: CheckboksElement[],
     onCheckedChange: (klikketElement: CheckboksElement, checked: boolean) => void,
     personRegister?: PersonregisterState) => {
-    return elementer.map((k) => {
-        const filter = enkeltFilterFraTekst(k.tekst, true);
+    return elementer.map((checkboksElement) => {
+        const filter = enkeltFilterFraTekst(checkboksElement.tekst, true);
         const antall = Object.keys(filtrerPersonregister(personRegister || {}, filter)).length;
-        const labelNode = (<div>{k.tekst} <strong>({antall})</strong></div>);
+        const labelNode = (<div>{checkboksElement.tekst} <strong>({antall})</strong></div>);
         return (<Checkbox
             label={labelNode}
-            id={k.key}
-            key={k.key}
-            onChange={(e) => onCheckedChange(k, e.target.checked)}
+            id={checkboksElement.key}
+            key={checkboksElement.key}
+            onChange={(e) => onCheckedChange(checkboksElement, e.target.checked)}
         />);
     });
 };
