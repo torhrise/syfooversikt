@@ -95,7 +95,7 @@ const startServer = (html) => {
         res.end(prometheus.metrics());
     });
 
-    server.get('/metrics/actions/filters/:type', (req, res) => {
+    server.post('/metrics/actions/filters/:type', (req, res) => {
         const counterPostfix = req.params.type
             ? req.params.type
             : '';
