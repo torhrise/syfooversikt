@@ -3,7 +3,7 @@ import chaiEnzyme from 'chai-enzyme';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { Column } from 'nav-frontend-grid';
-import Sorteringsrad from '../../src/components/Sorteringsrad';
+import Sorteringsrad, { OverskriftRad } from '../../src/components/Sorteringsrad';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -17,12 +17,12 @@ describe('Sorteringsrad', () => {
   const checkAllHandler = () =>  {};
   const component = shallow(<Sorteringsrad checked={false} checkAllHandler={checkAllHandler}/>);
 
-  it('Skal inneholde komponent med "sorteringsrad"-klasse', () => {
-    expect(component.find('.personliste__sorteringheader')).to.have.length(1);
+  it('Skal inneholde OverskriftRad', () => {
+    expect(component.find(OverskriftRad)).to.have.length(1);
   });
 
   it('Skal rendre navn, fodselsnummer, veilederident og veiledernavn Column-komponenter', () => {
-    expect(component.contains(<Column xs={'2'}>{kolonneForNavnTekst}</Column>)).to.equal(true);
+    expect(component.contains(<Column xs={'3'}>{kolonneForNavnTekst}</Column>)).to.equal(true);
     expect(component.contains(<Column xs={'2'}>{kolonneForFnrTekst}</Column>)).to.equal(true);
     expect(component.contains(<Column xs={'2'}>{kolonneForIdent}</Column>)).to.equal(true);
     expect(component.contains(<Column xs={'2'}>{kolonneForVeilederTekst}</Column>)).to.equal(true);

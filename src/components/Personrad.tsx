@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import {
   Column,
   Row,
 } from 'nav-frontend-grid';
 import { Checkbox } from 'nav-frontend-skjema';
+import themes from '../styles/themes';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
-  hendelsestype,
   skjermingskode,
   veilederEllerUfordelt,
 } from '../utils/personDataUtil';
@@ -18,6 +19,17 @@ interface PersonradProps {
   checkboxHandler: (fnr: string) => void;
   kryssAv: boolean;
 }
+
+export const PersonRad = styled(Row)`
+  display: flex;
+  align-items: center;
+  padding: .3rem 0;
+  border-bottom: 1px solid ${themes.color.navGra40};
+`;
+
+const VelgBoks = styled(Checkbox)`
+  padding-bottom: 1em;
+`;
 
 class Personrad extends Component<PersonradProps> {
   constructor(props: PersonradProps) {
@@ -32,20 +44,22 @@ class Personrad extends Component<PersonradProps> {
       kryssAv,
     } = this.props;
     return (
-      <Row className="personrad personliste__element personliste--border-bottom-thin">
-        <Column className="personrad__checkbox personliste__gutter-left personliste--min-width-enhet" xs={'1'}>
-          <Checkbox label={''} checked={!!kryssAv} onChange={(event) => {
-            checkboxHandler(fnr);
-          }}/>
+      <PersonRad className="">
+        <Column xs={'1'}>
+          <VelgBoks
+              label={''}
+              checked={!!kryssAv}
+              onChange={(event) => {
+                checkboxHandler(fnr);
+              }}
+          />
         </Column>
-        <div className="personliste__innhold flex flex--center">
-          <Column className="personrad__navn" xs={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
-          <Column className="personrad__fnr" xs={'2'}>{fnr}</Column>
-          <Column className="personrad__veileder" xs={'2'}>{personData.tildeltVeilederIdent}</Column>
-          <Column className="personrad__veiledernavn" xs={'2'}>{veilederEllerUfordelt(personData)}</Column>
-        </div>
-        <Column className="personrad__skjermet personliste__gutter-right" xs={'1'}>{skjermingskode(personData)}</Column>
-      </Row>);
+        <Column className="personrad__navn" xs={'3'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
+        <Column className="personrad__fnr" xs={'2'}>{fnr}</Column>
+        <Column className="personrad__veileder" xs={'2'}>{personData.tildeltVeilederIdent}</Column>
+        <Column className="personrad__veiledernavn" xs={'2'}>{veilederEllerUfordelt(personData)}</Column>
+        <Column className="personrad__skjermet" xs={'2'}>{skjermingskode(personData)}</Column>
+      </PersonRad>);
   }
 }
 
