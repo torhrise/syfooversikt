@@ -14,7 +14,7 @@ import {
   Filterable,
   filtrerPersonregister,
   filtrerPaaFodselsnummerEllerNavn,
-  hendelseForVeileder,
+  filterEventsOnVeileder,
 } from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
 import { ApplicationState } from '../store';
@@ -85,13 +85,12 @@ export default ({ tabType }: Props) => {
     altFeilet,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
-  let filtrertListe = new Filterable<PersonregisterState>(personregister)
+  let filterableEvents = new Filterable<PersonregisterState>(personregister)
       .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter))
       .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
-      .value;
 
   if (tabType === OverviewTabType.MY_OVERVIEW) {
-    filtrertListe = new Filterable<PersonregisterState>(filtrertListe).applyFilter((v) => hendelseForVeileder(v, aktivVeilederinfo.ident)).value;
+    filterableEvents = filterableEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
   }
 
   return (
@@ -113,7 +112,7 @@ export default ({ tabType }: Props) => {
             tildelVeileder={actions.tildelVeileder}
             aktivEnhet={aktivEnhet}
             aktivVeilederinfo={aktivVeilederinfo}
-            personregister={filtrertListe}
+            personregister={filterableEvents.value}
           />
         </OversiktContainerInnhold>
       )}

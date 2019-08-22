@@ -54,7 +54,7 @@ export const filtrerPersonregister = (personregister: PersonregisterState, filte
     return nyttFiltrertPersonregister;
   };
 
-export const hendelseForVeileder = (personregister: PersonregisterState, veilederIdent: string): PersonregisterState => {
+export const filterEventsOnVeileder = (personregister: PersonregisterState, veilederIdent: string): PersonregisterState => {
     const final = Object.keys(personregister).reduce((p, fnr) => {
         if (personregister[fnr].tildeltVeilederIdent === veilederIdent) {
             p[fnr] = personregister[fnr];
