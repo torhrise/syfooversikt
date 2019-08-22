@@ -15,8 +15,10 @@ interface StateProps {
   visning: OverviewTabType;
 }
 
-const getBtnClassNames = (aktiv: boolean) => {
-  const aktivClass = aktiv ? 'oversiktVelger__knapp--aktiv' : undefined;
+const getButtonClassNames = (aktiv: boolean) => {
+  const aktivClass = aktiv
+    ? 'oversiktVelger__knapp--aktiv'
+    : undefined;
   return cn(aktivClass);
 };
 
@@ -42,7 +44,7 @@ class OversiktVelger extends Component<{}, StateProps> {
         <ul>
           <li>
             <button
-                className={getBtnClassNames(visning === OverviewTabType.ENHET_OVERVIEW)}
+                className={getButtonClassNames(visning === OverviewTabType.ENHET_OVERVIEW)}
                 aria-pressed={visning === OverviewTabType.ENHET_OVERVIEW}
                 onClick={() => {
                   this.byttVisning(OverviewTabType.ENHET_OVERVIEW);
@@ -50,7 +52,7 @@ class OversiktVelger extends Component<{}, StateProps> {
               {tekster.enhetensOversikt}
             </button>
             <button
-                className={getBtnClassNames(visning === OverviewTabType.MY_OVERVIEW)}
+                className={getButtonClassNames(visning === OverviewTabType.MY_OVERVIEW)}
                 aria-pressed={visning === OverviewTabType.MY_OVERVIEW}
                 onClick={() => {
                   this.byttVisning(OverviewTabType.MY_OVERVIEW);
