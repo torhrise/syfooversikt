@@ -4,6 +4,7 @@ export const CONTEXT_EVENT_TYPE = {
 
 export const OVERSIKT_VISNING_TYPE = {
     ENHETENS_OVERSIKT: 'ENHETENS_OVERSIKT',
+    MIN_OVERSIKT: 'MIN_OVERSIKT',
 };
 
 export const HOST_NAMES = {

@@ -71,6 +71,11 @@ const OversiktContainer = ({type}: OversiktProps) => {
       {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && !aktivEnhetFeilet && (
         <EnhetensOversiktContainer />
       )}
+      {type === OVERSIKT_VISNING_TYPE.MIN_OVERSIKT && !aktivEnhetFeilet && (
+        <div>
+          Min oversikt
+        </div>
+      )}
     </div>
   );
 };

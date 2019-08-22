@@ -8,14 +8,16 @@ import OversiktContainer from '../containers/OversiktContainer';
 
 const tekster = {
   enhetensOversikt: 'Enhetens oversikt',
+  minOversikt: 'Min oversikt',
 };
 
 interface StateProps {
   visning: string;
 }
 
-export const getBtnClassNames = (visning: string) => {
-  return cn('oversiktVelger__knapp--aktiv', visning === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT);
+const getBtnClassNames = (aktiv: boolean) => {
+  const aktivClass = aktiv ? 'oversiktVelger__knapp--aktiv' : undefined;
+  return cn(aktivClass);
 };
 
 class OversiktVelger extends Component<{}, StateProps> {
@@ -35,17 +37,29 @@ class OversiktVelger extends Component<{}, StateProps> {
 
   render() {
     const visning = this.state.visning;
+    const {
+      ENHETENS_OVERSIKT,
+      MIN_OVERSIKT,
+    } = OVERSIKT_VISNING_TYPE;
     return (<Fragment>
       <div className="oversiktVelger">
         <ul>
           <li>
             <button
-                className={getBtnClassNames(visning)}
-                aria-pressed={visning === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT}
+                className={getBtnClassNames(visning === ENHETENS_OVERSIKT)}
+                aria-pressed={visning === ENHETENS_OVERSIKT}
                 onClick={() => {
-                  this.byttVisning(OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT);
+                  this.byttVisning(ENHETENS_OVERSIKT);
                 }}>
               {tekster.enhetensOversikt}
+            </button>
+            <button
+                className={getBtnClassNames(visning === MIN_OVERSIKT)}
+                aria-pressed={visning === MIN_OVERSIKT}
+                onClick={() => {
+                  this.byttVisning(MIN_OVERSIKT);
+                }}>
+              {tekster.minOversikt}
             </button>
           </li>
         </ul>
