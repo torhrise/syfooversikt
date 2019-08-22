@@ -29,7 +29,7 @@ const Personliste = (props: PersonlisteProps) => {
 
   const fnrListe = Object.keys(personregister);
 
-  return (<section className="personliste typo-undertekst">
+  return (<section>
     <Sorteringsrad checked={alleMarkert} checkAllHandler={checkAllHandler} />
     {
       fnrListe.map((fnr: string, idx: number) => {
