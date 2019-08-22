@@ -3,7 +3,7 @@ import React, {
   Fragment,
 } from 'react';
 import cn from 'classnames';
-import { OVERSIKT_VISNING_TYPE } from '../konstanter';
+import { OverviewTabType } from '../konstanter';
 import OversiktContainer from '../containers/OversiktContainer';
 
 const tekster = {
@@ -12,7 +12,7 @@ const tekster = {
 };
 
 interface StateProps {
-  visning: string;
+  visning: OverviewTabType;
 }
 
 const getBtnClassNames = (aktiv: boolean) => {
@@ -24,12 +24,12 @@ class OversiktVelger extends Component<{}, StateProps> {
   constructor(props: any) {
     super(props);
     this.state = {
-      visning: OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT,
+      visning: OverviewTabType.ENHET_OVERVIEW,
     };
     this.byttVisning = this.byttVisning.bind(this);
   }
 
-  byttVisning(visning: string) {
+  byttVisning(visning: OverviewTabType) {
     this.setState({
       visning,
     });
@@ -37,27 +37,23 @@ class OversiktVelger extends Component<{}, StateProps> {
 
   render() {
     const visning = this.state.visning;
-    const {
-      ENHETENS_OVERSIKT,
-      MIN_OVERSIKT,
-    } = OVERSIKT_VISNING_TYPE;
     return (<Fragment>
       <div className="oversiktVelger">
         <ul>
           <li>
             <button
-                className={getBtnClassNames(visning === ENHETENS_OVERSIKT)}
-                aria-pressed={visning === ENHETENS_OVERSIKT}
+                className={getBtnClassNames(visning === OverviewTabType.ENHET_OVERVIEW)}
+                aria-pressed={visning === OverviewTabType.ENHET_OVERVIEW}
                 onClick={() => {
-                  this.byttVisning(ENHETENS_OVERSIKT);
+                  this.byttVisning(OverviewTabType.ENHET_OVERVIEW);
                 }}>
               {tekster.enhetensOversikt}
             </button>
             <button
-                className={getBtnClassNames(visning === MIN_OVERSIKT)}
-                aria-pressed={visning === MIN_OVERSIKT}
+                className={getBtnClassNames(visning === OverviewTabType.MY_OVERVIEW)}
+                aria-pressed={visning === OverviewTabType.MY_OVERVIEW}
                 onClick={() => {
-                  this.byttVisning(MIN_OVERSIKT);
+                  this.byttVisning(OverviewTabType.MY_OVERVIEW);
                 }}>
               {tekster.minOversikt}
             </button>

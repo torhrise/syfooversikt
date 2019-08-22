@@ -7,7 +7,7 @@ import {
 } from 'react-redux';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
 import { ApplicationState } from '../store';
-import { OVERSIKT_VISNING_TYPE } from '../konstanter';
+import { OverviewTabType } from '../konstanter';
 import { hentPersonoversiktForespurt } from '../store/personoversikt/personoversikt_actions';
 import { hentVeilederenheter } from '../store/veilederenheter/veilederenheter_actions';
 import EnhetensOversiktContainer from './EnhetensOversiktContainer';
@@ -68,13 +68,8 @@ const OversiktContainer = ({type}: OversiktProps) => {
       {aktivEnhetFeilet && (
         <AktivEnhetFeiletError />
       )}
-      {type === OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT && !aktivEnhetFeilet && (
-        <EnhetensOversiktContainer />
-      )}
-      {type === OVERSIKT_VISNING_TYPE.MIN_OVERSIKT && !aktivEnhetFeilet && (
-        <div>
-          Min oversikt
-        </div>
+      {!aktivEnhetFeilet && (
+        <EnhetensOversiktContainer tabType={type as OverviewTabType} />
       )}
     </div>
   );

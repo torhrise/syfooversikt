@@ -14,11 +14,13 @@ import {
   Filterable,
   filtrerPersonregister,
   filtrerPaaFodselsnummerEllerNavn,
+  hendelseForVeileder,
 } from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
 import { ApplicationState } from '../store';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
 import { AlertStripeWarning } from '../components/AlertStripeWarning';
+import { OverviewTabType } from '../konstanter';
 
 const tekster = {
     feil: {
@@ -59,7 +61,11 @@ const HendelseFilterStyled = styled(SokeresultatFilter)`
   margin-bottom: 1rem
 `;
 
-export default () => {
+interface Props {
+  tabType: OverviewTabType;
+}
+
+export default ({ tabType }: Props) => {
   const initHendelseTypeFilter = {} as HendelseTypeFilters;
   const [ hendelseTypeFilter, onHendelsesTypeChange ] = useState(initHendelseTypeFilter);
   const [ tekstFilter, onTekstFilterChange ] = useState('');
@@ -79,10 +85,14 @@ export default () => {
     altFeilet,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
-  const filtrertListe = new Filterable<PersonregisterState>(personregister)
-      .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
+  let filtrertListe = new Filterable<PersonregisterState>(personregister)
       .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter))
+      .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
       .value;
+
+  if (tabType === OverviewTabType.MY_OVERVIEW) {
+    filtrertListe = new Filterable<PersonregisterState>(filtrertListe).applyFilter((v) => hendelseForVeileder(v, aktivVeilederinfo.ident)).value;
+  }
 
   return (
     <div>
