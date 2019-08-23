@@ -24,20 +24,6 @@ export const filterVeiledereOnInput = ((veiledere: Veileder[], lowerCaseInput: s
     || veileder.etternavn.toLowerCase().includes(lowerCaseInput));
 });
 
-const StyledRadio = styled(Radio)`
-  width: 15em;
-`;
-
-export const radiobuttonsFromFilteredVeilederList = ((onChangeHandler: (Veileder: Veileder) => void, filteredVeiledere: Veileder[]) => {
-  return filteredVeiledere.map((veileder: Veileder, index: number) =>
-    <StyledRadio
-      key={index}
-      label={`${veileder.etternavn}, ${veileder.fornavn}`}
-      name="veiledereRadioButton"
-      onChange={() => onChangeHandler(veileder)}
-    />);
-});
-
 export const hasNoCheckedPersoner = ((personer: string[]) => {
   return personer.length === 0;
 });

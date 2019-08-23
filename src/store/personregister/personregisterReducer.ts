@@ -8,9 +8,7 @@ import { PersonoversiktActionTypes } from '../personoversikt/personoversikt_acti
 import {
   PersonData,
   PersonregisterState,
-  PersonHendelseData,
 } from './personregisterTypes';
-import { VeiledereActionTypes } from '../veiledere/veiledere_actions';
 
 const tilPersonDataMap = (personDataMapObject: any) => {
   return personDataMapObject.reduce((acc: { }, curr: { [fnr: string]: PersonData}) => {

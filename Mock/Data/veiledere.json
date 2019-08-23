@@ -33,5 +33,19 @@
     "etternavn": "E_Z101010",
     "enhetNr": "0314",
     "enhetNavn": "NAV Sagene"
+  },
+  {
+    "ident": "S123456",
+    "fornavn": "Dana",
+    "etternavn": "Scully",
+    "enhetNr": "0314",
+    "enhetNavn": "NAV X-Files"
+  },
+  {
+    "ident":"M987654",
+    "fornavn": "Fox",
+    "etternavn": "Mulder",
+    "enhetNr": "0314",
+    "enhetNavn": "NAV X-Files"
   }
 ]
