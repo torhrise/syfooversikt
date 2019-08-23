@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Container } from 'nav-frontend-grid';
+import React from 'react';
 import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
