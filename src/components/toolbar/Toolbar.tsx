@@ -1,10 +1,16 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import TildelVeileder from './TildelVeileder';
+import TildelVeileder from './AssignVeileder/TildelVeileder';
 import themes from '../../styles/themes';
+import { Veileder } from '../../store/veiledere/veiledereTypes';
+import { Veilederinfo } from '../../store/veilederinfo/veilederinfoTypes';
 
 export interface ToolbarProps {
-  buttonHandler: () => void;
+  aktivVeilederInfo: Veilederinfo;
+  buttonHandler: (veilederIdent: string) => void;
+  checkAllHandler: (checked: boolean) => void;
+  veiledere: Veileder[];
+  markertePersoner: string[];
 }
 
 const Innhold = styled.section`
