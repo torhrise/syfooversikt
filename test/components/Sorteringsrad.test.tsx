@@ -13,9 +13,7 @@ describe('Sorteringsrad', () => {
   const kolonneForFnrTekst = 'Fødselsnummer';
   const kolonneForIdent= 'NAV-ident';
   const kolonneForVeilederTekst = 'Veileder';
-  // tslint:disable-next-line:no-empty
-  const checkAllHandler = () =>  {};
-  const component = shallow(<Sorteringsrad checked={false} checkAllHandler={checkAllHandler}/>);
+  const component = shallow(<Sorteringsrad />);
 
   it('Skal inneholde OverskriftRad', () => {
     expect(component.find(OverskriftRad)).to.have.length(1);

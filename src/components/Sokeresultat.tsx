@@ -95,17 +95,16 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     return (<SokeresultatContainer>
       <Toolbar
         aktivVeilederInfo={aktivVeilederinfo}
+        alleMarkert={alleMarkert}
         buttonHandler={this.buttonHandler}
         checkAllHandler={this.checkAllHandler}
         veiledere={veiledere}
         markertePersoner={markertePersoner}
       />
       <Personliste
-        alleMarkert={alleMarkert}
         personregister={personregister}
         checkboxHandler={this.checkboxHandler}
         markertePersoner={markertePersoner}
-        checkAllHandler={this.checkAllHandler}
         veiledere={veiledere}
       />
     </SokeresultatContainer>);

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Checkbox } from 'nav-frontend-skjema';
 import styled from 'styled-components';
 import {
   Column,
@@ -8,7 +7,6 @@ import {
 import themes from '../styles/themes';
 
 const tekster = {
-  pakrevdLabelTom: '',
   navn: 'Etternavn, Fornavn',
   fodselsnummer: 'Fødselsnummer',
   ident: 'NAV-ident',
@@ -16,11 +14,6 @@ const tekster = {
   overskriftBruker: 'Bruker',
   overskriftVeileder: 'Veileder',
 };
-
-interface SorteringsradProps {
-  checked: boolean;
-  checkAllHandler: (checked: boolean) => void;
-}
 
 export const OverskriftRad = styled(Row)`
   display: flex;
@@ -37,11 +30,7 @@ const IngressRad = styled(Row)`
   border-bottom: 2px solid ${themes.color.navGra40};
 `;
 
-const VelgBoks = styled(Checkbox)`
-  padding-bottom: 1rem;
-`;
-
-const Sorteringsrad = (props: SorteringsradProps) => {
+const Sorteringsrad = () => {
   return (
     <>
       <OverskriftRad className="">
@@ -51,15 +40,7 @@ const Sorteringsrad = (props: SorteringsradProps) => {
       </OverskriftRad>
 
       <IngressRad className="">
-        <Column xs={'1'}>
-          <VelgBoks
-              label={tekster.pakrevdLabelTom}
-              checked={props.checked}
-              onChange={(event) => {
-                props.checkAllHandler(event.target.checked);
-              }}
-          />
-        </Column>
+        <Column className="emptyColumn" xs={'1'} />
         <Column xs={'3'}>{tekster.navn}</Column>
         <Column xs={'2'}>{tekster.fodselsnummer}</Column>
         <Column xs={'2'}>{tekster.ident}</Column>

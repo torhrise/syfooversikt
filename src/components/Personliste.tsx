@@ -8,8 +8,6 @@ interface PersonlisteProps {
   personregister: PersonregisterState;
   checkboxHandler: (fnr: string ) => void;
   markertePersoner: string[];
-  alleMarkert: boolean;
-  checkAllHandler: (checked: boolean) => void;
   veiledere: Veileder[];
 }
 
@@ -33,15 +31,13 @@ const Personliste = (props: PersonlisteProps) => {
     personregister,
     checkboxHandler,
     markertePersoner,
-    checkAllHandler,
-    alleMarkert,
     veiledere,
   } = props;
 
   const fnrListe = Object.keys(personregister);
 
   return (<section>
-    <Sorteringsrad checked={alleMarkert} checkAllHandler={checkAllHandler} />
+    <Sorteringsrad />
     {
       fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad
