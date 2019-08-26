@@ -31,6 +31,7 @@ describe('Sokeresultat', () => {
   it('Skal inneholde knapperad', () => {
     expect(component.contains( <Toolbar
       aktivVeilederInfo={veilederinfo}
+      alleMarkert={false}
       buttonHandler={dummyFunksjon}
       checkAllHandler={dummyFunksjon}
       veiledere={veiledere}
