@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
 import {
   useDispatch,
   useSelector,
@@ -21,6 +24,7 @@ import { ApplicationState } from '../store';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
 import { AlertStripeWarning } from '../components/AlertStripeWarning';
 import { OverviewTabType } from '../konstanter';
+import { hentVeiledere } from '../store/veiledere/veiledere_actions';
 
 const tekster = {
     feil: {
@@ -73,6 +77,7 @@ export default ({ tabType }: Props) => {
   const dispatch = useDispatch();
   const actions = {
     tildelVeileder: (liste: VeilederArbeidstaker[]) => dispatch(pushVeilederArbeidstakerForespurt(liste)),
+    hentVeiledere: () => dispatch(hentVeiledere()),
   };
 
   const {
@@ -83,11 +88,16 @@ export default ({ tabType }: Props) => {
     hentetIngenPersoner,
     noeErHentet,
     altFeilet,
+    veiledere,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
+  useEffect(() => {
+    actions.hentVeiledere();
+  }, [aktivEnhet.enhetId]);
+
   let filterableEvents = new Filterable<PersonregisterState>(personregister)
-      .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter))
-      .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
+    .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
+    .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
 
   if (tabType === OverviewTabType.MY_OVERVIEW) {
     filterableEvents = filterableEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
@@ -113,6 +123,7 @@ export default ({ tabType }: Props) => {
             aktivEnhet={aktivEnhet}
             aktivVeilederinfo={aktivVeilederinfo}
             personregister={filterableEvents.value}
+            veiledere={veiledere}
           />
         </OversiktContainerInnhold>
       )}
@@ -128,5 +139,6 @@ const getPropsFromState = (state: ApplicationState) => ({
   henterAlt: state.veilederenheter.henter || state.veilederinfo.henter || state.personoversikt.henter,
   noeErHentet: state.veilederenheter.hentet && state.veilederinfo.hentet && state.personoversikt.hentet,
   altFeilet: state.veilederinfo.hentingFeilet || state.personoversikt.hentingFeilet,
+  veiledere: state.veiledere.data,
   hentetIngenPersoner: state.personoversikt.hentet && state.personoversikt.data.length === 0,
 });

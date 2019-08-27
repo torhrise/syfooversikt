@@ -1,4 +1,5 @@
 import { PersonData } from '../store/personregister/personregisterTypes';
+import { Veileder } from '../store/veiledere/veiledereTypes';
 
 export const skjermingskode = (person: PersonData) => {
   return person.skjermingskode && person.skjermingskode !== 'INGEN'
@@ -6,9 +7,9 @@ export const skjermingskode = (person: PersonData) => {
     : '';
 };
 
-export const veilederEllerUfordelt = (person: PersonData) => {
-  return person.veileder
-    ? `${person.veileder.etternavn}, ${person.veileder.fornavn}`
+export const veilederEllerUfordelt = (veileder?: Veileder) => {
+  return veileder
+    ? `${veileder.etternavn}, ${veileder.fornavn}`
     : 'Ufordelt bruker';
 };
 

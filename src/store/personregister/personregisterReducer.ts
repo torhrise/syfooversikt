@@ -8,7 +8,6 @@ import { PersonoversiktActionTypes } from '../personoversikt/personoversikt_acti
 import {
   PersonData,
   PersonregisterState,
-  PersonHendelseData,
 } from './personregisterTypes';
 
 const tilPersonDataMap = (personDataMapObject: any) => {
@@ -55,7 +54,6 @@ const personregisterReducer: Reducer<PersonregisterState> = (
           ...state[person.fnr],
           tildeltEnhetId: person.enhet,
           tildeltVeilederIdent: person.veilederIdent,
-          veileder: person.veileder,
           harMotebehovUbehandlet: person.motebehovUbehandlet,
           harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
         },

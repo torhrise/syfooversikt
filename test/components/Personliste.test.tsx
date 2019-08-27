@@ -5,7 +5,11 @@ import React from 'react';
 import Personliste from '../../src/components/Personliste';
 import Sorteringsrad from '../../src/components/Sorteringsrad';
 import Personrad from '../../src/components/Personrad';
-import { testdata, personregister } from '../data/fellesTestdata';
+import {
+  testdata,
+  personregister,
+  veiledere,
+} from '../data/fellesTestdata';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -13,19 +17,16 @@ const expect = chai.expect;
 describe('Personliste', () => {
   const markertePersoner = ['123', '234'];
   // tslint:disable-next-line:no-empty
-  const checkAllHandler = () =>  {};
-  // tslint:disable-next-line:no-empty
   const checkboxHandler = () =>  {};
   const component = shallow(<Personliste
-    alleMarkert={false}
     personregister={personregister}
     checkboxHandler={checkboxHandler}
     markertePersoner={markertePersoner}
-    checkAllHandler={checkAllHandler}
+    veiledere={veiledere}
   />);
 
   it('Skal rendre Sorteringsrad', () => {
-    expect(component.contains(<Sorteringsrad checked={false} checkAllHandler={checkAllHandler}/>)).to.equal(true);
+    expect(component.contains(<Sorteringsrad />)).to.equal(true);
   });
 
   it('Skal rendre Personrad-komponenter med riktig persondata', () => {
