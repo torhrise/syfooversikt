@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
   ChangeEvent,
   useState,
+  useEffect,
 } from 'react';
 import styled from 'styled-components';
 import { ToolbarProps } from '../Toolbar';
@@ -94,6 +95,12 @@ const TildelVeileder = (props: ToolbarProps) => {
       chosenVeilederIdent: '',
     });
   };
+
+  useEffect(() => {
+    if (props.tabType !== OverviewTabType.ENHET_OVERVIEW) {
+      setState({...state, showList: false });
+    }
+  });
 
   const lowerCaseInput = state.input.toLowerCase();
   const veiledereWithoutCurrentVeileder = removeCurrentVeilederFromVeiledere(props.veiledere, props.aktivVeilederInfo.ident);
