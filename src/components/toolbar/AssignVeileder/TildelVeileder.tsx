@@ -29,6 +29,7 @@ interface StateProps {
   showList: boolean;
   veiledere: Veileder[];
   veilederIsChosen: boolean;
+  currentTabType: OverviewTabType;
 }
 
 const texts = {
@@ -62,6 +63,7 @@ const TildelVeileder = (props: ToolbarProps) => {
     chosenVeilederIdent: '',
     input: '',
     showList: false,
+    currentTabType: props.tabType,
     veiledere: props.veiledere,
     veilederIsChosen: false,
   };
@@ -74,6 +76,14 @@ const TildelVeileder = (props: ToolbarProps) => {
       input: target.value,
     });
   };
+
+  useEffect(() => {
+      setState({
+        ...state,
+        currentTabType: props.tabType,
+        showList: false,
+      });
+  }, [props.tabType !== state.currentTabType]);
 
   const radiobuttonOnChangeHandler = (veileder: Veileder) => {
     setState({
@@ -95,12 +105,6 @@ const TildelVeileder = (props: ToolbarProps) => {
       chosenVeilederIdent: '',
     });
   };
-
-  useEffect(() => {
-    if (props.tabType !== OverviewTabType.ENHET_OVERVIEW) {
-      setState({...state, showList: false });
-    }
-  });
 
   const lowerCaseInput = state.input.toLowerCase();
   const veiledereWithoutCurrentVeileder = removeCurrentVeilederFromVeiledere(props.veiledere, props.aktivVeilederInfo.ident);
