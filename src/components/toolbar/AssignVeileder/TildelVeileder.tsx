@@ -29,7 +29,6 @@ interface StateProps {
   showList: boolean;
   veiledere: Veileder[];
   veilederIsChosen: boolean;
-  currentTabType: OverviewTabType;
 }
 
 const texts = {
@@ -59,15 +58,16 @@ const ButtonPanel = styled.section`
 `;
 
 const TildelVeileder = (props: ToolbarProps) => {
-  const initialState = {
+
+  const stateFromProps = () => ({
     chosenVeilederIdent: '',
     input: '',
     showList: false,
-    currentTabType: props.tabType,
     veiledere: props.veiledere,
     veilederIsChosen: false,
-  };
-  const [state, setState] = useState<StateProps>(initialState);
+  });
+
+  const [state, setState] = useState<StateProps>(stateFromProps());
 
   const onChangeHandler = (event: ChangeEvent) => {
     const target = event.target as HTMLInputElement;
@@ -78,12 +78,11 @@ const TildelVeileder = (props: ToolbarProps) => {
   };
 
   useEffect(() => {
-      setState({
-        ...state,
-        currentTabType: props.tabType,
-        showList: false,
-      });
-  }, [props.tabType !== state.currentTabType]);
+    setState({
+      ...state,
+      showList: false,
+    });
+  }, [props.tabType]);
 
   const radiobuttonOnChangeHandler = (veileder: Veileder) => {
     setState({

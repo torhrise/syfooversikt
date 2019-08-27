@@ -12,6 +12,7 @@ import { OverviewTabType } from '../konstanter';
 interface  SokeresultatState {
   markertePersoner: string[];
   alleMarkert: boolean;
+  currentTabType: OverviewTabType;
 }
 
 interface SokeresultatProps {
@@ -41,6 +42,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     this.state = {
       markertePersoner: [],
       alleMarkert: false,
+      currentTabType: props.tabType,
     };
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.checkAllHandler = this.checkAllHandler.bind(this);
@@ -55,6 +57,16 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
       const alleMarkert = markertePersoner.length === Object.keys(this.props.personregister).length;
       return { markertePersoner, alleMarkert };
     });
+  }
+
+  componentWillReceiveProps(nextProps: SokeresultatProps, currentState: SokeresultatState) {
+    if (nextProps.tabType !== currentState.currentTabType) {
+      this.setState({
+        alleMarkert: false,
+        markertePersoner: [],
+        currentTabType: nextProps.tabType,
+      });
+    }
   }
 
   checkAllHandler = (checked: boolean ) => {
