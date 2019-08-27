@@ -95,13 +95,15 @@ export default ({ tabType }: Props) => {
     actions.hentVeiledere();
   }, [aktivEnhet.enhetId]);
 
-  let filterableEvents = new Filterable<PersonregisterState>(personregister)
-    .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
-    .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
+  let allEvents = new Filterable<PersonregisterState>(personregister);
 
   if (tabType === OverviewTabType.MY_OVERVIEW) {
-    filterableEvents = filterableEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
+    allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
   }
+
+  const filteredEvents = new Filterable<PersonregisterState>({...allEvents.value})
+    .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
+    .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
 
   return (
     <div>
@@ -115,14 +117,15 @@ export default ({ tabType }: Props) => {
               />
               <HendelseFilterStyled
                   onFilterChange={onHendelsesTypeChange}
-                  personRegister={personregister}
+                  personRegister={allEvents.value}
+                  tabType={tabType}
               />
-          </SokeresultatFiltre>
+          </SokeresultatFiltre >
           <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
             aktivEnhet={aktivEnhet}
             aktivVeilederinfo={aktivVeilederinfo}
-            personregister={filterableEvents.value}
+            personregister={filteredEvents.value}
             veiledere={veiledere}
           />
         </OversiktContainerInnhold>

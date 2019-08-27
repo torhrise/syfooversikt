@@ -2,8 +2,9 @@ import React, { useState, ComponentPropsWithoutRef } from 'react';
 import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
 import { Checkbox } from 'nav-frontend-skjema';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
-import { filtrerPersonregister } from '../utils/hendelseFilteringUtils';
+import { filtrerPersonregister, Filterable } from '../utils/hendelseFilteringUtils';
 import countFilterAction from '../metrics/countFilterAction';
+import { OverviewTabType } from '../konstanter';
 
 export const HendelseTekster: any = {
     MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
