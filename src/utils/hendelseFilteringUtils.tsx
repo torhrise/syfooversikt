@@ -53,3 +53,13 @@ export const filtrerPersonregister = (personregister: PersonregisterState, filte
         }, {} as PersonregisterState);
     return nyttFiltrertPersonregister;
   };
+
+export const filterEventsOnVeileder = (personregister: PersonregisterState, veilederIdent: string): PersonregisterState => {
+    const final = Object.keys(personregister).reduce((p, fnr) => {
+        if (personregister[fnr].tildeltVeilederIdent === veilederIdent) {
+            p[fnr] = personregister[fnr];
+        }
+        return p;
+    }, {} as PersonregisterState);
+    return final;
+};

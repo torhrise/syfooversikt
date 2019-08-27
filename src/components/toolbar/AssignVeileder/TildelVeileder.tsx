@@ -20,6 +20,7 @@ import {
 } from '../../../utils/veiledereUtils';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import { VeilederRadioButtons } from './VeilederRadioButtons';
+import { OverviewTabType } from '../../../konstanter';
 
 interface StateProps {
   chosenVeilederIdent: string;
@@ -116,11 +117,13 @@ const TildelVeileder = (props: ToolbarProps) => {
         veilederIsChosen={state.veilederIsChosen} />
     </ButtonPanel>}
 
-    <AssignToCurrentVeilederButton
-      aktivVeilederIdent={props.aktivVeilederInfo.ident}
-      confirmVeilederButtonHandler={confirmVeilederButtonHandler}
-      disabled={hasNoCheckedPersoner(props.markertePersoner)}
+    {props.tabType === OverviewTabType.ENHET_OVERVIEW && (
+      <AssignToCurrentVeilederButton
+        aktivVeilederIdent={props.aktivVeilederInfo.ident}
+        confirmVeilederButtonHandler={confirmVeilederButtonHandler}
+        disabled={hasNoCheckedPersoner(props.markertePersoner)}
     />
+    )}
   </>);
 };
 

@@ -17,11 +17,13 @@ import {
   Filterable,
   filtrerPersonregister,
   filtrerPaaFodselsnummerEllerNavn,
+  filterEventsOnVeileder,
 } from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
 import { ApplicationState } from '../store';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
 import { AlertStripeWarning } from '../components/AlertStripeWarning';
+import { OverviewTabType } from '../konstanter';
 import { hentVeiledere } from '../store/veiledere/veiledere_actions';
 
 const tekster = {
@@ -63,7 +65,11 @@ const HendelseFilterStyled = styled(SokeresultatFilter)`
   margin-bottom: 1rem
 `;
 
-export default () => {
+interface Props {
+  tabType: OverviewTabType;
+}
+
+export default ({ tabType }: Props) => {
   const initHendelseTypeFilter = {} as HendelseTypeFilters;
   const [ hendelseTypeFilter, onHendelsesTypeChange ] = useState(initHendelseTypeFilter);
   const [ tekstFilter, onTekstFilterChange ] = useState('');
@@ -89,10 +95,15 @@ export default () => {
     actions.hentVeiledere();
   }, [aktivEnhet.enhetId]);
 
-  const filtrertListe = new Filterable<PersonregisterState>(personregister)
-      .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
-      .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter))
-      .value;
+  let allEvents = new Filterable<PersonregisterState>(personregister);
+
+  if (tabType === OverviewTabType.MY_OVERVIEW) {
+    allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
+  }
+
+  const filteredEvents = new Filterable<PersonregisterState>({...allEvents.value})
+    .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
+    .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
 
   return (
     <div>
@@ -106,15 +117,17 @@ export default () => {
               />
               <HendelseFilterStyled
                   onFilterChange={onHendelsesTypeChange}
-                  personRegister={personregister}
+                  personRegister={allEvents.value}
+                  tabType={tabType}
               />
-          </SokeresultatFiltre>
+          </SokeresultatFiltre >
           <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
             aktivEnhet={aktivEnhet}
             aktivVeilederinfo={aktivVeilederinfo}
-            personregister={filtrertListe}
+            personregister={filteredEvents.value}
             veiledere={veiledere}
+            tabType={tabType}
           />
         </OversiktContainerInnhold>
       )}

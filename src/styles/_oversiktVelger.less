@@ -14,6 +14,10 @@
       display: block;
       margin-bottom: .5em;
 
+      :not(:first-child) {
+        margin-left: 1em;
+      }
+
       @media all and(min-width: @screen-sm-min) {
         display: inline-block;
         margin-bottom: 0;
@@ -27,7 +31,7 @@
         font-weight: 600;
         font-size: 20px;
         cursor: pointer;
-        border-bottom: 0.1em @white solid;
+        border-bottom: 0.1em transparent solid;
 
         &:focus {
           outline: none;
@@ -36,6 +40,7 @@
 
         &:hover, &.oversiktVelger__knapp--aktiv {
           border-bottom-color: @navBla;
+          background-color: transparent;
         }
       }
 

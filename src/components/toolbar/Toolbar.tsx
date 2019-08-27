@@ -5,6 +5,7 @@ import themes from '../../styles/themes';
 import { Veileder } from '../../store/veiledere/veiledereTypes';
 import { Veilederinfo } from '../../store/veilederinfo/veilederinfoTypes';
 import { Checkbox } from 'nav-frontend-skjema';
+import { OverviewTabType } from '../../konstanter';
 
 export interface ToolbarProps {
   aktivVeilederInfo: Veilederinfo;
@@ -13,6 +14,7 @@ export interface ToolbarProps {
   checkAllHandler: (checked: boolean) => void;
   veiledere: Veileder[];
   markertePersoner: string[];
+  tabType: OverviewTabType;
 }
 
 const tekster = {

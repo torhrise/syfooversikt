@@ -12,6 +12,7 @@ import {
 } from '../data/fellesTestdata';
 import Toolbar from '../../src/components/toolbar/Toolbar';
 import Personliste from '../../src/components/Personliste';
+import { OverviewTabType } from '../../src/konstanter';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -21,6 +22,7 @@ describe('Sokeresultat', () => {
   const dummyFunksjon = () => {};
 
   const component = shallow(<Sokeresultat
+      tabType={OverviewTabType.ENHET_OVERVIEW}
       aktivEnhet={enhet}
       aktivVeilederinfo={veilederinfo}
       personregister={personregister}
@@ -30,6 +32,7 @@ describe('Sokeresultat', () => {
 
   it('Skal inneholde knapperad', () => {
     expect(component.contains( <Toolbar
+      tabType={OverviewTabType.ENHET_OVERVIEW}
       aktivVeilederInfo={veilederinfo}
       alleMarkert={false}
       buttonHandler={dummyFunksjon}
