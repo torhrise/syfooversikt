@@ -3,7 +3,7 @@ import chaiEnzyme from 'chai-enzyme';
 import { shallow } from 'enzyme';
 import React from 'react';
 import OversiktVelger from '../../src/components/OversiktVelger';
-import { OVERSIKT_VISNING_TYPE } from '../../src/konstanter';
+import { OverviewTabType } from '../../src/konstanter';
 import OversiktContainer from '../../src/containers/OversiktContainer';
 
 chai.use(chaiEnzyme());
@@ -19,7 +19,7 @@ describe('OversiktVelger', () => {
   });
 
   it ('Skal rendre OversiktContainer med "ENHETENS OVERSIKT"-visningstype', () => {
-    expect(component.contains(<OversiktContainer type={OVERSIKT_VISNING_TYPE.ENHETENS_OVERSIKT} />)).to.equal(true);
+    expect(component.contains(<OversiktContainer type={OverviewTabType.ENHET_OVERVIEW} />)).to.equal(true);
   });
 
 });
