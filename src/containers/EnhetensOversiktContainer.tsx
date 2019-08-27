@@ -127,6 +127,7 @@ export default ({ tabType }: Props) => {
             aktivVeilederinfo={aktivVeilederinfo}
             personregister={filteredEvents.value}
             veiledere={veiledere}
+            tabType={tabType}
           />
         </OversiktContainerInnhold>
       )}

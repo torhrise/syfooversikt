@@ -7,6 +7,7 @@ import { PersonregisterState } from '../store/personregister/personregisterTypes
 import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
 import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
+import { OverviewTabType } from '../konstanter';
 
 interface  SokeresultatState {
   markertePersoner: string[];
@@ -19,6 +20,7 @@ interface SokeresultatProps {
   personregister: PersonregisterState;
   tildelVeileder: (liste: VeilederArbeidstaker[]) => void;
   veiledere: Veileder[];
+  tabType: OverviewTabType;
 }
 
 const lagListe = (markertePersoner: string[], veilederIdent: string, enhet: string): VeilederArbeidstaker[] => {
@@ -85,6 +87,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
       personregister,
       veiledere,
       aktivVeilederinfo,
+      tabType,
     } = this.props;
 
     const {
@@ -94,6 +97,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
 
     return (<SokeresultatContainer>
       <Toolbar
+        tabType={tabType}
         aktivVeilederInfo={aktivVeilederinfo}
         alleMarkert={alleMarkert}
         buttonHandler={this.buttonHandler}
