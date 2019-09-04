@@ -6,13 +6,22 @@ import * as React from 'react';
 interface VeilederRadioButtonsProps {
   onChangeHandler: (veileder: Veileder) => void;
   filteredVeiledere: Veileder[];
+  isInputGiven: boolean;
 }
 
 const StyledRadio = styled(Radio)`
-  width: 10em;
+  width: calc(100% - 1em);
+  margin-bottom: .5em;
 `;
 
-export const VeilederRadioButtons = ((props: VeilederRadioButtonsProps) => {
+const LoggedInVeilederFirst = styled.div`
+  & > *:first-child {
+    padding-bottom: .5em;
+    border-bottom: 1px dotted gray;
+  }
+`;
+
+const RadioButtons = (props: VeilederRadioButtonsProps) => {
   const {
     onChangeHandler,
     filteredVeiledere,
@@ -26,4 +35,15 @@ export const VeilederRadioButtons = ((props: VeilederRadioButtonsProps) => {
         onChange={() => onChangeHandler(veileder)}
       />)}
   </>);
+};
+
+export const VeilederRadioButtons = ((props: VeilederRadioButtonsProps) => {
+  if (props.isInputGiven) {
+    return (<div className="veilederRadioButtons--loggedInNotFirst">
+        <RadioButtons {...props} />
+      </div>);
+  }
+  return (<LoggedInVeilederFirst className="veilederRadioButtons--loggedInFirst">
+    <RadioButtons {...props} />
+  </LoggedInVeilederFirst>);
 });
