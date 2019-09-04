@@ -25,21 +25,31 @@ const Innhold = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .5em
   background-color: ${themes.color.white}
+  border: 1px solid gray;
+  border-radius: .3em;
 `;
 
 const Element = styled.div`
   display: flex;
+  & > * {
+    border-right: 1px solid gray;
+  }
 `;
 
 const VelgBoks = styled(Checkbox)`
-  margin: 0;
+  margin: 0 !important;
+  padding: .5em;
+
+  & > label {
+    top: .5em;
+  }
 `;
 
 const Toolbar = (props: ToolbarProps) => (<Innhold className="blokk-xs">
   <Element>
     <VelgBoks
+      className="toolbar__velgBoks"
       label={tekster.selectAll}
       checked={props.alleMarkert}
       onChange={(event) => {
