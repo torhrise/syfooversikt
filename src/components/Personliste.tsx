@@ -3,6 +3,7 @@ import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
 import { PersonData, PersonregisterState } from '../store/personregister/personregisterTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
+import styled from 'styled-components';
 
 interface PersonlisteProps {
   personregister: PersonregisterState;
@@ -10,6 +11,10 @@ interface PersonlisteProps {
   markertePersoner: string[];
   veiledere: Veileder[];
 }
+
+const PersonlisteStyled = styled.section`
+  padding: 0 .5em;
+`;
 
 const erMarkert = (markertePersoner: string[], fnr: string) => {
   return markertePersoner.findIndex((markertPerson: string) => {
@@ -36,7 +41,7 @@ const Personliste = (props: PersonlisteProps) => {
 
   const fnrListe = Object.keys(personregister);
 
-  return (<section>
+  return (<PersonlisteStyled>
     <Sorteringsrad />
     {
       fnrListe.map((fnr: string, idx: number) => {
@@ -50,7 +55,7 @@ const Personliste = (props: PersonlisteProps) => {
         />);
       })
     }
-  </section>);
+  </PersonlisteStyled>);
 };
 
 export default Personliste;
