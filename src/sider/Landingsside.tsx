@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouteComponentProps, Router, Route, Switch } from 'react-router';
+import { RouteComponentProps, Router, Route, Switch, Redirect } from 'react-router';
 import OversiktContainer from '../containers/OversiktContainer';
 import { OverviewTabType } from '../konstanter';
 import HeaderWrapper from '../components/HeaderWrapper';
@@ -16,6 +16,7 @@ export const Landingsside = (props: RouteComponentProps) => (
         <Switch>
           <Route path={'/enhet'} render={() => <OversiktContainer type={OverviewTabType.ENHET_OVERVIEW} />} />
           <Route path={'/bruker'} render={() => <OversiktContainer type={OverviewTabType.MY_OVERVIEW} />} />
+          <Redirect exact from="/" to="/enhet" />
         </Switch>
       </div>
     </Router>

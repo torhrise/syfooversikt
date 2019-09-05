@@ -6,11 +6,11 @@ import { BrowserRouter } from 'react-router-dom';
 import Side from '../sider/Side';
 
 const AppRouter = () => {
-  return (<BrowserRouter basename="/syfooversikt">
+  return (<BrowserRouter basename="/">
     <Side tittel="Sykefraværsoppfølging">
       <Switch>
         <Route exact path="/na" component={ManglerTilgangside} />
-        <Route path="*" component={Landingsside} />
+        <Route component={Landingsside} />
       </Switch>
     </Side>
   </BrowserRouter>);
