@@ -1,9 +1,23 @@
 import React from 'react';
-import Side from './Side';
-import LandingssideHeader from '../components/LandingssideHeader';
-import OversiktVelger from '../components/OversiktVelger';
 
-export const Landingsside = () => (<Side tittel="">
-  <LandingssideHeader />
-  <OversiktVelger />
-</Side>);
+import { RouteComponentProps, Router, Route, Switch } from 'react-router';
+import OversiktContainer from '../containers/OversiktContainer';
+import { OverviewTabType } from '../konstanter';
+import HeaderWrapper from '../components/HeaderWrapper';
+import LandingssideHeader from '../components/LandingssideHeader';
+import NavigationBar from '../components/NavigationBar';
+
+export const Landingsside = (props: RouteComponentProps) => (
+    <Router {...props}>
+      <div>
+        <HeaderWrapper>
+          <LandingssideHeader />
+          <NavigationBar />
+        </HeaderWrapper>
+        <Switch>
+          <Route path={'/enhet'} render={() => <OversiktContainer type={OverviewTabType.ENHET_OVERVIEW} />} />
+          <Route path={'/bruker'} render={() => <OversiktContainer type={OverviewTabType.MY_OVERVIEW} />} />
+        </Switch>
+      </div>
+    </Router>
+);

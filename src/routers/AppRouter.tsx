@@ -1,19 +1,20 @@
 import React from 'react';
-import { Route, Router, Switch } from 'react-router';
+import { Route, Switch } from 'react-router';
 import { Landingsside } from '../sider/Landingsside';
 import ManglerTilgangside from '../sider/ManglerTilgangside';
+import { BrowserRouter } from 'react-router-dom';
+import Side from '../sider/Side';
 
-interface AppRouterProps {
-  history: any;
-}
-
-const AppRouter = ({ history }: AppRouterProps) => {
-  return (<Router history={history}>
+const AppRouter = () => {
+  return (
+  <BrowserRouter basename="/syfooversikt">
+    <Side tittel="Sykefraværsoppfølging">
       <Switch>
-        <Route path="/na" component={ManglerTilgangside} />
+        <Route exact path="/mangler_tilgang" component={ManglerTilgangside} />
         <Route path="*" component={Landingsside} />
       </Switch>
-  </Router>);
+    </Side>
+  </BrowserRouter>);
 };
 
 export default AppRouter;

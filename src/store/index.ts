@@ -27,6 +27,7 @@ import createHashHistory from 'history/createHashHistory';
 import configureStore from './configureStore';
 import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstakerSagas';
 import enhetNavnSagas from './enhetNavn/enhetNavnSagas';
+import { createBrowserHistory } from 'history';
 
 export interface ApplicationState {
   modiacontext: ModiacontextState;
@@ -67,7 +68,7 @@ export function* rootSaga() {
   ]);
 }
 
-const history = createHashHistory();
+const history = createBrowserHistory();
 
 const initialState = (window as any).initialReduxState;
 const store = configureStore(history, initialState);
