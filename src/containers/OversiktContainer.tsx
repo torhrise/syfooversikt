@@ -65,7 +65,7 @@ const OversiktContainer = ({ type }: OversiktProps) => {
   }, [aktivEnhet.enhetId]);
 
   return (
-    <Container className="oversiktContainer">
+    <Container>
       {aktivEnhetFeilet && (
         <AktivEnhetFeiletError />
       )}

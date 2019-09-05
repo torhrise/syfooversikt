@@ -7,17 +7,15 @@ import LandingssideHeader from '../components/LandingssideHeader';
 import NavigationBar from '../components/NavigationBar';
 
 export const Landingsside = (props: RouteComponentProps) => (
-    <Router {...props}>
       <div>
         <HeaderWrapper>
           <LandingssideHeader />
           <NavigationBar />
         </HeaderWrapper>
         <Switch>
-          <Route path={'/enhet'} render={() => <OversiktContainer type={OverviewTabType.ENHET_OVERVIEW} />} />
-          <Route path={'/bruker'} render={() => <OversiktContainer type={OverviewTabType.MY_OVERVIEW} />} />
+          <Route exact path={'/enhet'} render={() => <OversiktContainer type={OverviewTabType.ENHET_OVERVIEW} />} />
+          <Route exact path={'/bruker'} render={() => <OversiktContainer type={OverviewTabType.MY_OVERVIEW} />} />
           <Redirect exact from="/" to="/enhet" />
         </Switch>
       </div>
-    </Router>
 );
