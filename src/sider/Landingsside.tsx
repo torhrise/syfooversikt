@@ -14,7 +14,7 @@ export const Landingsside = (props: RouteComponentProps) => (
         </HeaderWrapper>
         <Switch>
           <Route exact path={'/enhet'} render={() => <OversiktContainer type={OverviewTabType.ENHET_OVERVIEW} />} />
-          <Route exact path={'/bruker'} render={() => <OversiktContainer type={OverviewTabType.MY_OVERVIEW} />} />
+          <Route exact path={'/minoversikt'} render={() => <OversiktContainer type={OverviewTabType.MY_OVERVIEW} />} />
           <Redirect exact from="/" to="/enhet" />
         </Switch>
       </div>

@@ -49,6 +49,6 @@ const NavigationBar = styled.div`
 export default () => (
     <NavigationBar>
         <LinkStyled activeClassName="active" to={'/enhet'}>{tekster.enhetensOversikt}</LinkStyled>
-        <LinkStyled activeClassName="active" to={'/bruker'}>{tekster.minOversikt}</LinkStyled>
+        <LinkStyled activeClassName="active" to={'/minoversikt'}>{tekster.minOversikt}</LinkStyled>
     </NavigationBar>
 );
