@@ -7,7 +7,7 @@ const tekster = {
     minOversikt: 'Min oversikt',
 };
 
-const StyledLink = styled(NavLink)`
+const LinkStyled = styled(NavLink)`
     padding: 0;
     background-color: transparent;
     border: none;
@@ -47,7 +47,7 @@ const NavigationBar = styled.div`
 
 export default () => (
     <NavigationBar>
-        <StyledLink activeClassName="active" to={'/enhet'}>{tekster.enhetensOversikt}</StyledLink>
-        <StyledLink activeClassName="active" to={'/bruker'}>{tekster.minOversikt}</StyledLink>
+        <LinkStyled activeClassName="active" to={'/enhet'}>{tekster.enhetensOversikt}</LinkStyled>
+        <LinkStyled activeClassName="active" to={'/bruker'}>{tekster.minOversikt}</LinkStyled>
     </NavigationBar>
 );
