@@ -55,7 +55,7 @@ store.dispatch(
 
 render(
   <Provider store={store}>
-    <AppRouter history={history} />
+    <AppRouter />
   </Provider>,
   document.getElementById('maincontent')
 );

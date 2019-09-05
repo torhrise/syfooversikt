@@ -71,17 +71,6 @@ const startServer = (html) => {
         express.static(path.resolve(__dirname, 'dist/resources/img')),
     );
 
-    server.get(
-        ['/', '/syfooversikt/?', /^\/syfooversikt\/(?!(resources|img)).*$/],
-        nocache,
-        (req, res) => {
-            res.send(html);
-            prometheus.getSingleMetric('http_request_duration_ms')
-                .labels(req.route.path)
-                .observe(10);
-        },
-    );
-
     server.get('/health/isAlive', (req, res) => {
         res.sendStatus(200);
     });
@@ -112,6 +101,17 @@ const startServer = (html) => {
     server.listen(port, () => {
         console.log(`App listening on port: ${port}`);
     });
+
+    server.use(
+        ['*', '/syfooversikt/?',/^\/syfooversikt\/(?!(resources|img)).*$/],
+        nocache,
+        (req, res) => {
+            res.send(html);
+            prometheus.getSingleMetric('http_request_duration_ms')
+                .labels(req.route.path)
+                .observe(10);
+        },
+    );
 };
 
 const logError = (errorMessage, details) => {

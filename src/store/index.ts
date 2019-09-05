@@ -27,7 +27,7 @@ import personoversiktSagas from './personoversikt/personoversiktSagas';
 import configureStore from './configureStore';
 import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstakerSagas';
 import enhetNavnSagas from './enhetNavn/enhetNavnSagas';
-import createBrowserHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
 export interface ApplicationState {
   router: any;
@@ -44,8 +44,6 @@ export interface ApplicationState {
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
   dispatch: Dispatch<A>;
 }
-
-const history = createBrowserHistory();
 
 export const rootReducer = () => combineReducers<ApplicationState>({
   router: connectRouter(history),
@@ -71,6 +69,8 @@ export function* rootSaga() {
     fork(enhetNavnSagas),
   ]);
 }
+
+const history = createBrowserHistory();
 
 const initialState = (window as any).initialReduxState;
 
