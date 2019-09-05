@@ -9,7 +9,7 @@ const AppRouter = () => {
   return (<BrowserRouter basename="/syfooversikt">
     <Side tittel="Sykefraværsoppfølging">
       <Switch>
-        <Route exact path="/mangler_tilgang" component={ManglerTilgangside} />
+        <Route exact path="/na" component={ManglerTilgangside} />
         <Route path="*" component={Landingsside} />
       </Switch>
     </Side>
