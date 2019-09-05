@@ -1,6 +1,4 @@
 import {
-  Column,
-  Container,
   Row
 } from 'nav-frontend-grid';
 import React from 'react';

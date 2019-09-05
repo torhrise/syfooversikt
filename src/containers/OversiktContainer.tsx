@@ -10,7 +10,6 @@ import { ApplicationState } from '../store';
 import { hentPersonoversiktForespurt } from '../store/personoversikt/personoversikt_actions';
 import { hentVeilederenheter } from '../store/veilederenheter/veilederenheter_actions';
 import EnhetensOversiktContainer from './EnhetensOversiktContainer';
-import { RouteComponentProps } from 'react-router';
 import { OverviewTabType } from '../konstanter';
 import { Container } from 'nav-frontend-grid';
 
@@ -25,7 +24,7 @@ const tekster = {
 };
 
 interface OversiktProps {
-  type?: string;
+  type: string;
 }
 
 const getPropsFromState = (

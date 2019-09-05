@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropsWithChildren } from 'react';
-import { Container, Row, Column } from 'nav-frontend-grid';
+import { Container, Column } from 'nav-frontend-grid';
 import styled from 'styled-components';
 
 const ChildrenWrapper = styled.div`
@@ -11,7 +11,7 @@ const ChildrenWrapper = styled.div`
 
 const ContainerWrapper = styled.div`
     background: white;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid #C6C2BF;
     margin-bottom: 2em;
 `;
 

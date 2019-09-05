@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { RouteComponentProps, Router, Route, Switch } from 'react-router';
 import OversiktContainer from '../containers/OversiktContainer';
 import { OverviewTabType } from '../konstanter';

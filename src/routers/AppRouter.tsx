@@ -6,8 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Side from '../sider/Side';
 
 const AppRouter = () => {
-  return (
-  <BrowserRouter basename="/syfooversikt">
+  return (<BrowserRouter basename="/syfooversikt">
     <Side tittel="Sykefraværsoppfølging">
       <Switch>
         <Route exact path="/mangler_tilgang" component={ManglerTilgangside} />
