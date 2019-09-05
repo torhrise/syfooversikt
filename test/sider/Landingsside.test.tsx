@@ -1,11 +1,9 @@
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 import LandingssideHeader from '../../src/components/LandingssideHeader';
 import { Landingsside } from '../../src/sider/Landingsside';
-import OversiktContainer from '../../src/containers/OversiktContainer';
-import { OverviewTabType } from '../../src/konstanter';
 import { createBrowserHistory } from 'history';
 import { match, MemoryRouter} from 'react-router';
 import { Provider } from 'react-redux';

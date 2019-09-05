@@ -14,6 +14,7 @@ const LinkStyled = styled(NavLink)`
     font-weight: 600;
     font-size: 20px;
     cursor: pointer;
+    color: black;
     border-bottom: 0.1em transparent solid;
     border-bottom-color: transparent;
     text-decoration: none;
