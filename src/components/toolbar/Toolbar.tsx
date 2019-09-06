@@ -30,6 +30,7 @@ const Innhold = styled.section`
 
 const Element = styled.div`
   display: flex;
+  border: 2px solid white;
 
   & > div:not(:nth-child(2)) {
     padding: 1em;

@@ -16,6 +16,7 @@ const texts = {
 
 const DropdownButtonsDiv = styled.div`
   margin: .5em;
+  margin-top: 2em;
   display: flex;
   > :nth-child(1) {
     > :nth-child(1) {
@@ -24,7 +25,7 @@ const DropdownButtonsDiv = styled.div`
   }
   > :nth-child(2) {
     > :nth-child(1) {
-      margin-left: -2.5em;
+      margin-left: -2em;
     }
   }
 `;
