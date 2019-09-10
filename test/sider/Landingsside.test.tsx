@@ -16,7 +16,7 @@ describe('Landingsside', () => {
   const component = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <Landingsside history={createBrowserHistory()} match={{ path: '/enhet', isExact: true, url: '', params: {} } as match} location={{pathname: '/enhet'} as any} staticContext={{} as any}/>
+        <Landingsside />
       </MemoryRouter>
     </Provider>);
   it('Skal rendre LandingssideHeader', () => {
