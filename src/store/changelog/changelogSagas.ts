@@ -2,7 +2,7 @@ import { fork, takeEvery, put, call } from 'redux-saga/effects';
 import { ChangelogActionTypes,
     fetchChengelogsLoadingAction,
     fetchChangelogsSuccess,
-    fetchChangelogError 
+    fetchChangelogError
 } from './changelog_actions';
 import { get } from '../../api';
 import { Changelog } from './changelogTypes';
