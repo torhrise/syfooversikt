@@ -26,11 +26,16 @@ const RadioButtons = (props: VeilederRadioButtonsProps) => {
     onChangeHandler,
     filteredVeiledere,
   } = props;
+
+  function getVeilederIdentification(veileder: Veileder): string {
+    return veileder.fornavn === '' ? veileder.ident : `${veileder.etternavn}, ${veileder.fornavn}`;
+  }
+
   return (<>
     {filteredVeiledere.map((veileder: Veileder, index: number) =>
       <StyledRadio
         key={index}
-        label={`${veileder.etternavn}, ${veileder.fornavn}`}
+        label={getVeilederIdentification(veileder)}
         name="veiledereRadioButton"
         onChange={() => onChangeHandler(veileder)}
       />)}

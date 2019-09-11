@@ -2,50 +2,36 @@
   {
     "ident": "Z999991",
     "fornavn": "Veil",
-    "etternavn": "Eder",
-    "enhetNr": "0314",
-    "enhetNavn": "NAV Sagene"
+    "etternavn": "Eder"
   },
   {
     "ident": "Z000000",
-    "fornavn": "NAV",
-    "etternavn": "Ansatt",
-    "enhetNr": "0314",
-    "enhetNavn": "NAV Sagene"
+    "fornavn": "",
+    "etternavn": ""
   },
   {
     "ident": "-----",
     "fornavn": "Bør",
-    "etternavn": "Børson",
-    "enhetNr": "0314",
-    "enhetNavn": "NAV Sagene"
+    "etternavn": "Børson"
   },
   {
     "ident": "Wienerbrød",
     "fornavn": "Støren",
-    "etternavn": "Bakeri",
-    "enhetNr": "0314",
-    "enhetNavn": "NAV Sagene"
+    "etternavn": "Bakeri"
   },
   {
     "ident":"Z101010",
     "fornavn": "F_Z101010",
-    "etternavn": "E_Z101010",
-    "enhetNr": "0314",
-    "enhetNavn": "NAV Sagene"
+    "etternavn": "E_Z101010"
   },
   {
     "ident": "S123456",
     "fornavn": "Dana",
-    "etternavn": "Scully",
-    "enhetNr": "0314",
-    "enhetNavn": "NAV X-Files"
+    "etternavn": "Scully"
   },
   {
     "ident":"M987654",
     "fornavn": "Fox",
-    "etternavn": "Mulder",
-    "enhetNr": "0314",
-    "enhetNavn": "NAV X-Files"
+    "etternavn": "Mulder"
   }
 ]
