@@ -47,6 +47,15 @@ interface SortingRowProps {
 
 const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
   const [ currentSortingType, setCurrentSortingType ] = useState<SortingType>('NONE');
+
+  const onSortingByNameClick = () => {
+    const nextSortingType: SortingType = currentSortingType === 'NAME_ASC'
+              ? 'NAME_DESC'
+              : 'NAME_ASC';
+    setCurrentSortingType(nextSortingType);
+    onSortClick(nextSortingType);
+  };
+
   return (
     <>
       <OverskriftRad className="">
@@ -58,13 +67,7 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
       <IngressRad className="">
         <Column className="emptyColumn" xs={'1'} />
         <Column xs={'3'}>
-          <SortingButton onClick={() => {
-            const nextSortingType: SortingType = currentSortingType === 'NAME_ASC'
-              ? 'NAME_DESC'
-              : 'NAME_ASC';
-            setCurrentSortingType(nextSortingType);
-            onSortClick(nextSortingType);
-          }}>
+          <SortingButton onClick={onSortingByNameClick}>
             <strong>{tekster.navn}</strong>
           </SortingButton>
         </Column>
