@@ -108,7 +108,7 @@ const startServer = (html) => {
         (req, res) => {
             res.send(html);
             prometheus.getSingleMetric('http_request_duration_ms')
-                .labels(req.route.path)
+                .labels(req.path)
                 .observe(10);
         },
     );
