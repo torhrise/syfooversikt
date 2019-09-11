@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import NavFrontendModal from 'nav-frontend-modal';
+import ModalWrapper from 'nav-frontend-modal';
 import styled from 'styled-components';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import ChevronKnapp from '../ChevronKnapp';
@@ -12,7 +12,7 @@ interface Props {
     onClose(didComplete: boolean, version: number): void;
 }
 
-const ModalStyled = styled(NavFrontendModal)`
+const ModalStyled = styled(ModalWrapper)`
     padding: 0 !important;
     .lukknapp {
         z-index: 3;
@@ -101,7 +101,7 @@ const ChangelogModal = ({ onClose, isOpen, changelog }: Props) => {
         <div>
             <ModalStyled onRequestClose={() => {
                 onClose(isLastPage, changelog.version);
-            }} contentLabel="Changelog Modal" closeButton={true} isOpen={isOpen}>
+            }} contentLabel="Changelog Modal" closeButton={true} isOpen={isOpen} >
                 <ModalContent>
                     <ModalHeader>{changelog.title}</ModalHeader>
                     <ModalMain>

@@ -1,4 +1,4 @@
-import { fork, takeEvery, put, call } from 'redux-saga/effects';
+import { fork, takeEvery, put, call, all } from 'redux-saga/effects';
 import { ChangelogActionTypes,
     fetchChengelogsLoadingAction,
     fetchChangelogsSuccess,
@@ -23,5 +23,5 @@ function* watchGetChangelog() {
 }
 
 export default function* changelogSagas() {
-    yield [fork(watchGetChangelog)];
+    yield all([fork(watchGetChangelog)]);
 }
