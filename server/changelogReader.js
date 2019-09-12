@@ -20,7 +20,7 @@ function readChangelog(changelogDir, versionCode) {
             return;
         }
         const ext = file.split('.').pop();
-        const fileversion = Number.parseInt(changelogDir.split("/").pop());
+        const fileversion = Number.parseInt(changelogDir.split(path.sep).pop());
         if (!Number.isInteger(fileversion)) {
             throw new Error(`Invalid version, expected an integer but got ${fileversion}`);
         }
