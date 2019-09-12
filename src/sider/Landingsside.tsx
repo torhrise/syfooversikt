@@ -1,12 +1,13 @@
 import React from 'react';
-import { RouteComponentProps, Router, Route, Switch, Redirect } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
 import OversiktContainer from '../containers/OversiktContainer';
 import { OverviewTabType } from '../konstanter';
 import HeaderWrapper from '../components/HeaderWrapper';
 import LandingssideHeader from '../components/LandingssideHeader';
 import NavigationBar from '../components/NavigationBar';
+import ChangelogWrapper from '../components/changelog/ChangelogWrapper';
 
-export const Landingsside = (props: RouteComponentProps) => (
+export const Landingsside = () => (
       <div>
         <HeaderWrapper>
           <LandingssideHeader />
@@ -17,5 +18,6 @@ export const Landingsside = (props: RouteComponentProps) => (
           <Route exact path={'/minoversikt'} render={() => <OversiktContainer type={OverviewTabType.MY_OVERVIEW} />} />
           <Redirect exact from="/" to="/enhet" />
         </Switch>
+        <ChangelogWrapper />
       </div>
 );

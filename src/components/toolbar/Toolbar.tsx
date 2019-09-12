@@ -25,7 +25,8 @@ const Innhold = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${themes.color.white}
+  padding: .5em;
+  background-color: ${themes.color.white};
 `;
 
 const Element = styled.div`

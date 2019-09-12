@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { render } from 'react-dom';
 import {
   CONTEXT_EVENT_TYPE,
-  HOST_NAMES,
 } from './konstanter';
 import {
   hentAktivEnhet,
@@ -12,11 +11,11 @@ import {
 import './styles/styles.less';
 import {
   finnMiljoStreng,
-  fullNaisUrl,
 } from './utils/miljoUtil';
 import AppRouter from './routers/AppRouter';
 import { config, setEventHandlersOnConfig } from './global';
-import { store, history } from './store';
+import { store } from './store';
+import ModalWrapper from 'nav-frontend-modal';
 
 if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
@@ -59,6 +58,8 @@ render(
   </Provider>,
   document.getElementById('maincontent')
 );
+
+ModalWrapper.setAppElement('#maincontent');
 
 /* tslint:disable no-unused-expression */
 document.addEventListener('DOMContentLoaded', () => {
