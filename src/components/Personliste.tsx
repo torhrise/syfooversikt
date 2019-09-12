@@ -43,7 +43,7 @@ const Personliste = (props: PersonlisteProps) => {
   const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
   const fnrListe = Object.keys(getSortedEventsFromSortingType(personregister, selectedSortingType));
 
-  return (<PersonlisteStyled><section>
+  return (<PersonlisteStyled>
     <Sorteringsrad  onSortClick={(type) => {
       setSortingType(type);
     }} />
@@ -59,7 +59,7 @@ const Personliste = (props: PersonlisteProps) => {
         />);
       })
     }
-    </section></PersonlisteStyled>);
+    </PersonlisteStyled>);
 };
 
 export default Personliste;
