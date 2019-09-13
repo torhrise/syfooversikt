@@ -11,6 +11,10 @@ const ChevronButton = styled.button`
     padding: 0.25em;
     cursor: pointer;
     color: #0067c5;
+
+    :focus {
+        outline: none;
+    }
 `;
 
 const ChevronLabel = styled.span`
@@ -31,8 +35,8 @@ const StyledEmptyContainer = styled.div`
 `;
 
 interface ChevronKnappProps {
-    type?: 'høyre' | 'venstre';
-    tekst: string;
+    type?: 'høyre' | 'venstre' | 'opp' | 'ned';
+    tekst?: string;
     visible: boolean;
     onClick(): void;
 }
@@ -44,10 +48,10 @@ const ChevronKnapp = ({ type = 'venstre', tekst, visible, onClick }: ChevronKnap
     const CustomLabel = <ChevronLabel>{tekst}</ChevronLabel>;
 
     return (
-        <ChevronButton onClick={onClick}>
-            {type === 'høyre' && CustomLabel}
+        <ChevronButton tabIndex={0} onClick={onClick} >
+            {type === 'høyre' && tekst && CustomLabel}
             <ChevronStyled type={type} />
-            {type === 'venstre' && CustomLabel}
+            {type === 'venstre' && tekst && CustomLabel}
         </ChevronButton>
     );
 };

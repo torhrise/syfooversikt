@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Toolbar from './toolbar/Toolbar';
 import Personliste from './Personliste';
@@ -8,10 +8,13 @@ import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
 import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 import { OverviewTabType } from '../konstanter';
+import { Knapp } from 'nav-frontend-knapper';
 
 interface  SokeresultatState {
   markertePersoner: string[];
   alleMarkert: boolean;
+  startIndex: number;
+  endIndex: number;
   currentTabType: OverviewTabType;
 }
 
@@ -43,9 +46,12 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
       markertePersoner: [],
       alleMarkert: false,
       currentTabType: props.tabType,
+      startIndex: 0,
+      endIndex: 0,
     };
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.checkAllHandler = this.checkAllHandler.bind(this);
+    this.onPageChange = this.onPageChange.bind(this);
   }
 
   checkboxHandler =  (fnr: string ) => {
@@ -94,6 +100,18 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, aktivEnhet.enhetId);
     tildelVeileder(veilederArbeidstakerListe);
   }
+
+  onPageChange = (startItem: number, endItem: number) => {
+      // setCurrentStartItem(startItem);
+      // setCurrentStartItem(endItem);
+      // tslint:disable-next-line: no-console
+      this.setState({
+        endIndex: endItem,
+        startIndex: startItem,
+      });
+      // console.log('onPageChange', startItem, endItem);
+  }
+
   render() {
     const {
       personregister,
@@ -105,10 +123,23 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const {
         alleMarkert,
         markertePersoner,
+        startIndex,
+        endIndex,
     } = this.state;
+
+    const allFnr = Object.keys(personregister);
+
+    const paginatedPersonregister = allFnr
+      .slice(startIndex, endIndex + 1)
+      .reduce((slicedPersonregister, fnr) => {
+        slicedPersonregister[fnr] = personregister[fnr];
+        return slicedPersonregister;
+      }, {} as PersonregisterState);
 
     return (<SokeresultatContainer>
       <Toolbar
+        numberOfItemsDisplayed={allFnr.length}
+        onPageChange={this.onPageChange}
         tabType={tabType}
         aktivVeilederInfo={aktivVeilederinfo}
         alleMarkert={alleMarkert}
@@ -118,7 +149,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
         markertePersoner={markertePersoner}
       />
       <Personliste
-        personregister={personregister}
+        personregister={paginatedPersonregister}
         checkboxHandler={this.checkboxHandler}
         markertePersoner={markertePersoner}
         veiledere={veiledere}
