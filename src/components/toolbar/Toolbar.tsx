@@ -34,15 +34,23 @@ const Innhold = styled.section`
 
 const Element = styled.div`
   display: flex;
+  border: 2px solid white;
+
+  & > div:not(:nth-child(2)) {
+    padding: 1em;
+  }
 `;
 
 const VelgBoks = styled(Checkbox)`
-  margin: 0;
+  margin: 0 !important;
+  padding: .5em;
+  padding: 1em 1em !important;
 `;
 
 const Toolbar = (props: ToolbarProps) => (<Innhold className="blokk-xs">
   <Element>
     <VelgBoks
+      className="toolbar__velgBoks"
       label={tekster.selectAll}
       checked={props.alleMarkert}
       onChange={(event) => {

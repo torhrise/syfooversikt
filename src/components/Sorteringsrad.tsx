@@ -32,7 +32,7 @@ const IngressRad = styled(Row)`
   border-bottom: 2px solid ${themes.color.navGra40};
 `;
 
-const SortingButton = styled.p`
+export const SortingButton = styled.p`
   cursor: pointer;
   color: ${themes.color.navBla};
   user-select: none;

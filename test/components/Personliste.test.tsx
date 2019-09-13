@@ -26,7 +26,7 @@ describe('Personliste', () => {
   />);
 
   it('Skal rendre Sorteringsrad', () => {
-    expect(component.contains(<Sorteringsrad />)).to.equal(true);
+    expect(component.find(Sorteringsrad)).to.have.length(1);
   });
 
   it('Skal rendre Personrad-komponenter med riktig persondata', () => {
