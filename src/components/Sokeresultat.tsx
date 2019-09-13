@@ -138,7 +138,8 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
 
     return (<SokeresultatContainer>
       <Toolbar
-        numberOfItemsDisplayed={allFnr.length}
+        numberOfItemsTotal={allFnr.length}
+        numberOfItemsPerPage={50}
         onPageChange={this.onPageChange}
         tabType={tabType}
         aktivVeilederInfo={aktivVeilederinfo}

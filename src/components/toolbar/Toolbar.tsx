@@ -6,12 +6,13 @@ import { Veileder } from '../../store/veiledere/veiledereTypes';
 import { Veilederinfo } from '../../store/veilederinfo/veilederinfoTypes';
 import { Checkbox } from 'nav-frontend-skjema';
 import { OverviewTabType } from '../../konstanter';
-import PaginationRow from '../PaginationRow';
+import Pagination from '../PaginationRow';
 
 export interface ToolbarProps {
   aktivVeilederInfo: Veilederinfo;
   alleMarkert: boolean;
-  numberOfItemsDisplayed: number;
+  numberOfItemsTotal: number;
+  numberOfItemsPerPage: number;
   buttonHandler: (veilederIdent: string) => void;
   checkAllHandler: (checked: boolean) => void;
   onPageChange: (startItem: number, endItem: number) => void;
@@ -59,8 +60,11 @@ const Toolbar = (props: ToolbarProps) => (<Innhold className="blokk-xs">
     />
     <TildelVeileder {...props}/>
   </Element>
-  <PaginationRow numberOfItems={props.numberOfItemsDisplayed} startPage={0} maxNumberPerPeage={2} onPageChange={(start, end, pageNumber) =>  {
-        // tslint:disable-next-line: no-console
+  <Pagination
+      numberOfItems={props.numberOfItemsTotal}
+      startPage={0}
+      maxNumberPerPeage={props.numberOfItemsPerPage}
+      onPageChange={(start, end, pageNumber) =>  {
         props.onPageChange(start, end);
       }} />
 </Innhold>);

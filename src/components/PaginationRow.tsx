@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import ChevronKnapp from './ChevronKnapp';
 
 const PaginationItems = styled.div`
-  margin-top: 1em;
   display: flex;
   flex-direction: row;
   justify-items: center;
