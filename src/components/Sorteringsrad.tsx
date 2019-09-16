@@ -36,9 +36,10 @@ export const SortingButton = styled.p`
   cursor: pointer;
   color: ${themes.color.navBla};
   user-select: none;
-  &:active() {
-    background: black;
-  }
+`;
+
+const FlexColumn = styled(Column)`
+  display: flex;
 `;
 
 interface SortingRowProps {
@@ -66,11 +67,12 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
 
       <IngressRad className="">
         <Column className="emptyColumn" xs={'1'} />
-        <Column xs={'3'}>
+        <FlexColumn xs={'3'}>
           <SortingButton onClick={onSortingByNameClick}>
-            <strong>{tekster.navn}</strong>
+            <strong>Etternavn</strong>
           </SortingButton>
-        </Column>
+          <p>, Fornavn</p>
+        </FlexColumn>
         <Column xs={'2'}>{tekster.fodselsnummer}</Column>
         <Column xs={'2'}>{tekster.ident}</Column>
         <Column xs={'2'}>{tekster.veileder}</Column>
