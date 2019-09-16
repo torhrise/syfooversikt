@@ -62,15 +62,11 @@ export const veiledere = [
     ident: 'Z999999',
     fornavn: 'Veil',
     etternavn: 'Eder',
-    enhetNr: '0314',
-    enhetNavn: 'NAV Sagene',
   },
   {
     ident: 'Z000000',
     fornavn: 'NAV',
     etternavn: 'Ansatt',
-    enhetNr: '0314',
-    enhetNavn: 'NAV Sagene',
   }
 ];
 
