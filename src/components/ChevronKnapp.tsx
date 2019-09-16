@@ -1,14 +1,10 @@
 import React from 'react';
-import Chevron, { NavFrontendChevronProps } from 'nav-frontend-chevron';
+import Chevron from 'nav-frontend-chevron';
 import styled from 'styled-components';
 import themes from '../styles/themes';
 import NavFrontendChevron from 'nav-frontend-chevron';
 import classNames from 'classnames';
-import { NONAME } from 'dns';
 
-interface ChevronButtonProps extends NavFrontendChevron {
-    chevronColor: string;
-}
 const ChevronButton = styled.button`
     background: transparent;
     border: none;
@@ -57,9 +53,6 @@ interface ChevronKnappProps {
 }
 
 const ChevronKnapp = ({ type = 'venstre', tekst, visible, onClick }: ChevronKnappProps) => {
-    // if (!visible) {
-    //     return <StyledEmptyContainer />;
-    // }
     const CustomLabel = <ChevronLabel>{tekst}</ChevronLabel>;
     const colorClassname = classNames(visible
         ? undefined
