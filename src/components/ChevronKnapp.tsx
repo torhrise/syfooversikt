@@ -13,7 +13,8 @@ const ChevronButton = styled.button`
     color: #0067c5;
 
     :focus {
-        outline: none;
+        outline: auto;
+        outline-offset: -5px;
     }
 `;
 
@@ -48,7 +49,7 @@ const ChevronKnapp = ({ type = 'venstre', tekst, visible, onClick }: ChevronKnap
     const CustomLabel = <ChevronLabel>{tekst}</ChevronLabel>;
 
     return (
-        <ChevronButton tabIndex={0} onClick={onClick} >
+        <ChevronButton onClick={onClick} >
             {type === 'høyre' && tekst && CustomLabel}
             <ChevronStyled type={type} />
             {type === 'venstre' && tekst && CustomLabel}

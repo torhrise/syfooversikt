@@ -37,6 +37,10 @@ const PaginationRow = ({
   const [ currentPage, setCurrentPage ] = useState(startPage);
 
   useEffect(() => {
+    setCurrentPage(0);
+  }, [numberOfItems]);
+
+  useEffect(() => {
     const chunk = getCurrentChunk();
     onPageChange(chunk.start, chunk.end, currentPage);
   }, [currentPage]);
