@@ -70,11 +70,11 @@ const PaginationRow = ({
 
   return (
     <PaginationItems>
-        <ChevronKnapp visible type="venstre" onClick={onPreviousClick} />
+        <ChevronKnapp visible={currentPage !== 0} type="venstre" onClick={onPreviousClick} />
         <PaginationText>
             <p>Viser side <strong>{getCurrentPageAsNormalizedText()}</strong> av <strong>{getLastPageAsNormalizedText()}</strong></p>
         </PaginationText>
-        <ChevronKnapp visible type="høyre" onClick={onNextClick} />
+        <ChevronKnapp visible={currentPage !== getNumberOfPages()} type="høyre" onClick={onNextClick} />
     </PaginationItems>
   );
 };

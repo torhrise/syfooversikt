@@ -1,7 +1,14 @@
 import React from 'react';
-import Chevron from 'nav-frontend-chevron';
+import Chevron, { NavFrontendChevronProps } from 'nav-frontend-chevron';
 import styled from 'styled-components';
+import themes from '../styles/themes';
+import NavFrontendChevron from 'nav-frontend-chevron';
+import classNames from 'classnames';
+import { NONAME } from 'dns';
 
+interface ChevronButtonProps extends NavFrontendChevron {
+    chevronColor: string;
+}
 const ChevronButton = styled.button`
     background: transparent;
     border: none;
@@ -10,10 +17,13 @@ const ChevronButton = styled.button`
     align-items: center;
     padding: 0.25em;
     cursor: pointer;
-    color: #0067c5;
+    color: ${themes.color.navBla};
 
     :focus {
-        outline: auto;
+        outline: ${(props) => props.className === 'invisible'
+            ? 'none'
+            : 'auto'
+        };
         outline-offset: -5px;
     }
 `;
@@ -29,6 +39,10 @@ const ChevronLabel = styled.span`
 `;
 
 const ChevronStyled = styled(Chevron)`
+    color: ${(props) => props.className === 'invisible'
+            ? `${themes.color.invisible}`
+            : `${themes.color.navBla}`
+    };
 `;
 
 const StyledEmptyContainer = styled.div`
@@ -43,15 +57,19 @@ interface ChevronKnappProps {
 }
 
 const ChevronKnapp = ({ type = 'venstre', tekst, visible, onClick }: ChevronKnappProps) => {
-    if (!visible) {
-        return <StyledEmptyContainer />;
-    }
+    // if (!visible) {
+    //     return <StyledEmptyContainer />;
+    // }
     const CustomLabel = <ChevronLabel>{tekst}</ChevronLabel>;
+    const colorClassname = classNames(visible
+        ? undefined
+        : 'invisible'
+    );
 
     return (
-        <ChevronButton onClick={onClick} >
+        <ChevronButton className={colorClassname} onClick={onClick} >
             {type === 'høyre' && tekst && CustomLabel}
-            <ChevronStyled type={type} />
+            <ChevronStyled className={colorClassname} type={type} />
             {type === 'venstre' && tekst && CustomLabel}
         </ChevronButton>
     );
