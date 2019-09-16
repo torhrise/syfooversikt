@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Toolbar from './toolbar/Toolbar';
 import Personliste from './Personliste';
@@ -8,7 +8,6 @@ import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
 import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 import { OverviewTabType } from '../konstanter';
-import { Knapp } from 'nav-frontend-knapper';
 
 interface  SokeresultatState {
   markertePersoner: string[];
@@ -139,7 +138,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     return (<SokeresultatContainer>
       <Toolbar
         numberOfItemsTotal={allFnr.length}
-        numberOfItemsPerPage={2}
+        numberOfItemsPerPage={50}
         onPageChange={this.onPageChange}
         tabType={tabType}
         aktivVeilederInfo={aktivVeilederinfo}
