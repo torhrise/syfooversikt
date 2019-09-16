@@ -3,18 +3,10 @@ import {
   PersonregisterState,
 } from '../../src/store/personregister/personregisterTypes';
 import { PersonoversiktStatus } from '../../src/store/personoversikt/personoversiktTypes';
-import { Veileder } from '../../src/store/veiledere/veiledereTypes';
 
 const veilederIdent = 'Z101010';
 const veilederNavn = 'F_Z101010 E_Z101010';
 const enhetId = '0315';
-const veileder: Veileder = {
-  ident: 'Z101010',
-  fornavn: 'Dana',
-  etternavn: 'Scully',
-  enhetNr: enhetId,
-  enhetNavn: 'NAV X-Files',
-};
 
 export const testdata = {
   fnr1: '99999911111',
