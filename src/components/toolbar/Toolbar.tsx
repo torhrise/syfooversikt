@@ -44,7 +44,6 @@ const Element = styled.div`
 
 const VelgBoks = styled(Checkbox)`
   margin: 0 !important;
-  padding: .5em;
   padding: 1em 1em !important;
 `;
 

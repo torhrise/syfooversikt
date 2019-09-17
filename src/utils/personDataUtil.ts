@@ -8,9 +8,10 @@ export const skjermingskode = (person: PersonData) => {
 };
 
 export const veilederEllerUfordelt = (veileder?: Veileder) => {
-  return veileder
-    ? `${veileder.etternavn}, ${veileder.fornavn}`
-    : 'Ufordelt bruker';
+  if (veileder) {
+      return  veileder.fornavn === '' ? '' : `${veileder.etternavn}, ${veileder.fornavn}`;
+  }
+  return 'Ufordelt bruker';
 };
 
 export const hendelsestypeString = {

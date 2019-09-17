@@ -29,7 +29,3 @@ fasitResources:
   used:
   - alias: iadecorator-js
     resourceType: restservice
-  - alias: norg2.api.v1
-    resourceType: Restservice
-    propertyMap:
-      url: norg2.url
