@@ -7,6 +7,8 @@ import {
 } from 'nav-frontend-grid';
 import themes from '../styles/themes';
 import { SortingType } from '../utils/hendelseFilteringUtils';
+import Chevron from 'nav-frontend-chevron';
+import ChevronKnapp from './ChevronKnapp';
 
 const tekster = {
   navn: 'Etternavn, Fornavn',
@@ -57,6 +59,9 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
     onSortClick(nextSortingType);
   };
 
+  const chevronType = currentSortingType === 'NAME_ASC'
+    ? 'opp'
+    : 'ned';
   return (
     <>
       <OverskriftRad className="">
@@ -64,11 +69,11 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
         <Column xs={'5'}>{tekster.overskriftBruker}</Column>
         <Column xs={'4'}>{tekster.overskriftVeileder}</Column>
       </OverskriftRad>
-
       <IngressRad className="">
         <Column className="emptyColumn" xs={'1'} />
         <FlexColumn xs={'3'}>
           <SortingButton onClick={onSortingByNameClick}>
+            <Chevron type={chevronType} />
             <strong>Etternavn</strong>
           </SortingButton>
           <p>, Fornavn</p>

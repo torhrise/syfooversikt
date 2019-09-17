@@ -34,6 +34,16 @@ const lagListe = (markertePersoner: string[], veilederIdent: string, enhet: stri
   }));
 };
 
+const paginatePersonregister = (personregister: PersonregisterState, startItem: number, endItem: number) => {
+  const allFnr = Object.keys(personregister);
+  return allFnr
+      .slice(startItem, endItem + 1)
+      .reduce((slicedPersonregister, fnr) => {
+        slicedPersonregister[fnr] = personregister[fnr];
+        return slicedPersonregister;
+      }, {} as PersonregisterState);
+};
+
 const SokeresultatContainer = styled.div`
   flex: 3;
 `;
@@ -123,13 +133,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     } = this.state;
 
     const allFnr = Object.keys(personregister);
-
-    const paginatedPersonregister = allFnr
-      .slice(startItem, endItem + 1)
-      .reduce((slicedPersonregister, fnr) => {
-        slicedPersonregister[fnr] = personregister[fnr];
-        return slicedPersonregister;
-      }, {} as PersonregisterState);
+    const paginatedPersonregister = paginatePersonregister(personregister, startItem, endItem);
 
     return (<SokeresultatContainer>
       <Toolbar
