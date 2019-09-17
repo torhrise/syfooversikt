@@ -12,8 +12,8 @@ import { OverviewTabType } from '../konstanter';
 interface  SokeresultatState {
   markertePersoner: string[];
   alleMarkert: boolean;
-  startIndex: number;
-  endIndex: number;
+  startItem: number;
+  endItem: number;
   currentTabType: OverviewTabType;
 }
 
@@ -45,8 +45,8 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
       markertePersoner: [],
       alleMarkert: false,
       currentTabType: props.tabType,
-      startIndex: 0,
-      endIndex: 0,
+      startItem: 0,
+      endItem: 0,
     };
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.checkAllHandler = this.checkAllHandler.bind(this);
@@ -101,14 +101,10 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
   }
 
   onPageChange = (startItem: number, endItem: number) => {
-      // setCurrentStartItem(startItem);
-      // setCurrentStartItem(endItem);
-      // tslint:disable-next-line: no-console
       this.setState({
-        endIndex: endItem,
-        startIndex: startItem,
+        endItem,
+        startItem,
       });
-      // console.log('onPageChange', startItem, endItem);
   }
 
   render() {
@@ -122,14 +118,14 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const {
         alleMarkert,
         markertePersoner,
-        startIndex,
-        endIndex,
+        startItem,
+        endItem,
     } = this.state;
 
     const allFnr = Object.keys(personregister);
 
     const paginatedPersonregister = allFnr
-      .slice(startIndex, endIndex + 1)
+      .slice(startItem, endItem + 1)
       .reduce((slicedPersonregister, fnr) => {
         slicedPersonregister[fnr] = personregister[fnr];
         return slicedPersonregister;
