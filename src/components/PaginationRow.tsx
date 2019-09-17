@@ -32,18 +32,21 @@ const PaginationRow = ({
 }: PaginationProps) => {
 
   const getNumberOfPages = () => {
+    if (numberOfItems === maxNumberPerPeage) {
+        return 0;
+    }
     return Math.floor(numberOfItems / maxNumberPerPeage);
   };
   const [ currentPage, setCurrentPage ] = useState(startPage);
 
   useEffect(() => {
     setCurrentPage(0);
-  }, [numberOfItems]);
+  }, [numberOfItems, maxNumberPerPeage]);
 
   useEffect(() => {
     const chunk = getCurrentChunk();
     onPageChange(chunk.start, chunk.end, currentPage);
-  }, [currentPage]);
+  }, [currentPage, maxNumberPerPeage]);
 
   const onNextClick = () => {
     const nextPage = Math.min(currentPage + 1, getNumberOfPages());
@@ -58,7 +61,7 @@ const PaginationRow = ({
 
   const getCurrentChunk = () => {
     const start = Math.min((currentPage) * maxNumberPerPeage, numberOfItems);
-    const end = Math.min(-1 + (currentPage + 1) * maxNumberPerPeage, numberOfItems);
+    const end = Math.min((currentPage + 1) * maxNumberPerPeage, numberOfItems);
     return {
       start,
       end,
