@@ -33,8 +33,7 @@ const ButtonDiv = styled.div`
 `;
 
 const DropdownButtonButton = styled.button`
-  padding: 1em;
-  padding-right: 2em;
+  padding: 1em 2em 1em 1em;
   margin: 0;
   width: 100%;
   background: none;
