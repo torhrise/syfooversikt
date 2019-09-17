@@ -2,7 +2,6 @@ import React from 'react';
 import Chevron from 'nav-frontend-chevron';
 import styled from 'styled-components';
 import themes from '../styles/themes';
-import NavFrontendChevron from 'nav-frontend-chevron';
 import classNames from 'classnames';
 
 const ChevronButton = styled.button`

@@ -34,6 +34,11 @@ const IngressRad = styled(Row)`
   border-bottom: 2px solid ${themes.color.navGra40};
 `;
 
+const GrayChevron = styled(Chevron)`
+  margin-left: 0.25em;
+  color: #3E3832;
+`;
+
 export const SortingButton = styled.p`
   cursor: pointer;
   color: ${themes.color.navBla};
@@ -42,6 +47,7 @@ export const SortingButton = styled.p`
 
 const FlexColumn = styled(Column)`
   display: flex;
+  align-items: center;
 `;
 
 interface SortingRowProps {
@@ -73,10 +79,10 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
         <Column className="emptyColumn" xs={'1'} />
         <FlexColumn xs={'3'}>
           <SortingButton onClick={onSortingByNameClick}>
-            <Chevron type={chevronType} />
             <strong>Etternavn</strong>
           </SortingButton>
           <p>, Fornavn</p>
+          <GrayChevron type={chevronType} />
         </FlexColumn>
         <Column xs={'2'}>{tekster.fodselsnummer}</Column>
         <Column xs={'2'}>{tekster.ident}</Column>
