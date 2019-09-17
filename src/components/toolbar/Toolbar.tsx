@@ -99,7 +99,7 @@ const Toolbar = (props: ToolbarProps) => {
       <Pagination
         numberOfItems={props.numberOfItemsTotal}
         startPage={0}
-        maxNumberPerPeage={numberOfItemsPerPage}
+        maxNumberPerPage={numberOfItemsPerPage}
         onPageChange={(start, end, pageNumber) => {
           props.onPageChange(start, end);
         }} />

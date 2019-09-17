@@ -21,32 +21,32 @@ const PaginationText = styled.div`
 interface PaginationProps {
   startPage?: number;
   numberOfItems: number;
-  maxNumberPerPeage: number;
+  maxNumberPerPage: number;
   onPageChange(start: number, end: number, pageNumber: number): void;
 }
 const PaginationRow = ({
   numberOfItems,
   startPage = 0,
-  maxNumberPerPeage,
+  maxNumberPerPage,
   onPageChange,
 }: PaginationProps) => {
 
   const getNumberOfPages = () => {
-    if (numberOfItems === maxNumberPerPeage) {
+    if (numberOfItems === maxNumberPerPage) {
         return 0;
     }
-    return Math.floor(numberOfItems / maxNumberPerPeage);
+    return Math.floor(numberOfItems / maxNumberPerPage);
   };
   const [ currentPage, setCurrentPage ] = useState(startPage);
 
   useEffect(() => {
     setCurrentPage(0);
-  }, [numberOfItems, maxNumberPerPeage]);
+  }, [numberOfItems, maxNumberPerPage]);
 
   useEffect(() => {
     const chunk = getCurrentChunk();
     onPageChange(chunk.start, chunk.end, currentPage);
-  }, [currentPage, maxNumberPerPeage]);
+  }, [currentPage, maxNumberPerPage]);
 
   const onNextClick = () => {
     const nextPage = Math.min(currentPage + 1, getNumberOfPages());
@@ -60,8 +60,8 @@ const PaginationRow = ({
   };
 
   const getCurrentChunk = () => {
-    const start = Math.min((currentPage) * maxNumberPerPeage, numberOfItems);
-    const end = Math.min((currentPage + 1) * maxNumberPerPeage, numberOfItems);
+    const start = Math.min((currentPage) * maxNumberPerPage, numberOfItems);
+    const end = Math.min((currentPage + 1) * maxNumberPerPage - 1, numberOfItems);
     return {
       start,
       end,
@@ -75,7 +75,7 @@ const PaginationRow = ({
     <PaginationItems>
         <ChevronKnapp visible={currentPage !== 0} type="venstre" onClick={onPreviousClick} />
         <PaginationText>
-            <p>Viser side <strong>{getCurrentPageAsNormalizedText()}</strong> av <strong>{getLastPageAsNormalizedText()}</strong></p>
+            <p>Side <strong>{getCurrentPageAsNormalizedText()}</strong> av <strong>{getLastPageAsNormalizedText()}</strong></p>
         </PaginationText>
         <ChevronKnapp visible={currentPage !== getNumberOfPages()} type="høyre" onClick={onNextClick} />
     </PaginationItems>
