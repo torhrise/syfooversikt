@@ -112,14 +112,14 @@ const ChangelogModal = ({ onClose, isOpen, changelog }: Props) => {
                         </ChangelogTextField>
                     </ModalMain>
                     <ModalButtons>
-                        <ChevronKnapp type="venstre" tekst="Forrige" visible={!isFirstPage} onClick={() => {
+                        <ChevronKnapp type="venstre" text="Forrige" visible={!isFirstPage} onClick={() => {
                             setPageNumber(currentPageNumber - 1);
                         }}/>
                         <NumberIndicator antall={changelog.items.length} valgtIndex={currentPageNumber} />
-                        {!isLastPage && <ChevronKnapp type="høyre" tekst="Neste" visible={true} onClick={() => {
+                        {!isLastPage && <ChevronKnapp type="høyre" text="Neste" visible={true} onClick={() => {
                             setPageNumber(Math.min(currentPageNumber + 1, changelog.items.length - 1));
                         }}/>}
-                        {isLastPage && <ChevronKnapp type="høyre" tekst="Ferdig" visible={true} onClick={() => {
+                        {isLastPage && <ChevronKnapp type="høyre" text="Ferdig" visible={true} onClick={() => {
                             onClose(isLastPage, changelog.version);
                         }}/>}
                     </ModalButtons>

@@ -46,12 +46,12 @@ const StyledEmptyContainer = styled.div`
 
 interface ChevronKnappProps {
     type?: 'høyre' | 'venstre' | 'opp' | 'ned';
-    tekst?: string;
+    text?: string;
     visible: boolean;
     onClick(): void;
 }
 
-const ChevronKnapp = ({ type = 'venstre', tekst, visible, onClick }: ChevronKnappProps) => {
+const ChevronKnapp = ({ type = 'venstre', text: tekst, visible, onClick }: ChevronKnappProps) => {
     const CustomLabel = <ChevronLabel>{tekst}</ChevronLabel>;
     const colorClassname = classNames(visible
         ? undefined
