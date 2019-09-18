@@ -12,6 +12,8 @@ import { OverviewTabType } from '../konstanter';
 interface  SokeresultatState {
   markertePersoner: string[];
   alleMarkert: boolean;
+  startItem: number;
+  endItem: number;
   currentTabType: OverviewTabType;
 }
 
@@ -32,6 +34,16 @@ const lagListe = (markertePersoner: string[], veilederIdent: string, enhet: stri
   }));
 };
 
+const paginatePersonregister = (personregister: PersonregisterState, startItem: number, endItem: number) => {
+  const allFnr = Object.keys(personregister);
+  return allFnr
+      .slice(startItem, endItem + 1)
+      .reduce((slicedPersonregister, fnr) => {
+        slicedPersonregister[fnr] = personregister[fnr];
+        return slicedPersonregister;
+      }, {} as PersonregisterState);
+};
+
 const SokeresultatContainer = styled.div`
   flex: 3;
 `;
@@ -43,9 +55,12 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
       markertePersoner: [],
       alleMarkert: false,
       currentTabType: props.tabType,
+      startItem: 0,
+      endItem: 0,
     };
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.checkAllHandler = this.checkAllHandler.bind(this);
+    this.onPageChange = this.onPageChange.bind(this);
   }
 
   checkboxHandler =  (fnr: string ) => {
@@ -94,6 +109,14 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, aktivEnhet.enhetId);
     tildelVeileder(veilederArbeidstakerListe);
   }
+
+  onPageChange = (startItem: number, endItem: number) => {
+      this.setState({
+        endItem,
+        startItem,
+      });
+  }
+
   render() {
     const {
       personregister,
@@ -105,10 +128,17 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const {
         alleMarkert,
         markertePersoner,
+        startItem,
+        endItem,
     } = this.state;
+
+    const allFnr = Object.keys(personregister);
+    const paginatedPersonregister = paginatePersonregister(personregister, startItem, endItem);
 
     return (<SokeresultatContainer>
       <Toolbar
+        numberOfItemsTotal={allFnr.length}
+        onPageChange={this.onPageChange}
         tabType={tabType}
         aktivVeilederInfo={aktivVeilederinfo}
         alleMarkert={alleMarkert}
@@ -118,7 +148,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
         markertePersoner={markertePersoner}
       />
       <Personliste
-        personregister={personregister}
+        personregister={paginatedPersonregister}
         checkboxHandler={this.checkboxHandler}
         markertePersoner={markertePersoner}
         veiledere={veiledere}

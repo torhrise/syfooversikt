@@ -7,6 +7,8 @@ import {
 } from 'nav-frontend-grid';
 import themes from '../styles/themes';
 import { SortingType } from '../utils/hendelseFilteringUtils';
+import Chevron from 'nav-frontend-chevron';
+import ChevronKnapp from './ChevronKnapp';
 
 const tekster = {
   navn: 'Etternavn, Fornavn',
@@ -32,13 +34,20 @@ const IngressRad = styled(Row)`
   border-bottom: 2px solid ${themes.color.navGra40};
 `;
 
+const GrayChevron = styled(Chevron)`
+  margin-left: 0.25em;
+  color: #3E3832;
+`;
+
 export const SortingButton = styled.p`
   cursor: pointer;
   color: ${themes.color.navBla};
   user-select: none;
-  &:active() {
-    background: black;
-  }
+`;
+
+const FlexColumn = styled(Column)`
+  display: flex;
+  align-items: center;
 `;
 
 interface SortingRowProps {
@@ -56,6 +65,9 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
     onSortClick(nextSortingType);
   };
 
+  const chevronType = currentSortingType === 'NAME_ASC'
+    ? 'opp'
+    : 'ned';
   return (
     <>
       <OverskriftRad className="">
@@ -63,14 +75,15 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
         <Column xs={'5'}>{tekster.overskriftBruker}</Column>
         <Column xs={'4'}>{tekster.overskriftVeileder}</Column>
       </OverskriftRad>
-
       <IngressRad className="">
         <Column className="emptyColumn" xs={'1'} />
-        <Column xs={'3'}>
+        <FlexColumn xs={'3'}>
           <SortingButton onClick={onSortingByNameClick}>
-            <strong>{tekster.navn}</strong>
+            <strong>Etternavn</strong>
           </SortingButton>
-        </Column>
+          <p>, Fornavn</p>
+          <GrayChevron type={chevronType} />
+        </FlexColumn>
         <Column xs={'2'}>{tekster.fodselsnummer}</Column>
         <Column xs={'2'}>{tekster.ident}</Column>
         <Column xs={'2'}>{tekster.veileder}</Column>

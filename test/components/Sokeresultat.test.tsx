@@ -17,6 +17,10 @@ import { OverviewTabType } from '../../src/konstanter';
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
+const emptyBlock = () => {
+  // empty
+};
+
 describe('Sokeresultat', () => {
   // tslint:disable-next-line:no-empty
   const dummyFunksjon = () => {};
@@ -32,6 +36,8 @@ describe('Sokeresultat', () => {
 
   it('Skal inneholde knapperad', () => {
     expect(component.contains( <Toolbar
+      numberOfItemsTotal={10}
+      onPageChange={emptyBlock}
       tabType={OverviewTabType.ENHET_OVERVIEW}
       aktivVeilederInfo={veilederinfo}
       alleMarkert={false}
