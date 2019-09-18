@@ -36,7 +36,6 @@ describe('Sokeresultat', () => {
 
   it('Skal inneholde knapperad', () => {
     expect(component.contains( <Toolbar
-      numberOfItemsPerPage={10}
       numberOfItemsTotal={10}
       onPageChange={emptyBlock}
       tabType={OverviewTabType.ENHET_OVERVIEW}
