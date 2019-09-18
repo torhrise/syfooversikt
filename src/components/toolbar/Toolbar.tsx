@@ -7,7 +7,6 @@ import { Veilederinfo } from '../../store/veilederinfo/veilederinfoTypes';
 import { Checkbox } from 'nav-frontend-skjema';
 import { OverviewTabType } from '../../konstanter';
 import Pagination from '../PaginationRow';
-import ChevronKnapp from '../ChevronKnapp';
 
 export interface ToolbarProps {
   aktivVeilederInfo: Veilederinfo;
@@ -22,8 +21,8 @@ export interface ToolbarProps {
 }
 
 const tekster = {
+  showMore: 'Se alle',
   selectAll: 'Velg alle',
-  showMore: 'Vis flere',
   showLess: 'Vis færre',
 };
 
