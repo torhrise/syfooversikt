@@ -104,8 +104,6 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
     allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
   }
 
-  // tslint:disable-next-line: no-console
-  console.log('selectedBirthDates', selectedBirthDates);
   const filteredEvents = new Filterable<PersonregisterState>({...allEvents.value})
     .applyFilter((v) => filterOnBirthDates(v, selectedBirthDates))
     .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
