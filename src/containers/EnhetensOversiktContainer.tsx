@@ -18,6 +18,7 @@ import {
   filtrerPersonregister,
   filtrerPaaFodselsnummerEllerNavn,
   filterEventsOnVeileder,
+  filterOnBirthDates,
 } from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
 import { ApplicationState } from '../store';
@@ -25,6 +26,7 @@ import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
 import { AlertStripeWarning } from '../components/AlertStripeWarning';
 import { OverviewTabType } from '../konstanter';
 import { hentVeiledere } from '../store/veiledere/veiledere_actions';
+import PersonFilter from '../components/PersonFilter';
 
 const tekster = {
     feil: {
@@ -89,6 +91,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
     noeErHentet,
     altFeilet,
     veiledere,
+    selectedBirthDates,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
   useEffect(() => {
@@ -101,7 +104,10 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
     allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
   }
 
+  // tslint:disable-next-line: no-console
+  console.log('selectedBirthDates', selectedBirthDates);
   const filteredEvents = new Filterable<PersonregisterState>({...allEvents.value})
+    .applyFilter((v) => filterOnBirthDates(v, selectedBirthDates))
     .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
     .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
 
@@ -120,6 +126,8 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
                   personRegister={allEvents.value}
                   tabType={tabType}
               />
+
+              <PersonFilter />
           </SokeresultatFiltre >
           <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
@@ -145,4 +153,5 @@ const getPropsFromState = (state: ApplicationState) => ({
   altFeilet: state.veilederinfo.hentingFeilet || state.personoversikt.hentingFeilet,
   veiledere: state.veiledere.data,
   hentetIngenPersoner: state.personoversikt.hentet && state.personoversikt.data.length === 0,
+  selectedBirthDates: state.filters.selectedBirthDates,
 });

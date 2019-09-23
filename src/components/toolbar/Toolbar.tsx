@@ -60,7 +60,7 @@ const VelgBoks = styled(Checkbox)`
   padding: 1em 1em !important;
 `;
 
-const PAGINATED_NUMBER_OF_ITEMS = 2;
+const PAGINATED_NUMBER_OF_ITEMS = 50;
 
 const Toolbar = (props: ToolbarProps) => {
 

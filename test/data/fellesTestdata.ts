@@ -9,7 +9,7 @@ const veilederNavn = 'F_Z101010 E_Z101010';
 const enhetId = '0315';
 
 export const testdata = {
-  fnr1: '99999911111',
+  fnr1: '01999911111',
   fnr2: '99999922222',
   fnr3: '99999933333',
   fnr4: '99999944444',
@@ -71,6 +71,6 @@ export const veiledere = [
 ];
 
 export const markertePersoner = [
-  '99999911111',
+  '01999911111',
   '99999922222',
 ];

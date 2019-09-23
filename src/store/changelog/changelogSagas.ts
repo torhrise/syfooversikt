@@ -5,14 +5,15 @@ import { ChangelogActionTypes,
     fetchChangelogError
 } from './changelog_actions';
 import { get } from '../../api';
-import { Changelog } from './changelogTypes';
 
 function* getChangelog(): IterableIterator<any> {
     try {
         put(fetchChengelogsLoadingAction());
         const changeLogPath = process.env.REACT_APP_CHANGELOG_ROOT as string;
-        const data: Changelog[] = yield call(get, changeLogPath);
-        yield put(fetchChangelogsSuccess(data));
+        const data = yield call(get, changeLogPath);
+        if (data) {
+            yield put(fetchChangelogsSuccess(data));
+        }
     } catch (e) {
         yield put(fetchChangelogError(e));
     }

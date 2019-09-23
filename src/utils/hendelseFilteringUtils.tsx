@@ -24,11 +24,26 @@ export const filtrerPaaFodselsnummerEllerNavn = (personregister: PersonregisterS
         const pd = personregister[fnr];
         if (fnr.toLowerCase().indexOf(sok.toLowerCase()) > -1) {
             cv[fnr] = personregister[fnr];
-        } else if (pd.navn.toLowerCase().indexOf(sok.toLocaleLowerCase()) > -1) {
+        } else if (pd.navn && pd.navn.toLowerCase().indexOf(sok.toLocaleLowerCase()) > -1) {
             cv[fnr] = personregister[fnr];
         }
         return cv;
     }, {} as PersonregisterState);
+};
+
+const getBirthDateFromFnr = (fnr: string): string => fnr.slice(0, 2);
+
+export const filterOnBirthDates = (personregister: PersonregisterState, birthdates: string[]): PersonregisterState => {
+    if (birthdates.length === 0) return personregister;
+    return Object.keys(personregister)
+        .filter((fnr) => {
+            const birthDate = getBirthDateFromFnr(fnr);
+            return birthdates.indexOf(birthDate) !== -1;
+        })
+        .reduce((newPersonRegister, fnr) => {
+            newPersonRegister[fnr] = personregister[fnr];
+            return newPersonRegister;
+        }, {} as PersonregisterState);
 };
 
 export const filtrerPersonregister = (personregister: PersonregisterState, filter?: HendelseTypeFilters): PersonregisterState => {
