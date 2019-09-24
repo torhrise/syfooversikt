@@ -27,6 +27,7 @@ import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstak
 import changelogReducer, { ChangelogState } from './changelog/changelogReducer';
 import changelogSagas from './changelog/changelogSagas';
 import { createBrowserHistory } from 'history';
+import filterReducer, { FilterState } from './filters/filterReducer';
 
 export interface ApplicationState {
   router: any;
@@ -38,6 +39,7 @@ export interface ApplicationState {
   personoversikt: PersonoversiktStatusState;
   personregister: PersonregisterState;
   changelogs: ChangelogState;
+  filters: FilterState;
 }
 
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
@@ -54,6 +56,7 @@ export const rootReducer = () => combineReducers<ApplicationState>({
   personoversikt: personoversiktReducer,
   personregister: personregisterReducer,
   changelogs: changelogReducer,
+  filters: filterReducer,
 });
 
 export function* rootSaga() {
