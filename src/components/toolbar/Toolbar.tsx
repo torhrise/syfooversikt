@@ -81,6 +81,8 @@ const Toolbar = (props: ToolbarProps) => {
     return tekster.showMore;
   };
 
+  const shouldShowTogglePagination = props.numberOfItemsTotal > PAGINATED_NUMBER_OF_ITEMS;
+
   return (<Innhold className="blokk-xs">
     <Element>
       <VelgBoks
@@ -94,7 +96,9 @@ const Toolbar = (props: ToolbarProps) => {
       <TildelVeileder {...props} />
     </Element>
     <PaginationContainer>
-      <TogglePagination onClick={onTogglePaginationClick}>{getTogglePaginationText()}</TogglePagination>
+      {shouldShowTogglePagination &&
+        <TogglePagination onClick={onTogglePaginationClick}>{getTogglePaginationText()}</TogglePagination>
+      }
       <Pagination
         numberOfItems={props.numberOfItemsTotal}
         startPage={0}
