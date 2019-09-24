@@ -16,7 +16,7 @@ const FilterReducer: Reducer<FilterState, FilterAction> = (state = inititalState
         case FilterActionTypes.UPDATE_BIRTH_DATE: {
             return {
                 ...state,
-                selectedBirthDates: action.selectedBirthdates,
+                selectedBirthDates: action.selectedBirthDates,
             };
         }
     }

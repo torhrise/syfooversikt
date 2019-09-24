@@ -33,12 +33,12 @@ export const filtrerPaaFodselsnummerEllerNavn = (personregister: PersonregisterS
 
 const getBirthDateFromFnr = (fnr: string): string => fnr.slice(0, 2);
 
-export const filterOnBirthDates = (personregister: PersonregisterState, birthdates: string[]): PersonregisterState => {
-    if (birthdates.length === 0) return personregister;
+export const filterOnBirthDates = (personregister: PersonregisterState, birthDates: string[]): PersonregisterState => {
+    if (birthDates.length === 0) return personregister;
     return Object.keys(personregister)
         .filter((fnr) => {
             const birthDate = getBirthDateFromFnr(fnr);
-            return birthdates.indexOf(birthDate) !== -1;
+            return birthDates.indexOf(birthDate) !== -1;
         })
         .reduce((newPersonRegister, fnr) => {
             newPersonRegister[fnr] = personregister[fnr];

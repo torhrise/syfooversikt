@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useDispatch } from 'react-redux';
-import { updateBirthdateFilter } from '../store/filters/filter_actions';
+import { updateBirthDateFilter } from '../store/filters/filter_actions';
 import BirthDateFilter from './filters/BirthDateFilter';
 
 const texts = {
@@ -17,7 +17,7 @@ export default () => {
     };
 
     const onBirthDateChange = (birthDates: string[]) => {
-        dispatch(updateBirthdateFilter(birthDates));
+        dispatch(updateBirthDateFilter(birthDates));
     };
 
     return (

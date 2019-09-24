@@ -2,15 +2,15 @@ export enum FilterActionTypes {
     UPDATE_BIRTH_DATE = 'UPDATE_BIRTH_DATE',
 }
 
-interface UpdateBirthdateFilter {
+interface UpdateBirthDateFilter {
     type: FilterActionTypes.UPDATE_BIRTH_DATE;
-    selectedBirthdates: string[];
+    selectedBirthDates: string[];
 }
 
 export type FilterAction =
-    UpdateBirthdateFilter;
+    UpdateBirthDateFilter;
 
-export const updateBirthdateFilter = (birthDates: string[]) => ({
+export const updateBirthDateFilter = (birthDates: string[]) => ({
     type: FilterActionTypes.UPDATE_BIRTH_DATE,
-    selectedBirthdates: birthDates,
-}) as UpdateBirthdateFilter;
+    selectedBirthDates: birthDates,
+}) as UpdateBirthDateFilter;
