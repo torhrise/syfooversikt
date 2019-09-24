@@ -5,6 +5,11 @@ import FilterTittel from '../FilterTitle';
 
 const allDates = new Array(31).fill(1).map((currentNumber, index) => currentNumber + index);
 
+const texts = {
+    title: 'Fødselsdato',
+    placeholder: 'Velg datoer',
+};
+
 interface DateOption {
     value: string;
     label: string;
@@ -22,8 +27,8 @@ interface BirthDateFilterProps {
 const BirthDateFilter = ({ onSelect }: BirthDateFilterProps) => {
     return (
         <div>
-            <FilterTittel>Fødselsdato</FilterTittel>
-            <Select placeholder={'Velg fødeslsdato'}  options={selectableOptions} isMulti closeMenuOnSelect={false} onChange={(v: ValueType<DateOption>) => {
+            <FilterTittel>{texts.title}</FilterTittel>
+            <Select placeholder={texts.placeholder}  options={selectableOptions} isMulti closeMenuOnSelect={false} onChange={(v: ValueType<DateOption>) => {
                 const arrayOfSelectedOptions = (v as DateOption[]) || [];
                 const arrayOfStrings = arrayOfSelectedOptions.map((option) => option.value) || [];
                 onSelect(arrayOfStrings);
