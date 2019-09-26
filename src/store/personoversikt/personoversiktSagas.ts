@@ -52,8 +52,8 @@ export function* hentNavnForPersonerUtenNavn(data: PersonoversiktStatus[]): any 
 }
 
 const hentetAktivEnhetId = (state: any): string => {
-  return skalHenteReducer(state.personoversikt)
-      ? state.veilederenheter.aktivEnhet.enhetId
+  return state.veilederenheter.aktivEnhetId
+      ? state.veilederenheter.aktivEnhetId
       : '';
 };
 

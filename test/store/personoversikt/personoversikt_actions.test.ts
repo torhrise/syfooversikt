@@ -14,8 +14,10 @@ const expect = chai.expect;
 
 describe('personInfo_actions', () => {
   it('hentPersonoversiktForespurt() skal returnere riktig action', () => {
-    expect(hentPersonoversiktForespurt()).to.deep.equal({
+    const enhetId = '0101';
+    expect(hentPersonoversiktForespurt(enhetId)).to.deep.equal({
       type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FORESPURT,
+      enhetId,
     });
   });
 
