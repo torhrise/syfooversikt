@@ -12,5 +12,6 @@ export interface VeilederenheterState {
   readonly henter: boolean;
   readonly hentingFeilet: boolean;
   readonly aktivEnhet: Veilederenhet;
+  readonly aktivEnhetId: string;
   readonly data: Veilederenheter;
 }
