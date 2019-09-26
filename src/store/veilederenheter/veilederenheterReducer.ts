@@ -26,6 +26,7 @@ const initiellState: VeilederenheterState = {
     enhetId: '',
     navn: '',
   },
+  aktivEnhetId: '',
   data: {
     enhetliste: [],
   },
@@ -58,6 +59,12 @@ const veilederenheterReducer: Reducer<VeilederenheterState> = (
         ...state,
         henter: false,
         hentingFeilet: true,
+      };
+    }
+    case VeilederenheterActionTypes.HENT_AKTIVENHET_HENTET: {
+      return {
+        ...state,
+        aktivEnhetId: action.data,
       };
     }
     default: {

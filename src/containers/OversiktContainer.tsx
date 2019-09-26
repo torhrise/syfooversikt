@@ -46,13 +46,13 @@ const getPropsFromState = (
 const OversiktContainer = ({ type }: OversiktProps) => {
 
   const {
-    aktivEnhet,
+    // aktivEnhet,
     aktivEnhetFeilet,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
   const dispatch = useDispatch();
   const actions = {
-    hentPersonoversiktForespurt: () => dispatch(hentPersonoversiktForespurt()),
+    // hentPersonoversiktForespurt: () => dispatch(hentPersonoversiktForespurt()),
     hentVeilederenheter: () => dispatch(hentVeilederenheter()),
   };
 
@@ -60,9 +60,9 @@ const OversiktContainer = ({ type }: OversiktProps) => {
     actions.hentVeilederenheter();
   }, []);
 
-  useEffect(() => {
-    actions.hentPersonoversiktForespurt();
-  }, [aktivEnhet.enhetId]);
+  // useEffect(() => {
+  //   actions.hentPersonoversiktForespurt();
+  // }, [aktivEnhet.enhetId]);
 
   return (
     <Container>

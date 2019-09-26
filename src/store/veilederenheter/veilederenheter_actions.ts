@@ -5,6 +5,7 @@ export const enum VeilederenheterActionTypes {
   HENT_VEILEDERENHETER_HENTER = 'HENT_VEILEDERENHETER_HENTER',
   HENT_VEILEDERENHETER_HENTET = 'HENT_VEILEDERENHETER_HENTET',
   HENT_VEILEDERENHETER_FEILET = 'HENT_VEILEDERENHETER_FEILET',
+  HENT_AKTIVENHET_HENTET = 'HENT_AKTIVENHET_HENTET',
 }
 
 export const hentVeilederenheter = () => ({
@@ -22,4 +23,9 @@ export const hentVeilederenheterHentet = (data: Veilederenheter) => ({
 
 export const hentVeilederenheterFeilet = () => ({
   type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FEILET,
+});
+
+export const hentAktivEnhetHentet = (data: string) => ({
+  type: VeilederenheterActionTypes.HENT_AKTIVENHET_HENTET,
+  data,
 });
