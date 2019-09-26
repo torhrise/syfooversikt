@@ -8,8 +8,7 @@ import {
   hentAktivEnhet,
   pushModiaContext,
 } from './store/modiacontext/modiacontext_actions';
-import { hentPersonoversiktForespurt } from './store/personoversikt/personoversikt_actions';
-import { hentAktivEnhetHentet } from './store/veilederenheter/veilederenheter_actions';
+import { setAktivEnhetHentet } from './store/veilederenheter/veilederenheter_actions';
 import './styles/styles.less';
 import {
   finnMiljoStreng,
@@ -44,7 +43,7 @@ setEventHandlersOnConfig(handlePersonsokSubmit, handleChangeEnhet);
 store.dispatch(
   hentAktivEnhet({
     callback: (aktivEnhet) => {
-      store.dispatch(hentAktivEnhetHentet(aktivEnhet));
+      store.dispatch(setAktivEnhetHentet(aktivEnhet));
       if (aktivEnhet && config.config.initiellEnhet !== aktivEnhet) {
         config.config.initiellEnhet = aktivEnhet;
         (window as any).renderDecoratorHead(config);

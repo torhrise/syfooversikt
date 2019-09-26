@@ -29,7 +29,7 @@ export function* pushModiacontextSaga(
         eventType: action.data.eventType,
       }
     );
-    yield put(actions.modiaContextPushet());
+    yield put(actions.modiaContextPushet(action.data));
   } catch (e) {
     yield put(actions.pushModiaContextFeilet());
   }
@@ -49,8 +49,6 @@ export function* aktivEnhetSaga(
     );
     action.data.callback(data.aktivEnhet);
   } catch (e) {
-    // tslint:disable-next-line
-    console.log('hentPersonoversiktFeilet', e);
     yield put(actions.hentAktivEnhetFeilet());
   }
 }

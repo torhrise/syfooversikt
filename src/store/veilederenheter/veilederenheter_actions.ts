@@ -25,7 +25,7 @@ export const hentVeilederenheterFeilet = () => ({
   type: VeilederenheterActionTypes.HENT_VEILEDERENHETER_FEILET,
 });
 
-export const hentAktivEnhetHentet = (data: string) => ({
+export const setAktivEnhetHentet = (data: string) => ({
   type: VeilederenheterActionTypes.HENT_AKTIVENHET_HENTET,
   data,
 });

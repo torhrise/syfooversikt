@@ -29,8 +29,6 @@ export function* hentPersonoversikt(
       yield put(actions.hentPersonoversiktHentet([]));
     }
   } catch (e) {
-    // tslint:disable-next-line
-    console.log('hentPersonoversiktFeilet');
     yield put(actions.hentPersonoversiktFeilet());
   }
 }

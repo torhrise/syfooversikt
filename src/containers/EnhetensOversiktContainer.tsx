@@ -94,9 +94,6 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
     selectedBirthDates,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
-  // tslint:disable-next-line
-  console.log('altFeilet', altFeilet);
-
   useEffect(() => {
     actions.hentVeiledere();
   }, [aktivEnhet.enhetId]);
