@@ -29,30 +29,31 @@ interface OversiktProps {
 
 const getPropsFromState = (
     {
+      modiacontext,
       personoversikt,
       personregister,
       veilederenheter,
       veilederinfo,
     }: ApplicationState) => ({
   personregister,
-  aktivEnhet: veilederenheter.aktivEnhet,
+  aktivEnhetId: veilederenheter.aktivEnhetId,
   aktivEnhetFeilet: veilederenheter.hentingFeilet,
   aktivVeilederinfo: veilederinfo.data,
   henterAlt: veilederenheter.henter || veilederinfo.henter || personoversikt.henter,
   noeErHentet: veilederenheter.hentet && veilederinfo.hentet && personoversikt.hentet,
-  altFeilet: veilederinfo.hentingFeilet || personoversikt.hentingFeilet,
+  altFeilet: modiacontext.hentingEnhetFeilet || veilederinfo.hentingFeilet || personoversikt.hentingFeilet,
 });
 
 const OversiktContainer = ({ type }: OversiktProps) => {
 
   const {
-    // aktivEnhet,
+    aktivEnhetId,
     aktivEnhetFeilet,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
   const dispatch = useDispatch();
   const actions = {
-    // hentPersonoversiktForespurt: () => dispatch(hentPersonoversiktForespurt()),
+    hentPersonoversiktForespurt: (enhetId: string) => dispatch(hentPersonoversiktForespurt(enhetId)),
     hentVeilederenheter: () => dispatch(hentVeilederenheter()),
   };
 
@@ -60,9 +61,9 @@ const OversiktContainer = ({ type }: OversiktProps) => {
     actions.hentVeilederenheter();
   }, []);
 
-  // useEffect(() => {
-  //   actions.hentPersonoversiktForespurt();
-  // }, [aktivEnhet.enhetId]);
+  useEffect(() => {
+    actions.hentPersonoversiktForespurt(aktivEnhetId);
+  }, [aktivEnhetId]);
 
   return (
     <Container>

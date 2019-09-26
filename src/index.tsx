@@ -45,7 +45,6 @@ store.dispatch(
   hentAktivEnhet({
     callback: (aktivEnhet) => {
       store.dispatch(hentAktivEnhetHentet(aktivEnhet));
-      store.dispatch(hentPersonoversiktForespurt(aktivEnhet));
       if (aktivEnhet && config.config.initiellEnhet !== aktivEnhet) {
         config.config.initiellEnhet = aktivEnhet;
         (window as any).renderDecoratorHead(config);

@@ -61,7 +61,7 @@ const veilederenheterReducer: Reducer<VeilederenheterState> = (
         hentingFeilet: true,
       };
     }
-    case VeilederenheterActionTypes.  HENT_AKTIVENHET_HENTET: {
+    case VeilederenheterActionTypes.HENT_AKTIVENHET_HENTET: {
       return {
         ...state,
         aktivEnhetId: action.data,

@@ -49,6 +49,8 @@ export function* aktivEnhetSaga(
     );
     action.data.callback(data.aktivEnhet);
   } catch (e) {
+    // tslint:disable-next-line
+    console.log('hentPersonoversiktFeilet', e);
     yield put(actions.hentAktivEnhetFeilet());
   }
 }
