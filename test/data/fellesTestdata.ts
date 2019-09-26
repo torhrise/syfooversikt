@@ -6,7 +6,7 @@ import { PersonoversiktStatus } from '../../src/store/personoversikt/personovers
 
 const veilederIdent = 'Z101010';
 const veilederNavn = 'F_Z101010 E_Z101010';
-const enhetId = '0315';
+const enhetId = '0316';
 
 export const testdata = {
   fnr1: '01999911111',
