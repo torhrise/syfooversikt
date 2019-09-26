@@ -27,7 +27,7 @@ describe('Sokeresultat', () => {
 
   const component = shallow(<Sokeresultat
       tabType={OverviewTabType.ENHET_OVERVIEW}
-      aktivEnhet={enhet}
+      aktivEnhetId={enhet.enhetId}
       aktivVeilederinfo={veilederinfo}
       personregister={personregister}
       tildelVeileder={dummyFunksjon}
