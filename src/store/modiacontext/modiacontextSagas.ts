@@ -9,10 +9,7 @@ import {
   get,
   post,
 } from '../../api/index';
-import {
-  fullNaisUrl,
-  fullNaisUrlDefault,
-} from '../../utils/miljoUtil';
+import { fullNaisUrlDefault } from '../../utils/miljoUtil';
 import * as actions from './modiacontext_actions';
 import { HOST_NAMES } from '../../konstanter';
 
@@ -22,8 +19,8 @@ export function* pushModiacontextSaga(
   yield put(actions.pusherModiaContext());
   try {
     const host = HOST_NAMES.MODIACONTEXTHOLDER;
-    const path = `${process.env.REACT_APP_MODIACONTEXTHOLDER_ROOT}/context`;
-    const url = fullNaisUrl(host, path);
+    const path = `${process.env.REACT_APP_SYFOMODIACONTEXTHOLDER_ROOT}/context`;
+    const url = fullNaisUrlDefault(host, path);
     yield call(
       post,
       url,
