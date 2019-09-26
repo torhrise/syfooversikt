@@ -3,13 +3,14 @@ import { put, call } from 'redux-saga/effects';
 import { get } from '../../../src/api';
 import { HOST_NAMES } from '../../../src/konstanter';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
-import { personoversikt } from '../../data/fellesTestdata';
+import { personoversikt, testdata } from '../../data/fellesTestdata';
 import { hentPersonoversikt } from '../../../src/store/personoversikt/personoversiktSagas';
 import { PersonoversiktActionTypes } from '../../../src/store/personoversikt/personoversikt_actions';
 
 describe('personoversiktSagas', () => {
   const enhetId = '0101';
-  const generator = hentPersonoversikt(enhetId);
+  const action = { type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FORESPURT, enhetId };
+  const generator = hentPersonoversikt(action);
 
   it(`Skal dispatche ${PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTER}`, () => {
     const nesteAction = put({ type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_HENTER });

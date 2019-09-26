@@ -15,12 +15,12 @@ import * as personInfoActions from '../personInfo/personInfo_actions';
 import { PersonoversiktStatus } from './personoversiktTypes';
 
 export function* hentPersonoversikt(
-    enhetId: string
+    action: ReturnType<typeof actions.hentPersonoversiktForespurt>
 ) {
   yield put(actions.hentPersonoversiktHenter());
   try {
     const host = HOST_NAMES.SYFOOVERSIKTSRV;
-    const path = `${process.env.REACT_APP_SYFOOVERSIKTSRVREST_ROOT}/personoversikt/enhet/${enhetId}`;
+    const path = `${process.env.REACT_APP_SYFOOVERSIKTSRVREST_ROOT}/personoversikt/enhet/${action.enhetId}`;
     const data = yield call(get, fullNaisUrlDefault(host, path));
     if (data.length > 0) {
       yield put(actions.hentPersonoversiktHentet(data));
@@ -67,7 +67,7 @@ export function* hentPersonoversiktHvisEnhetHentet(): any {
 function* watchHentPersonoversikt() {
   yield takeEvery(
       actions.PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FORESPURT,
-      hentPersonoversiktHvisEnhetHentet
+      hentPersonoversikt
   );
 }
 
