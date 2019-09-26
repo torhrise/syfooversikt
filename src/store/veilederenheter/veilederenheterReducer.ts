@@ -5,6 +5,8 @@ import {
   VeilederenheterState,
 } from './veilederenheterTypes';
 import { VeilederenheterActionTypes } from './veilederenheter_actions';
+import { modiacontextActionTypes } from '../modiacontext/modiacontext_actions';
+import { CONTEXT_EVENT_TYPE } from '../../konstanter';
 
 export const sorterEnhetLavesteEnhetIdForst = (enhetliste: Veilederenhet[]): Veilederenhet[] => {
   return [...enhetliste].sort((e1, e2) => {
@@ -26,6 +28,7 @@ const initiellState: VeilederenheterState = {
     enhetId: '',
     navn: '',
   },
+  aktivEnhetId: '',
   data: {
     enhetliste: [],
   },
@@ -59,6 +62,20 @@ const veilederenheterReducer: Reducer<VeilederenheterState> = (
         henter: false,
         hentingFeilet: true,
       };
+    }
+    case VeilederenheterActionTypes.HENT_AKTIVENHET_HENTET: {
+      return {
+        ...state,
+        aktivEnhetId: action.data,
+      };
+    }
+    case modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET: {
+      if (action.data.eventType.valueOf() === CONTEXT_EVENT_TYPE.NY_AKTIV_ENHET) {
+        return {
+          ...state,
+          aktivEnhetId: action.data.verdi,
+        };
+      }
     }
     default: {
       return state;

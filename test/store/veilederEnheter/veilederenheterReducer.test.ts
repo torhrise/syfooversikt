@@ -8,6 +8,11 @@ import {
   hentVeilederenheterFeilet,
 } from '../../../src/store/veilederenheter/veilederenheter_actions';
 import { enhet } from '../../data/fellesTestdata';
+import {
+  modiacontextActionTypes,
+  modiaContextPushet,
+} from '../../../src/store/modiacontext/modiacontext_actions';
+import { CONTEXT_EVENT_TYPE } from '../../../src/konstanter';
 
 describe('veilederenheterReducer', () => {
   describe('Henter veilederenhet', () => {
@@ -18,6 +23,7 @@ describe('veilederenheterReducer', () => {
       henter: false,
       hentingFeilet: false,
       aktivEnhet: initAktivEnhet,
+      aktivEnhetId: initAktivEnhet.enhetId,
       data: initData,
     });
 
@@ -95,6 +101,19 @@ describe('veilederenheterReducer', () => {
         henter: false,
         hentingFeilet: true,
         data: initData,
+      });
+    });
+
+    it(`handterer ${modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET}`, () => {
+      const context = {
+        verdi: enhet.enhetId,
+        eventType: CONTEXT_EVENT_TYPE.NY_AKTIV_ENHET,
+      };
+      const action = modiaContextPushet(context);
+      const nesteState = veilederenheterReducer(initialState, action);
+      expect(nesteState).to.deep.equal({
+        ... initialState,
+        aktivEnhetId: context.verdi,
       });
     });
   });
