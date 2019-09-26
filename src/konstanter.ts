@@ -8,7 +8,6 @@ export enum OverviewTabType {
 }
 
 export const HOST_NAMES = {
-  MODIACONTEXTHOLDER: 'modiacontextholder',
   SYFOMODIACONTEXTHOLDER: 'syfomodiacontextholder',
   SYFOOVERSIKTSRV: 'syfooversiktsrv',
   SYFOPERSON: 'syfoperson',
