@@ -103,7 +103,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
   let allEvents = new Filterable<PersonregisterState>(personregister)
       .applyFilter((v) => filterOnEnhet(v, aktivEnhetId));
 
-  const hentetIngenPersoner = allEvents = Object.keys(allEvents).length > 0;
+  const hentetIngenPersoner = Object.keys(allEvents).length > 0;
 
   // tslint:disable-next-line
   console.log('EnhetensOversiktContainer allEvents', allEvents);
