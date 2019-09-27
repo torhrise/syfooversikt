@@ -96,11 +96,18 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
   useEffect(() => {
+    // tslint:disable-next-line
+    console.log('EnhetensOversiktContainer hentVeiledere med enhetId', aktivEnhetId);
     actions.hentVeiledere();
   }, [aktivEnhetId]);
 
   let allEvents = new Filterable<PersonregisterState>(personregister)
       .applyFilter((v) => filterOnEnhet(v, aktivEnhetId));
+
+  // tslint:disable-next-line
+  console.log('EnhetensOversiktContainer allEvents', allEvents);
+  // tslint:disable-next-line
+  console.log('EnhetensOversiktContainer allEvents aktivEnhetId', aktivEnhetId);
 
   if (tabType === OverviewTabType.MY_OVERVIEW) {
     allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));

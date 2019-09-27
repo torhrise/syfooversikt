@@ -71,6 +71,8 @@ const veilederenheterReducer: Reducer<VeilederenheterState> = (
     }
     case modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET: {
       if (action.data.eventType.valueOf() === CONTEXT_EVENT_TYPE.NY_AKTIV_ENHET) {
+        // tslint:disable-next-line
+        console.log('éndre aktivEnhetId til id ', action.data.verdi);
         return {
           ...state,
           aktivEnhetId: action.data.verdi,

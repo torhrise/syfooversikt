@@ -62,6 +62,8 @@ const OversiktContainer = ({ type }: OversiktProps) => {
   }, []);
 
   useEffect(() => {
+    // tslint:disable-next-line
+    console.log('OversiktContainer hentPersonoversiktForespurt med enhetId', aktivEnhetId);
     actions.hentPersonoversiktForespurt(aktivEnhetId);
   }, [aktivEnhetId]);
 
