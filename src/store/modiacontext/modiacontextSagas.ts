@@ -29,7 +29,7 @@ export function* pushModiacontextSaga(
         eventType: action.data.eventType,
       }
     );
-    yield put(actions.modiaContextPushet());
+    yield put(actions.modiaContextPushet(action.data));
   } catch (e) {
     yield put(actions.pushModiaContextFeilet());
   }

@@ -18,7 +18,7 @@ interface  SokeresultatState {
 }
 
 interface SokeresultatProps {
-  aktivEnhet: Veilederenhet;
+  aktivEnhetId: string;
   aktivVeilederinfo: Veilederinfo;
   personregister: PersonregisterState;
   tildelVeileder: (liste: VeilederArbeidstaker[]) => void;
@@ -103,10 +103,10 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
 
   buttonHandler = (veilederIdent: string) => {
     const {
-      aktivEnhet,
+      aktivEnhetId,
       tildelVeileder,
     } = this.props;
-    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, aktivEnhet.enhetId);
+    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, aktivEnhetId);
     tildelVeileder(veilederArbeidstakerListe);
   }
 
