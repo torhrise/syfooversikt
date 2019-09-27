@@ -88,7 +88,6 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
     aktivEnhetId,
     aktivVeilederinfo,
     henterAlt,
-    hentetIngenPersoner,
     noeErHentet,
     altFeilet,
     veiledere,
@@ -103,6 +102,8 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
 
   let allEvents = new Filterable<PersonregisterState>(personregister)
       .applyFilter((v) => filterOnEnhet(v, aktivEnhetId));
+
+  const hentetIngenPersoner = allEvents = Object.keys(allEvents).length > 0;
 
   // tslint:disable-next-line
   console.log('EnhetensOversiktContainer allEvents', allEvents);
@@ -159,6 +160,5 @@ const getPropsFromState = (state: ApplicationState) => ({
   noeErHentet: state.veilederenheter.aktivEnhetId !== '' && state.veilederinfo.hentet && state.personoversikt.hentet,
   altFeilet: state.modiacontext.hentingEnhetFeilet || state.veilederinfo.hentingFeilet || state.personoversikt.hentingFeilet,
   veiledere: state.veiledere.data,
-  hentetIngenPersoner: state.personoversikt.hentet && state.personoversikt.data.length === 0,
   selectedBirthDates: state.filters.selectedBirthDates,
 });
