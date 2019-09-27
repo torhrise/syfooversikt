@@ -18,6 +18,7 @@ describe('veilederenheterReducer', () => {
       henter: false,
       hentingFeilet: false,
       aktivEnhet: initAktivEnhet,
+      aktivEnhetId: initAktivEnhet.enhetId,
       data: initData,
     });
 

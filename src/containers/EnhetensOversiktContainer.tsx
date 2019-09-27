@@ -19,6 +19,7 @@ import {
   filtrerPaaFodselsnummerEllerNavn,
   filterEventsOnVeileder,
   filterOnBirthDates,
+  filterOnEnhet,
 } from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
 import { ApplicationState } from '../store';
@@ -84,7 +85,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
 
   const {
     personregister,
-    aktivEnhet,
+    aktivEnhetId,
     aktivVeilederinfo,
     henterAlt,
     hentetIngenPersoner,
@@ -96,9 +97,10 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
 
   useEffect(() => {
     actions.hentVeiledere();
-  }, [aktivEnhet.enhetId]);
+  }, [aktivEnhetId]);
 
-  let allEvents = new Filterable<PersonregisterState>(personregister);
+  let allEvents = new Filterable<PersonregisterState>(personregister)
+      .applyFilter((v) => filterOnEnhet(v, aktivEnhetId));
 
   if (tabType === OverviewTabType.MY_OVERVIEW) {
     allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
@@ -129,7 +131,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
           </SokeresultatFiltre >
           <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
-            aktivEnhet={aktivEnhet}
+            aktivEnhetId={aktivEnhetId}
             aktivVeilederinfo={aktivVeilederinfo}
             personregister={filteredEvents.value}
             veiledere={veiledere}
@@ -143,7 +145,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
 
 const getPropsFromState = (state: ApplicationState) => ({
   personregister: state.personregister,
-  aktivEnhet: state.veilederenheter.aktivEnhet,
+  aktivEnhetId: state.veilederenheter.aktivEnhetId,
   aktivEnhetFeilet: state.veilederenheter.hentingFeilet,
   aktivVeilederinfo: state.veilederinfo.data,
   henterAlt: state.veilederenheter.henter || state.veilederinfo.henter || state.personoversikt.henter,

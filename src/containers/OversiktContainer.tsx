@@ -37,7 +37,7 @@ const getPropsFromState = (
     }: ApplicationState) => ({
   personregister,
   aktivEnhetId: veilederenheter.aktivEnhetId,
-  aktivEnhetFeilet: veilederenheter.hentingFeilet,
+  aktivEnhetFeilet: modiacontext.hentingEnhetFeilet,
   aktivVeilederinfo: veilederinfo.data,
   henterAlt: veilederenheter.henter || veilederinfo.henter || personoversikt.henter,
   noeErHentet: veilederenheter.hentet && veilederinfo.hentet && personoversikt.hentet,

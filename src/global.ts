@@ -1,4 +1,8 @@
-import { fullNaisUrl } from './utils/miljoUtil';
+import {
+  erHerokuApp,
+  erLokal,
+  fullNaisUrl,
+} from './utils/miljoUtil';
 import { HOST_NAMES } from './konstanter';
 
 export const config: any = {
@@ -7,7 +11,7 @@ export const config: any = {
         veileder: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo`)}`,
         enheter: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo/enheter`)}`,
       },
-      initiellEnhet: '',
+      initiellEnhet: (erLokal() || erHerokuApp()) ? '0316' : '',
       toggles: {
         visEnhetVelger: true,
         visVeileder: true,
