@@ -135,6 +135,11 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const allFnr = Object.keys(personregister);
     const paginatedPersonregister = paginatePersonregister(personregister, startItem, endItem);
 
+    // tslint:disable-next-line
+    console.log('Sokeresultat allFnr', allFnr);
+    // tslint:disable-next-line
+    console.log('Sokeresultat paginatedPersonregister', paginatedPersonregister);
+
     return (<SokeresultatContainer>
       <Toolbar
         numberOfItemsTotal={allFnr.length}

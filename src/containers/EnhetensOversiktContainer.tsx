@@ -119,6 +119,9 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
     .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
     .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
 
+  // tslint:disable-next-line
+  console.log('EnhetensOversiktContainer filteredEvents', filteredEvents);
+
   return (
     <div>
       {info(altFeilet, hentetIngenPersoner)}
