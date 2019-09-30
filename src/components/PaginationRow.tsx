@@ -46,7 +46,7 @@ const PaginationRow = ({
   useEffect(() => {
     const chunk = getCurrentChunk();
     onPageChange(chunk.start, chunk.end, currentPage);
-  }, [currentPage, maxNumberPerPage]);
+  }, [numberOfItems, currentPage, maxNumberPerPage]);
 
   const onNextClick = () => {
     const nextPage = Math.min(currentPage + 1, getNumberOfPages());

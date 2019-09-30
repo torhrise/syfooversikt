@@ -13,6 +13,7 @@ import { skalHenteReducer } from '../../utils/selectorUtil';
 import { hentFodselsnummerFraPersonOversikt } from '../../components/utils/util';
 import * as personInfoActions from '../personInfo/personInfo_actions';
 import { PersonoversiktStatus } from './personoversiktTypes';
+import { filterOnEnhet } from '../../utils/hendelseFilteringUtils';
 
 export function* hentPersonoversikt(
     enhetId: string
@@ -34,9 +35,7 @@ export function* hentPersonoversikt(
 }
 
 export const hentPersonregister = (state: any) => {
-  return state.personregister
-      ? state.personregister
-      : [];
+  return state.personregister || [];
 };
 
 export function* hentNavnForPersonerUtenNavn(data: PersonoversiktStatus[]): any {
@@ -52,14 +51,17 @@ export function* hentNavnForPersonerUtenNavn(data: PersonoversiktStatus[]): any 
 }
 
 const hentetAktivEnhetId = (state: any): string => {
-  return skalHenteReducer(state.personoversikt)
-      ? state.veilederenheter.aktivEnhet.enhetId
-      : '';
+  return state.veilederenheter.aktivEnhetId || '';
+};
+
+const henterPersonerMedEnhet = (state: any): boolean => {
+  return Object.keys(filterOnEnhet(state.personregister, state.veilederenheter.aktivEnhetId)).length > 0;
 };
 
 export function* hentPersonoversiktHvisEnhetHentet(): any {
   const enhetId = yield select(hentetAktivEnhetId);
-  if (enhetId !== '') {
+  const harHentetPersonerPaEnhetId = yield select(henterPersonerMedEnhet);
+  if (enhetId !== '' && !harHentetPersonerPaEnhetId) {
     yield hentPersonoversikt(enhetId);
   }
 }
