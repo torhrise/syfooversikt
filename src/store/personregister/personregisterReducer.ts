@@ -33,6 +33,8 @@ const personregisterReducer: Reducer<PersonregisterState> = (
         },
       }));
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);
+      // tslint:disable-next-line: no-console
+      console.log(oppdatering);
       return {...state, ...oppdatering };
     }
     case veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHET: {
@@ -56,6 +58,7 @@ const personregisterReducer: Reducer<PersonregisterState> = (
           tildeltVeilederIdent: person.veilederIdent,
           harMotebehovUbehandlet: person.motebehovUbehandlet,
           harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
+          oppfolgingstilfeller: person.oppfolgingstilfeller,
         },
       }));
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);

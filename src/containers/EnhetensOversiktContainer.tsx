@@ -19,6 +19,7 @@ import {
   filtrerPaaFodselsnummerEllerNavn,
   filterEventsOnVeileder,
   filterOnBirthDates,
+  filterOnCompany,
 } from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
 import { ApplicationState } from '../store';
@@ -92,6 +93,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
     altFeilet,
     veiledere,
     selectedBirthDates,
+    selectedCompanies,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
   useEffect(() => {
@@ -105,6 +107,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
   }
 
   const filteredEvents = new Filterable<PersonregisterState>({...allEvents.value})
+    .applyFilter((v) => filterOnCompany(v, selectedCompanies))
     .applyFilter((v) => filterOnBirthDates(v, selectedBirthDates))
     .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
     .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
@@ -152,4 +155,5 @@ const getPropsFromState = (state: ApplicationState) => ({
   veiledere: state.veiledere.data,
   hentetIngenPersoner: state.personoversikt.hentet && state.personoversikt.data.length === 0,
   selectedBirthDates: state.filters.selectedBirthDates,
+  selectedCompanies: state.filters.selectedCompanies,
 });
