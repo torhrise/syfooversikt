@@ -7,7 +7,7 @@ import {
 } from 'redux-saga/effects';
 import { post } from '../../api/index';
 import * as actions from './veilederArbeidstaker_actions';
-import { fullNaisUrlDefault } from '../../utils/miljoUtil';
+import { fullNaisUrlDefault, getKubernetesServiceUrl } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
 
 export function* pushBrukerArbeidstakerSaga(
@@ -19,7 +19,7 @@ export function* pushBrukerArbeidstakerSaga(
 
     const host = HOST_NAMES.SYFOOVERSIKTSRV;
     const path = `${process.env.REACT_APP_SYFOOVERSIKTSRVREST_ROOT}/persontildeling/registrer`;
-    yield call(post, fullNaisUrlDefault(host, path), body);
+    yield call(post, getKubernetesServiceUrl(host, path), body);
     yield put(actions.pushVeilederArbeidstakerPushet(action.data));
   } catch (e) {
     yield put(actions.pushVeilederArbeidstakerFeilet());
