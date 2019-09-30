@@ -16,8 +16,6 @@ export class Filterable<T> {
     }
 }
 
-const personregisterMapToArray = (personregister: PersonregisterState) => Object.keys(personregister).map((fnr) => personregister[fnr]);
-
 const getAllFnrFromPersonregiter = (personregister: PersonregisterState) => Object.keys(personregister);
 
 const hasCompany = (personData: PersonData) => personData && personData.oppfolgingstilfeller && personData.oppfolgingstilfeller.length;
