@@ -19,7 +19,7 @@ describe('veilederArbeidstakerSagas', () => {
       type: veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_FORESPURT,
       data: payload};
     const generator = pushBrukerArbeidstakerSaga(forespurtAction);
-    const url = fullNaisUrl(HOST_NAMES.SYFOOVERSIKTSRV, '/api/v1/persontildeling/registrer');
+    const url = '/api/v1/persontildeling/registrer';
 
     it(`dispatch ${veilederArbeidstakerActionTypes.PUSH_VEILEDERARBEIDSTAKER_PUSHER}`, () => {
       const nesteAction = put({
