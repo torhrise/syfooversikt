@@ -114,7 +114,15 @@ const startServer = (html) => {
         require('./Mock/mockEndepunkter').mockForLokal(server);
     } else {
         console.log('Proxy request to backend');
-        server.use('/api', proxy('http://syfooversiktsrv.default',  {
+        server.use('/api', ((req, res, next) => {
+            console.log("hit proxy for " + req.path);
+            next();
+        }), proxy('syfooversiktsrv.default',  {
+            https: false,
+            preserveHostHdr: true,
+            proxyReqPathResolver: function(req) {
+                return req.path;
+            },
             proxyErrorHandler: function(err, res, next) {
                 console.error("Error in proxy", err )
                 next(err);
