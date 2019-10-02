@@ -7,6 +7,7 @@ const Promise = require('promise');
 const prom_client = require('prom-client');
 const counters = require('./server/counters');
 const changelogs = require('./server/changelogReader');
+const proxy = require('express-http-proxy');
 
 // Prometheus metrics
 const setupMetrics = () => {
@@ -79,7 +80,7 @@ const startServer = (html) => {
             res.send(changelogs.changeLogCache)
         }
     );
-    
+
     server.get(
         '/syfooversikt/changelogs/image/:changelogId/:imageName', (req, res) => {
             res.sendFile(path.join(__dirname, 'changelogs', req.params.changelogId, req.params.imageName));
@@ -89,7 +90,7 @@ const startServer = (html) => {
     server.get('/health/isAlive', (req, res) => {
         res.sendStatus(200);
     });
-    
+
     server.get('/health/isReady', (req, res) => {
         res.sendStatus(200);
     });
@@ -111,6 +112,9 @@ const startServer = (html) => {
     if (env === 'local' || env === 'opplaering') {
         console.log('Setter opp lokale mock-endepunkter');
         require('./Mock/mockEndepunkter').mockForLokal(server);
+    } else {
+        console.log('Proxy request to backend');
+        server.use('/api', proxy('http://syfooversiktsrv'))
     }
 
     const port = process.env.PORT || 8080;
