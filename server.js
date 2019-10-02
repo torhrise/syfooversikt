@@ -113,9 +113,8 @@ const startServer = (html) => {
         console.log('Setter opp lokale mock-endepunkter');
         require('./Mock/mockEndepunkter').mockForLokal(server);
     } else {
-        console.log('Proxy request to backend');
         server.use('/api', ((req, res, next) => {
-            console.log("hit proxy for " + req.path);
+            console.log("Proxy request to backend for " + req.path);
             next();
         }), proxy('syfooversiktsrv.default',  {
             https: false,
