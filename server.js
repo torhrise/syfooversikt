@@ -119,9 +119,8 @@ const startServer = (html) => {
             next();
         }), proxy('syfooversiktsrv.default',  {
             https: false,
-            preserveHostHdr: true,
             proxyReqPathResolver: function(req) {
-                return req.path;
+                return `/api${req.path}`
             },
             proxyErrorHandler: function(err, res, next) {
                 console.error("Error in proxy", err )
