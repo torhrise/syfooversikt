@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {
   Column,
   Row,
+  RowProps,
 } from 'nav-frontend-grid';
 import { Checkbox } from 'nav-frontend-skjema';
 import themes from '../styles/themes';
@@ -20,13 +21,18 @@ interface PersonradProps {
   checkboxHandler: (fnr: string) => void;
   kryssAv: boolean;
   veileder?: Veileder;
+  index: number;
 }
 
-export const PersonRad = styled(Row)`
+export const PersonRad = styled.div.attrs(props => ())`
   display: flex;
   align-items: center;
-  padding: .3rem 0;
-  border-bottom: 1px solid ${themes.color.navGra40};
+  padding: .1em 0;
+  margin-bottom: 0.1em;
+  /* border-bottom: 1px solid ${themes.color.navGra40}; */
+
+  background-color: ${(props) => props.index % 2 === 0 ? '#fff' : themes.color.navGra20 }};
+  ${(props) => props.selected ? {backgroundColor: 'red'} : {} }
 `;
 
 const VelgBoks = styled(Checkbox)`
@@ -45,9 +51,10 @@ class Personrad extends Component<PersonradProps> {
       personData,
       kryssAv,
       veileder,
+      index,
     } = this.props;
     return (
-      <PersonRad className="">
+      <PersonRad index={index} selected={kryssAv}>
         <Column xs={'1'}>
           <VelgBoks
               label={''}

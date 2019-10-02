@@ -50,6 +50,7 @@ const Personliste = (props: PersonlisteProps) => {
     {
       fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad
+          index={idx}
           key={idx}
           fnr={fnr}
           personData={personregister[fnr]}
