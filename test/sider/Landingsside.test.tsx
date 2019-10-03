@@ -2,10 +2,8 @@ import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
 import { mount } from 'enzyme';
 import React from 'react';
-import LandingssideHeader from '../../src/components/LandingssideHeader';
 import { Landingsside } from '../../src/sider/Landingsside';
-import { createBrowserHistory } from 'history';
-import { match, MemoryRouter} from 'react-router';
+import { MemoryRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import { store } from '../../src/store';
 
