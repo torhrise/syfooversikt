@@ -19,13 +19,6 @@ describe('Landingsside', () => {
         <Landingsside />
       </MemoryRouter>
     </Provider>);
-  it('Skal rendre LandingssideHeader', () => {
-    expect(
-      component.contains(
-        <LandingssideHeader />
-      )
-    ).to.equal(true);
-  });
 
   it('Skal rendre Oversikt', () => {
     expect(component.find('OversiktContainer')).to.have.lengthOf(1);
