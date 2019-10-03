@@ -121,6 +121,7 @@ const TildelVeileder = (props: ToolbarProps) => {
 
   return (<div tabIndex={1} onBlur={onBlur}>
     <OpenDropdownButton
+      text={'Tildel veileder'}
       onClick={assignToOtherVeilederButtonHandler}
       showList={state.showList}
       userIsChecked={!hasNoCheckedPersoner(props.markertePersoner)}

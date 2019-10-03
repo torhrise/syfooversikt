@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import TildelVeileder from './AssignVeileder/TildelVeileder';
 import themes from '../../styles/themes';
@@ -7,6 +8,8 @@ import { Veilederinfo } from '../../store/veilederinfo/veilederinfoTypes';
 import { Checkbox } from 'nav-frontend-skjema';
 import { OverviewTabType } from '../../konstanter';
 import Pagination from '../PaginationRow';
+import SearchVeileder from './SearchVeileder/SearchVeileder';
+import { updateVeilederIdentsFilter } from '../../store/filters/filter_actions';
 
 export interface ToolbarProps {
   aktivVeilederInfo: Veilederinfo;
@@ -65,6 +68,7 @@ const PAGINATED_NUMBER_OF_ITEMS = 50;
 const Toolbar = (props: ToolbarProps) => {
 
   const [ numberOfItemsPerPage, setNumberOfItemsPerPage ] = useState(PAGINATED_NUMBER_OF_ITEMS);
+  const dispatch = useDispatch();
 
   const onTogglePaginationClick = () => {
     if (numberOfItemsPerPage === props.numberOfItemsTotal) {
@@ -83,6 +87,10 @@ const Toolbar = (props: ToolbarProps) => {
 
   const shouldShowTogglePagination = props.numberOfItemsTotal > PAGINATED_NUMBER_OF_ITEMS;
 
+  const onVeilderIdentsChange = (veilederIdents: string[]) => {
+    dispatch(updateVeilederIdentsFilter(veilederIdents));
+  };
+
   return (<Innhold className="blokk-xs">
     <Element>
       <VelgBoks
@@ -94,6 +102,7 @@ const Toolbar = (props: ToolbarProps) => {
         }}
       />
       <TildelVeileder {...props} />
+      <SearchVeileder onSelect={onVeilderIdentsChange} {...props} />
     </Element>
     <PaginationContainer>
       {shouldShowTogglePagination &&

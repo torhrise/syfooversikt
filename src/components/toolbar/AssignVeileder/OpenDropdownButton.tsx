@@ -50,6 +50,7 @@ const DropdownButtonChevron = styled(NavFrontendChevron)`
 `;
 
 interface AssignToVeilederButtonProps {
+  text: string;
   userIsChecked: boolean;
   onClick: () => void;
   showList: boolean;
@@ -64,7 +65,7 @@ const chevronType = (showList: boolean) => {
 const OpenDropdownButton = (props: AssignToVeilederButtonProps) => {
   return (<ButtonDiv className="openDropdownButton" active={props.userIsChecked}>
     <DropdownButtonButton className="openDropdownButton__button" onClick={props.onClick}>
-      {texts.assignVeileder}
+      {props.text}
       <DropdownButtonChevron className="openDropdownButton__chevron" type={chevronType(props.showList)} />
     </DropdownButtonButton>
   </ButtonDiv>);
