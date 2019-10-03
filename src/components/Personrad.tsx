@@ -24,18 +24,21 @@ interface PersonradProps {
   index: number;
 }
 
-export const PersonRad = styled.div.attrs(props => ())`
+export const PersonRad = styled.div<{ index: number, selected: boolean }>`
   display: flex;
   align-items: center;
-  padding: .1em 0;
-  margin-bottom: 0.1em;
-  /* border-bottom: 1px solid ${themes.color.navGra40}; */
-
-  background-color: ${(props) => props.index % 2 === 0 ? '#fff' : themes.color.navGra20 }};
-  ${(props) => props.selected ? {backgroundColor: 'red'} : {} }
+  /* padding: .1em 0; */
+  margin-bottom: 1px;
+  ${(props) => {
+    if (props.selected) {
+      return { backgroundColor: themes.color.navBlaLighten60 };
+    }
+    return props.index % 2 === 0 ? { backgroundColor: 'white' } : { backgroundColor: themes.color.navLysGra };
+  }};
 `;
 
 const VelgBoks = styled(Checkbox)`
+  margin-left: 0.5em;
   padding-bottom: 1em;
 `;
 
@@ -57,11 +60,11 @@ class Personrad extends Component<PersonradProps> {
       <PersonRad index={index} selected={kryssAv}>
         <Column xs={'1'}>
           <VelgBoks
-              label={''}
-              checked={!!kryssAv}
-              onChange={(event) => {
-                checkboxHandler(fnr);
-              }}
+            label={''}
+            checked={!!kryssAv}
+            onChange={(event) => {
+              checkboxHandler(fnr);
+            }}
           />
         </Column>
         <Column className="personrad__navn" xs={'3'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>

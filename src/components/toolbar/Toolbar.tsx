@@ -35,15 +35,14 @@ const Innhold = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: .5em;
   background-color: ${themes.color.white};
 `;
 
 const Element = styled.div`
   display: flex;
-  border: 2px solid white;
+  align-items: center;
   & > div:not(:nth-child(2)) {
-    padding: 1em;
+    padding: .5em;
   }
 `;
 
@@ -61,7 +60,7 @@ const InfoText = styled.div`
   font-weight: bold;
   padding-bottom: 0.5em;
   >:not(:first-child) {
-    margin-left: 0.25em;
+    margin-left: 0.5em;
   }
 `;
 
@@ -72,8 +71,12 @@ const PaginationContainer = styled.div`
 `;
 
 const VelgBoks = styled(Checkbox)`
-  margin: 0 !important;
-  padding: 1em 1em !important;
+  > .skjemaelement {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  margin: 0px !important;
+  margin-left: 0.5em !important;
 `;
 
 const PAGINATED_NUMBER_OF_ITEMS = 50;
