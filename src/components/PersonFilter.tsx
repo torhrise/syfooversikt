@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { useDispatch, useStore, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateBirthDateFilter, updateCompaniesFilter } from '../store/filters/filter_actions';
 import BirthDateFilter from './filters/BirthDateFilter';
 import CompanyFilter from './filters/CompanyFilter';
-import { ApplicationState } from '../store';
 import styled from 'styled-components';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 
@@ -25,11 +24,17 @@ const mapPersonregisterToCompanyList = (personregister: PersonregisterState) => 
     return [...new Set(allCompanyNames)].filter((v) => v && v.length > 0);
 };
 
-export default () => {
+interface PersonFilterProps {
+    personregister: PersonregisterState;
+}
+
+export default (props: PersonFilterProps) => {
     const [panelOpen, setPanelOpen] = useState(true);
     const dispatch = useDispatch();
 
-    const personregister = useSelector((state: ApplicationState) => state.personregister);
+    const {
+        personregister,
+    } = props;
 
     const togglePanel = () => {
         setPanelOpen(!!panelOpen);

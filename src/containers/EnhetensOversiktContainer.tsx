@@ -131,7 +131,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
                   tabType={tabType}
               />
 
-              <PersonFilter />
+              <PersonFilter personregister={personregister} />
           </SokeresultatFiltre >
           <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
