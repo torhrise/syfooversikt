@@ -22,7 +22,7 @@ const mapPersonregisterToCompanyList = (personregister: PersonregisterState) => 
         const events = personregister[fnr].oppfolgingstilfeller || [];
         events.forEach((v) => allCompanyNames.push(v.virksomhetsnavn));
     });
-    return [...new Set(allCompanyNames)];
+    return [...new Set(allCompanyNames)].filter((v) => v && v.length > 0);
 };
 
 export default () => {
