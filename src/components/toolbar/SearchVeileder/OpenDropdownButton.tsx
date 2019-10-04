@@ -4,12 +4,8 @@ import * as React from 'react';
 import themes from '../../../styles/themes';
 import SearchIcon from '../../../img/icons/SearchIcon';
 
-const texts = {
-  assignVeileder: 'Tildel veileder',
-};
-
 interface ButtonDivProps {
-  active: boolean;
+    active: boolean;
 }
 
 const activeStyle = css`
@@ -19,6 +15,12 @@ const activeStyle = css`
   & > * {
     color: ${themes.color.navBla}
   }
+`;
+
+const SearchIconBlue = styled(SearchIcon)`
+  fill: ${themes.color.navBla};
+  position: absolute;
+  margin-left: -1em;
 `;
 
 const ButtonDiv = styled.div`
@@ -49,26 +51,33 @@ const DropdownButtonChevron = styled(NavFrontendChevron)`
   transform: translateX(50%);
 `;
 
+const SearchIconWrapper = styled.span`
+  padding: 1em;
+`;
+
 interface AssignToVeilederButtonProps {
-  text: string;
-  userIsChecked: boolean;
-  onClick: () => void;
-  showList: boolean;
+    text: string;
+    userIsChecked: boolean;
+    onClick: () => void;
+    showList: boolean;
 }
 
 const chevronType = (showList: boolean) => {
-  return showList
-    ? 'opp'
-    : 'ned';
+    return showList
+        ? 'opp'
+        : 'ned';
 };
 
 const OpenDropdownButton = (props: AssignToVeilederButtonProps) => {
-  return (<ButtonDiv className="openDropdownButton" active={props.userIsChecked}>
-    <DropdownButtonButton className="openDropdownButton__button" onClick={props.onClick}>
-      {props.text}
-      <DropdownButtonChevron className="openDropdownButton__chevron" type={chevronType(props.showList)} />
-    </DropdownButtonButton>
-  </ButtonDiv>);
+    return (<ButtonDiv className="openDropdownButton" active={props.userIsChecked}>
+        <DropdownButtonButton className="openDropdownButton__button" onClick={props.onClick}>
+            <SearchIconWrapper>
+                <SearchIconBlue className="inputWithSearchIcon__icon"/>
+            </SearchIconWrapper>
+            {props.text}
+            <DropdownButtonChevron className="openDropdownButton__chevron" type={chevronType(props.showList)}/>
+        </DropdownButtonButton>
+    </ButtonDiv>);
 };
 
 export default OpenDropdownButton;
