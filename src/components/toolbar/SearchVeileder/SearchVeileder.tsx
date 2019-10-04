@@ -28,6 +28,8 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     const [showList, setShowList] = useState(false);
     const [input, setInput] = useState('');
     const [veileders, setVeileders] = useState<Veileder[]>([]);
+    const [activeFilters, setActiveFilters] = useState(0);
+
     const toggleShowList = () => {
         setShowList(!showList);
     };
@@ -60,6 +62,8 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     };
 
     const chooseButtonHandler = () => {
+        setActiveFilters((veileders.length));
+        setShowList(false);
         props.onSelect(veileders.map((v) => v.ident));
     };
     const onBlur = (e: any) => {
@@ -71,12 +75,15 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
             }
         }, 0);
     };
+    const SearchButtonWrapper = styled.div`
+        padding: 0;
+    `;
 
     return (
-        <div tabIndex={1} style={{padding: 0}} onBlur={onBlur}>
+        <SearchButtonWrapper tabIndex={1}  onBlur={onBlur}>
             <ButtonDiv>
                 <OpenDropdownButton
-                    text={'Søk veileder'}
+                    text={`Søk veileder (${activeFilters})`}
                     showList={showList}
                     userIsChecked={true}
                     onClick={toggleShowList}
@@ -95,7 +102,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
                     veilederIsChosen={true}
                 />
             )}
-        </div>
+        </SearchButtonWrapper>
     );
 };
 
