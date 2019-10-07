@@ -33,7 +33,9 @@ export const PersonRad = styled.div<{ index: number, selected: boolean }>`
     if (props.selected) {
       return { backgroundColor: themes.color.navBlaLighten60 };
     }
-    return props.index % 2 === 0 ? { backgroundColor: 'white' } : { backgroundColor: themes.color.navLysGra };
+    return props.index % 2 === 0
+      ? { backgroundColor: 'white' }
+      : { backgroundColor: themes.color.navLysGra };
   }};
 `;
 
