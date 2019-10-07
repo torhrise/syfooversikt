@@ -22,7 +22,7 @@ export function* hentPersonoversikt(
   try {
     const host = HOST_NAMES.SYFOOVERSIKTSRV;
     const path = `${process.env.REACT_APP_SYFOOVERSIKTSRVREST_ROOT}/personoversikt/enhet/${enhetId}`;
-    const data = yield call(get, fullNaisUrlDefault(host, path));
+    const data = yield call(get, path);
     if (data.length > 0) {
       yield put(actions.hentPersonoversiktHentet(data));
       yield call(hentNavnForPersonerUtenNavn, data);
