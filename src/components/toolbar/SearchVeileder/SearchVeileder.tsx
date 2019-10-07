@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
-import OpenDropdownButton from './OpenDropdownButton';
+import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import styled from 'styled-components';
-import { Dropdown } from './Dropdown';
+import { Dropdown } from '../Dropdown/Dropdown';
 import { sortVeiledereAlphabeticallyWithGivenVeilederFirst } from '../../../utils/veiledereUtils';
 import { filterVeiledereOnInput } from '../../../utils/assignVeilederUtils';
 import { Veilederinfo } from '../../../store/veilederinfo/veilederinfoTypes';
@@ -80,7 +80,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     `;
 
     return (
-        <SearchButtonWrapper tabIndex={1}  onBlur={onBlur}>
+        <SearchButtonWrapper tabIndex={1} onBlur={onBlur}>
             <ButtonDiv>
                 <OpenDropdownButton
                     text={`Søk veileder (${activeFilters})`}
@@ -91,15 +91,17 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
             </ButtonDiv>
             {showList && (
                 <Dropdown
-                    radiobuttonChangeHandler={checkboxOnChangeHandler}
+                    buttonChangeHandler={checkboxOnChangeHandler}
                     cancelButtonHandler={cancelButtonHandler}
                     chooseButtonHandler={chooseButtonHandler}
                     filteredVeiledere={filteredVeiledere}
                     selectedVeileders={veileders}
+                    placeholder={'Søk veileder'}
                     input={input}
                     inputChangeHandler={inputChangeHandler}
                     chosenVeilederIdent={''}
                     veilederIsChosen={true}
+                    buttonType={'checkbox'}
                 />
             )}
         </SearchButtonWrapper>

@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import styled from 'styled-components';
 import InputWithSearchIcon from '../../InputWithSearchIcon';
-import { VeiledereCheckboxes } from './VeiledereCheckboxes';
+import { VeilederInputButtons } from './VeilederInputButtons';
 import { isInputGiven } from '../../../utils/assignVeilederUtils';
 import { DropdownButtons } from './DropdownButtons';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
@@ -13,12 +13,14 @@ interface DropdownProps {
     filteredVeiledere: Veileder[];
     input: string;
     inputChangeHandler: (event: ChangeEvent) => void;
-    radiobuttonChangeHandler: (veileder: Veileder) => void;
+    buttonChangeHandler: (veileder: Veileder) => void;
     veilederIsChosen: boolean;
     selectedVeileders: Veileder[];
+    placeholder: string;
+    buttonType: string;
 }
 
-const RadioPanelGroup = styled.div`
+const ButtonPanelGroup = styled.div`
   margin: .5em;
   border: 0;
   overflow: auto;
@@ -44,9 +46,11 @@ export const Dropdown = (props: DropdownProps) => {
         filteredVeiledere,
         input,
         inputChangeHandler,
-        radiobuttonChangeHandler,
+        buttonChangeHandler,
         veilederIsChosen,
         selectedVeileders,
+        placeholder,
+        buttonType,
     } = props;
 
     return (<DropdownPanel className="tildelVeileder__dropdownPanel">
@@ -54,25 +58,25 @@ export const Dropdown = (props: DropdownProps) => {
             autofocus
             label=""
             onChange={inputChangeHandler}
-            placeholder={'Søk veileder'}
+            placeholder={placeholder}
             type={'text'}
             value={input}
         />
 
-        <RadioPanelGroup className="radioPanelGroup">
-            <VeiledereCheckboxes
-                onChangeHandler={radiobuttonChangeHandler}
+        <ButtonPanelGroup className="radioPanelGroup">
+            <VeilederInputButtons
+                onChangeHandler={buttonChangeHandler}
                 filteredVeiledere={filteredVeiledere}
                 selectedVeileders={selectedVeileders}
                 isInputGiven={isInputGiven(input)}
-            />
-        </RadioPanelGroup>
+                buttonType={buttonType}/>
+        </ButtonPanelGroup>
 
         <DropdownButtons
             cancelButtonHandler={cancelButtonHandler}
             chosenVeilederIdent={chosenVeilederIdent}
             chooseButtonHandler={chooseButtonHandler}
             veilederIsChosen={veilederIsChosen}
-        />
+            assignText={'Velg veileder(e)'}/>
     </DropdownPanel>);
 };
