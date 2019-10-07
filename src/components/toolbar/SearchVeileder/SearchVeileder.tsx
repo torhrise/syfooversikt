@@ -22,10 +22,12 @@ const ButtonDiv = styled.div`
 const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     const [showList, setShowList] = useState(false);
     const [input, setInput] = useState('');
-    const [veileders, setVeileders] = useState<Veileder[]>([]);
+    const [activeVeilederFilter, setActiveVeilederFilter] = useState<Veileder[]>([]);
+    const [veileders, setVeileders] = useState<Veileder[]>(activeVeilederFilter);
     const [activeFilters, setActiveFilters] = useState(0);
 
     const toggleShowList = () => {
+        setVeileders(activeVeilederFilter);
         setShowList(!showList);
     };
 
@@ -59,6 +61,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     const chooseButtonHandler = () => {
         setActiveFilters((veileders.length));
         setShowList(false);
+        setActiveVeilederFilter(veileders);
         props.onSelect(veileders.map((v) => v.ident));
     };
     const onBlur = (e: any) => {
