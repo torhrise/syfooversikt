@@ -14,11 +14,6 @@ interface VeilederIdentsFilterProps {
     onSelect(value: string[]): void;
 }
 
-interface VeilederIdentOption {
-    value: string;
-    label: string;
-}
-
 const ButtonDiv = styled.div`
   display: flex;
   align-items: center;
