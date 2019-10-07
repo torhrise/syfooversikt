@@ -74,7 +74,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
         }, 0);
     };
     const SearchButtonWrapper = styled.div`
-        padding: 0;
+        padding: 0 !important;
     `;
 
     return (
@@ -85,6 +85,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
                     showList={showList}
                     userIsChecked={true}
                     onClick={toggleShowList}
+                    search={true}
                 />
             </ButtonDiv>
             {showList && (

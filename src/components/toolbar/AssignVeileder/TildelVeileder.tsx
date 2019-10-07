@@ -121,6 +121,7 @@ const TildelVeileder = (props: ToolbarProps) => {
             onClick={assignToOtherVeilederButtonHandler}
             showList={state.showList}
             userIsChecked={!hasNoCheckedPersoner(props.markertePersoner)}
+            search={false}
         />
 
         {state.showList && <Dropdown

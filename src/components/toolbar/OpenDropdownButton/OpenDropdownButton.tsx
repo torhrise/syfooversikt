@@ -60,6 +60,7 @@ interface AssignToVeilederButtonProps {
     userIsChecked: boolean;
     onClick: () => void;
     showList: boolean;
+    search: boolean;
 }
 
 const chevronType = (showList: boolean) => {
@@ -71,9 +72,11 @@ const chevronType = (showList: boolean) => {
 const OpenDropdownButton = (props: AssignToVeilederButtonProps) => {
     return (<ButtonDiv className="openDropdownButton" active={props.userIsChecked}>
         <DropdownButtonButton className="openDropdownButton__button" onClick={props.onClick}>
-            <SearchIconWrapper>
-                <SearchIconBlue className="inputWithSearchIcon__icon"/>
-            </SearchIconWrapper>
+            {props.search &&
+                <SearchIconWrapper>
+                    <SearchIconBlue className="inputWithSearchIcon__icon"/>
+                </SearchIconWrapper>
+            }
             {props.text}
             <DropdownButtonChevron className="openDropdownButton__chevron" type={chevronType(props.showList)}/>
         </DropdownButtonButton>
