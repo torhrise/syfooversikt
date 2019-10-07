@@ -22,6 +22,7 @@ describe('Personrad', () => {
   // tslint:disable-next-line:no-empty
   const checkboxHandler = () => {};
   const component = shallow(<Personrad
+    index={1}
     fnr={fnr}
     personData={personData}
     checkboxHandler={checkboxHandler}

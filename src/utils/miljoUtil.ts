@@ -46,6 +46,13 @@ export const fullNaisUrlDefault = (host: string, path: string) => {
   return `https://${host}${finnNaisUrlDefault()}${path}`;
 };
 
+export const getKubernetesServiceUrl = (host: string, path: string) => {
+  if (erLokal()) {
+    return path;
+  }
+  return `http://${host}${path}`;
+};
+
 export const fullAppAdeoUrl = (path: string) => {
   if (erLokal()) {
     return path;

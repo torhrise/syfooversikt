@@ -31,12 +31,14 @@ describe('Personliste', () => {
 
   it('Skal rendre Personrad-komponenter med riktig persondata', () => {
     expect(component.contains(<Personrad
+      index={0}
       fnr={testdata.fnr1}
       personData={personregister[testdata.fnr1]}
       checkboxHandler={checkboxHandler}
       kryssAv={false}
     />)).to.equal(true);
     expect(component.contains(<Personrad
+      index={1}
       fnr={testdata.fnr2}
       personData={personregister[testdata.fnr2]}
       checkboxHandler={checkboxHandler}
