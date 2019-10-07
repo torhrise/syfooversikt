@@ -7,7 +7,7 @@ import {
 } from 'redux-saga/effects';
 import { post } from '../../api/index';
 import * as actions from './veilederArbeidstaker_actions';
-import { fullNaisUrlDefault, getKubernetesServiceUrl } from '../../utils/miljoUtil';
+import { getKubernetesServiceUrl } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
 
 export function* pushBrukerArbeidstakerSaga(

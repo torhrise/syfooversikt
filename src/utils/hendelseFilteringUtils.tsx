@@ -1,4 +1,7 @@
-import { PersonregisterState, PersonData } from '../store/personregister/personregisterTypes';
+import {
+    PersonregisterState,
+    PersonData
+} from '../store/personregister/personregisterTypes';
 import { HendelseTypeFilters } from '../components/HendelseTypeFilter';
 import { isNullOrUndefined } from 'util';
 import { formaterNavn } from './lenkeUtil';
@@ -16,7 +19,7 @@ export class Filterable<T> {
     }
 }
 
-const getAllFnrFromPersonregiter = (personregister: PersonregisterState) => Object.keys(personregister);
+const getAllFnrFromPersonregister = (personregister: PersonregisterState) => Object.keys(personregister);
 
 const hasCompany = (personData: PersonData) => personData && personData.oppfolgingstilfeller && personData.oppfolgingstilfeller.length;
 
@@ -38,17 +41,17 @@ export const filtrerPaaFodselsnummerEllerNavn = (personregister: PersonregisterS
 const getBirthDateFromFnr = (fnr: string): string => fnr.slice(0, 2);
 
 export const filterOnCompany = (personregister: PersonregisterState, companies: string[]) => {
-    if (!companies || !companies.length) {
+    if (!companies || companies.length === 0) {
         return personregister;
     }
-    return getAllFnrFromPersonregiter(personregister).filter((fnr) => {
+    return getAllFnrFromPersonregister(personregister).filter((fnr) => {
         return hasCompany(personregister[fnr]);
     })
     .filter((fnr) => {
         const personData = personregister[fnr];
         return personData
             .oppfolgingstilfeller
-            .filter((oppfolingstilfelle) => companies.indexOf(oppfolingstilfelle.virksomhetsnavn) !== -1)
+            .filter((oppfolgingstilfelle) => companies.indexOf(oppfolgingstilfelle.virksomhetsnavn) !== -1)
             .length > 0;
     })
     .reduce((filteredRegister, fnr) => {

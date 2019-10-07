@@ -27,7 +27,7 @@ interface PersonradProps {
 export const PersonRad = styled.div<{ index: number, selected: boolean }>`
   display: flex;
   align-items: center;
-  /* padding: .1em 0; */
+  padding-right: 0.5em;
   margin-bottom: 1px;
   ${(props) => {
     if (props.selected) {
