@@ -82,6 +82,16 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
         currentTabType: this.props.tabType,
       });
     }
+
+    const currentRegisterLength = Object.keys(this.props.personregister).length;
+    const previousRegisterLength = Object.keys(prevProps.personregister).length;
+
+    if (currentState.markertePersoner.length > 0 && currentRegisterLength !== previousRegisterLength) {
+      this.setState({
+        markertePersoner: [],
+        alleMarkert: false,
+      });
+    }
   }
 
   checkAllHandler = (checked: boolean ) => {
