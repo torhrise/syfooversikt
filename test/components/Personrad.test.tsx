@@ -24,10 +24,10 @@ describe('Personrad', () => {
   const component = shallow(<Personrad
     index={1}
     fnr={fnr}
+    veilederName={`${veiledere[0].etternavn}, ${veiledere[0].fornavn}`}
     personData={personData}
     checkboxHandler={checkboxHandler}
     kryssAv={false}
-    veileder={veiledere[0]}
   />);
 
   it('Skal inneholde PersonRad', () => {
