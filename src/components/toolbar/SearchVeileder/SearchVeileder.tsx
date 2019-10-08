@@ -1,7 +1,4 @@
-import React, {
-    ChangeEvent,
-    useState
-} from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import styled from 'styled-components';
@@ -9,6 +6,8 @@ import { Dropdown } from '../Dropdown/Dropdown';
 import { sortVeiledereAlphabeticallyWithGivenVeilederFirst } from '../../../utils/veiledereUtils';
 import { filterVeiledereOnInput } from '../../../utils/assignVeilederUtils';
 import { Veilederinfo } from '../../../store/veilederinfo/veilederinfoTypes';
+import { useSelector } from 'react-redux';
+import { ApplicationState } from '../../../store';
 
 interface VeilederIdentsFilterProps {
     aktivVeilederInfo: Veilederinfo;
@@ -25,9 +24,18 @@ const ButtonDiv = styled.div`
 const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     const [showList, setShowList] = useState(false);
     const [input, setInput] = useState('');
-    const [activeVeilederFilter, setActiveVeilederFilter] = useState<Veileder[]>([]);
-    const [veileders, setVeileders] = useState<Veileder[]>(activeVeilederFilter);
-    const [activeFilters, setActiveFilters] = useState(0);
+    const [veileders, setVeileders] = useState<(Veileder[])>([]);
+
+    const appState = useSelector((state: ApplicationState) => state);
+    const selectedVeilederIdents: string[] = appState.filters.selectedVeilederIdents;
+
+    const [activeFilters, setActiveFilters] = useState(selectedVeilederIdents.length);
+
+    const [activeVeilederFilter, setActiveVeilederFilter] = useState<Veileder[]>(
+        props.veiledere.filter(
+            (v) => selectedVeilederIdents.find((ident) => ident === v.ident)
+        )
+    );
 
     const toggleShowList = () => {
         setVeileders(activeVeilederFilter);
