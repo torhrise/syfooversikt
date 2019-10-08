@@ -102,7 +102,7 @@ const Toolbar = (props: ToolbarProps) => {
         }}
       />
       <TildelVeileder {...props} />
-      <SearchVeileder onSelect={onVeilderIdentsChange} {...props} />
+      {props.tabType === OverviewTabType.ENHET_OVERVIEW && (<SearchVeileder onSelect={onVeilderIdentsChange} {...props} />)}
     </Element>
     <PaginationContainer>
       {shouldShowTogglePagination &&

@@ -106,10 +106,11 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
 
   if (tabType === OverviewTabType.MY_OVERVIEW) {
     allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, [aktivVeilederinfo.ident]));
+  } else {
+    allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, selectedVeilederIdents));
   }
 
   const filteredEvents = new Filterable<PersonregisterState>({...allEvents.value})
-    .applyFilter((v) => filterEventsOnVeileder(v, selectedVeilederIdents))
     .applyFilter((v) => filterOnBirthDates(v, selectedBirthDates))
     .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
     .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
