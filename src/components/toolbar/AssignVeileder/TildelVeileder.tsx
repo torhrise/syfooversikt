@@ -1,7 +1,7 @@
-import React, { 
-    ChangeEvent, 
-    useEffect, 
-    useState 
+import React, {
+    ChangeEvent,
+    useEffect,
+    useState
 } from 'react';
 import { ToolbarProps } from '../Toolbar';
 import {

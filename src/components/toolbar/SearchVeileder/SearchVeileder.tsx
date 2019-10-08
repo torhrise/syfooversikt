@@ -1,4 +1,7 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, {
+    ChangeEvent,
+    useState
+} from 'react';
 import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import styled from 'styled-components';
@@ -64,21 +67,17 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
         setActiveVeilederFilter(veileders);
         props.onSelect(veileders.map((v) => v.ident));
     };
-    const onBlur = (e: any) => {
+    const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         const currentTarget = e.currentTarget;
         setTimeout(() => {
             if (!currentTarget.contains(document.activeElement)) {
                 setShowList(false);
-                setInput('');
             }
         }, 0);
     };
-    const SearchButtonWrapper = styled.div`
-        padding: 0 !important;
-    `;
 
     return (
-        <SearchButtonWrapper tabIndex={1} onBlur={onBlur}>
+        <div tabIndex={1} onBlur={onBlur} style={{padding: 0}}>
             <ButtonDiv>
                 <OpenDropdownButton
                     text={`Søk veileder (${activeFilters})`}
@@ -103,7 +102,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
                     buttonType={'checkbox'}
                 />
             )}
-        </SearchButtonWrapper>
+        </div>
     );
 };
 
