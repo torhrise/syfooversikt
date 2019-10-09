@@ -15,15 +15,12 @@ interface UpdateVeilederIdentsFilter {
 }
 
 export type FilterAction =
-    UpdateBirthDateFilter | UpdateVeilederIdentsFilter;
+    UpdateBirthDateFilter | UpdateVeilederIdentsFilter | UpdateCompaniesFilter;
+
 interface UpdateCompaniesFilter {
     type: FilterActionTypes.UPDATE_COMPANIES;
     selectedCompanies: string[];
 }
-
-export type FilterAction =
-    UpdateBirthDateFilter
-    | UpdateCompaniesFilter;
 
 export const updateBirthDateFilter = (birthDates: string[]) => ({
     type: FilterActionTypes.UPDATE_BIRTH_DATE,

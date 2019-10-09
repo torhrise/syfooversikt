@@ -28,7 +28,7 @@ const FilterReducer: Reducer<FilterState, FilterAction> = (state = inititalState
             return {
                 ...state,
                 selectedVeilederIdents: action.selectedVeilederIdents,
-            }
+            };
         }
         case FilterActionTypes.UPDATE_COMPANIES: {
             return {
@@ -36,6 +36,7 @@ const FilterReducer: Reducer<FilterState, FilterAction> = (state = inititalState
                 selectedCompanies: action.selectedCompanies,
             };
         }
+    }
     return state;
 };
 

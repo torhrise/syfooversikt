@@ -12,21 +12,21 @@ import SearchVeileder from './SearchVeileder/SearchVeileder';
 import { updateVeilederIdentsFilter } from '../../store/filters/filter_actions';
 
 export interface ToolbarProps {
-  aktivVeilederInfo: Veilederinfo;
-  alleMarkert: boolean;
-  numberOfItemsTotal: number;
-  buttonHandler: (veilederIdent: string) => void;
-  checkAllHandler: (checked: boolean) => void;
-  onPageChange: (startItem: number, endItem: number) => void;
-  veiledere: Veileder[];
-  markertePersoner: string[];
-  tabType: OverviewTabType;
+    aktivVeilederInfo: Veilederinfo;
+    alleMarkert: boolean;
+    numberOfItemsTotal: number;
+    buttonHandler: (veilederIdent: string) => void;
+    checkAllHandler: (checked: boolean) => void;
+    onPageChange: (startItem: number, endItem: number) => void;
+    veiledere: Veileder[];
+    markertePersoner: string[];
+    tabType: OverviewTabType;
 }
 
 const tekster = {
-  showMore: 'Se alle',
-  selectAll: 'Velg alle',
-  showLess: 'Vis færre',
+    showMore: 'Se alle',
+    selectAll: 'Velg alle',
+    showLess: 'Vis færre',
 };
 
 const Toolbar = styled.div`
@@ -86,97 +86,70 @@ const PAGINATED_NUMBER_OF_ITEMS = 50;
 
 export default (props: ToolbarProps) => {
 
-  const [ pageInfo, setPageInfo ] = useState<{firstVisibleIndex: number, lastVisibleIndex: number }>(
-      {
-        firstVisibleIndex: 0,
-        lastVisibleIndex: PAGINATED_NUMBER_OF_ITEMS,
-      });
+    const [pageInfo, setPageInfo] = useState<{ firstVisibleIndex: number, lastVisibleIndex: number }>(
+        {
+            firstVisibleIndex: 0,
+            lastVisibleIndex: PAGINATED_NUMBER_OF_ITEMS,
+        });
 
-  const [ numberOfItemsPerPage, setNumberOfItemsPerPage ] = useState(PAGINATED_NUMBER_OF_ITEMS);
-  const dispatch = useDispatch();
+    const [numberOfItemsPerPage, setNumberOfItemsPerPage] = useState(PAGINATED_NUMBER_OF_ITEMS);
+    const dispatch = useDispatch();
 
-  const onTogglePaginationClick = () => {
-    if (numberOfItemsPerPage === props.numberOfItemsTotal) {
-      setNumberOfItemsPerPage(PAGINATED_NUMBER_OF_ITEMS);
-    } else {
-      setNumberOfItemsPerPage(props.numberOfItemsTotal);
-    }
-  };
-
-  const getTogglePaginationText = () => {
-    if (numberOfItemsPerPage === props.numberOfItemsTotal) {
-      return tekster.showLess;
-    }
-    return tekster.showMore;
-  };
-
-  const shouldShowTogglePagination = props.numberOfItemsTotal > PAGINATED_NUMBER_OF_ITEMS;
-
-<<<<<<< HEAD
-  const onVeilderIdentsChange = (veilederIdents: string[]) => {
-    dispatch(updateVeilederIdentsFilter(veilederIdents));
-  };
-
-  return (<Innhold className="blokk-xs">
-    <Element>
-      <VelgBoks
-        className="toolbar__velgBoks"
-        label={tekster.selectAll}
-        checked={props.alleMarkert}
-        onChange={(event) => {
-          props.checkAllHandler(event.target.checked);
-        }}
-      />
-      <TildelVeileder {...props} />
-      {props.tabType === OverviewTabType.ENHET_OVERVIEW && (<SearchVeileder onSelect={onVeilderIdentsChange} {...props} />)}
-    </Element>
-    <PaginationContainer>
-      {shouldShowTogglePagination &&
-        <TogglePagination onClick={onTogglePaginationClick}>{getTogglePaginationText()}</TogglePagination>
-      }
-      <Pagination
-        numberOfItems={props.numberOfItemsTotal}
-        startPage={0}
-        maxNumberPerPage={numberOfItemsPerPage}
-        onPageChange={(start, end, pageNumber) => {
-          props.onPageChange(start, end);
-        }} />
-    </PaginationContainer>
-  </Innhold>);
-=======
-  return (<Toolbar>
-    <InfoText>
-        <div>Viser {pageInfo.firstVisibleIndex + 1}-{pageInfo.lastVisibleIndex} av {props.numberOfItemsTotal} brukere.</div>
-        {props.markertePersoner.length > 0 && (
-          <div>{props.markertePersoner.length} markerte brukere.</div>
-        )}
-    </InfoText>
-    <Innhold className="blokk-xs">
-      <Element>
-        <VelgBoks
-          className="toolbar__velgBoks"
-          label={tekster.selectAll}
-          checked={props.alleMarkert}
-          onChange={(event) => {
-            props.checkAllHandler(event.target.checked);
-          }}
-        />
-        <TildelVeileder {...props} />
-      </Element>
-      <PaginationContainer>
-        {shouldShowTogglePagination &&
-          <TogglePagination onClick={onTogglePaginationClick}>{getTogglePaginationText()}</TogglePagination>
+    const onTogglePaginationClick = () => {
+        if (numberOfItemsPerPage === props.numberOfItemsTotal) {
+            setNumberOfItemsPerPage(PAGINATED_NUMBER_OF_ITEMS);
+        } else {
+            setNumberOfItemsPerPage(props.numberOfItemsTotal);
         }
-        <Pagination
-          numberOfItems={props.numberOfItemsTotal}
-          startPage={0}
-          maxNumberPerPage={numberOfItemsPerPage}
-          onPageChange={(start, end, pageNumber) => {
-            setPageInfo({ firstVisibleIndex: start, lastVisibleIndex: end });
-            props.onPageChange(start, end);
-          }} />
-      </PaginationContainer>
-    </Innhold>
-  </Toolbar>);
->>>>>>> master
+    };
+
+    const getTogglePaginationText = () => {
+        if (numberOfItemsPerPage === props.numberOfItemsTotal) {
+            return tekster.showLess;
+        }
+        return tekster.showMore;
+    };
+
+    const shouldShowTogglePagination = props.numberOfItemsTotal > PAGINATED_NUMBER_OF_ITEMS;
+
+    const onVeilderIdentsChange = (veilederIdents: string[]) => {
+        dispatch(updateVeilederIdentsFilter(veilederIdents));
+    };
+
+    return (<Toolbar>
+        <InfoText>
+            <div>Viser {pageInfo.firstVisibleIndex + 1}-{pageInfo.lastVisibleIndex} av {props.numberOfItemsTotal} brukere.</div>
+            {props.markertePersoner.length > 0 && (
+                <div>{props.markertePersoner.length} markerte brukere.</div>
+            )}
+        </InfoText>
+        <Innhold className="blokk-xs">
+            <Element>
+                <VelgBoks
+                    className="toolbar__velgBoks"
+                    label={tekster.selectAll}
+                    checked={props.alleMarkert}
+                    onChange={(event) => {
+                        props.checkAllHandler(event.target.checked);
+                    }}
+                />
+                <TildelVeileder {...props} />
+                {props.tabType === OverviewTabType.ENHET_OVERVIEW && (
+                    <SearchVeileder onSelect={onVeilderIdentsChange} {...props} />)}
+            </Element>
+            <PaginationContainer>
+                {shouldShowTogglePagination &&
+                <TogglePagination onClick={onTogglePaginationClick}>{getTogglePaginationText()}</TogglePagination>
+                }
+                <Pagination
+                    numberOfItems={props.numberOfItemsTotal}
+                    startPage={0}
+                    maxNumberPerPage={numberOfItemsPerPage}
+                    onPageChange={(start, end, pageNumber) => {
+                        setPageInfo({firstVisibleIndex: start, lastVisibleIndex: end});
+                        props.onPageChange(start, end);
+                    }}/>
+            </PaginationContainer>
+        </Innhold>
+    </Toolbar>);
 };
