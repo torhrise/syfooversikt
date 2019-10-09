@@ -18,20 +18,24 @@ const tekster = {
   overskriftBruker: 'Bruker',
   overskriftVeileder: 'Veileder',
 };
+const RowStyled = styled(Row)`
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+`;
 
-export const OverskriftRad = styled(Row)`
+export const OverskriftRad = styled(RowStyled)`
   display: flex;
   align-items: center;
-  padding: .5rem 0;
-  border-top: 1px solid ${themes.color.navGra40};
-  border-bottom: 1px solid ${themes.color.navGra40};
+  /* padding: .5rem 0; */
+  border-top: 1px solid ${themes.color.navGra20};
+  border-bottom: 1px solid ${themes.color.navGra20};
   font-weight: 700;
 `;
 
-const IngressRad = styled(Row)`
+const IngressRad = styled(RowStyled)`
   display: flex;
   align-items: center;
-  border-bottom: 2px solid ${themes.color.navGra40};
+  border-bottom: 1px solid ${themes.color.navGra40};
 `;
 
 const GrayChevron = styled(Chevron)`
@@ -46,6 +50,7 @@ export const SortingButton = styled.p`
 `;
 
 const FlexColumn = styled(Column)`
+  margin: 0px;
   display: flex;
   align-items: center;
 `;
