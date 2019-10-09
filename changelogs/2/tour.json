@@ -1,8 +1,21 @@
 {
-    "title" : "Ny oppdatering",
-    "date": "10-09-19",
-    "items" : [
-        { "title": "Tildel veileder", "text": "Tildel meg er fjernet. Denne funksjonaliteten finner du nå under Tildel veileder", "image": "tildelmeg1.png" },
-        { "title": "Tildel meg", "text": "Navnet ditt/nav-identen din finner du øverst i denne listen", "image": "tildelmeg2.png" }
+    "title": "Ny oppdatering",
+    "date": "09-10-19",
+    "items": [
+        {
+            "title": "Søk veileder",
+            "text": "Du kan nå søke etter veiledere i din enhet",
+            "image": "sok_veileder.png"
+        },
+        {
+            "title": "Ikke i aktivitet",
+            "text": "Under «Hendelse» finner du nå «Ikke i aktivitet». Denne hendelsen viser brukere som er 100% sykmeldte og som har passert 8 uker f.o.m. i dag.",
+            "image": "hendelse.png"
+        },
+        {
+            "title": "Virksomhet",
+            "text": "Under «Filter» finner du nå «Virksomhet». Her vises alle virksomhetene som brukerne i oversikten er ansatt i.",
+            "image": "virksomhet.png"
+        }
     ]
 }
