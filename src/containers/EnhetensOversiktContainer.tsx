@@ -18,6 +18,9 @@ import {
   filtrerPersonregister,
   filtrerPaaFodselsnummerEllerNavn,
   filterEventsOnVeileder,
+  filterOnBirthDates,
+  filterOnCompany,
+  filterOnEnhet,
 } from '../utils/hendelseFilteringUtils';
 import TekstFilter from '../components/TekstFilter';
 import { ApplicationState } from '../store';
@@ -25,6 +28,7 @@ import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
 import { AlertStripeWarning } from '../components/AlertStripeWarning';
 import { OverviewTabType } from '../konstanter';
 import { hentVeiledere } from '../store/veiledere/veiledere_actions';
+import PersonFilter from '../components/PersonFilter';
 
 const tekster = {
     feil: {
@@ -58,11 +62,11 @@ const SokeresultatFiltre = styled.div`
 `;
 
 const TekstFilterStyled = styled(TekstFilter)`
-  margin-bottom: 1rem
+  margin-bottom: 1rem;
 `;
 
 const HendelseFilterStyled = styled(SokeresultatFilter)`
-  margin-bottom: 1rem
+  margin-bottom: 1rem;
 `;
 
 interface Props {
@@ -82,26 +86,35 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
 
   const {
     personregister,
-    aktivEnhet,
+    aktivEnhetId,
     aktivVeilederinfo,
     henterAlt,
-    hentetIngenPersoner,
     noeErHentet,
     altFeilet,
     veiledere,
+    selectedBirthDates,
+    selectedVeilederIdents,
+    selectedCompanies,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
   useEffect(() => {
     actions.hentVeiledere();
-  }, [aktivEnhet.enhetId]);
+  }, [aktivEnhetId]);
 
-  let allEvents = new Filterable<PersonregisterState>(personregister);
+  let allEvents = new Filterable<PersonregisterState>(personregister)
+      .applyFilter((v) => filterOnEnhet(v, aktivEnhetId));
+
+  const hentetIngenPersoner = !henterAlt && Object.keys(allEvents.value).length === 0;
 
   if (tabType === OverviewTabType.MY_OVERVIEW) {
-    allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
+    allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, [aktivVeilederinfo.ident]));
+  } else {
+    allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, selectedVeilederIdents));
   }
 
   const filteredEvents = new Filterable<PersonregisterState>({...allEvents.value})
+    .applyFilter((v) => filterOnCompany(v, selectedCompanies))
+    .applyFilter((v) => filterOnBirthDates(v, selectedBirthDates))
     .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
     .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
 
@@ -120,10 +133,12 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
                   personRegister={allEvents.value}
                   tabType={tabType}
               />
+
+              <PersonFilter personregister={personregister} />
           </SokeresultatFiltre >
           <Sokeresultat
             tildelVeileder={actions.tildelVeileder}
-            aktivEnhet={aktivEnhet}
+            aktivEnhetId={aktivEnhetId}
             aktivVeilederinfo={aktivVeilederinfo}
             personregister={filteredEvents.value}
             veiledere={veiledere}
@@ -137,12 +152,14 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
 
 const getPropsFromState = (state: ApplicationState) => ({
   personregister: state.personregister,
-  aktivEnhet: state.veilederenheter.aktivEnhet,
+  aktivEnhetId: state.veilederenheter.aktivEnhetId,
   aktivEnhetFeilet: state.veilederenheter.hentingFeilet,
   aktivVeilederinfo: state.veilederinfo.data,
   henterAlt: state.veilederenheter.henter || state.veilederinfo.henter || state.personoversikt.henter,
-  noeErHentet: state.veilederenheter.hentet && state.veilederinfo.hentet && state.personoversikt.hentet,
-  altFeilet: state.veilederinfo.hentingFeilet || state.personoversikt.hentingFeilet,
+  noeErHentet: state.veilederenheter.aktivEnhetId !== '' && state.veilederinfo.hentet && state.personoversikt.hentet,
+  altFeilet: state.modiacontext.hentingEnhetFeilet || state.veilederinfo.hentingFeilet || state.personoversikt.hentingFeilet,
   veiledere: state.veiledere.data,
-  hentetIngenPersoner: state.personoversikt.hentet && state.personoversikt.data.length === 0,
+  selectedBirthDates: state.filters.selectedBirthDates,
+  selectedVeilederIdents: state.filters.selectedVeilederIdents,
+  selectedCompanies: state.filters.selectedCompanies,
 });

@@ -1,6 +1,8 @@
 import React from 'react';
 import Chevron from 'nav-frontend-chevron';
 import styled from 'styled-components';
+import themes from '../styles/themes';
+import classNames from 'classnames';
 
 const ChevronButton = styled.button`
     background: transparent;
@@ -10,7 +12,15 @@ const ChevronButton = styled.button`
     align-items: center;
     padding: 0.25em;
     cursor: pointer;
-    color: #0067c5;
+    color: ${themes.color.navBla};
+
+    :focus {
+        outline: ${(props) => props.className === 'invisible'
+            ? 'none'
+            : 'auto'
+        };
+        outline-offset: -5px;
+    }
 `;
 
 const ChevronLabel = styled.span`
@@ -24,6 +34,10 @@ const ChevronLabel = styled.span`
 `;
 
 const ChevronStyled = styled(Chevron)`
+    color: ${(props) => props.className === 'invisible'
+            ? `${themes.color.invisible}`
+            : `${themes.color.navBla}`
+    };
 `;
 
 const StyledEmptyContainer = styled.div`
@@ -31,23 +45,24 @@ const StyledEmptyContainer = styled.div`
 `;
 
 interface ChevronKnappProps {
-    type?: 'høyre' | 'venstre';
-    tekst: string;
+    type?: 'høyre' | 'venstre' | 'opp' | 'ned';
+    text?: string;
     visible: boolean;
     onClick(): void;
 }
 
-const ChevronKnapp = ({ type = 'venstre', tekst, visible, onClick }: ChevronKnappProps) => {
-    if (!visible) {
-        return <StyledEmptyContainer />;
-    }
+const ChevronKnapp = ({ type = 'venstre', text: tekst, visible, onClick }: ChevronKnappProps) => {
     const CustomLabel = <ChevronLabel>{tekst}</ChevronLabel>;
+    const colorClassname = classNames(visible
+        ? undefined
+        : 'invisible'
+    );
 
     return (
-        <ChevronButton onClick={onClick}>
-            {type === 'høyre' && CustomLabel}
-            <ChevronStyled type={type} />
-            {type === 'venstre' && CustomLabel}
+        <ChevronButton className={colorClassname} onClick={onClick} >
+            {type === 'høyre' && tekst && CustomLabel}
+            <ChevronStyled className={colorClassname} type={type} />
+            {type === 'venstre' && tekst && CustomLabel}
         </ChevronButton>
     );
 };

@@ -7,7 +7,6 @@ import { VeilederenheterState } from './veilederenheter/veilederenheterTypes';
 import { VeilederinfoState } from './veilederinfo/veilederinfoTypes';
 import { PersonInfoState } from './personInfo/personInfoTypes';
 import { PersonregisterState } from './personregister/personregisterTypes';
-import { EnhetNavnState } from './enhetNavn/enhetNavnTypes';
 import { PersonoversiktStatusState } from './personoversikt/personoversiktTypes';
 import modiacontextReducer from './modiacontext/modiacontextReducer';
 import veiledereReducer from './veiledere/veiledereReducer';
@@ -15,7 +14,6 @@ import veilederenheterReducer from './veilederenheter/veilederenheterReducer';
 import veilederinfoReducer from './veilederinfo/veilederinfoReducer';
 import personInfoReducer from './personInfo/personInfoReducer';
 import personoversiktReducer from './personoversikt/personoversiktReducer';
-import enhetNavnReducer from './enhetNavn/enhetNavnReducer';
 import personregisterReducer from './personregister/personregisterReducer';
 
 import modiacontextSagas from './modiacontext/modiacontextSagas';
@@ -26,10 +24,10 @@ import personInfoSagas from './personInfo/personInfoSagas';
 import personoversiktSagas from './personoversikt/personoversiktSagas';
 import configureStore from './configureStore';
 import veilederArbeidstakerSagas from './veilederArbeidstaker/veilederArbeidstakerSagas';
-import enhetNavnSagas from './enhetNavn/enhetNavnSagas';
 import changelogReducer, { ChangelogState } from './changelog/changelogReducer';
 import changelogSagas from './changelog/changelogSagas';
 import { createBrowserHistory } from 'history';
+import filterReducer, { FilterState } from './filters/filterReducer';
 
 export interface ApplicationState {
   router: any;
@@ -40,8 +38,8 @@ export interface ApplicationState {
   personInfo: PersonInfoState;
   personoversikt: PersonoversiktStatusState;
   personregister: PersonregisterState;
-  enhetNavn: EnhetNavnState;
   changelogs: ChangelogState;
+  filters: FilterState;
 }
 
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
@@ -57,8 +55,8 @@ export const rootReducer = () => combineReducers<ApplicationState>({
   personInfo: personInfoReducer,
   personoversikt: personoversiktReducer,
   personregister: personregisterReducer,
-  enhetNavn: enhetNavnReducer,
   changelogs: changelogReducer,
+  filters: filterReducer,
 });
 
 export function* rootSaga() {
@@ -70,7 +68,6 @@ export function* rootSaga() {
     fork(personInfoSagas),
     fork(personoversiktSagas),
     fork(veilederArbeidstakerSagas),
-    fork(enhetNavnSagas),
     fork(changelogSagas),
   ]);
 }

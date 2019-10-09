@@ -5,8 +5,11 @@ import {
   put,
   takeEvery,
 } from 'redux-saga/effects';
-import { get, post } from '../../api/index';
-import { fullNaisUrl } from '../../utils/miljoUtil';
+import {
+  get,
+  post,
+} from '../../api/index';
+import { fullNaisUrlDefault } from '../../utils/miljoUtil';
 import * as actions from './modiacontext_actions';
 import { HOST_NAMES } from '../../konstanter';
 
@@ -15,9 +18,9 @@ export function* pushModiacontextSaga(
 ) {
   yield put(actions.pusherModiaContext());
   try {
-    const host = HOST_NAMES.MODIACONTEXTHOLDER;
-    const path = `${process.env.REACT_APP_MODIACONTEXTHOLDER_ROOT}/context`;
-    const url = fullNaisUrl(host, path);
+    const host = HOST_NAMES.SYFOMODIACONTEXTHOLDER;
+    const path = `${process.env.REACT_APP_SYFOMODIACONTEXTHOLDER_ROOT}/context`;
+    const url = fullNaisUrlDefault(host, path);
     yield call(
       post,
       url,
@@ -26,7 +29,7 @@ export function* pushModiacontextSaga(
         eventType: action.data.eventType,
       }
     );
-    yield put(actions.modiaContextPushet());
+    yield put(actions.modiaContextPushet(action.data));
   } catch (e) {
     yield put(actions.pushModiaContextFeilet());
   }
@@ -37,9 +40,9 @@ export function* aktivEnhetSaga(
 ) {
   yield put(actions.henterAktivEnhet());
   try {
-    const host = HOST_NAMES.MODIACONTEXTHOLDER;
-    const path = `${process.env.REACT_APP_MODIACONTEXTHOLDER_ROOT}/context/aktivenhet`;
-    const url = fullNaisUrl(host,path);
+    const host = HOST_NAMES.SYFOMODIACONTEXTHOLDER;
+    const path = `${process.env.REACT_APP_SYFOMODIACONTEXTHOLDER_ROOT}/aktivenhet`;
+    const url = fullNaisUrlDefault(host,path);
     const data = yield call(
       get,
       url

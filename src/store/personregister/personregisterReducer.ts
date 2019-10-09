@@ -56,6 +56,7 @@ const personregisterReducer: Reducer<PersonregisterState> = (
           tildeltVeilederIdent: person.veilederIdent,
           harMotebehovUbehandlet: person.motebehovUbehandlet,
           harMoteplanleggerUbehandlet: person.moteplanleggerUbehandlet,
+          oppfolgingstilfeller: person.oppfolgingstilfeller,
         },
       }));
       const oppdatering = tilPersonDataMap(personerSomSkalOppdateres);

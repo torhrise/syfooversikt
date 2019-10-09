@@ -7,8 +7,9 @@ export const enum PersonoversiktActionTypes {
   HENT_PERSONOVERSIKT_ENHET_FEILET= 'HENT_PERSONOVERSIKT_ENHET_FEILET',
 }
 
-export const hentPersonoversiktForespurt = () => ({
+export const hentPersonoversiktForespurt = (enhetId: string) => ({
   type: PersonoversiktActionTypes.HENT_PERSONOVERSIKT_ENHET_FORESPURT,
+  enhetId,
 });
 
 export const hentPersonoversiktHenter = () => ({

@@ -1,3 +1,5 @@
+import { Oppfolgingstilfelle } from '../personoversikt/personoversiktTypes';
+
 export type Skjermingskode = 'INGEN' | 'DISKRESJONSMERKET' | 'EGEN_ANSATT';
 
 export interface PersonData {
@@ -8,6 +10,7 @@ export interface PersonData {
   markert: boolean;
   tildeltEnhetId: string;
   tildeltVeilederIdent: string;
+  oppfolgingstilfeller: Oppfolgingstilfelle[];
 }
 
 export interface PersonregisterState {
