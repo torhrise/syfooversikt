@@ -76,6 +76,8 @@ const ChangelogImage = styled.img`
 const ChangelogTextField = styled.div`
     height: 4.125em;
     display: flex;
+    padding-left: 1em;
+    padding-right: 1em;
     align-items: center;
     justify-content: center;
 
