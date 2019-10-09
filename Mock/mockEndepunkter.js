@@ -2,12 +2,12 @@ const path = require('path');
 const fs = require('fs');
 
 const mockData = {};
+const AKTIVENHET = 'aktivenhet';
 const ENHETER = 'enheter';
 const MOTEBEHOV = 'motebehov';
 const PERSON_INFO = 'personInfo';
 const PERSONOVERSIKT_ENHET = 'personoversiktEnhet';
 const VEILEDERINFO = 'veilederinfo';
-const ENHET_NAVN = 'enhetNavn';
 const VEILEDERE = 'veiledere';
 
 const lastFilTilMinne = (filnavn) => {
@@ -17,12 +17,12 @@ const lastFilTilMinne = (filnavn) => {
   });
 };
 
+lastFilTilMinne(AKTIVENHET);
 lastFilTilMinne(ENHETER);
 lastFilTilMinne(MOTEBEHOV);
 lastFilTilMinne(PERSON_INFO);
 lastFilTilMinne(PERSONOVERSIKT_ENHET);
 lastFilTilMinne(VEILEDERINFO);
-lastFilTilMinne(ENHET_NAVN);
 lastFilTilMinne(VEILEDERE);
 
 function mockForLokal(server) {
@@ -50,9 +50,9 @@ function mockForLokal(server) {
     res.send(JSON.stringify(mockData[ENHETER]));
   });
 
-  server.get('/norg2/api/v1/enhet/:id', (req, res) => {
+  server.get('/api/aktivenhet', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[ENHET_NAVN]));
+    res.send(JSON.stringify(mockData[AKTIVENHET]));
   });
 
   server.get('/syfoveileder/api/veiledere/enhet/:enhet', (req, res) => {

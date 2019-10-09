@@ -39,6 +39,7 @@ const LinkStyled = styled(NavLink)`
 
 const NavigationBar = styled.div`
     margin-bottom:  1em;
+    margin-top: 1em;
     display: flex;
 
     >:not(:last-child) {

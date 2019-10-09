@@ -30,7 +30,7 @@ export function* hentVeiledereSaga(
 
 const hentetAktivEnhetId = (state: any): string => {
   return skalHenteReducer(state.veiledere)
-    ? state.veilederenheter.aktivEnhet.enhetId
+    ? state.veilederenheter.aktivEnhetId
     : '';
 };
 

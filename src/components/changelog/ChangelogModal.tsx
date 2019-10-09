@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import NavFrontendModal from 'nav-frontend-modal';
+import ModalWrapper from 'nav-frontend-modal';
 import styled from 'styled-components';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 import ChevronKnapp from '../ChevronKnapp';
@@ -12,7 +12,7 @@ interface Props {
     onClose(didComplete: boolean, version: number): void;
 }
 
-const ModalStyled = styled(NavFrontendModal)`
+const ModalStyled = styled(ModalWrapper)`
     padding: 0 !important;
     .lukknapp {
         z-index: 3;
@@ -101,7 +101,7 @@ const ChangelogModal = ({ onClose, isOpen, changelog }: Props) => {
         <div>
             <ModalStyled onRequestClose={() => {
                 onClose(isLastPage, changelog.version);
-            }} contentLabel="Changelog Modal" closeButton={true} isOpen={isOpen}>
+            }} contentLabel="Changelog Modal" closeButton={true} isOpen={isOpen} >
                 <ModalContent>
                     <ModalHeader>{changelog.title}</ModalHeader>
                     <ModalMain>
@@ -112,14 +112,14 @@ const ChangelogModal = ({ onClose, isOpen, changelog }: Props) => {
                         </ChangelogTextField>
                     </ModalMain>
                     <ModalButtons>
-                        <ChevronKnapp type="venstre" tekst="Forrige" visible={!isFirstPage} onClick={() => {
+                        <ChevronKnapp type="venstre" text="Forrige" visible={!isFirstPage} onClick={() => {
                             setPageNumber(currentPageNumber - 1);
                         }}/>
                         <NumberIndicator antall={changelog.items.length} valgtIndex={currentPageNumber} />
-                        {!isLastPage && <ChevronKnapp type="høyre" tekst="Neste" visible={true} onClick={() => {
+                        {!isLastPage && <ChevronKnapp type="høyre" text="Neste" visible={true} onClick={() => {
                             setPageNumber(Math.min(currentPageNumber + 1, changelog.items.length - 1));
                         }}/>}
-                        {isLastPage && <ChevronKnapp type="høyre" tekst="Ferdig" visible={true} onClick={() => {
+                        {isLastPage && <ChevronKnapp type="høyre" text="Ferdig" visible={true} onClick={() => {
                             onClose(isLastPage, changelog.version);
                         }}/>}
                     </ModalButtons>

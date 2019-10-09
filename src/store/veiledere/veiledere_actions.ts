@@ -15,7 +15,7 @@ export const henterVeiledere = () => ({
   type: VeiledereActionTypes.HENT_VEILEDERE_HENTER,
 });
 
-export const veiledereHentet = (data: Veileder) => ({
+export const veiledereHentet = (data: Veileder[]) => ({
   type: VeiledereActionTypes.HENT_VEILEDERE_HENTET,
   data,
 });

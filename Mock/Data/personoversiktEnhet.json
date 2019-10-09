@@ -1,41 +1,88 @@
 [
   {
-    "fnr":"99999911111",
-    "enhet": "0315",
+    "fnr":"01999911111",
+    "enhet": "0316",
     "veilederIdent": null,
     "motebehovUbehandlet": null,
     "moteplanleggerUbehandlet": true
   },
   {
     "fnr":"99999922222",
-    "enhet": "0315",
+    "enhet": "0316",
     "veilederIdent": null,
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": null
   },
   {
     "fnr":"99999933333",
-    "enhet": "0315",
+    "enhet": "0316",
     "veilederIdent":"Z101010",
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": true
   },
   {
     "fnr":"99999944444",
-    "enhet": "0315",
+    "enhet": "0316",
     "veilederIdent":"Z101010",
     "motebehovUbehandlet": true,
-    "moteplanleggerUbehandlet": true
+    "moteplanleggerUbehandlet": true,
+    "oppfolgingstilfeller": [
+      {
+        "virksomhetsnummer": "12345",
+        "virksomhetsnavn": "EGJ Security"
+      }
+    ]
   },
   {
     "fnr":"99999955555",
-    "enhet": "0315",
+    "enhet": "0316",
+    "veilederIdent": null,
+    "motebehovUbehandlet": true,
+    "moteplanleggerUbehandlet": null,
+    "oppfolgingstilfeller": [
+      {
+        "virksomhetsnummer": "12345",
+        "virksomhetsnavn": "JML Investments"
+      }
+    ]
+  },
+  {
+    "fnr": "99999966666",
+    "enhet": "0317",
+    "veilederIdent": "Z202020",
+    "motebehovUbehandlet": null,
+    "moteplanleggerUbehandlet": true
+  },
+  {
+    "fnr":"99999955556",
+    "enhet": "0316",
     "veilederIdent": null,
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": null
   },
   {
-    "fnr": "99999966666",
+    "fnr": "99999966667",
+    "enhet": "0317",
+    "veilederIdent": "Z202020",
+    "motebehovUbehandlet": null,
+    "moteplanleggerUbehandlet": true
+  },
+  {
+    "fnr": "99999966668",
+    "enhet": "0317",
+    "veilederIdent": "Z202020",
+    "motebehovUbehandlet": null,
+    "moteplanleggerUbehandlet": true
+  },
+  {
+    "fnr": "99999966669",
+    "enhet": "0317",
+    "veilederIdent": "Z202020",
+    "motebehovUbehandlet": null,
+    "moteplanleggerUbehandlet": true
+  },
+  {
+    "fnr": "99999966670",
     "enhet": "0316",
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,

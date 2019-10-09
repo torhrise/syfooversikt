@@ -3,21 +3,13 @@ import {
   PersonregisterState,
 } from '../../src/store/personregister/personregisterTypes';
 import { PersonoversiktStatus } from '../../src/store/personoversikt/personoversiktTypes';
-import { Veileder } from '../../src/store/veiledere/veiledereTypes';
 
 const veilederIdent = 'Z101010';
 const veilederNavn = 'F_Z101010 E_Z101010';
-const enhetId = '0315';
-const veileder: Veileder = {
-  ident: 'Z101010',
-  fornavn: 'Dana',
-  etternavn: 'Scully',
-  enhetNr: enhetId,
-  enhetNavn: 'NAV X-Files',
-};
+const enhetId = '0316';
 
 export const testdata = {
-  fnr1: '99999911111',
+  fnr1: '01999911111',
   fnr2: '99999922222',
   fnr3: '99999933333',
   fnr4: '99999944444',
@@ -35,9 +27,9 @@ export const testdata = {
 
 export const personregister: PersonregisterState = {
   [testdata.fnr1]: { navn: testdata.navn1, harMotebehovUbehandlet: true, harMoteplanleggerUbehandlet: false,
-    skjermingskode: testdata.skjermingskode.ingen, markert: false } as PersonData,
+    skjermingskode: testdata.skjermingskode.ingen, markert: false, tildeltVeilederIdent: 'Z999999' } as PersonData,
   [testdata.fnr2]: { navn: testdata.navn2, harMotebehovUbehandlet: false, harMoteplanleggerUbehandlet: false,
-    skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false } as PersonData,
+    skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false, tildeltVeilederIdent: 'Z999999' } as PersonData,
 };
 
 export const personoversikt = [
@@ -70,19 +62,15 @@ export const veiledere = [
     ident: 'Z999999',
     fornavn: 'Veil',
     etternavn: 'Eder',
-    enhetNr: '0314',
-    enhetNavn: 'NAV Sagene',
   },
   {
     ident: 'Z000000',
     fornavn: 'NAV',
     etternavn: 'Ansatt',
-    enhetNr: '0314',
-    enhetNavn: 'NAV Sagene',
   }
 ];
 
 export const markertePersoner = [
-  '99999911111',
+  '01999911111',
   '99999922222',
 ];

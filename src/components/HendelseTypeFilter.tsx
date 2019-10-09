@@ -2,14 +2,14 @@ import React, { useState, ComponentPropsWithoutRef } from 'react';
 import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
 import { Checkbox } from 'nav-frontend-skjema';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
-import { filtrerPersonregister, Filterable } from '../utils/hendelseFilteringUtils';
+import { filtrerPersonregister } from '../utils/hendelseFilteringUtils';
 import countFilterAction from '../metrics/countFilterAction';
-import { OverviewTabType } from '../konstanter';
 
 export const HendelseTekster: any = {
     MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
     MOTEPLANLEGGER_SVAR: 'Svar møteplanlegger', // Svar fra møteplanlegger
     UFORDELTE_BRUKERE: 'Ufordelte brukere', // Ikke tildelt veileder
+    IKKE_I_AKTIVITET: 'Ikke i aktivitet',
 };
 
 interface Props extends ComponentPropsWithoutRef<any> {
@@ -21,6 +21,7 @@ export interface HendelseTypeFilters {
     onskerMote: boolean;
     svartMote: boolean;
     ufordeltBruker: boolean;
+    ikkeIAktivitet: boolean;
 }
 
 const enkeltFilterFraTekst = (tekst: string, checked: boolean): HendelseTypeFilters => {
@@ -28,6 +29,7 @@ const enkeltFilterFraTekst = (tekst: string, checked: boolean): HendelseTypeFilt
         onskerMote: false,
         svartMote: false,
         ufordeltBruker: false,
+        ikkeIAktivitet: false,
     };
     return lagNyttFilter(filter, tekst, checked);
 };
@@ -37,6 +39,7 @@ const lagNyttFilter = (forrigeFilter: HendelseTypeFilters, tekst: string, checke
     if (tekst === HendelseTekster.MOTEBEHOV) filter.onskerMote = checked;
     if (tekst === HendelseTekster.MOTEPLANLEGGER_SVAR) filter.svartMote = checked;
     if (tekst === HendelseTekster.UFORDELTE_BRUKERE) filter.ufordeltBruker = checked;
+    if (tekst === HendelseTekster.IKKE_I_AKTIVITET) filter.ikkeIAktivitet = checked;
     return filter;
 };
 
@@ -51,6 +54,7 @@ export default ({ onFilterChange: onValgteElementerChange, className, personRegi
         onskerMote: false,
         svartMote: false,
         ufordeltBruker: false,
+        ikkeIAktivitet: false,
     };
     const [filter, setFilter] = useState<HendelseTypeFilters>(initialFilter);
 

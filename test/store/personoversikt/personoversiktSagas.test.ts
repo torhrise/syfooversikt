@@ -17,7 +17,7 @@ describe('personoversiktSagas', () => {
   });
 
   it('Skal dernest kalle REST-tjenesten', () => {
-    const url = fullNaisUrl(HOST_NAMES.SYFOOVERSIKTSRV, `/api/v1/personoversikt/enhet/${enhetId}`);
+    const url = `/api/v1/personoversikt/enhet/${enhetId}`;
     const nesteKall = call(get, url);
     expect(generator.next().value).to.deep.equal(nesteKall);
   });

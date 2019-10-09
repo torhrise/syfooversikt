@@ -1,140 +1,145 @@
-import * as React from 'react';
-import {
-  ChangeEvent,
-  useState,
-  useEffect,
+import React, {
+    ChangeEvent,
+    useEffect,
+    useState
 } from 'react';
-import styled from 'styled-components';
 import { ToolbarProps } from '../Toolbar';
-import { AssignToCurrentVeilederButton } from './AssignToCurrentVeilederButton';
-import { Flatknapp } from 'nav-frontend-knapper';
-import { Input } from 'nav-frontend-skjema';
 import {
-  assignUsersToSelectedVeileder,
-  filterVeiledereOnInput,
-  hasNoCheckedPersoner,
+    assignUsersToSelectedVeileder,
+    filterVeiledereOnInput,
+    hasNoCheckedPersoner,
 } from '../../../utils/assignVeilederUtils';
-import { ConfirmVeilederButton } from './ConfirmVeilederButton';
-import {
-  removeCurrentVeilederFromVeiledere,
-  sortVeiledereAlphabeticallyBySurname,
-} from '../../../utils/veiledereUtils';
+import { sortVeiledereAlphabeticallyWithGivenVeilederFirst } from '../../../utils/veiledereUtils';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
-import { VeilederRadioButtons } from './VeilederRadioButtons';
-import { OverviewTabType } from '../../../konstanter';
+import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 interface StateProps {
-  chosenVeilederIdent: string;
-  input: string;
-  showList: boolean;
-  veiledere: Veileder[];
-  veilederIsChosen: boolean;
+    chosenVeilederIdent: string;
+    input: string;
+    showList: boolean;
+    veiledere: Veileder[];
+    veilederIsChosen: boolean;
 }
-
-const texts = {
-  assignOtherVeileder: 'Tildel veileder',
-};
-
-export const FlatButton = styled(Flatknapp)`
-  margin-left: 2em;
-  padding: 0;
-`;
-
-const RadioPanelGroup = styled.div`
-  border: 0;
-  overflow: auto;
-  height: 20em;
-  width: inherit;
-`;
-
-const ButtonPanel = styled.section`
-  position: fixed;
-  background: white;
-  width: auto;
-  height: auto;
-  transform: translate(20%, 5%);
-  z-index: 1;
-  opacity: 50%
-`;
 
 const TildelVeileder = (props: ToolbarProps) => {
 
-  const stateFromProps = () => ({
-    chosenVeilederIdent: '',
-    input: '',
-    showList: false,
-    veiledere: props.veiledere,
-    veilederIsChosen: false,
-  });
-
-  const [state, setState] = useState<StateProps>(stateFromProps());
-
-  const onChangeHandler = (event: ChangeEvent) => {
-    const target = event.target as HTMLInputElement;
-    setState({
-      ...state,
-      input: target.value,
+    const stateFromProps = () => ({
+        chosenVeilederIdent: '',
+        input: '',
+        showList: false,
+        veiledere: props.veiledere,
+        veilederIsChosen: false,
     });
-  };
 
-  useEffect(() => {
-    setState({
-      ...state,
-      showList: false,
-    });
-  }, [props.tabType]);
+    const [state, setState] = useState<StateProps>(stateFromProps());
 
-  const radiobuttonOnChangeHandler = (veileder: Veileder) => {
-    setState({
-      ...state,
-      chosenVeilederIdent: veileder.ident,
-      veilederIsChosen: true,
-    });
-  };
+    const inputChangeHandler = (event: ChangeEvent) => {
+        const target = event.target as HTMLInputElement;
+        setState({
+            ...state,
+            input: target.value,
+        });
+    };
 
-  const confirmVeilederButtonHandler = (chosenVeilederIdent: string) => {
-    if (chosenVeilederIdent && chosenVeilederIdent.length > 0) {
-      assignUsersToSelectedVeileder(props, chosenVeilederIdent);
-    }
+    useEffect(() => {
+        setState({
+            ...state,
+            showList: false,
+        });
+    }, [props.tabType]);
 
-    setState({
-      ...state,
-      showList: false,
-      veilederIsChosen: false,
-      chosenVeilederIdent: '',
-    });
-  };
+    const radiobuttonOnChangeHandler = (veileder: Veileder) => {
+        setState({
+            ...state,
+            chosenVeilederIdent: veileder.ident,
+            veilederIsChosen: true,
+        });
+    };
 
-  const lowerCaseInput = state.input.toLowerCase();
-  const veiledereWithoutCurrentVeileder = removeCurrentVeilederFromVeiledere(props.veiledere, props.aktivVeilederInfo.ident);
-  const veiledereSortedAlphabetically = sortVeiledereAlphabeticallyBySurname(veiledereWithoutCurrentVeileder);
-  const filteredVeiledere = filterVeiledereOnInput(veiledereSortedAlphabetically, lowerCaseInput);
+    const assignToOtherVeilederButtonHandler = () => {
+        if (!hasNoCheckedPersoner(props.markertePersoner)) {
+            if (state.showList) {
+                setState({
+                    ...state,
+                    chosenVeilederIdent: '',
+                    input: '',
+                    showList: false,
+                    veilederIsChosen: false,
+                });
+            } else {
+                setState({
+                    ...state,
+                    input: '',
+                    showList: !state.showList,
+                });
+            }
+        }
+    };
 
-  return (<>
-    <FlatButton onClick={() => setState({ ...state, showList: !state.showList })}
-                disabled={hasNoCheckedPersoner(props.markertePersoner)}>{texts.assignOtherVeileder}</FlatButton>
-    {state.showList && <ButtonPanel>
-      <Input label="" value={state.input} type="text" onChange={(event) => onChangeHandler(event)} />
-      <RadioPanelGroup>
-        <VeilederRadioButtons
-          onChangeHandler={radiobuttonOnChangeHandler}
-          filteredVeiledere={filteredVeiledere}
+    const cancelButtonHandler = () => {
+        setState({
+            ...state,
+            chosenVeilederIdent: '',
+            input: '',
+            showList: false,
+            veilederIsChosen: false,
+        });
+    };
+
+    const chooseButtonHandler = (chosenVeilederIdent: string) => {
+        if (chosenVeilederIdent && chosenVeilederIdent.length > 0) {
+            assignUsersToSelectedVeileder(props, chosenVeilederIdent);
+        }
+
+        setState({
+            ...state,
+            showList: false,
+            veilederIsChosen: false,
+            chosenVeilederIdent: '',
+        });
+    };
+
+    const onBlur = (e: any) => {
+        const currentTarget = e.currentTarget;
+        setTimeout(() => {
+            if (!currentTarget.contains(document.activeElement)) {
+                setState({
+                    ...state,
+                    chosenVeilederIdent: '',
+                    input: '',
+                    showList: false,
+                    veilederIsChosen: false,
+                });
+            }
+        }, 0);
+    };
+
+    const lowerCaseInput = state.input.toLowerCase();
+    const veiledereSortedAlphabetically = sortVeiledereAlphabeticallyWithGivenVeilederFirst(props.veiledere, props.aktivVeilederInfo.ident);
+    const filteredVeiledere = filterVeiledereOnInput(veiledereSortedAlphabetically, lowerCaseInput);
+
+    return (<div tabIndex={1} onBlur={onBlur}>
+        <OpenDropdownButton
+            text={'Tildel veileder'}
+            onClick={assignToOtherVeilederButtonHandler}
+            showList={state.showList}
+            userIsChecked={!hasNoCheckedPersoner(props.markertePersoner)}
+            search={false}
         />
-      </RadioPanelGroup>
-      <ConfirmVeilederButton
-        chosenVeilederIdent={state.chosenVeilederIdent}
-        confirmVeilederButtonHandler={confirmVeilederButtonHandler}
-        veilederIsChosen={state.veilederIsChosen} />
-    </ButtonPanel>}
 
-    {props.tabType === OverviewTabType.ENHET_OVERVIEW && (
-      <AssignToCurrentVeilederButton
-        aktivVeilederIdent={props.aktivVeilederInfo.ident}
-        confirmVeilederButtonHandler={confirmVeilederButtonHandler}
-        disabled={hasNoCheckedPersoner(props.markertePersoner)}
-    />
-    )}
-  </>);
+        {state.showList && <Dropdown
+            cancelButtonHandler={cancelButtonHandler}
+            chooseButtonHandler={chooseButtonHandler}
+            chosenVeilederIdent={state.chosenVeilederIdent}
+            filteredVeiledere={filteredVeiledere}
+            input={state.input}
+            inputChangeHandler={inputChangeHandler}
+            buttonChangeHandler={radiobuttonOnChangeHandler}
+            veilederIsChosen={state.veilederIsChosen}
+            buttonType={'radio'} placeholder={'Tildel veileder'}
+            selectedVeileders={props.veiledere}/>}
+    </div>);
 };
 
 export default TildelVeileder;

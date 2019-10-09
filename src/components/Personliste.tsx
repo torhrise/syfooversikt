@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
 import { PersonData, PersonregisterState } from '../store/personregister/personregisterTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
+import styled from 'styled-components';
+import { SortingType, getSortedEventsFromSortingType } from '../utils/hendelseFilteringUtils';
+import { useSelector } from 'react-redux';
+import { veilederEllerUfordelt } from '../utils/personDataUtil';
+import { ApplicationState } from '../store';
 
 interface PersonlisteProps {
   personregister: PersonregisterState;
@@ -10,6 +15,9 @@ interface PersonlisteProps {
   markertePersoner: string[];
   veiledere: Veileder[];
 }
+
+const PersonlisteStyled = styled.section`
+`;
 
 const erMarkert = (markertePersoner: string[], fnr: string) => {
   return markertePersoner.findIndex((markertPerson: string) => {
@@ -34,23 +42,32 @@ const Personliste = (props: PersonlisteProps) => {
     veiledere,
   } = props;
 
-  const fnrListe = Object.keys(personregister);
+  const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
+  const fnrListe = Object.keys(getSortedEventsFromSortingType(personregister, selectedSortingType));
 
-  return (<section>
-    <Sorteringsrad />
+  const isVeilederDataLoaded = useSelector((state: ApplicationState) => state.veiledere.hentet);
+
+  return (<PersonlisteStyled>
+    <Sorteringsrad  onSortClick={(type) => {
+      setSortingType(type);
+    }} />
     {
       fnrListe.map((fnr: string, idx: number) => {
+        const veilederName = isVeilederDataLoaded
+          ? veilederEllerUfordelt(veilederForPerson(veiledere, personregister[fnr]))
+          : '';
         return (<Personrad
+          index={idx}
           key={idx}
           fnr={fnr}
+          veilederName={veilederName}
           personData={personregister[fnr]}
           checkboxHandler={checkboxHandler}
           kryssAv={erMarkert(markertePersoner, fnr)}
-          veileder={veilederForPerson(veiledere, personregister[fnr])}
         />);
       })
     }
-  </section>);
+    </PersonlisteStyled>);
 };
 
 export default Personliste;

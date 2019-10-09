@@ -12,11 +12,13 @@ import { OverviewTabType } from '../konstanter';
 interface  SokeresultatState {
   markertePersoner: string[];
   alleMarkert: boolean;
+  startItem: number;
+  endItem: number;
   currentTabType: OverviewTabType;
 }
 
 interface SokeresultatProps {
-  aktivEnhet: Veilederenhet;
+  aktivEnhetId: string;
   aktivVeilederinfo: Veilederinfo;
   personregister: PersonregisterState;
   tildelVeileder: (liste: VeilederArbeidstaker[]) => void;
@@ -32,6 +34,16 @@ const lagListe = (markertePersoner: string[], veilederIdent: string, enhet: stri
   }));
 };
 
+const paginatePersonregister = (personregister: PersonregisterState, startItem: number, endItem: number) => {
+  const allFnr = Object.keys(personregister);
+  return allFnr
+      .slice(startItem, endItem + 1)
+      .reduce((slicedPersonregister, fnr) => {
+        slicedPersonregister[fnr] = personregister[fnr];
+        return slicedPersonregister;
+      }, {} as PersonregisterState);
+};
+
 const SokeresultatContainer = styled.div`
   flex: 3;
 `;
@@ -43,9 +55,12 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
       markertePersoner: [],
       alleMarkert: false,
       currentTabType: props.tabType,
+      startItem: 0,
+      endItem: 0,
     };
     this.checkboxHandler = this.checkboxHandler.bind(this);
     this.checkAllHandler = this.checkAllHandler.bind(this);
+    this.onPageChange = this.onPageChange.bind(this);
   }
 
   checkboxHandler =  (fnr: string ) => {
@@ -65,6 +80,16 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
         alleMarkert: false,
         markertePersoner: [],
         currentTabType: this.props.tabType,
+      });
+    }
+
+    const currentRegisterLength = Object.keys(this.props.personregister).length;
+    const previousRegisterLength = Object.keys(prevProps.personregister).length;
+
+    if (currentState.markertePersoner.length > 0 && currentRegisterLength !== previousRegisterLength) {
+      this.setState({
+        markertePersoner: [],
+        alleMarkert: false,
       });
     }
   }
@@ -88,12 +113,20 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
 
   buttonHandler = (veilederIdent: string) => {
     const {
-      aktivEnhet,
+      aktivEnhetId,
       tildelVeileder,
     } = this.props;
-    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, aktivEnhet.enhetId);
+    const veilederArbeidstakerListe = lagListe(this.state.markertePersoner, veilederIdent, aktivEnhetId);
     tildelVeileder(veilederArbeidstakerListe);
   }
+
+  onPageChange = (startItem: number, endItem: number) => {
+      this.setState({
+        endItem,
+        startItem,
+      });
+  }
+
   render() {
     const {
       personregister,
@@ -105,10 +138,17 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const {
         alleMarkert,
         markertePersoner,
+        startItem,
+        endItem,
     } = this.state;
+
+    const allFnr = Object.keys(personregister);
+    const paginatedPersonregister = paginatePersonregister(personregister, startItem, endItem);
 
     return (<SokeresultatContainer>
       <Toolbar
+        numberOfItemsTotal={allFnr.length}
+        onPageChange={this.onPageChange}
         tabType={tabType}
         aktivVeilederInfo={aktivVeilederinfo}
         alleMarkert={alleMarkert}
@@ -118,7 +158,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
         markertePersoner={markertePersoner}
       />
       <Personliste
-        personregister={personregister}
+        personregister={paginatedPersonregister}
         checkboxHandler={this.checkboxHandler}
         markertePersoner={markertePersoner}
         veiledere={veiledere}

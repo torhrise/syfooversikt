@@ -1,10 +1,14 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import {
   Column,
   Row,
 } from 'nav-frontend-grid';
 import themes from '../styles/themes';
+import { SortingType } from '../utils/hendelseFilteringUtils';
+import Chevron from 'nav-frontend-chevron';
+import ChevronKnapp from './ChevronKnapp';
 
 const tekster = {
   navn: 'Etternavn, Fornavn',
@@ -14,23 +18,61 @@ const tekster = {
   overskriftBruker: 'Bruker',
   overskriftVeileder: 'Veileder',
 };
+const RowStyled = styled(Row)`
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+`;
 
-export const OverskriftRad = styled(Row)`
+export const OverskriftRad = styled(RowStyled)`
   display: flex;
   align-items: center;
-  padding: .5rem 0;
-  border-top: 1px solid ${themes.color.navGra40};
-  border-bottom: 1px solid ${themes.color.navGra40};
+  /* padding: .5rem 0; */
+  border-top: 1px solid ${themes.color.navGra20};
+  border-bottom: 1px solid ${themes.color.navGra20};
   font-weight: 700;
 `;
 
-const IngressRad = styled(Row)`
+const IngressRad = styled(RowStyled)`
   display: flex;
   align-items: center;
-  border-bottom: 2px solid ${themes.color.navGra40};
+  border-bottom: 1px solid ${themes.color.navGra40};
 `;
 
-const Sorteringsrad = () => {
+const GrayChevron = styled(Chevron)`
+  margin-left: 0.25em;
+  color: #3E3832;
+`;
+
+export const SortingButton = styled.p`
+  cursor: pointer;
+  color: ${themes.color.navBla};
+  user-select: none;
+`;
+
+const FlexColumn = styled(Column)`
+  margin: 0px;
+  display: flex;
+  align-items: center;
+`;
+
+interface SortingRowProps {
+  onSortClick(type: SortingType): void;
+}
+
+const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
+  const [ currentSortingType, setCurrentSortingType ] = useState<SortingType>('NONE');
+
+  const onSortingByNameClick = () => {
+    const nextSortingType: SortingType = currentSortingType === 'NAME_ASC'
+              ? 'NAME_DESC'
+              : 'NAME_ASC';
+    setCurrentSortingType(nextSortingType);
+    onSortClick(nextSortingType);
+  };
+
+  const chevronType = currentSortingType === 'NAME_ASC'
+    ? 'opp'
+    : 'ned';
   return (
     <>
       <OverskriftRad className="">
@@ -38,10 +80,15 @@ const Sorteringsrad = () => {
         <Column xs={'5'}>{tekster.overskriftBruker}</Column>
         <Column xs={'4'}>{tekster.overskriftVeileder}</Column>
       </OverskriftRad>
-
       <IngressRad className="">
         <Column className="emptyColumn" xs={'1'} />
-        <Column xs={'3'}>{tekster.navn}</Column>
+        <FlexColumn xs={'3'}>
+          <SortingButton onClick={onSortingByNameClick}>
+            <strong>Etternavn</strong>
+          </SortingButton>
+          <p>, Fornavn</p>
+          <GrayChevron type={chevronType} />
+        </FlexColumn>
         <Column xs={'2'}>{tekster.fodselsnummer}</Column>
         <Column xs={'2'}>{tekster.ident}</Column>
         <Column xs={'2'}>{tekster.veileder}</Column>

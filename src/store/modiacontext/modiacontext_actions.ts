@@ -46,6 +46,7 @@ export const pushModiaContext = (data: ModiacontextPayload) => ({
   data,
 });
 
-export const modiaContextPushet = () => ({
+export const modiaContextPushet = (data: ModiacontextPayload) => ({
   type: modiacontextActionTypes.PUSH_MODIACONTEXT_PUSHET,
+  data,
 });

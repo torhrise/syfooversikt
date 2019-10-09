@@ -4,6 +4,14 @@ export interface PersonoversiktStatus {
   veilederIdent: string | null;
   motebehovUbehandlet: boolean | null;
   moteplanleggerUbehandlet: boolean | null;
+  oppfolgingstilfeller: Oppfolgingstilfelle[];
+}
+
+export interface Oppfolgingstilfelle {
+  virksomhetsnummer: string;
+  virksomhetsnavn: string;
+  fom: Date;
+  tom: Date;
 }
 
 export interface PersonoversiktStatusState {
