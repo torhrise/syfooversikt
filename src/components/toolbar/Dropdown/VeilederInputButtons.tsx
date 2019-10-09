@@ -62,14 +62,10 @@ const InputButtons = (props: VeilederCheckboxProps) => {
 
 export const VeilederInputButtons = (props: VeilederCheckboxProps) => {
     if (props.isInputGiven) {
-        return (
-            <div className="veilederRadioButtons--loggedInNotFirst">
-                <InputButtons {...props} />
-            </div>
-        );
+        return <InputButtons {...props} />;
     }
     return (
-        <LoggedInVeilederFirst className="veilederRadioButtons--loggedInFirst">
+        <LoggedInVeilederFirst>
             <InputButtons {...props} />
         </LoggedInVeilederFirst>
     );
