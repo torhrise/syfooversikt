@@ -25,6 +25,9 @@ interface BirthDateFilterProps {
 }
 
 const BirthDateFilter = ({ onSelect }: BirthDateFilterProps) => {
+
+
+
     return (
         <div>
             <FilterTittel>{texts.title}</FilterTittel>

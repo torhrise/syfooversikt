@@ -31,7 +31,16 @@ export const updateVeilederIdentsFilter = (veilederIdents: string[]) => ({
     type: FilterActionTypes.UPDATE_VEILDERER_IDENTS,
     selectedVeilederIdents: veilederIdents,
 }) as UpdateVeilederIdentsFilter;
+
 export const updateCompaniesFilter = (companies: string[]) => ({
     type: FilterActionTypes.UPDATE_COMPANIES,
     selectedCompanies: companies,
 }) as UpdateCompaniesFilter;
+
+export const allFilterActionsWithEmptyValues = () => {
+    return [
+        updateBirthDateFilter([]),
+        updateVeilederIdentsFilter([]),
+        updateCompaniesFilter([])
+    ];
+};

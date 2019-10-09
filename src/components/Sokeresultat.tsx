@@ -8,6 +8,7 @@ import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
 import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 import { OverviewTabType } from '../konstanter';
+import ActiveFilters from './filters/ClearFilters';
 
 interface  SokeresultatState {
   markertePersoner: string[];
@@ -157,6 +158,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
         veiledere={veiledere}
         markertePersoner={markertePersoner}
       />
+      <ActiveFilters />
       <Personliste
         personregister={paginatedPersonregister}
         checkboxHandler={this.checkboxHandler}
