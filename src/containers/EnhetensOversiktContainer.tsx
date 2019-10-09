@@ -93,6 +93,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
     altFeilet,
     veiledere,
     selectedBirthDates,
+    selectedVeilederIdents,
     selectedCompanies,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
@@ -106,7 +107,9 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
   const hentetIngenPersoner = !henterAlt && Object.keys(allEvents.value).length === 0;
 
   if (tabType === OverviewTabType.MY_OVERVIEW) {
-    allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, aktivVeilederinfo.ident));
+    allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, [aktivVeilederinfo.ident]));
+  } else {
+    allEvents = allEvents.applyFilter((v) => filterEventsOnVeileder(v, selectedVeilederIdents));
   }
 
   const filteredEvents = new Filterable<PersonregisterState>({...allEvents.value})
@@ -157,5 +160,6 @@ const getPropsFromState = (state: ApplicationState) => ({
   altFeilet: state.modiacontext.hentingEnhetFeilet || state.veilederinfo.hentingFeilet || state.personoversikt.hentingFeilet,
   veiledere: state.veiledere.data,
   selectedBirthDates: state.filters.selectedBirthDates,
+  selectedVeilederIdents: state.filters.selectedVeilederIdents,
   selectedCompanies: state.filters.selectedCompanies,
 });

@@ -32,7 +32,7 @@ const dynamicClassName = (classNameElement: string, invisible: boolean) => {
   return `${block}${element}${modifier}`;
 };
 
-const DropwdownButton = ((props: DropdownButtonProps) => {
+const DropdownButton = ((props: DropdownButtonProps) => {
   return (<ButtonFlexBoxWrapper>
     <DropwdownButtonBase
       invisible={props.invisible.toString()}
@@ -45,4 +45,4 @@ const DropwdownButton = ((props: DropdownButtonProps) => {
   </ButtonFlexBoxWrapper>);
 });
 
-export default DropwdownButton;
+export default DropdownButton;

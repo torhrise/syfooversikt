@@ -5,11 +5,13 @@ export const FILTERS_STATE_KEY = 'Filters';
 
 export interface FilterState {
     selectedBirthDates: string[];
+    selectedVeilederIdents: string[];
     selectedCompanies: string[];
 }
 
 const inititalState: FilterState = {
     selectedBirthDates: [],
+    selectedVeilederIdents: [],
     selectedCompanies: [],
 };
 
@@ -19,6 +21,13 @@ const FilterReducer: Reducer<FilterState, FilterAction> = (state = inititalState
             return {
                 ...state,
                 selectedBirthDates: action.selectedBirthDates,
+            };
+        }
+
+        case FilterActionTypes.UPDATE_VEILDERER_IDENTS: {
+            return {
+                ...state,
+                selectedVeilederIdents: action.selectedVeilederIdents,
             };
         }
         case FilterActionTypes.UPDATE_COMPANIES: {
