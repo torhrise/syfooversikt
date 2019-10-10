@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
 import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import styled from 'styled-components';
@@ -68,6 +68,16 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
             setVeileders([...veileders, veileder]);
         }
     };
+
+    const checkedVeileders = useSelector((state: ApplicationState) => state.filters.selectedVeilederIdents);
+
+    useEffect(() => {
+        if (checkedVeileders.length === 0) {
+            setVeileders([]);
+            setActiveFilters(0);
+            setActiveVeilederFilter([]);
+        }
+    }, [checkedVeileders]);
 
     const chooseButtonHandler = () => {
         setActiveFilters((veileders.length));

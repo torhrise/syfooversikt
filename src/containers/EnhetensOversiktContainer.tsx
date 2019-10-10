@@ -12,7 +12,7 @@ import AppSpinner from '../components/AppSpinner';
 import Sokeresultat from '../components/Sokeresultat';
 import { pushVeilederArbeidstakerForespurt } from '../store/veilederArbeidstaker/veilederArbeidstaker_actions';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
-import SokeresultatFilter, { HendelseTypeFilters } from '../components/HendelseTypeFilter';
+import SokeresultatFilter from '../components/HendelseTypeFilter';
 import {
   Filterable,
   filtrerPersonregister,
@@ -29,6 +29,8 @@ import { AlertStripeWarning } from '../components/AlertStripeWarning';
 import { OverviewTabType } from '../konstanter';
 import { hentVeiledere } from '../store/veiledere/veiledere_actions';
 import PersonFilter from '../components/PersonFilter';
+import { HendelseTypeFilters } from '../store/filters/filterReducer';
+import ClearFilters from '../components/filters/ClearFilters';
 
 const tekster = {
     feil: {
@@ -69,13 +71,18 @@ const HendelseFilterStyled = styled(SokeresultatFilter)`
   margin-bottom: 1rem;
 `;
 
+const ClearFiltersButton = styled(ClearFilters)`
+  display: flex !important;
+  justify-content: flex-end !important;
+  margin-bottom: .5em;
+`;
+
 interface Props {
   tabType?: OverviewTabType;
 }
 
 export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
-  const initHendelseTypeFilter = {} as HendelseTypeFilters;
-  const [ hendelseTypeFilter, onHendelsesTypeChange ] = useState(initHendelseTypeFilter);
+
   const [ tekstFilter, onTekstFilterChange ] = useState('');
 
   const dispatch = useDispatch();
@@ -95,6 +102,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
     selectedBirthDates,
     selectedVeilederIdents,
     selectedCompanies,
+    selectedHendelseTypeFilters,
   } = getPropsFromState(useSelector((state: ApplicationState) => state));
 
   useEffect(() => {
@@ -115,7 +123,7 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
   const filteredEvents = new Filterable<PersonregisterState>({...allEvents.value})
     .applyFilter((v) => filterOnCompany(v, selectedCompanies))
     .applyFilter((v) => filterOnBirthDates(v, selectedBirthDates))
-    .applyFilter((v) => filtrerPersonregister(v, hendelseTypeFilter))
+    .applyFilter((v) => filtrerPersonregister(v, selectedHendelseTypeFilters))
     .applyFilter((v) => filtrerPaaFodselsnummerEllerNavn(v, tekstFilter));
 
   return (
@@ -125,11 +133,11 @@ export default ({ tabType = OverviewTabType.ENHET_OVERVIEW  }: Props) => {
       {noeErHentet && (
         <OversiktContainerInnhold>
           <SokeresultatFiltre>
+              <ClearFiltersButton />
               <TekstFilterStyled
                   onFilterChange={onTekstFilterChange}
               />
               <HendelseFilterStyled
-                  onFilterChange={onHendelsesTypeChange}
                   personRegister={allEvents.value}
                   tabType={tabType}
               />
@@ -162,4 +170,5 @@ const getPropsFromState = (state: ApplicationState) => ({
   selectedBirthDates: state.filters.selectedBirthDates,
   selectedVeilederIdents: state.filters.selectedVeilederIdents,
   selectedCompanies: state.filters.selectedCompanies,
+  selectedHendelseTypeFilters: state.filters.selectedHendelseType,
 });

@@ -17,7 +17,7 @@ interface CompanyOption {
 
 interface CompantyFilterProps {
     options: string[];
-    selectedOptions: string[]
+    selectedOptions: string[];
     onSelect(arrayOfCompanies: string[]): void;
 }
 
@@ -47,8 +47,6 @@ const CompanyFilter = (props: CompantyFilterProps) => {
                 value={selectedOptions}
                 placeholder={texts.placeholder}
                 options={options}
-                closeMenuOnSelect={false}
-                hideSelectedOptions={false}
                 onChange={(v: ValueType<CompanyOption>) => {
                     const arrayOfSelectedOptions = (v as CompanyOption[]) || [];
                     const arrayOfStrings = arrayOfSelectedOptions.map((option) => option.value) || [];

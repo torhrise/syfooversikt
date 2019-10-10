@@ -21,21 +21,29 @@ const selectableOptions: DateOption[] = allDates.map((v: number) => {
 });
 
 interface BirthDateFilterProps {
+    selectedDates: string[];
     onSelect(value: string[]): void;
 }
 
-const BirthDateFilter = ({ onSelect }: BirthDateFilterProps) => {
+const BirthDateFilter = ({ onSelect, selectedDates }: BirthDateFilterProps) => {
 
-
+    const selectedOptions = selectedDates.map((v) => ({ label: v, value: v }) as DateOption);
 
     return (
         <div>
             <FilterTittel>{texts.title}</FilterTittel>
-            <Select placeholder={texts.placeholder}  options={selectableOptions} isMulti closeMenuOnSelect={false} onChange={(v: ValueType<DateOption>) => {
-                const arrayOfSelectedOptions = (v as DateOption[]) || [];
-                const arrayOfStrings = arrayOfSelectedOptions.map((option) => option.value) || [];
-                onSelect(arrayOfStrings);
-            }} />
+            <Select
+                placeholder={texts.placeholder}
+                options={selectableOptions}
+                isMulti
+                value={selectedOptions}
+                closeMenuOnSelect={false}
+                onChange={(v: ValueType<DateOption>) => {
+                    const arrayOfSelectedOptions = (v as DateOption[]) || [];
+                    const arrayOfStrings = arrayOfSelectedOptions.map((option) => option.value) || [];
+                    onSelect(arrayOfStrings);
+                }}
+                />
         </div>
     );
 };
