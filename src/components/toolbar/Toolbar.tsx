@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { Checkbox } from 'nav-frontend-skjema';
 import TildelVeileder from './AssignVeileder/TildelVeileder';
 import themes from '../../styles/themes';
 import { Veileder } from '../../store/veiledere/veiledereTypes';
 import { Veilederinfo } from '../../store/veilederinfo/veilederinfoTypes';
-import { Checkbox } from 'nav-frontend-skjema';
 import { OverviewTabType } from '../../konstanter';
 import Pagination from '../PaginationRow';
 import SearchVeileder from './SearchVeileder/SearchVeileder';

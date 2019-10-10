@@ -1,7 +1,9 @@
+import React from 'react';
+import { Provider } from 'react-redux';
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import { shallow, mount } from 'enzyme';
-import React from 'react';
+import { mount } from 'enzyme';
+import { before } from 'mocha';
 import Personliste from '../../src/components/Personliste';
 import Sorteringsrad from '../../src/components/Sorteringsrad';
 import Personrad from '../../src/components/Personrad';
@@ -10,11 +12,8 @@ import {
   personregister,
   veiledere,
 } from '../data/fellesTestdata';
-import { Provider } from 'react-redux';
 import { store } from '../../src/store';
 import { veiledereHentet } from '../../src/store/veiledere/veiledere_actions';
-import { before } from 'mocha';
-import { veilederinfoHentet } from '../../src/store/veilederinfo/veilederinfo_actions';
 import { veilederEllerUfordelt } from '../../src/utils/personDataUtil';
 
 chai.use(chaiEnzyme());

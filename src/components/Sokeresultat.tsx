@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
 import styled from 'styled-components';
 import Toolbar from './toolbar/Toolbar';
 import Personliste from './Personliste';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
-import { Veilederenhet } from '../store/veilederenheter/veilederenheterTypes';
 import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 import { OverviewTabType } from '../konstanter';

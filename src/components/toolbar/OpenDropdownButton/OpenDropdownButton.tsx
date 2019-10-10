@@ -1,6 +1,6 @@
+import * as React from 'react';
 import styled, { css } from 'styled-components';
 import NavFrontendChevron from 'nav-frontend-chevron';
-import * as React from 'react';
 import themes from '../../../styles/themes';
 import SearchIcon from '../../../img/icons/SearchIcon';
 

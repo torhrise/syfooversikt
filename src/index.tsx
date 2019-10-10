@@ -1,6 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { render } from 'react-dom';
+import ModalWrapper from 'nav-frontend-modal';
 import {
   CONTEXT_EVENT_TYPE,
 } from './konstanter';
@@ -19,7 +20,6 @@ import {
   setEventHandlersOnConfig,
 } from './global';
 import { store } from './store';
-import ModalWrapper from 'nav-frontend-modal';
 
 if (!(window as any)._babelPolyfill) {
   require('babel-polyfill'); // tslint:disable-line no-var-requires
