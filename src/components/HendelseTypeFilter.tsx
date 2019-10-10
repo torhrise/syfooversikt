@@ -1,10 +1,10 @@
 import React, { ComponentPropsWithoutRef, useEffect } from 'react';
 import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
+import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox } from 'nav-frontend-skjema';
 import countFilterAction from '../metrics/countFilterAction';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { filtrerPersonregister } from '../utils/hendelseFilteringUtils';
-import { useDispatch, useSelector } from 'react-redux';
 import { ApplicationState } from '../store';
 import { HendelseTypeFilters } from '../store/filters/filterReducer';
 import { updateHendelseFilterAction } from '../store/filters/filter_actions';
