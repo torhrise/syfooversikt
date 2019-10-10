@@ -10,8 +10,9 @@ const ClearFiltersWrapper = styled.div`
     align-items: center;
     box-sizing: border-box;
     border: 2px solid transparent;
+    border-radius: 2px;
     color: ${themes.color.navBla};
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 500;
     padding: 0.25em;
     -webkit-user-select: none;
