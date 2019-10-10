@@ -1,11 +1,9 @@
 import chai from 'chai';
 import chaiEnzyme from 'chai-enzyme';
+import { shallow } from 'enzyme';
+import SokeresultatFilter from '../../src/components/HendelseTypeFilter';
 import React from 'react';
 import { Checkbox } from 'nav-frontend-skjema';
-import { Provider } from 'react-redux';
-import SokeresultatFilter from '../../src/components/HendelseTypeFilter';
-import { store } from '../../src/store';
-import { mount } from 'enzyme';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -13,9 +11,7 @@ const expect = chai.expect;
 describe('SokeresultatFilter', () => {
     // tslint:disable-next-line:no-empty
     const callback = () => {};
-    const component = mount(<Provider store={store}>
-        <SokeresultatFilter onFilterChange={callback} />
-    </Provider>);
+    const component = shallow(<SokeresultatFilter onFilterChange={callback} /> );
 
     it('Skal inneholde checkbokser med riktige labels', () => {
         expect(component.contains(<Checkbox label={'Ønsker møte'} checked={false} />));
