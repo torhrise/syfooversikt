@@ -7,28 +7,12 @@ export interface FilterState {
     selectedBirthDates: string[];
     selectedVeilederIdents: string[];
     selectedCompanies: string[];
-    selectedHendelseType: HendelseTypeFilters;
 }
-
-export interface HendelseTypeFilters {
-    onskerMote: boolean;
-    svartMote: boolean;
-    ufordeltBruker: boolean;
-    ikkeIAktivitet: boolean;
-}
-
-const initialHendelseFilter: HendelseTypeFilters = {
-    onskerMote: false,
-    svartMote: false,
-    ufordeltBruker: false,
-    ikkeIAktivitet: false,
-};
 
 const inititalState: FilterState = {
     selectedBirthDates: [],
     selectedVeilederIdents: [],
     selectedCompanies: [],
-    selectedHendelseType: initialHendelseFilter,
 };
 
 const FilterReducer: Reducer<FilterState, FilterAction> = (state = inititalState, action) => {
@@ -51,15 +35,6 @@ const FilterReducer: Reducer<FilterState, FilterAction> = (state = inititalState
                 ...state,
                 selectedCompanies: action.selectedCompanies,
             };
-        }
-        case FilterActionTypes.UPDATE_HENDELSE_FILTER: {
-            return {
-                ...state,
-                selectedHendelseType: action.filter,
-            };
-        }
-        case FilterActionTypes.RESET_ALL_FILTERS: {
-            return inititalState;
         }
     }
     return state;

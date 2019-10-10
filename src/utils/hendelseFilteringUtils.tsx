@@ -2,9 +2,9 @@ import {
     PersonregisterState,
     PersonData
 } from '../store/personregister/personregisterTypes';
+import { HendelseTypeFilters } from '../components/HendelseTypeFilter';
 import { isNullOrUndefined } from 'util';
 import { formaterNavn } from './lenkeUtil';
-import { HendelseTypeFilters } from '../store/filters/filterReducer';
 
 export class Filterable<T> {
 

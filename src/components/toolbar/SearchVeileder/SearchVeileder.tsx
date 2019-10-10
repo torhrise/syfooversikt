@@ -72,16 +72,6 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
         }
     };
 
-    const checkedVeileders = useSelector((state: ApplicationState) => state.filters.selectedVeilederIdents);
-
-    useEffect(() => {
-        if (checkedVeileders.length === 0) {
-            setVeileders([]);
-            setActiveFilters(0);
-            setActiveVeilederFilter([]);
-        }
-    }, [checkedVeileders]);
-
     const chooseButtonHandler = () => {
         setActiveFilters((veileders.length));
         setShowList(false);
