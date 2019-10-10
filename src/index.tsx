@@ -14,7 +14,10 @@ import {
   finnMiljoStreng,
 } from './utils/miljoUtil';
 import AppRouter from './routers/AppRouter';
-import { config, setEventHandlersOnConfig } from './global';
+import {
+  config,
+  setEventHandlersOnConfig,
+} from './global';
 import { store } from './store';
 import ModalWrapper from 'nav-frontend-modal';
 

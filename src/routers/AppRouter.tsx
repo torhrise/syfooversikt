@@ -1,5 +1,8 @@
 import React from 'react';
-import { Route, Switch } from 'react-router';
+import {
+  Route,
+  Switch,
+} from 'react-router';
 import { Landingsside } from '../sider/Landingsside';
 import ManglerTilgangside from '../sider/ManglerTilgangside';
 import { BrowserRouter } from 'react-router-dom';
