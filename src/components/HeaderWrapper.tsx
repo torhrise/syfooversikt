@@ -1,6 +1,9 @@
 import React from 'react';
 import { PropsWithChildren } from 'react';
-import { Container, Column } from 'nav-frontend-grid';
+import {
+    Column,
+    Container,
+} from 'nav-frontend-grid';
 import styled from 'styled-components';
 
 const ChildrenWrapper = styled.div`

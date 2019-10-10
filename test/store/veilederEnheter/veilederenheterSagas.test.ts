@@ -1,5 +1,8 @@
 import { expect } from 'chai';
-import { put, call } from 'redux-saga/effects';
+import {
+  call,
+  put,
+} from 'redux-saga/effects';
 import { hentVeilederenheter } from '../../../src/store/veilederenheter/veilederenheterSagas';
 import { get } from '../../../src/api';
 import { VeilederenheterActionTypes } from '../../../src/store/veilederenheter/veilederenheter_actions';

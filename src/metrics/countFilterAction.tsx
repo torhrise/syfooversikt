@@ -13,6 +13,9 @@ function* countFilterAction(value: string): any {
         case HendelseTekster.UFORDELTE_BRUKERE:
             key = 'ufordelte';
             break;
+        case HendelseTekster.IKKE_I_AKTIVITET:
+            key = 'ikkeaktivitet';
+            break;
         default: key = '';
     }
     yield(post(`/metrics/actions/filters/${key}`, {}));

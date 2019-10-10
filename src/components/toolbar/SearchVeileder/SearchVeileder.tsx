@@ -1,4 +1,7 @@
-import React, { ChangeEvent, useState, useEffect } from 'react';
+import React, {
+    ChangeEvent,
+    useState,
+} from 'react';
 import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import styled from 'styled-components';

@@ -1,4 +1,9 @@
-import { combineReducers, Dispatch, Action, AnyAction } from 'redux';
+import {
+  Action,
+  AnyAction,
+  combineReducers,
+  Dispatch,
+} from 'redux';
 import { connectRouter } from 'connected-react-router';
 import { all, fork } from 'redux-saga/effects';
 import { ModiacontextState } from './modiacontext/modiacontextTypes';
@@ -31,15 +36,15 @@ import filterReducer, { FilterState } from './filters/filterReducer';
 
 export interface ApplicationState {
   router: any;
+  changelogs: ChangelogState;
   modiacontext: ModiacontextState;
+  filters: FilterState;
   veiledere: VeiledereState;
   veilederenheter: VeilederenheterState;
   veilederinfo: VeilederinfoState;
   personInfo: PersonInfoState;
   personoversikt: PersonoversiktStatusState;
   personregister: PersonregisterState;
-  changelogs: ChangelogState;
-  filters: FilterState;
 }
 
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
@@ -48,6 +53,8 @@ export interface ConnectedReduxProps<A extends Action = AnyAction> {
 
 export const rootReducer = () => combineReducers<ApplicationState>({
   router: connectRouter(history),
+  changelogs: changelogReducer,
+  filters: filterReducer,
   modiacontext: modiacontextReducer,
   veiledere: veiledereReducer,
   veilederenheter: veilederenheterReducer,
@@ -55,20 +62,18 @@ export const rootReducer = () => combineReducers<ApplicationState>({
   personInfo: personInfoReducer,
   personoversikt: personoversiktReducer,
   personregister: personregisterReducer,
-  changelogs: changelogReducer,
-  filters: filterReducer,
 });
 
 export function* rootSaga() {
   yield all([
-    fork(modiacontextSagas),
-    fork(veiledereSagas),
-    fork(veilederenheterSagas),
-    fork(veilederinfoSagas),
-    fork(personInfoSagas),
-    fork(personoversiktSagas),
-    fork(veilederArbeidstakerSagas),
     fork(changelogSagas),
+    fork(modiacontextSagas),
+    fork(personoversiktSagas),
+    fork(personInfoSagas),
+    fork(veilederArbeidstakerSagas),
+    fork(veilederenheterSagas),
+    fork(veiledereSagas),
+    fork(veilederinfoSagas),
   ]);
 }
 

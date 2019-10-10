@@ -21,6 +21,7 @@ const setupMetrics = () => {
     register.registerMetric(counters.userFilterMotebehovCounter);
     register.registerMetric(counters.userFilterMoteplanleggerCounter);
     register.registerMetric(counters.userFilterUfordelteCounter);
+    register.registerMetric(counters.userFilterIkkeAktivitetCounter);
 
     collectDefaultMetrics({ register });
     return register;
