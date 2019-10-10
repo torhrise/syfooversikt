@@ -20,10 +20,6 @@ const ClearFiltersWrapper = styled.div`
     user-select: none;
     :hover {
         cursor: pointer;
-
-        #text {
-            border-bottom: 1px solid ${themes.color.navBla}
-        }
     }
     :active {
         border: 2px solid ${themes.color.navBla}
