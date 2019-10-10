@@ -1,7 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { resetAllFilters } from '../../store/filters/filter_actions';
-import styled from 'styled-components';
 import themes from '../../styles/themes';
 import SlettIkon from '../common/SlettIkon';
 
@@ -15,8 +15,6 @@ const ClearFiltersWrapper = styled.div`
     font-weight: 500;
     padding: 0.25em;
     -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
     :hover {
         cursor: pointer;

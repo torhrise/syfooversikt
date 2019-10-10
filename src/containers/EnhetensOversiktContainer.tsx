@@ -29,7 +29,6 @@ import { AlertStripeWarning } from '../components/AlertStripeWarning';
 import { OverviewTabType } from '../konstanter';
 import { hentVeiledere } from '../store/veiledere/veiledere_actions';
 import PersonFilter from '../components/PersonFilter';
-import { HendelseTypeFilters } from '../store/filters/filterReducer';
 import ClearFilters from '../components/filters/ClearFilters';
 
 const tekster = {
@@ -72,8 +71,8 @@ const HendelseFilterStyled = styled(SokeresultatFilter)`
 `;
 
 const ClearFiltersButton = styled(ClearFilters)`
-  display: flex !important;
-  justify-content: flex-end !important;
+  display: flex;
+  justify-content: flex-end;
   margin-bottom: .5em;
 `;
 

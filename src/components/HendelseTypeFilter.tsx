@@ -1,9 +1,9 @@
-import React, { useState, ComponentPropsWithoutRef, useEffect } from 'react';
+import React, { ComponentPropsWithoutRef, useEffect } from 'react';
 import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
 import { Checkbox } from 'nav-frontend-skjema';
+import countFilterAction from '../metrics/countFilterAction';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { filtrerPersonregister } from '../utils/hendelseFilteringUtils';
-import countFilterAction from '../metrics/countFilterAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { ApplicationState } from '../store';
 import { HendelseTypeFilters } from '../store/filters/filterReducer';
