@@ -7,6 +7,7 @@ import BirthDateFilter from './filters/BirthDateFilter';
 import CompanyFilter from './filters/CompanyFilter';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { ApplicationState } from '../store';
+import countFilterAction, { CounterFilterActionTypes } from '../metrics/countFilterAction';
 
 const texts = {
     panelTitle: 'Filter',
@@ -44,10 +45,12 @@ export default (props: PersonFilterProps) => {
     };
 
     const onBirthDateChange = (birthDates: string[]) => {
+        countFilterAction(CounterFilterActionTypes.BIRTHDAY_FILTER).next();
         dispatch(updateBirthDateFilter(birthDates));
     };
 
     const onCompanyChange = (companies: string[]) => {
+        countFilterAction(CounterFilterActionTypes.COMPANY_FILTER).next();
         dispatch(updateCompaniesFilter(companies));
     };
 

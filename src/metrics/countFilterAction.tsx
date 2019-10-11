@@ -3,6 +3,8 @@ import { HendelseTekster } from '../components/HendelseTypeFilter';
 
 export const CounterFilterActionTypes = {
     VEILEDER_SOK: 'veiledersok',
+    COMPANY_FILTER: 'virksomheter',
+    BIRTHDAY_FILTER: 'fodselsdato',
     ...HendelseTekster,
 };
 
@@ -23,6 +25,12 @@ function* countFilterAction(value: string): any {
             break;
         case CounterFilterActionTypes.VEILEDER_SOK:
             key = CounterFilterActionTypes.VEILEDER_SOK;
+            break;
+        case CounterFilterActionTypes.BIRTHDAY_FILTER:
+            key = CounterFilterActionTypes.BIRTHDAY_FILTER;
+            break;
+        case CounterFilterActionTypes.COMPANY_FILTER:
+            key = CounterFilterActionTypes.COMPANY_FILTER;
             break;
         default: key = '';
     }
