@@ -42,6 +42,17 @@ const userFilterVeilederSearchCounter = new Counter({
     help: 'Number of times the filter for searching veileders was selected'
 });
 
+const userFilterCompanyCounter = new Counter({
+    name: getMetricName(METRIC_FILTER_INFIX, 'virksomheter'),
+    help: 'Number of times the filter for showing users by company was selected'
+});
+
+const userFilterBirthdayCounter = new Counter({
+    name: getMetricName(METRIC_FILTER_INFIX, 'fodselsdato'),
+    help: 'Number of times the filter for searching users by birthday was selected'
+});
+
+
 
 module.exports = {
     getMetricName,
@@ -53,4 +64,6 @@ module.exports = {
     userFilterUfordelteCounter,
     userFilterIkkeAktivitetCounter,
     userFilterVeilederSearchCounter,
+    userFilterCompanyCounter,
+    userFilterBirthdayCounter,
 };
