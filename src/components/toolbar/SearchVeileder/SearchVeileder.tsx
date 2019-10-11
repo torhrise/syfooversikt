@@ -64,9 +64,17 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
         lowerCaseInput
     );
 
-    const filteredVeiledere = lowerCasedAndFilteredVeiledere.sort((v1, v2) => {
+    const checkedSort = (v1: Veileder, v2: Veileder) => {
         const v1InFilter = selectedVeilederIdents.find((v) => v === v1.ident);
         const v2InFilter = selectedVeilederIdents.find((v) => v === v2.ident);
+
+        if (v1.ident === props.aktivVeilederInfo.ident) {
+            return -1;
+        }
+
+        if (v2.ident === props.aktivVeilederInfo.ident) {
+            return 1;
+        }
 
         if (v1InFilter && v2InFilter || !v1InFilter && !v2InFilter) {
             return 0;
@@ -75,7 +83,9 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
             return -1;
         }
         return 1;
-    });
+    }
+
+    const filteredVeiledere = lowerCasedAndFilteredVeiledere.sort(checkedSort);
 
     const checkboxOnChangeHandler = (veileder: Veileder) => {
         if (veileders.find((v: Veileder) => v.ident === veileder.ident)) {
