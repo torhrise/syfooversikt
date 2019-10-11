@@ -8,7 +8,6 @@ import {
 import themes from '../styles/themes';
 import { SortingType } from '../utils/hendelseFilteringUtils';
 import Chevron from 'nav-frontend-chevron';
-import ChevronKnapp from './ChevronKnapp';
 
 const tekster = {
   navn: 'Etternavn, Fornavn',

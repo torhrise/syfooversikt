@@ -2,6 +2,7 @@ import React, {
     ChangeEvent,
     useState,
 } from 'react';
+import { useSelector } from 'react-redux';
 import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import styled from 'styled-components';
@@ -9,7 +10,6 @@ import { Dropdown } from '../Dropdown/Dropdown';
 import { sortVeiledereAlphabeticallyWithGivenVeilederFirst } from '../../../utils/veiledereUtils';
 import { filterVeiledereOnInput } from '../../../utils/assignVeilederUtils';
 import { Veilederinfo } from '../../../store/veilederinfo/veilederinfoTypes';
-import { useSelector } from 'react-redux';
 import { ApplicationState } from '../../../store';
 
 interface VeilederIdentsFilterProps {

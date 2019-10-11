@@ -1,10 +1,10 @@
+import React from 'react';
 import chai from 'chai';
+import { Provider } from 'react-redux';
 import chaiEnzyme from 'chai-enzyme';
 import { mount } from 'enzyme';
-import React from 'react';
 import { Landingsside } from '../../src/sider/Landingsside';
 import { MemoryRouter } from 'react-router';
-import { Provider } from 'react-redux';
 import { store } from '../../src/store';
 
 chai.use(chaiEnzyme());

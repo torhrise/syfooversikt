@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { ToolbarProps } from '../components/toolbar/Toolbar';
 import { Veileder } from '../store/veiledere/veiledereTypes';
-import * as React from 'react';
 import { sortVeiledereAlphabetically } from './veiledereUtils';
 
 export const assignUsersToSelectedVeileder = (({ buttonHandler, checkAllHandler }: ToolbarProps, selectedVeilederIdent: string) => {
