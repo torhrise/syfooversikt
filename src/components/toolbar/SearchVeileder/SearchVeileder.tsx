@@ -59,10 +59,23 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
         props.veiledere,
         props.aktivVeilederInfo.ident
     );
-    const filteredVeiledere = filterVeiledereOnInput(
+    const lowerCasedAndFilteredVeiledere = filterVeiledereOnInput(
         veiledereSortedAlphabetically,
         lowerCaseInput
     );
+
+    const filteredVeiledere = lowerCasedAndFilteredVeiledere.sort((v1, v2) => {
+        const v1InFilter = selectedVeilederIdents.find((v) => v === v1.ident);
+        const v2InFilter = selectedVeilederIdents.find((v) => v === v2.ident);
+
+        if (v1InFilter && v2InFilter || !v1InFilter && !v2InFilter) {
+            return 0;
+        }
+        if (v1InFilter && !v2InFilter) {
+            return -1;
+        }
+        return 1;
+    });
 
     const checkboxOnChangeHandler = (veileder: Veileder) => {
         if (veileders.find((v: Veileder) => v.ident === veileder.ident)) {
@@ -78,6 +91,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
         setActiveVeilederFilter(veileders);
         props.onSelect(veileders.map((v) => v.ident));
     };
+
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         const currentTarget = e.currentTarget;
         setTimeout(() => {
