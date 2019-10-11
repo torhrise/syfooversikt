@@ -16,6 +16,9 @@ function* countFilterAction(value: string): any {
         case HendelseTekster.IKKE_I_AKTIVITET:
             key = 'ikkeaktivitet';
             break;
+        case HendelseTekster.VEILEDER_SOK:
+            key = 'veiledersok';
+            break;
         default: key = '';
     }
     yield(post(`/metrics/actions/filters/${key}`, {}));
