@@ -11,7 +11,7 @@ import Pagination from '../PaginationRow';
 import SearchVeileder from './SearchVeileder/SearchVeileder';
 import { updateVeilederIdentsFilter } from '../../store/filters/filter_actions';
 import countFilterAction from '../../metrics/countFilterAction';
-import { HendelseTekster } from '../HendelseTypeFilter';
+import { CounterFilterActionTypes } from '../../metrics/countFilterAction';
 
 export interface ToolbarProps {
     aktivVeilederInfo: Veilederinfo;
@@ -116,7 +116,7 @@ export default (props: ToolbarProps) => {
 
     const onVeilderIdentsChange = (veilederIdents: string[]) => {
         dispatch(updateVeilederIdentsFilter(veilederIdents));
-        countFilterAction(HendelseTekster.VEILEDER_SOK).next();
+        countFilterAction(CounterFilterActionTypes.VEILEDER_SOK).next();
     };
 
     return (<Toolbar>

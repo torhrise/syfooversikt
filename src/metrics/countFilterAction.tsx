@@ -1,23 +1,28 @@
 import { post } from '../api';
 import { HendelseTekster } from '../components/HendelseTypeFilter';
 
+export const CounterFilterActionTypes = {
+    VEILEDER_SOK: 'veiledersok',
+    ...HendelseTekster,
+};
+
 function* countFilterAction(value: string): any {
     let key = '';
     switch(value) {
-        case HendelseTekster.MOTEBEHOV:
+        case CounterFilterActionTypes.MOTEBEHOV:
             key = 'motebehov';
             break;
-        case HendelseTekster.MOTEPLANLEGGER_SVAR:
+        case CounterFilterActionTypes.MOTEPLANLEGGER_SVAR:
             key = 'moteplanlegger';
             break;
-        case HendelseTekster.UFORDELTE_BRUKERE:
+        case CounterFilterActionTypes.UFORDELTE_BRUKERE:
             key = 'ufordelte';
             break;
-        case HendelseTekster.IKKE_I_AKTIVITET:
+        case CounterFilterActionTypes.IKKE_I_AKTIVITET:
             key = 'ikkeaktivitet';
             break;
-        case HendelseTekster.VEILEDER_SOK:
-            key = 'veiledersok';
+        case CounterFilterActionTypes.VEILEDER_SOK:
+            key = CounterFilterActionTypes.VEILEDER_SOK;
             break;
         default: key = '';
     }
