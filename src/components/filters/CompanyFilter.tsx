@@ -1,4 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import {
+    useState,
+    useEffect
+} from 'react';
 import Select from 'react-select';
 import FilterTitle from '../FilterTitle';
 import { ValueType } from 'react-select/src/types';

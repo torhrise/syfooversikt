@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { Checkbox } from 'nav-frontend-skjema';
 import TildelVeileder from './AssignVeileder/TildelVeileder';
 import themes from '../../styles/themes';
 import { Veileder } from '../../store/veiledere/veiledereTypes';
 import { Veilederinfo } from '../../store/veilederinfo/veilederinfoTypes';
-import { Checkbox } from 'nav-frontend-skjema';
 import { OverviewTabType } from '../../konstanter';
 import Pagination from '../PaginationRow';
 import SearchVeileder from './SearchVeileder/SearchVeileder';
 import { updateVeilederIdentsFilter } from '../../store/filters/filter_actions';
+import countFilterAction from '../../metrics/countFilterAction';
+import { CounterFilterActionTypes } from '../../metrics/countFilterAction';
 
 export interface ToolbarProps {
     aktivVeilederInfo: Veilederinfo;
@@ -117,6 +119,7 @@ export default (props: ToolbarProps) => {
 
     const onVeilderIdentsChange = (veilederIdents: string[]) => {
         dispatch(updateVeilederIdentsFilter(veilederIdents));
+        countFilterAction(CounterFilterActionTypes.VEILEDER_SOK).next();
     };
 
     return (<Toolbar>

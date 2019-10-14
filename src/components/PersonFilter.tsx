@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Ekspanderbartpanel, { EkspanderbartpanelProps } from 'nav-frontend-ekspanderbartpanel';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { updateBirthDateFilter, updateCompaniesFilter } from '../store/filters/filter_actions';
 import BirthDateFilter from './filters/BirthDateFilter';
 import CompanyFilter from './filters/CompanyFilter';
-import styled from 'styled-components';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { ApplicationState } from '../store';
 

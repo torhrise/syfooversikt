@@ -1,10 +1,11 @@
-import React from 'react';
-import { PropsWithChildren } from 'react';
+import React, {
+    PropsWithChildren,
+} from 'react';
+import styled from 'styled-components';
 import {
     Column,
     Container,
 } from 'nav-frontend-grid';
-import styled from 'styled-components';
 
 const ChildrenWrapper = styled.div`
     background: white;

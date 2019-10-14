@@ -1,8 +1,8 @@
 import React from 'react';
-import Chevron from 'nav-frontend-chevron';
 import styled from 'styled-components';
-import themes from '../styles/themes';
 import classNames from 'classnames';
+import Chevron from 'nav-frontend-chevron';
+import themes from '../styles/themes';
 
 const ChevronButton = styled.button`
     background: transparent;

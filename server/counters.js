@@ -37,6 +37,12 @@ const userFilterIkkeAktivitetCounter = new Counter({
     help: 'Number of times the filter for showing users with any activity was selected'
 });
 
+const userFilterVeilederSearchCounter = new Counter({
+    name: getMetricName(METRIC_FILTER_INFIX, 'veiledersok'),
+    help: 'Number of times the filter for searching veileders was selected'
+});
+
+
 module.exports = {
     getMetricName,
     APP_METRIC_PREFIX,
@@ -46,4 +52,5 @@ module.exports = {
     userFilterMoteplanleggerCounter,
     userFilterUfordelteCounter,
     userFilterIkkeAktivitetCounter,
+    userFilterVeilederSearchCounter,
 };

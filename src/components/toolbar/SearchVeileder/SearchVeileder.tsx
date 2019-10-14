@@ -3,6 +3,7 @@ import React, {
     useState,
     useEffect,
 } from 'react';
+import { useSelector } from 'react-redux';
 import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import styled from 'styled-components';
@@ -10,7 +11,6 @@ import { Dropdown } from '../Dropdown/Dropdown';
 import { sortVeiledereAlphabeticallyWithGivenVeilederFirst } from '../../../utils/veiledereUtils';
 import { filterVeiledereOnInput } from '../../../utils/assignVeilederUtils';
 import { Veilederinfo } from '../../../store/veilederinfo/veilederinfoTypes';
-import { useSelector } from 'react-redux';
 import { ApplicationState } from '../../../store';
 
 interface VeilederIdentsFilterProps {
@@ -60,10 +60,33 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
         props.veiledere,
         props.aktivVeilederInfo.ident
     );
-    const filteredVeiledere = filterVeiledereOnInput(
+    const lowerCasedAndFilteredVeiledere = filterVeiledereOnInput(
         veiledereSortedAlphabetically,
         lowerCaseInput
     );
+
+    const checkedSort = (v1: Veileder, v2: Veileder) => {
+        const v1InFilter = selectedVeilederIdents.find((v) => v === v1.ident);
+        const v2InFilter = selectedVeilederIdents.find((v) => v === v2.ident);
+
+        if (v1.ident === props.aktivVeilederInfo.ident) {
+            return -1;
+        }
+
+        if (v2.ident === props.aktivVeilederInfo.ident) {
+            return 1;
+        }
+
+        if (v1InFilter && v2InFilter || !v1InFilter && !v2InFilter) {
+            return 0;
+        }
+        if (v1InFilter && !v2InFilter) {
+            return -1;
+        }
+        return 1;
+    }
+
+    const filteredVeiledere = lowerCasedAndFilteredVeiledere.sort(checkedSort);
 
     const checkboxOnChangeHandler = (veileder: Veileder) => {
         if (veileders.find((v: Veileder) => v.ident === veileder.ident)) {
@@ -89,6 +112,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
         setActiveVeilederFilter(veileders);
         props.onSelect(veileders.map((v) => v.ident));
     };
+
     const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
         const currentTarget = e.currentTarget;
         setTimeout(() => {

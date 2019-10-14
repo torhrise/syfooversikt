@@ -3,8 +3,8 @@ import {
   call,
   put,
 } from 'redux-saga/effects';
-import { hentVeilederenheter } from '../../../src/store/veilederenheter/veilederenheterSagas';
 import { get } from '../../../src/api';
+import { hentVeilederenheter } from '../../../src/store/veilederenheter/veilederenheterSagas';
 import { VeilederenheterActionTypes } from '../../../src/store/veilederenheter/veilederenheter_actions';
 import { fullNaisUrl } from '../../../src/utils/miljoUtil';
 import { enhet } from '../../data/fellesTestdata';

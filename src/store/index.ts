@@ -5,7 +5,10 @@ import {
   Dispatch,
 } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import { all, fork } from 'redux-saga/effects';
+import {
+  all,
+  fork,
+} from 'redux-saga/effects';
 import { ModiacontextState } from './modiacontext/modiacontextTypes';
 import { VeiledereState } from './veiledere/veiledereTypes';
 import { VeilederenheterState } from './veilederenheter/veilederenheterTypes';

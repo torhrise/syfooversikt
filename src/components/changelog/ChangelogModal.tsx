@@ -1,7 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import ModalWrapper from 'nav-frontend-modal';
+import React, {
+    useEffect,
+    useState,
+} from 'react';
 import styled from 'styled-components';
-import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
+import ModalWrapper from 'nav-frontend-modal';
+import {
+    Undertittel,
+    Normaltekst,
+} from 'nav-frontend-typografi';
 import ChevronKnapp from '../ChevronKnapp';
 import { Changelog } from '../../store/changelog/changelogTypes';
 import NumberIndicator from '../NumberIndicator';

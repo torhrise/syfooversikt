@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, {
+  useState,
+} from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
 import { PersonData, PersonregisterState } from '../store/personregister/personregisterTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
-import styled from 'styled-components';
 import { SortingType, getSortedEventsFromSortingType } from '../utils/hendelseFilteringUtils';
-import { useSelector } from 'react-redux';
 import { veilederEllerUfordelt } from '../utils/personDataUtil';
 import { ApplicationState } from '../store';
 
