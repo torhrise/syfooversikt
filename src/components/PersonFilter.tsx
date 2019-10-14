@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import Ekspanderbartpanel, { EkspanderbartpanelProps } from 'nav-frontend-ekspanderbartpanel';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { updateBirthDateFilter, updateCompaniesFilter } from '../store/filters/filter_actions';
 import BirthDateFilter from './filters/BirthDateFilter';
 import CompanyFilter from './filters/CompanyFilter';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
+import { ApplicationState } from '../store';
 
 const texts = {
     panelTitle: 'Filter',
@@ -50,11 +51,13 @@ export default (props: PersonFilterProps) => {
         dispatch(updateCompaniesFilter(companies));
     };
 
+    const filters = useSelector((state: ApplicationState) => state.filters);
+
     return (
         <Ekspanderbartpanel apen={panelOpen} onClick={togglePanel} tittel={texts.panelTitle} >
             <SpacedFilters>
-                <CompanyFilter options={mapPersonregisterToCompanyList(personregister)} onSelect={onCompanyChange} />
-                <BirthDateFilter onSelect={onBirthDateChange} />
+                <CompanyFilter selectedOptions={filters.selectedCompanies} options={mapPersonregisterToCompanyList(personregister)} onSelect={onCompanyChange} />
+                <BirthDateFilter onSelect={onBirthDateChange} selectedDates={filters.selectedBirthDates} />
             </SpacedFilters>
         </Ekspanderbartpanel>
     );
