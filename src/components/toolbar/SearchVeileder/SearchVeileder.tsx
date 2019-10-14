@@ -84,7 +84,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
             return -1;
         }
         return 1;
-    }
+    };
 
     const filteredVeiledere = lowerCasedAndFilteredVeiledere.sort(checkedSort);
 
