@@ -10,9 +10,9 @@ import { HendelseTypeFilters } from '../store/filters/filterReducer';
 import { updateHendelseFilterAction } from '../store/filters/filter_actions';
 
 export const HendelseTekster: any = {
+    UFORDELTE_BRUKERE: 'Ufordelte brukere', // Ikke tildelt veileder
     MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
     MOTEPLANLEGGER_SVAR: 'Svar møteplanlegger', // Svar fra møteplanlegger
-    UFORDELTE_BRUKERE: 'Ufordelte brukere', // Ikke tildelt veileder
     IKKE_I_AKTIVITET: '100% f.o.m. 8 uker',
 };
 
