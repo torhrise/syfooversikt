@@ -13,7 +13,7 @@ export const HendelseTekster: any = {
     MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
     MOTEPLANLEGGER_SVAR: 'Svar møteplanlegger', // Svar fra møteplanlegger
     UFORDELTE_BRUKERE: 'Ufordelte brukere', // Ikke tildelt veileder
-    IKKE_I_AKTIVITET: 'Ikke i aktivitet',
+    IKKE_I_AKTIVITET: '100% f.o.m. 8 uker',
 };
 
 interface Props extends ComponentPropsWithoutRef<any> {
