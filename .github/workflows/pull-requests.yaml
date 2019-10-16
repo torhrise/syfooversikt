@@ -5,16 +5,18 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-      - name: npm set registry
-        run: npm config set registry https://repo.adeo.no/repository/npm-public/
-      - name: install deps
-        run: npm ci
-      - name: build
-        run: npm run nais-build
+      - name: Use Node.js ${{ matrix.node-version }}
+          uses: actions/setup-node@v1
+          with:
+            node-version: ${{ matrix.node-version }}
+      - name: npm install, build, and test
+          run: |
+            npm ci
+            npm run nais-build
+            npm test
 
