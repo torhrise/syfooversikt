@@ -16,6 +16,7 @@ const PaginationItems = styled.div`
 const PaginationText = styled.div`
   display: inline-flex;
   justify-items: center;
+  white-space: nowrap;
 `;
 
 interface PaginationProps {
