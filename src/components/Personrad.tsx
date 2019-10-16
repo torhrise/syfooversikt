@@ -6,7 +6,7 @@ import themes from '../styles/themes';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
-  skjermingskode, companyNamesFromPersonData,
+  skjermingskode, companyNamesFromPersonData, EllipsizedText,
 } from '../utils/personDataUtil';
 
 interface PersonradProps {
@@ -31,6 +31,12 @@ export const PersonRad = styled.div<{ index: number, selected: boolean }>`
       ? { backgroundColor: 'white' }
       : { backgroundColor: themes.color.navLysGra };
   }};
+`;
+
+const EllipsizedColumn = styled.p`
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const VelgBoks = styled(Checkbox)`
@@ -63,7 +69,7 @@ export default (props: PersonradProps) => {
       <Column xs={'2'}>{fnr}</Column>
       <Column xs={'2'}>{companyNamesFromPersonData(personData)}</Column>
       <Column xs={'2'}>{veilederName}</Column>
-      <Column xs={'2'}>{skjermingskode(personData)}</Column>
+      <Column xs={'2'}><EllipsizedColumn>{skjermingskode(personData)}</EllipsizedColumn></Column>
     </PersonRad>
   );
 };

@@ -3,6 +3,7 @@ import {
   PersonregisterState,
 } from '../store/personregister/personregisterTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
+import styled from 'styled-components';
 
 export const skjermingskode = (person: PersonData) => {
   return person.skjermingskode && person.skjermingskode !== 'INGEN'

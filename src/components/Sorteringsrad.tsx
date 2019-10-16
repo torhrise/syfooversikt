@@ -56,7 +56,7 @@ export const FlexColumn = styled(Column)`
   white-space: nowrap;
   text-overflow: ellipsis;
   /* overflow: hidden; */
-  @media (max-width: 1000px) {
+  @media (max-width: 960px) {
     ${GrayChevron} {
       display: none;
     }
