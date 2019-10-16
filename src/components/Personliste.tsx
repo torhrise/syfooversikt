@@ -84,7 +84,7 @@ const Personliste = (props: PersonlisteProps) => {
       fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad
           index={idx}
-          key={JSON.stringify(personregister[fnr])}
+          key={JSON.stringify({...personregister[fnr], idx })}
           fnr={fnr}
           veilederComponent={getVeilederComponent(isVeilederDataLoaded === false, veiledere, personregister[fnr])}
           personData={personregister[fnr]}

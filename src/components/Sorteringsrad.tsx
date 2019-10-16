@@ -78,6 +78,14 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
     onSortClick(nextSortingType);
   };
 
+  const onSortingByFnrClick = () => {
+    const nextSortingType: SortingType = currentSortingType === 'FNR_ASC'
+              ? 'FNR_DESC'
+              : 'FNR_ASC';
+    setCurrentSortingType(nextSortingType);
+    onSortClick(nextSortingType);
+  };
+
   const chevronType = currentSortingType === 'NAME_ASC'
     ? 'opp'
     : 'ned';
@@ -92,7 +100,11 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
           <p>, Fornavn</p>
           <GrayChevron type={chevronType} />
         </FlexColumn>
-        <Column xs={'2'}>{tekster.fodselsnummer}</Column>
+        <Column xs={'2'}>
+          <SortingButton onClick={onSortingByFnrClick}>
+            <strong>{tekster.fodselsnummer}</strong>
+          </SortingButton>
+        </Column>
         <Column xs={'2'}>{tekster.virksomhet}</Column>
         <Column xs={'2'}>{tekster.veileder}</Column>
         <Column xs={'2'}>{}</Column>

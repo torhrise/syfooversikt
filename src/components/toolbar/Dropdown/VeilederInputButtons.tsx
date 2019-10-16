@@ -45,13 +45,13 @@ const InputButtons = (props: VeilederCheckboxProps) => {
             {filteredVeiledere.map((veileder: Veileder, index: number) => (
                 props.buttonType === 'radio' ?
                     <StyledRadio
-                        key={JSON.stringify(veileder)}
+                        key={JSON.stringify({...veileder, index })}
                         label={getVeilederIdentification(veileder)}
                         name="veiledereRadioButton"
                         onChange={() => onChangeHandler(veileder)}
                     />
                     : <StyledCheckbox
-                        key={JSON.stringify(veileder)}
+                        key={JSON.stringify({...veileder, index })}
                         label={getVeilederIdentification(veileder)}
                         name="veiledereCheckbox"
                         onChange={() => onChangeHandler(veileder)}

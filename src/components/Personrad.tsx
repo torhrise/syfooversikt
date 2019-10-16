@@ -6,7 +6,8 @@ import themes from '../styles/themes';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
-  skjermingskode, companyNamesFromPersonData, EllipsizedText,
+  skjermingskode,
+  companyNamesFromPersonData,
 } from '../utils/personDataUtil';
 
 interface PersonradProps {
