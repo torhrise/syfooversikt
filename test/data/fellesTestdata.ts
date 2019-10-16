@@ -2,7 +2,7 @@ import {
   PersonData,
   PersonregisterState,
 } from '../../src/store/personregister/personregisterTypes';
-import { PersonoversiktStatus } from '../../src/store/personoversikt/personoversiktTypes';
+import { Oppfolgingstilfelle, PersonoversiktStatus } from '../../src/store/personoversikt/personoversiktTypes';
 
 const veilederIdent = 'Z101010';
 const veilederNavn = 'F_Z101010 E_Z101010';
@@ -38,12 +38,14 @@ export const personoversikt = [
     enhet: enhetId,
     veilederIdent: null,
     motebehovUbehandlet: true,
+    oppfolgingstilfeller: [],
   } as PersonoversiktStatus,
   {
     fnr: testdata.fnr4,
     enhet: enhetId,
     veilederIdent,
     motebehovUbehandlet: null,
+    oppfolgingstilfeller: [],
   } as PersonoversiktStatus,
 ];
 

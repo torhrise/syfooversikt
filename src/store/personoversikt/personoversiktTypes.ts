@@ -4,7 +4,7 @@ export interface PersonoversiktStatus {
   veilederIdent: string | null;
   motebehovUbehandlet: boolean | null;
   moteplanleggerUbehandlet: boolean | null;
-  oppfolgingstilfeller: Oppfolgingstilfelle[];
+  oppfolgingstilfeller: Oppfolgingstilfelle[] | [];
 }
 
 export interface Oppfolgingstilfelle {
