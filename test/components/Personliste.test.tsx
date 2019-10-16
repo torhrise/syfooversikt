@@ -14,7 +14,7 @@ import {
 } from '../data/fellesTestdata';
 import { store } from '../../src/store';
 import { veiledereHentet } from '../../src/store/veiledere/veiledere_actions';
-import { veilederEllerUfordelt } from '../../src/utils/personDataUtil';
+import { veilederEllerNull } from '../../src/utils/personDataUtil';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
@@ -43,14 +43,14 @@ describe('Personliste', () => {
     expect(component.contains(<Personrad
       index={0}
       fnr={testdata.fnr1}
-      veilederName={veilederEllerUfordelt(veiledere[0])}
+      veilederName={veilederEllerNull(veiledere[0])}
       personData={personregister[testdata.fnr1]}
       checkboxHandler={checkboxHandler}
       kryssAv={false}
     />)).to.equal(true);
     expect(component.contains(<Personrad
       index={1}
-      veilederName={veilederEllerUfordelt(veiledere[0])}
+      veilederName={veilederEllerNull(veiledere[0])}
       fnr={testdata.fnr2}
       personData={personregister[testdata.fnr2]}
       checkboxHandler={checkboxHandler}

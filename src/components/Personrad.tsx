@@ -6,15 +6,16 @@ import themes from '../styles/themes';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
-  skjermingskode,
+  skjermingskode, companyNamesFromPersonData,
 } from '../utils/personDataUtil';
+import { FlexColumn } from './Sorteringsrad';
 
 interface PersonradProps {
   fnr: string;
   personData: PersonData;
   checkboxHandler: (fnr: string) => void;
   kryssAv: boolean;
-  veilederName: string;
+  veilederName: string | React.ReactNode;
   index: number;
 }
 
@@ -59,11 +60,11 @@ export default (props: PersonradProps) => {
           }}
         />
       </Column>
-      <Column className="personrad__navn" xs={'3'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
-      <Column className="personrad__fnr" xs={'2'}>{fnr}</Column>
-      <Column className="personrad__veileder" xs={'2'}>{personData.tildeltVeilederIdent}</Column>
-      <Column className="personrad__veiledernavn" xs={'2'}>{veilederName}</Column>
-      <Column className="personrad__skjermet" xs={'2'}>{skjermingskode(personData)}</Column>
+      <FlexColumn xs={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</FlexColumn>
+      <Column xs={'2'}>{fnr}</Column>
+      <Column xs={'2'}>{companyNamesFromPersonData(personData)}</Column>
+      <Column xs={'2'}>{veilederName}</Column>
+      <Column xs={'1'}>{skjermingskode(personData)}</Column>
     </PersonRad>
   );
 };

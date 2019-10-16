@@ -3,12 +3,13 @@ import React, {
 } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { EtikettInfo } from 'nav-frontend-etiketter';
 import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
 import { PersonData, PersonregisterState } from '../store/personregister/personregisterTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 import { SortingType, getSortedEventsFromSortingType } from '../utils/hendelseFilteringUtils';
-import { veilederEllerUfordelt } from '../utils/personDataUtil';
+import { veilederEllerNull } from '../utils/personDataUtil';
 import { ApplicationState } from '../store';
 
 interface PersonlisteProps {
@@ -18,8 +19,20 @@ interface PersonlisteProps {
   veiledere: Veileder[];
 }
 
-const PersonlisteStyled = styled.section`
+const PersonlisteStyled = styled.div`
 `;
+
+const VeilederNavn = styled.p`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+`;
+
+const EtikettFokusStyled = styled(EtikettInfo)`
+  padding: 2px 4px !important;
+`;
+
+const UfordeltBrukerEtikett = () => <EtikettFokusStyled>Ufordelt</EtikettFokusStyled>;
 
 const erMarkert = (markertePersoner: string[], fnr: string) => {
   return markertePersoner.findIndex((markertPerson: string) => {
@@ -35,6 +48,13 @@ const veilederForPerson = ((veiledere: Veileder[], person: PersonData) => {
   }
   return undefined;
 });
+
+const getVeilederComponent = (veiledere: Veileder[], personData: PersonData) => {
+  const veilederName = veilederEllerNull(veilederForPerson(veiledere, personData));
+  return veilederName === null
+          ? <UfordeltBrukerEtikett />
+          : <VeilederNavn>{veilederName}</VeilederNavn>;
+};
 
 const Personliste = (props: PersonlisteProps) => {
   const {
@@ -55,14 +75,14 @@ const Personliste = (props: PersonlisteProps) => {
     }} />
     {
       fnrListe.map((fnr: string, idx: number) => {
-        const veilederName = isVeilederDataLoaded
-          ? veilederEllerUfordelt(veilederForPerson(veiledere, personregister[fnr]))
-          : '';
         return (<Personrad
           index={idx}
           key={idx}
           fnr={fnr}
-          veilederName={veilederName}
+          veilederName={() => {
+            if (!isVeilederDataLoaded) return '';
+            return getVeilederComponent(veiledere, personregister[fnr]);
+          }}
           personData={personregister[fnr]}
           checkboxHandler={checkboxHandler}
           kryssAv={erMarkert(markertePersoner, fnr)}

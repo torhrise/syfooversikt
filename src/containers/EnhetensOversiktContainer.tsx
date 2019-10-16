@@ -52,16 +52,25 @@ const info = (altFeilet: boolean, hentetIngenPersoner: boolean) => {
   }
 };
 
+const SokeresultatFiltre = styled.div`
+  margin-right: 2rem;
+  width: 18em;
+`;
+
 const OversiktContainerInnhold = styled.div`
   display: flex;
-`;
 
-const SokeresultatFiltre = styled.div`
-  flex: 1;
-  min-width: 18rem;
-  margin-right: 2rem;
-`;
+  @media (max-width: 960px) {
+    flex-direction: column;
 
+    ${SokeresultatFiltre} {
+      flex: 1;
+      width: auto;
+      margin-right: 0;
+      margin-bottom: 4em;
+    }
+  }
+`;
 const TekstFilterStyled = styled(TekstFilter)`
   margin-bottom: 1rem;
 `;

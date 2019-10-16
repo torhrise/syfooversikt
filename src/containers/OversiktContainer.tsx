@@ -5,13 +5,13 @@ import {
   useDispatch,
   useSelector,
 } from 'react-redux';
-import { Container } from 'nav-frontend-grid';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
 import { ApplicationState } from '../store';
 import { hentPersonoversiktForespurt } from '../store/personoversikt/personoversikt_actions';
 import { hentVeilederenheter } from '../store/veilederenheter/veilederenheter_actions';
 import EnhetensOversiktContainer from './EnhetensOversiktContainer';
 import { OverviewTabType } from '../konstanter';
+import styled from 'styled-components';
 
 const tekster = {
   overskrifter: {
@@ -26,6 +26,11 @@ const tekster = {
 interface OversiktProps {
   type: string;
 }
+
+const Container = styled.div`
+  width: calc(100% - 10%);
+  margin: auto;
+`;
 
 const getPropsFromState = (
     {

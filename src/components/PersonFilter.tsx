@@ -8,6 +8,7 @@ import CompanyFilter from './filters/CompanyFilter';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { ApplicationState } from '../store';
 import countFilterAction, { CounterFilterActionTypes } from '../metrics/countFilterAction';
+import { mapPersonregisterToCompanyList } from '../utils/personDataUtil';
 
 const texts = {
     panelTitle: 'Filter',
@@ -18,15 +19,6 @@ const SpacedFilters = styled.div`
         margin-bottom: 1em;
     }
 `;
-
-const mapPersonregisterToCompanyList = (personregister: PersonregisterState) => {
-    const allCompanyNames: string[] = [];
-    Object.keys(personregister).forEach((fnr) => {
-        const events = personregister[fnr].oppfolgingstilfeller || [];
-        events.forEach((v) => allCompanyNames.push(v.virksomhetsnavn));
-    });
-    return [...new Set(allCompanyNames)].filter((v) => v && v.length > 0);
-};
 
 interface PersonFilterProps {
     personregister: PersonregisterState;

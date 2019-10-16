@@ -38,18 +38,28 @@ const LinkStyled = styled(NavLink)`
 `;
 
 const NavigationBar = styled.div`
+    background: white;
+    width: 100%;
+    margin: auto;
     margin-bottom:  1em;
-    margin-top: 1em;
-    display: flex;
+`;
 
-    >:not(:last-child) {
+const NavigationBarContent = styled.div`
+  width: calc(100% - 10%);
+  margin: auto;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  display: flex;
+  >:not(:last-child) {
         margin-right: 1em;
     }
 `;
 
 export default () => (
     <NavigationBar>
-        <LinkStyled activeClassName="active" to={'/enhet'}>{tekster.enhetensOversikt}</LinkStyled>
-        <LinkStyled activeClassName="active" to={'/minoversikt'}>{tekster.minOversikt}</LinkStyled>
+        <NavigationBarContent>
+            <LinkStyled activeClassName="active" to={'/enhet'}>{tekster.enhetensOversikt}</LinkStyled>
+            <LinkStyled activeClassName="active" to={'/minoversikt'}>{tekster.minOversikt}</LinkStyled>
+        </NavigationBarContent>
     </NavigationBar>
 );
