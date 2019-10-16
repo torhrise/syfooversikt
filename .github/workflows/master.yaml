@@ -1,0 +1,68 @@
+name: master
+
+on:
+  push:
+    branches:
+      - gdep
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: install deps
+        run: npm install
+      - name: build client
+        run: npm run build
+      - name: build server
+        run: npm run build-server
+      - name: create docker tag
+        env:
+          DOCKER_IMAGE: docker.pkg.github.com/navikt/syfooversikt
+        run: |
+          echo $DOCKER_IMAGE > .docker_image
+          git rev-parse HEAD | cut -c1-7 > .docker_tag
+      - name: build docker image
+        run: |
+          rm -rf node_modules && npm install --only=production
+          docker build . --pull -t $(cat .docker_image):$(cat .docker_tag)
+      - name: push docker image
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin https://docker.pkg.github.com
+          docker push $(cat .docker_image):$(cat .docker_tag)
+        env:
+          DOCKER_USERNAME: ${{ secrets.GH_REPO_USER }}
+          DOCKER_PASSWORD: ${{ secrets.GH_REPO_TOKEN }}
+      - name: deploy to preprod
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NAV_CLUSTER: dev-fss
+        run: |
+          DEPLOY_PAYLOAD=$(echo $DEPLOY_PAYLOAD | jq '.environment = "'$NAV_CLUSTER'"')
+          DEPLOY_PAYLOAD=$(echo $DEPLOY_PAYLOAD | jq '.ref = "'$(cat .docker_tag)'"')
+          curl -i -n --fail \
+             -X POST \
+             -u x-access-token:$GITHUB_TOKEN \
+             -d "$DEPLOY_PAYLOAD" \
+             -H "Accept: application/vnd.github.ant-man-preview+json" \
+             https://api.github.com/repos/$GITHUB_REPOSITORY/deployments
+#      - name: deploy to prod
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#          NAV_CLUSTER: prod-fss
+#          SPEIL_FILE: deploy/speil-prod.json
+#        run: |
+#          SPEIL=$(jq '.spec.image = "'$(cat .docker_image)':'$(cat .docker_tag)'"' -c $SPEIL_FILE )
+#          DEPLOY_PAYLOAD=$(jq ".payload.kubernetes.resources += [$SPEIL, $REDIS, $ALERTS]" deploy/deployreq.json)
+#          DEPLOY_PAYLOAD=$(echo $DEPLOY_PAYLOAD | jq '.environment = "'$NAV_CLUSTER'"')
+#          DEPLOY_PAYLOAD=$(echo $DEPLOY_PAYLOAD | jq '.ref = "'$(cat .docker_tag)'"')
+#          curl -i -n --fail \
+#             -X POST \
+#             -u x-access-token:$GITHUB_TOKEN \
+#             -d "$DEPLOY_PAYLOAD" \
+#             -H "Accept: application/vnd.github.ant-man-preview+json" \
+#             https://api.github.com/repos/$GITHUB_REPOSITORY/deployments
