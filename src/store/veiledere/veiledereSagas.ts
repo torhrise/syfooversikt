@@ -16,20 +16,20 @@ import { skalHenteReducer } from '../../utils/selectorUtil';
 export function* hentVeiledereSaga(
   enhetId: string,
 ) {
-  yield put(actions.henterVeiledere());
+  yield put(actions.henterVeiledere(enhetId));
   try {
     const host = HOST_NAMES.SYFOVEILEDER;
     const path = `${process.env.REACT_APP_SYFOVEILEDER_ROOT}/veiledere/enhet/${enhetId}`;
     const url = fullNaisUrlDefault(host,path);
     const data = yield call(get, url);
-    yield put(actions.veiledereHentet(data));
+    yield put(actions.veiledereHentet(enhetId, data));
   } catch (e) {
-    yield put(actions.hentVeiledereFeilet());
+    yield put(actions.hentVeiledereFeilet(enhetId));
   }
 }
 
 const hentetAktivEnhetId = (state: any): string => {
-  return skalHenteReducer(state.veiledere)
+  return skalHenteReducer(state.veiledere[state.veilederenheter.aktivEnhetId] || {})
     ? state.veilederenheter.aktivEnhetId
     : '';
 };
