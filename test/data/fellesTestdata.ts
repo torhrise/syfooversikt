@@ -3,6 +3,7 @@ import {
   PersonregisterState,
 } from '../../src/store/personregister/personregisterTypes';
 import { PersonoversiktStatus } from '../../src/store/personoversikt/personoversiktTypes';
+import { CONTEXT_EVENT_TYPE } from '../../src/konstanter';
 
 const veilederIdent = 'Z101010';
 const veilederNavn = 'F_Z101010 E_Z101010';
@@ -74,3 +75,8 @@ export const markertePersoner = [
   '01999911111',
   '99999922222',
 ];
+
+export const modiacontextNyAktivEnhet = {
+  verdi: enhet.enhetId,
+  eventType: CONTEXT_EVENT_TYPE.NY_AKTIV_ENHET,
+};

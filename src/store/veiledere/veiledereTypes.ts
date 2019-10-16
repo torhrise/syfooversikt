@@ -4,9 +4,13 @@ export interface Veileder {
   etternavn: string;
 }
 
-export interface VeiledereState {
+export interface VeiledereEnhetState {
   hentet: boolean;
   henter: boolean;
   hentingFeilet: boolean;
   data: Veileder[];
+}
+
+export interface VeiledereState {
+  [key: string]: VeiledereEnhetState;
 }
