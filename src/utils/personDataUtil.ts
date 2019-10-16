@@ -1,4 +1,7 @@
-import { PersonData, PersonregisterState } from '../store/personregister/personregisterTypes';
+import {
+  PersonData,
+  PersonregisterState,
+} from '../store/personregister/personregisterTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 
 export const skjermingskode = (person: PersonData) => {

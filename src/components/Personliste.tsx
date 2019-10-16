@@ -6,11 +6,17 @@ import styled from 'styled-components';
 import { EtikettInfo } from 'nav-frontend-etiketter';
 import Personrad from './Personrad';
 import Sorteringsrad from './Sorteringsrad';
-import { PersonData, PersonregisterState } from '../store/personregister/personregisterTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
-import { SortingType, getSortedEventsFromSortingType } from '../utils/hendelseFilteringUtils';
 import { veilederEllerNull } from '../utils/personDataUtil';
 import { ApplicationState } from '../store';
+import {
+  PersonData,
+  PersonregisterState,
+} from '../store/personregister/personregisterTypes';
+import {
+  SortingType,
+  getSortedEventsFromSortingType,
+} from '../utils/hendelseFilteringUtils';
 
 interface PersonlisteProps {
   personregister: PersonregisterState;
@@ -49,8 +55,8 @@ const veilederForPerson = ((veiledere: Veileder[], person: PersonData) => {
   return undefined;
 });
 
-export const getVeilederComponent = (isAllDataAvailable: boolean, veiledere: Veileder[], personData: PersonData) => {
-  if (!isAllDataAvailable) return <div />;
+export const getVeilederComponent = (show: boolean, veiledere: Veileder[], personData: PersonData) => {
+  if (!show) return <div />;
   const veilederName = veilederEllerNull(veilederForPerson(veiledere, personData));
   return veilederName === null
     ? <UfordeltBrukerEtikett />
@@ -65,7 +71,7 @@ const Personliste = (props: PersonlisteProps) => {
     veiledere,
   } = props;
 
-  const [selectedSortingType, setSortingType] = useState<SortingType>('NONE');
+  const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
   const fnrListe = Object.keys(getSortedEventsFromSortingType(personregister, selectedSortingType));
 
   const isVeilederDataLoaded = useSelector((state: ApplicationState) => state.veiledere.hentet);
@@ -80,7 +86,7 @@ const Personliste = (props: PersonlisteProps) => {
           index={idx}
           key={JSON.stringify(personregister[fnr])}
           fnr={fnr}
-          veilederComponent={getVeilederComponent(isVeilederDataLoaded, veiledere, personregister[fnr])}
+          veilederComponent={getVeilederComponent(!isVeilederDataLoaded, veiledere, personregister[fnr])}
           personData={personregister[fnr]}
           checkboxHandler={checkboxHandler}
           kryssAv={erMarkert(markertePersoner, fnr)}

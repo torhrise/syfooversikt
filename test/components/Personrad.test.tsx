@@ -3,9 +3,14 @@ import chaiEnzyme from 'chai-enzyme';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { Column } from 'nav-frontend-grid';
-import Personrad, { PersonRad } from '../../src/components/Personrad';
+import Personrad, {
+  PersonRad,
+} from '../../src/components/Personrad';
 import { lenkeTilModiaEnkeltperson } from '../../src/utils/lenkeUtil';
-import { skjermingskode, veilederEllerNull, companyNamesFromPersonData } from '../../src/utils/personDataUtil';
+import {
+  skjermingskode,
+  companyNamesFromPersonData,
+} from '../../src/utils/personDataUtil';
 import {
   testdata,
   veiledere,

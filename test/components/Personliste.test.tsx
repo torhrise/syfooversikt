@@ -38,7 +38,7 @@ describe('Personliste', () => {
     expect(component.find(Sorteringsrad)).to.have.length(1);
   });
 
-  it('Skal rendre 2 perosnrader', () => {
+  it('Skal rendre 2 personrader', () => {
     // tslint:disable-next-line: no-console
     expect(component.find(Personrad)).to.have.length(2);
   });
