@@ -11,6 +11,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
+      - name: npm set registry
+        run: npm config set registry https://repo.adeo.no/repository/npm-public/
       - name: install deps
         run: npm install
       - name: build client
