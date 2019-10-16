@@ -11,10 +11,10 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
+      - name: npm set registry
+        run: npm config set registry https://repo.adeo.no/repository/npm-public/
       - name: install deps
-        run: npm install
-      - name: build client
-        run: npm run build
-      - name: build server
-        run: npm run build-server
+        run: npm ci
+      - name: build
+        run: npm run nais-build
 
