@@ -60,7 +60,7 @@ export default (props: PersonradProps) => {
           }}
         />
       </Column>
-      <FlexColumn xs={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</FlexColumn>
+      <Column xs={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
       <Column xs={'2'}>{fnr}</Column>
       <Column xs={'2'}>{companyNamesFromPersonData(personData)}</Column>
       <Column xs={'2'}>{veilederName}</Column>

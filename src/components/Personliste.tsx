@@ -22,7 +22,7 @@ interface PersonlisteProps {
 const PersonlisteStyled = styled.div`
 `;
 
-const VeilederNavn = styled.p`
+export const VeilederNavn = styled.label`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -49,10 +49,8 @@ const veilederForPerson = ((veiledere: Veileder[], person: PersonData) => {
   return undefined;
 });
 
-const getVeilederComponent = (isAllDataAvailable: boolean, veiledere: Veileder[], personData: PersonData) => {
-  if (!isAllDataAvailable) {
-    return <div />;
-  }
+export const getVeilederComponent = (isAllDataAvailable: boolean, veiledere: Veileder[], personData: PersonData) => {
+  if (!isAllDataAvailable) return <div />;
   const veilederName = veilederEllerNull(veilederForPerson(veiledere, personData));
   return veilederName === null
           ? <UfordeltBrukerEtikett />

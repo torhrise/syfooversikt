@@ -10,8 +10,8 @@ const expect = chai.expect;
 
 describe('Sorteringsrad', () => {
   const kolonneForNavnTekst = 'Etternavn, Fornavn';
+  const kolonneVirksomhetTekst = 'Virksomhet';
   const kolonneForFnrTekst = 'Fødselsnummer';
-  const kolonneForIdent= 'NAV-ident';
   const kolonneForVeilederTekst = 'Veileder';
   // tslint:disable-next-line:no-empty
   const component = shallow(<Sorteringsrad onSortClick={(type) => {}}/>);
@@ -22,8 +22,8 @@ describe('Sorteringsrad', () => {
 
   it('Skal rendre navn, fodselsnummer, veilederident og veiledernavn Column-komponenter', () => {
     expect(component.find(SortingButton)).to.have.length(1);
+    expect(component.contains(<Column xs={'2'}>{kolonneVirksomhetTekst}</Column>)).to.equal(true);
     expect(component.contains(<Column xs={'2'}>{kolonneForFnrTekst}</Column>)).to.equal(true);
-    expect(component.contains(<Column xs={'2'}>{kolonneForIdent}</Column>)).to.equal(true);
     expect(component.contains(<Column xs={'2'}>{kolonneForVeilederTekst}</Column>)).to.equal(true);
   });
 });
