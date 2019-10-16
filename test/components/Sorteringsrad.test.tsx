@@ -16,10 +16,6 @@ describe('Sorteringsrad', () => {
   // tslint:disable-next-line:no-empty
   const component = shallow(<Sorteringsrad onSortClick={(type) => {}}/>);
 
-  it('Skal inneholde OverskriftRad', () => {
-    expect(component.find(OverskriftRad)).to.have.length(1);
-  });
-
   it('Skal rendre navn, fodselsnummer, veilederident og veiledernavn Column-komponenter', () => {
     expect(component.find(SortingButton)).to.have.length(1);
     expect(component.contains(<Column xs={'2'}>{kolonneVirksomhetTekst}</Column>)).to.equal(true);

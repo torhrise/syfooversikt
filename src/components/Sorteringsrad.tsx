@@ -83,14 +83,9 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
     : 'ned';
   return (
     <>
-      <OverskriftRad className="">
-        <Column xs={'1'}/>
-        <Column xs={'6'}>{tekster.overskriftBruker}</Column>
-        <Column xs={'4'}>{tekster.overskriftVeileder}</Column>
-      </OverskriftRad>
       <IngressRad>
         <Column className="emptyColumn" xs={'1'} />
-        <FlexColumn xs={'2'}>
+        <FlexColumn xs={'3'}>
           <SortingButton onClick={onSortingByNameClick}>
             <strong>Etternavn</strong>
           </SortingButton>
@@ -100,7 +95,7 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
         <Column xs={'2'}>{tekster.fodselsnummer}</Column>
         <Column xs={'2'}>{tekster.virksomhet}</Column>
         <Column xs={'2'}>{tekster.veileder}</Column>
-        <Column xs={'1'}>{}</Column>
+        <Column xs={'2'}>{}</Column>
       </IngressRad>
     </>
   );

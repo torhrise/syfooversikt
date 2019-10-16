@@ -59,11 +59,11 @@ export default (props: PersonradProps) => {
           }}
         />
       </Column>
-      <Column xs={'2'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
+      <Column xs={'3'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>
       <Column xs={'2'}>{fnr}</Column>
       <Column xs={'2'}>{companyNamesFromPersonData(personData)}</Column>
       <Column xs={'2'}>{veilederName}</Column>
-      <Column xs={'1'}>{skjermingskode(personData)}</Column>
+      <Column xs={'2'}>{skjermingskode(personData)}</Column>
     </PersonRad>
   );
 };

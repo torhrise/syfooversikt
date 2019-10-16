@@ -55,8 +55,8 @@ const veilederForPerson = ((veiledere: Veileder[], person: PersonData) => {
   return undefined;
 });
 
-export const getVeilederComponent = (show: boolean, veiledere: Veileder[], personData: PersonData) => {
-  if (!show) return <div />;
+export const getVeilederComponent = (hide: boolean, veiledere: Veileder[], personData: PersonData) => {
+  if (hide) return <div />;
   const veilederName = veilederEllerNull(veilederForPerson(veiledere, personData));
   return veilederName === null
     ? <UfordeltBrukerEtikett />
@@ -86,7 +86,7 @@ const Personliste = (props: PersonlisteProps) => {
           index={idx}
           key={JSON.stringify(personregister[fnr])}
           fnr={fnr}
-          veilederComponent={getVeilederComponent(!isVeilederDataLoaded, veiledere, personregister[fnr])}
+          veilederComponent={getVeilederComponent(isVeilederDataLoaded === false, veiledere, personregister[fnr])}
           personData={personregister[fnr]}
           checkboxHandler={checkboxHandler}
           kryssAv={erMarkert(markertePersoner, fnr)}
