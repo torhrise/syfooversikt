@@ -8,14 +8,13 @@ import { PersonData } from '../store/personregister/personregisterTypes';
 import {
   skjermingskode, companyNamesFromPersonData,
 } from '../utils/personDataUtil';
-import { FlexColumn } from './Sorteringsrad';
 
 interface PersonradProps {
   fnr: string;
   personData: PersonData;
   checkboxHandler: (fnr: string) => void;
   kryssAv: boolean;
-  veilederName: string | React.ReactNode;
+  veilederComponent: string | React.ReactNode;
   index: number;
 }
 
@@ -45,7 +44,7 @@ export default (props: PersonradProps) => {
     checkboxHandler,
     personData,
     kryssAv,
-    veilederName,
+    veilederComponent: veilederName,
     index,
   } = props;
 
@@ -55,7 +54,7 @@ export default (props: PersonradProps) => {
         <VelgBoks
           label={''}
           checked={!!kryssAv}
-          onChange={(event) => {
+          onChange={() => {
             checkboxHandler(fnr);
           }}
         />

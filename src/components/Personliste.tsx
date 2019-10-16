@@ -14,7 +14,7 @@ import { ApplicationState } from '../store';
 
 interface PersonlisteProps {
   personregister: PersonregisterState;
-  checkboxHandler: (fnr: string ) => void;
+  checkboxHandler: (fnr: string) => void;
   markertePersoner: string[];
   veiledere: Veileder[];
 }
@@ -53,8 +53,8 @@ export const getVeilederComponent = (isAllDataAvailable: boolean, veiledere: Vei
   if (!isAllDataAvailable) return <div />;
   const veilederName = veilederEllerNull(veilederForPerson(veiledere, personData));
   return veilederName === null
-          ? <UfordeltBrukerEtikett />
-          : <VeilederNavn>{veilederName}</VeilederNavn>;
+    ? <UfordeltBrukerEtikett />
+    : <VeilederNavn>{veilederName}</VeilederNavn>;
 };
 
 const Personliste = (props: PersonlisteProps) => {
@@ -65,29 +65,29 @@ const Personliste = (props: PersonlisteProps) => {
     veiledere,
   } = props;
 
-  const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
+  const [selectedSortingType, setSortingType] = useState<SortingType>('NONE');
   const fnrListe = Object.keys(getSortedEventsFromSortingType(personregister, selectedSortingType));
 
   const isVeilederDataLoaded = useSelector((state: ApplicationState) => state.veiledere.hentet);
 
   return (<PersonlisteStyled>
-    <Sorteringsrad  onSortClick={(type) => {
+    <Sorteringsrad onSortClick={(type) => {
       setSortingType(type);
     }} />
     {
       fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad
           index={idx}
-          key={idx}
+          key={JSON.stringify(personregister[fnr])}
           fnr={fnr}
-          veilederName={getVeilederComponent(isVeilederDataLoaded, veiledere, personregister[fnr])}
+          veilederComponent={getVeilederComponent(isVeilederDataLoaded, veiledere, personregister[fnr])}
           personData={personregister[fnr]}
           checkboxHandler={checkboxHandler}
           kryssAv={erMarkert(markertePersoner, fnr)}
         />);
       })
     }
-    </PersonlisteStyled>);
+  </PersonlisteStyled>);
 };
 
 export default Personliste;
