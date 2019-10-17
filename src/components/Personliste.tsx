@@ -25,9 +25,6 @@ interface PersonlisteProps {
   veiledere: Veileder[];
 }
 
-const PersonlisteStyled = styled.div`
-`;
-
 export const VeilederNavn = styled.label`
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -75,8 +72,9 @@ const Personliste = (props: PersonlisteProps) => {
   const fnrListe = Object.keys(getSortedEventsFromSortingType(personregister, selectedSortingType));
 
   const isVeilederDataLoaded = useSelector((state: ApplicationState) => state.veiledere.hentet);
+  const shouldHideVeilederName = !isVeilederDataLoaded;
 
-  return (<PersonlisteStyled>
+  return (<>
     <Sorteringsrad onSortClick={(type) => {
       setSortingType(type);
     }} />
@@ -86,14 +84,14 @@ const Personliste = (props: PersonlisteProps) => {
           index={idx}
           key={JSON.stringify({...personregister[fnr], idx })}
           fnr={fnr}
-          veilederComponent={getVeilederComponent(isVeilederDataLoaded === false, veiledere, personregister[fnr])}
+          veilederComponent={getVeilederComponent(shouldHideVeilederName, veiledere, personregister[fnr])}
           personData={personregister[fnr]}
           checkboxHandler={checkboxHandler}
           kryssAv={erMarkert(markertePersoner, fnr)}
         />);
       })
     }
-  </PersonlisteStyled>);
+  </>);
 };
 
 export default Personliste;
