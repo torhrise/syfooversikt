@@ -125,8 +125,6 @@ export const getSortedEventsFromSortingType = (personregister: PersonregisterSta
     if (type === 'NAME_ASC' || type === 'NAME_DESC') {
         return sortEventsOnName(personregister, type);
     } else if (type === 'FNR_ASC' || type === 'FNR_DESC') {
-        // tslint:disable-next-line: no-console
-        console.log('Sorting on fnr');
         return sortEventsOnFnr(personregister, type);
     } else {
         return personregister;
