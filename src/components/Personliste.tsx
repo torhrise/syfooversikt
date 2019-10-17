@@ -47,7 +47,7 @@ const Personliste = (props: PersonlisteProps) => {
   const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
   const fnrListe = Object.keys(getSortedEventsFromSortingType(personregister, selectedSortingType));
 
-  const isVeilederDataLoaded = useSelector((state: ApplicationState) => state.veiledere.hentet);
+  const isVeilederDataLoaded = useSelector((state: ApplicationState) => state.veiledere[state.veilederenheter.aktivEnhetId] && state.veiledere[state.veilederenheter.aktivEnhetId].hentet);
 
   return (<PersonlisteStyled>
     <Sorteringsrad  onSortClick={(type) => {
