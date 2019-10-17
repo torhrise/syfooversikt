@@ -6,7 +6,8 @@ import themes from '../styles/themes';
 import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
-  skjermingskode, companyNamesFromPersonData, EllipsizedText,
+  skjermingskode,
+  companyNamesFromPersonData,
 } from '../utils/personDataUtil';
 
 interface PersonradProps {
@@ -33,7 +34,7 @@ export const PersonRad = styled.div<{ index: number, selected: boolean }>`
   }};
 `;
 
-const EllipsizedColumn = styled.p`
+const NoWrapText = styled.p`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -69,7 +70,7 @@ export default (props: PersonradProps) => {
       <Column xs={'2'}>{fnr}</Column>
       <Column xs={'2'}>{companyNamesFromPersonData(personData)}</Column>
       <Column xs={'2'}>{veilederName}</Column>
-      <Column xs={'2'}><EllipsizedColumn>{skjermingskode(personData)}</EllipsizedColumn></Column>
+      <Column xs={'2'}><NoWrapText>{skjermingskode(personData)}</NoWrapText></Column>
     </PersonRad>
   );
 };
