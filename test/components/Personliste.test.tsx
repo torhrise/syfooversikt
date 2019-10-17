@@ -8,18 +8,21 @@ import Personliste, { VeilederNavn } from '../../src/components/Personliste';
 import Sorteringsrad from '../../src/components/Sorteringsrad';
 import Personrad from '../../src/components/Personrad';
 import {
+  enhet,
+  modiacontextNyAktivEnhet,
   testdata,
   personregister,
   veiledere,
 } from '../data/fellesTestdata';
 import { store } from '../../src/store';
 import { veiledereHentet } from '../../src/store/veiledere/veiledere_actions';
-import { veilederEllerNull } from '../../src/utils/personDataUtil';
+import { modiaContextPushet } from '../../src/store/modiacontext/modiacontext_actions';
 
 chai.use(chaiEnzyme());
 const expect = chai.expect;
 
-store.dispatch(veiledereHentet(veiledere));
+store.dispatch(veiledereHentet(enhet.enhetId, veiledere));
+store.dispatch(modiaContextPushet(modiacontextNyAktivEnhet));
 
 describe('Personliste', () => {
   const markertePersoner = ['123', '234'];

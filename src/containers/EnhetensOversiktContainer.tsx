@@ -174,7 +174,7 @@ const getPropsFromState = (state: ApplicationState) => ({
   henterAlt: state.veilederenheter.henter || state.veilederinfo.henter || state.personoversikt.henter,
   noeErHentet: state.veilederenheter.aktivEnhetId !== '' && state.veilederinfo.hentet && state.personoversikt.hentet,
   altFeilet: state.modiacontext.hentingEnhetFeilet || state.veilederinfo.hentingFeilet || state.personoversikt.hentingFeilet,
-  veiledere: state.veiledere.data,
+  veiledere: state.veiledere[state.veilederenheter.aktivEnhetId] && state.veiledere[state.veilederenheter.aktivEnhetId].data || [],
   selectedBirthDates: state.filters.selectedBirthDates,
   selectedVeilederIdents: state.filters.selectedVeilederIdents,
   selectedCompanies: state.filters.selectedCompanies,
