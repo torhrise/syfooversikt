@@ -51,7 +51,7 @@ export const DropdownButtons = ((props: DropdownButtonsProps) => {
             classNameElement="close"
             invisible={false}
             onClick={cancelButtonHandler}
-            text={texts.cancel}
+            text={texts.reset}
             type={'flat'}/>
     </DropdownButtonsDiv>);
 });
