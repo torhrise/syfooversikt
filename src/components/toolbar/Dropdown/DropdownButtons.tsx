@@ -11,7 +11,7 @@ interface DropdownButtonsProps {
 }
 
 const texts = {
-    cancel: 'Nullstill',
+    reset: 'Nullstill',
 };
 
 const DropdownButtonsDiv = styled.div`
