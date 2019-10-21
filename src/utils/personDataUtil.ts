@@ -1,4 +1,7 @@
-import { PersonData } from '../store/personregister/personregisterTypes';
+import {
+  PersonData,
+  PersonregisterState,
+} from '../store/personregister/personregisterTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 
 export const skjermingskode = (person: PersonData) => {
@@ -7,11 +10,11 @@ export const skjermingskode = (person: PersonData) => {
     : '';
 };
 
-export const veilederEllerUfordelt = (veileder?: Veileder) => {
+export const veilederEllerNull = (veileder?: Veileder) => {
   if (veileder) {
-      return  veileder.fornavn === '' ? '' : `${veileder.etternavn}, ${veileder.fornavn}`;
+      return  veileder.fornavn === '' ? veileder.ident : `${veileder.etternavn}, ${veileder.fornavn}`;
   }
-  return 'Ufordelt bruker';
+  return null;
 };
 
 export const hendelsestypeString = {
@@ -19,6 +22,22 @@ export const hendelsestypeString = {
   motebehov: 'Møtebehov',
   mote: 'Møte',
   ingen: '',
+};
+
+export const mapPersonregisterToCompanyList = (personregister: PersonregisterState) => {
+  const allCompanyNames: string[] = [];
+  Object.keys(personregister).forEach((fnr) => {
+     const personData = personregister[fnr];
+     allCompanyNames.push(...companyNamesFromPersonData(personData));
+  });
+  return [...new Set(allCompanyNames)].filter((v) => v && v.length > 0);
+};
+
+export const companyNamesFromPersonData = (p: PersonData): string[] => {
+  const allCompaniesForPerson: string[] = [];
+  const events = p.oppfolgingstilfeller || [];
+  events.forEach((v) => allCompaniesForPerson.push(v.virksomhetsnavn));
+  return allCompaniesForPerson;
 };
 
 export const hendelsestype = (person: PersonData) => {

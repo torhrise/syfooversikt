@@ -19,7 +19,7 @@ export const config: any = {
         toggleSendEventVedEnEnhet: false,
       },
       handlePersonsokSubmit: undefined,
-      applicationName: 'Oppfølging',
+      applicationName: 'Sykefraværsoppfølging',
       handleChangeEnhet: undefined,
     },
   };

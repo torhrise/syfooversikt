@@ -119,15 +119,38 @@ export const filterEventsOnVeileder = (personregister: PersonregisterState, veil
     return final;
 };
 
-export type SortingType = 'NAME_ASC' | 'NAME_DESC' | 'NONE';
+export type SortingType = 'NAME_ASC' | 'NAME_DESC' | 'FNR_ASC' | 'FNR_DESC' | 'NONE';
 
 export const getSortedEventsFromSortingType = (personregister: PersonregisterState, type: SortingType) => {
-    if (type === 'NAME_DESC') {
+    if (type === 'NAME_ASC' || type === 'NAME_DESC') {
         return sortEventsOnName(personregister, type);
-    } else if (type === 'NAME_ASC') {
-        return sortEventsOnName(personregister, type);
+    } else if (type === 'FNR_ASC' || type === 'FNR_DESC') {
+        return sortEventsOnFnr(personregister, type);
     }
     return personregister;
+};
+
+const sortEventsOnFnr = (personregister: PersonregisterState, order: SortingType) => {
+    const fnrArray = Object.keys(personregister);
+
+    const sortedFnrArray = fnrArray.sort((a, b) => {
+        const birthDateA = Number(a.slice(0, 2));
+        const birthDateB = Number(b.slice(0, 2));
+        if (birthDateB === birthDateA) return 0;
+        if (order === 'FNR_ASC') {
+            if (birthDateA > birthDateB) return 1;
+            return -1;
+        } else if (order === 'FNR_DESC') {
+            if (birthDateA < birthDateB) return 1;
+            return -1;
+        }
+        return 0;
+    });
+
+    return sortedFnrArray.reduce((currentMap, currentFnr) => {
+        currentMap[currentFnr] = personregister[currentFnr];
+        return currentMap;
+    }, {} as PersonregisterState);
 };
 
 const sortEventsOnName = (personregister: PersonregisterState, order: SortingType): PersonregisterState => {

@@ -3,9 +3,14 @@ import chaiEnzyme from 'chai-enzyme';
 import { shallow } from 'enzyme';
 import React from 'react';
 import { Column } from 'nav-frontend-grid';
-import Personrad, { PersonRad } from '../../src/components/Personrad';
+import Personrad, {
+  PersonRad,
+} from '../../src/components/Personrad';
 import { lenkeTilModiaEnkeltperson } from '../../src/utils/lenkeUtil';
-import { skjermingskode, veilederEllerUfordelt } from '../../src/utils/personDataUtil';
+import {
+  skjermingskode,
+  companyNamesFromPersonData,
+} from '../../src/utils/personDataUtil';
 import {
   testdata,
   veiledere,
@@ -35,10 +40,7 @@ describe('Personrad', () => {
   });
 
   it('Skal rendre Column-komponenter med riktig navn, fodselsnummer og skjermingskode', () => {
-    expect(component.contains(<Column className="personrad__navn" xs={'3'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>)).to.equal(true);
-    expect(component.contains(<Column className="personrad__fnr" xs={'2'}>{fnr}</Column>)).to.equal(true);
-    expect(component.contains(<Column className="personrad__veileder" xs={'2'}>{personData.tildeltVeilederIdent}</Column>)).to.equal(true);
-    expect(component.contains(<Column className="personrad__veiledernavn" xs={'2'}>{veilederEllerUfordelt(veiledere[0])}</Column>)).to.equal(true);
-    expect(component.contains(<Column className="personrad__skjermet" xs={'2'}>{skjermingskode(personData)}</Column>)).to.equal(true);
+    expect(component.contains(<Column xs={'3'}>{lenkeTilModiaEnkeltperson(personData.navn, fnr)}</Column>)).to.equal(true);
+    expect(component.contains(<Column xs={'2'}>{companyNamesFromPersonData(personData)}</Column>)).to.equal(true);
   });
 });

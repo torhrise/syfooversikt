@@ -16,6 +16,7 @@ const tekster = {
   veileder: 'Veileder',
   overskriftBruker: 'Bruker',
   overskriftVeileder: 'Veileder',
+  virksomhet: 'Virksomhet',
 };
 const RowStyled = styled(Row)`
   margin-left: 0px !important;
@@ -48,10 +49,18 @@ export const SortingButton = styled.p`
   user-select: none;
 `;
 
-const FlexColumn = styled(Column)`
+export const FlexColumn = styled(Column)`
   margin: 0px;
   display: flex;
   align-items: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* overflow: hidden; */
+  @media (max-width: 960px) {
+    ${GrayChevron} {
+      display: none;
+    }
+  }
 `;
 
 interface SortingRowProps {
@@ -69,17 +78,20 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
     onSortClick(nextSortingType);
   };
 
+  const onSortingByFnrClick = () => {
+    const nextSortingType: SortingType = currentSortingType === 'FNR_ASC'
+              ? 'FNR_DESC'
+              : 'FNR_ASC';
+    setCurrentSortingType(nextSortingType);
+    onSortClick(nextSortingType);
+  };
+
   const chevronType = currentSortingType === 'NAME_ASC'
     ? 'opp'
     : 'ned';
   return (
     <>
-      <OverskriftRad className="">
-        <Column xs={'1'}/>
-        <Column xs={'5'}>{tekster.overskriftBruker}</Column>
-        <Column xs={'4'}>{tekster.overskriftVeileder}</Column>
-      </OverskriftRad>
-      <IngressRad className="">
+      <IngressRad>
         <Column className="emptyColumn" xs={'1'} />
         <FlexColumn xs={'3'}>
           <SortingButton onClick={onSortingByNameClick}>
@@ -88,9 +100,14 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
           <p>, Fornavn</p>
           <GrayChevron type={chevronType} />
         </FlexColumn>
-        <Column xs={'2'}>{tekster.fodselsnummer}</Column>
-        <Column xs={'2'}>{tekster.ident}</Column>
+        <Column xs={'2'}>
+          <SortingButton onClick={onSortingByFnrClick}>
+            <strong>{tekster.fodselsnummer}</strong>
+          </SortingButton>
+        </Column>
+        <Column xs={'2'}>{tekster.virksomhet}</Column>
         <Column xs={'2'}>{tekster.veileder}</Column>
+        <Column xs={'2'}>{}</Column>
       </IngressRad>
     </>
   );
