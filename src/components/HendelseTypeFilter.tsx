@@ -53,9 +53,10 @@ interface CheckboksElement {
     tekst: string;
     checked: boolean;
     key: string;
+    tabType: OverviewTabType;
 }
 
-export default ({ className, personRegister }: Props) => {
+export default ({ className, personRegister, tabType }: Props) => {
 
     const dispatch = useDispatch();
     const currentHendelseFilters = useSelector((state: ApplicationState) => state.filters.selectedHendelseType);
@@ -64,7 +65,12 @@ export default ({ className, personRegister }: Props) => {
         dispatch(updateHendelseFilterAction(filters));
     };
 
-    const elementer = Object.keys(HendelseTekster).map((key) => {
+    const elementer = Object.keys(HendelseTekster).filter((key) => {
+        if (HendelseTekster[key] === HendelseTekster.UFORDELTE_BRUKERE && tabType === OverviewTabType.MY_OVERVIEW) {
+            return false;
+        }
+        return true;
+    }).map((key) => {
         const tekst: string = HendelseTekster[key];
         const checked = isCheckedInState(currentHendelseFilters, tekst);
         return { key, tekst, checked } as CheckboksElement;
