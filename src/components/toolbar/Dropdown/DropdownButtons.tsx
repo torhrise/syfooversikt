@@ -2,17 +2,18 @@ import * as React from 'react';
 import styled from 'styled-components';
 import DropdownButton from './DropdownButton';
 
+export interface DropdownButtonTexts {
+    assign: string;
+    reset: string;
+}
+
 interface DropdownButtonsProps {
     cancelButtonHandler: () => void;
     chosenVeilederIdent: string;
     chooseButtonHandler: (chosenVeilederIdent: string) => void;
     veilederIsChosen: boolean;
-    assignText: string;
+    texts: DropdownButtonTexts;
 }
-
-const texts = {
-    reset: 'Nullstill',
-};
 
 const DropdownButtonsDiv = styled.div`
   margin: .5em;
@@ -36,7 +37,7 @@ export const DropdownButtons = ((props: DropdownButtonsProps) => {
         chosenVeilederIdent,
         chooseButtonHandler,
         veilederIsChosen,
-        assignText,
+        texts,
     } = props;
 
     return (<DropdownButtonsDiv className="confirmVeilederButtons">
@@ -44,7 +45,7 @@ export const DropdownButtons = ((props: DropdownButtonsProps) => {
             classNameElement="choose"
             invisible={!veilederIsChosen}
             onClick={() => chooseButtonHandler(chosenVeilederIdent)}
-            text={assignText}
+            text={texts.assign}
             type={'standard'}/>
 
         <DropdownButton
