@@ -13,6 +13,7 @@ import { sortVeiledereAlphabeticallyWithGivenVeilederFirst } from '../../../util
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Dropdown } from '../Dropdown/Dropdown';
+import { DropdownButtonTexts } from '../Dropdown/DropdownButtons';
 
 interface StateProps {
     chosenVeilederIdent: string;
@@ -21,6 +22,11 @@ interface StateProps {
     veiledere: Veileder[];
     veilederIsChosen: boolean;
 }
+
+const dropdownButtonTexts: DropdownButtonTexts = {
+    assign: 'Tildel veileder',
+    reset: 'Avbryt',
+};
 
 const TildelVeileder = (props: ToolbarProps) => {
 
@@ -129,6 +135,7 @@ const TildelVeileder = (props: ToolbarProps) => {
         />
 
         {state.showList && <Dropdown
+            buttonTexts={dropdownButtonTexts}
             cancelButtonHandler={cancelButtonHandler}
             chooseButtonHandler={chooseButtonHandler}
             chosenVeilederIdent={state.chosenVeilederIdent}

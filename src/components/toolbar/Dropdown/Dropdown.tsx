@@ -3,10 +3,14 @@ import styled from 'styled-components';
 import InputWithSearchIcon from '../../InputWithSearchIcon';
 import { VeilederInputButtons } from './VeilederInputButtons';
 import { isInputGiven } from '../../../utils/assignVeilederUtils';
-import { DropdownButtons } from './DropdownButtons';
+import {
+    DropdownButtons,
+    DropdownButtonTexts,
+} from './DropdownButtons';
 import { Veileder } from '../../../store/veiledere/veiledereTypes';
 
 interface DropdownProps {
+    buttonTexts: DropdownButtonTexts;
     cancelButtonHandler: () => void;
     chooseButtonHandler: (chosenVeilederIdent: string) => void;
     chosenVeilederIdent: string;
@@ -44,6 +48,7 @@ const texts = {
 
 export const Dropdown = (props: DropdownProps) => {
     const {
+        buttonTexts,
         cancelButtonHandler,
         chooseButtonHandler,
         chosenVeilederIdent,
@@ -81,6 +86,6 @@ export const Dropdown = (props: DropdownProps) => {
             chosenVeilederIdent={chosenVeilederIdent}
             chooseButtonHandler={chooseButtonHandler}
             veilederIsChosen={veilederIsChosen}
-            assignText={texts.buttonText}/>
+            texts={buttonTexts}/>
     </DropdownPanel>);
 };

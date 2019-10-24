@@ -12,6 +12,7 @@ import { sortVeiledereAlphabeticallyWithGivenVeilederFirst } from '../../../util
 import { filterVeiledereOnInput } from '../../../utils/assignVeilederUtils';
 import { Veilederinfo } from '../../../store/veilederinfo/veilederinfoTypes';
 import { ApplicationState } from '../../../store';
+import { DropdownButtonTexts } from '../Dropdown/DropdownButtons';
 
 interface VeilederIdentsFilterProps {
     aktivVeilederInfo: Veilederinfo;
@@ -24,6 +25,11 @@ const ButtonDiv = styled.div`
   display: flex;
   align-items: center;
 `;
+
+const dropdownButtonTexts: DropdownButtonTexts = {
+    assign: 'Lagre',
+    reset: 'Nullstill',
+};
 
 const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     const [showList, setShowList] = useState(false);
@@ -136,6 +142,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
             </ButtonDiv>
             {showList && (
                 <Dropdown
+                    buttonTexts={dropdownButtonTexts}
                     buttonChangeHandler={checkboxOnChangeHandler}
                     cancelButtonHandler={cancelButtonHandler}
                     chooseButtonHandler={chooseButtonHandler}
