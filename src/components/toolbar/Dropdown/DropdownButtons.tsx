@@ -16,14 +16,8 @@ interface DropdownButtonsProps {
 }
 
 const DropdownButtonsDiv = styled.div`
-  margin: .5em;
-  margin-top: 2em;
+  margin: 2em .5em 1em .5em;
   display: flex;
-  > :nth-child(1) {
-    > :nth-child(1) {
-      margin-left: 1em;
-    }
-  }
   > :nth-child(2) {
     > :nth-child(1) {
       margin-left: -2em;
@@ -36,21 +30,18 @@ export const DropdownButtons = ((props: DropdownButtonsProps) => {
         cancelButtonHandler,
         chosenVeilederIdent,
         chooseButtonHandler,
-        veilederIsChosen,
         texts,
     } = props;
 
     return (<DropdownButtonsDiv className="confirmVeilederButtons">
         <DropdownButton
             classNameElement="choose"
-            invisible={!veilederIsChosen}
             onClick={() => chooseButtonHandler(chosenVeilederIdent)}
             text={texts.assign}
             type={'standard'}/>
 
         <DropdownButton
             classNameElement="close"
-            invisible={false}
             onClick={cancelButtonHandler}
             text={texts.reset}
             type={'flat'}/>

@@ -148,6 +148,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
                     chooseButtonHandler={chooseButtonHandler}
                     filteredVeiledere={filteredVeiledere}
                     selectedVeileders={activeVeilederFilter}
+                    showNoChosenVeilederError={false}
                     placeholder={'Søk veileder'}
                     input={input}
                     inputChangeHandler={inputChangeHandler}

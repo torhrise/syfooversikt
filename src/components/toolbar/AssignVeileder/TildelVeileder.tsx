@@ -21,6 +21,7 @@ interface StateProps {
     showList: boolean;
     veiledere: Veileder[];
     veilederIsChosen: boolean;
+    showError: boolean;
 }
 
 const dropdownButtonTexts: DropdownButtonTexts = {
@@ -36,6 +37,7 @@ const TildelVeileder = (props: ToolbarProps) => {
         showList: false,
         veiledere: props.veiledere,
         veilederIsChosen: false,
+        showError: false,
     });
 
     const [state, setState] = useState<StateProps>(stateFromProps());
@@ -60,6 +62,7 @@ const TildelVeileder = (props: ToolbarProps) => {
             ...state,
             chosenVeilederIdent: veileder.ident,
             veilederIsChosen: true,
+            showError: false,
         });
     };
 
@@ -71,6 +74,7 @@ const TildelVeileder = (props: ToolbarProps) => {
                     chosenVeilederIdent: '',
                     input: '',
                     showList: false,
+                    showError: false,
                     veilederIsChosen: false,
                 });
             } else {
@@ -96,14 +100,19 @@ const TildelVeileder = (props: ToolbarProps) => {
     const chooseButtonHandler = (chosenVeilederIdent: string) => {
         if (chosenVeilederIdent && chosenVeilederIdent.length > 0) {
             assignUsersToSelectedVeileder(props, chosenVeilederIdent);
+            setState({
+                ...state,
+                showList: false,
+                veilederIsChosen: false,
+                chosenVeilederIdent: '',
+                showError: false,
+            });
+        } else {
+            setState({
+                ...state,
+                showError: true,
+            });
         }
-
-        setState({
-            ...state,
-            showList: false,
-            veilederIsChosen: false,
-            chosenVeilederIdent: '',
-        });
     };
 
     const onBlur = (e: any) => {
@@ -115,6 +124,7 @@ const TildelVeileder = (props: ToolbarProps) => {
                     chosenVeilederIdent: '',
                     input: '',
                     showList: false,
+                    showError: false,
                     veilederIsChosen: false,
                 });
             }
@@ -145,7 +155,9 @@ const TildelVeileder = (props: ToolbarProps) => {
             buttonChangeHandler={radiobuttonOnChangeHandler}
             veilederIsChosen={state.veilederIsChosen}
             buttonType={'radio'} placeholder={'Tildel veileder'}
-            selectedVeileders={props.veiledere}/>}
+            selectedVeileders={props.veiledere}
+            showNoChosenVeilederError={state.showError}
+        />}
     </div>);
 };
 
