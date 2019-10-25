@@ -20,6 +20,7 @@ interface DropdownProps {
     buttonChangeHandler: (veileder: Veileder) => void;
     veilederIsChosen: boolean;
     selectedVeileders: Veileder[];
+    showNoChosenVeilederError: boolean;
     placeholder: string;
     buttonType: string;
 }
@@ -43,8 +44,14 @@ const DropdownPanel = styled.section`
 `;
 
 const texts = {
-    buttonText: 'Lagre',
+    noChosenVeilederError: 'Du må velge en veileder for å kunne tildele. ',
 };
+
+const NoVeilederChosenErrorMessage = styled.p`
+    color: red;
+    margin: 0 0 1em .5em;
+    font-weight: bold;
+`;
 
 export const Dropdown = (props: DropdownProps) => {
     const {
@@ -58,6 +65,7 @@ export const Dropdown = (props: DropdownProps) => {
         buttonChangeHandler,
         veilederIsChosen,
         selectedVeileders,
+        showNoChosenVeilederError,
         placeholder,
         buttonType,
     } = props;
@@ -87,5 +95,8 @@ export const Dropdown = (props: DropdownProps) => {
             chooseButtonHandler={chooseButtonHandler}
             veilederIsChosen={veilederIsChosen}
             texts={buttonTexts}/>
+
+        {showNoChosenVeilederError &&
+            <NoVeilederChosenErrorMessage>{texts.noChosenVeilederError}</NoVeilederChosenErrorMessage>}
     </DropdownPanel>);
 };
