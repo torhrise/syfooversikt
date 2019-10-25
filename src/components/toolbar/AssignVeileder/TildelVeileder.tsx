@@ -93,6 +93,7 @@ const TildelVeileder = (props: ToolbarProps) => {
             chosenVeilederIdent: '',
             input: '',
             showList: false,
+            showError: false,
             veilederIsChosen: false,
         });
     };
