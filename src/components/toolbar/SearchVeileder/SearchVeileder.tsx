@@ -53,7 +53,6 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
         setActiveVeilederFilter([]);
         setActiveFilters(0);
         props.onSelect([]);
-        setShowList(false);
     };
 
     const inputChangeHandler = (event: ChangeEvent) => {

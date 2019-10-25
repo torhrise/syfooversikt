@@ -19,9 +19,7 @@ const DropdownButtonsDiv = styled.div`
   margin: 2em .5em 1em .5em;
   display: flex;
   > :nth-child(2) {
-    > :nth-child(1) {
-      margin-left: -2em;
-    }
+    margin-left: .5em;
   }
 `;
 
