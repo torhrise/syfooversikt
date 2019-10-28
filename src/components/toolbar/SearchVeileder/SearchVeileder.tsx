@@ -46,12 +46,14 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     );
 
     const toggleShowList = () => {
+        setInput('');
         setShowList(!showList);
     };
 
     const cancelButtonHandler = () => {
         setActiveVeilederFilter([]);
         setActiveFilters(0);
+        setInput('');
         props.onSelect([]);
     };
 
@@ -115,6 +117,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     const chooseButtonHandler = () => {
         setActiveFilters((activeVeilederFilter.length));
         setShowList(false);
+        setInput('');
         props.onSelect(activeVeilederFilter.map((v) => v.ident));
     };
 
@@ -124,6 +127,7 @@ const SearchVeileder = (props: VeilederIdentsFilterProps) => {
             if (!currentTarget.contains(document.activeElement)) {
                 props.onSelect(activeVeilederFilter.map((v) => v.ident));
                 setShowList(false);
+                setInput('');
             }
         }, 0);
     };
