@@ -68,7 +68,7 @@ const Personliste = (props: PersonlisteProps) => {
   } = props;
 
   const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
-  const fnrListe = Object.keys(getSortedEventsFromSortingType(personregister, selectedSortingType));
+  const fnrListe = Object.keys(getSortedEventsFromSortingType(personregister, veiledere, selectedSortingType));
   const isVeilederDataLoaded = useSelector((state: ApplicationState) => {
     const aktivEnhet = state.veilederenheter.aktivEnhetId;
     if (aktivEnhet && state.veiledere[aktivEnhet]) {

@@ -63,6 +63,14 @@ export const FlexColumn = styled(Column)`
   }
 `;
 
+interface ColumnItem {
+  sortingText: string;
+  extraText: any;
+  sortingTypeAsc: SortingType;
+  sortingTypeDesc: SortingType;
+  xs: string;
+}
+
 interface SortingRowProps {
   onSortClick(type: SortingType): void;
 }
@@ -78,31 +86,59 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
     onSortClick(nextSortingType);
   };
 
-  const chevronType = currentSortingType === 'NAME_ASC'
-    ? 'opp'
-    : 'ned';
+  const chevronType = (sortingTypeAsc: SortingType) => {
+    if (currentSortingType === sortingTypeAsc) {
+         return 'opp';
+    }
+    return 'ned';
+  };
+
+  const columns: ColumnItem[] = [
+    {
+      sortingText: 'Etternavn',
+      extraText: <p>, Fornavn</p>,
+      sortingTypeAsc: 'NAME_ASC',
+      sortingTypeDesc: 'NAME_DESC',
+      xs: '3',
+    },
+    {
+      sortingText: tekster.fodselsnummer,
+      extraText: null,
+      sortingTypeAsc: 'FNR_ASC',
+      sortingTypeDesc: 'FNR_DESC',
+      xs: '2',
+    },
+    {
+      sortingText: tekster.virksomhet,
+      extraText: null,
+      sortingTypeAsc: 'COMPANY_ASC',
+      sortingTypeDesc: 'COMPANY_DESC',
+      xs: '2',
+    },
+    {
+      sortingText: tekster.veileder,
+      extraText: null,
+      sortingTypeAsc: 'VEILEDER_ASC',
+      sortingTypeDesc: 'VEILEDER_DESC',
+      xs: '2',
+    },
+  ];
+
   return (
     <>
       <IngressRad>
         <Column className="emptyColumn" xs={'1'} />
-        <FlexColumn xs={'3'}>
-        <SortingButton onClick={() => onSortingButtonClicked('COMPANY_ASC', 'COMPANY_DESC')}>
-            <strong>Etternavn</strong>
-          </SortingButton>
-          <p>, Fornavn</p>
-          <GrayChevron type={chevronType} />
-        </FlexColumn>
-        <Column xs={'2'}>
-          <SortingButton onClick={() => onSortingButtonClicked('FNR_ASC', 'FNR_DESC')}>
-            <strong>{tekster.fodselsnummer}</strong>
-          </SortingButton>
-        </Column>
-        <Column xs={'2'}>
-          <SortingButton onClick={() => onSortingButtonClicked('COMPANY_ASC', 'COMPANY_DESC')}>
-            <strong>{tekster.virksomhet}</strong>
-          </SortingButton>
-        </Column>
-        <Column xs={'2'}>{tekster.veileder}</Column>
+        {columns.map((col, index) => {
+          return (
+              <FlexColumn key={index} xs={col.xs}>
+                <SortingButton onClick={() => onSortingButtonClicked(col.sortingTypeAsc, col.sortingTypeDesc)}>
+                  <strong>{col.sortingText}</strong>
+                </SortingButton>
+                {col.extraText}
+                <GrayChevron type={chevronType(col.sortingTypeAsc)}/>
+              </FlexColumn>
+          );
+        })}
         <Column xs={'2'} />
       </IngressRad>
     </>
