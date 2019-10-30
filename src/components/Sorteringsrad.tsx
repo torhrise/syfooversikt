@@ -38,7 +38,7 @@ const IngressRad = styled(RowStyled)`
   border-bottom: 1px solid ${themes.color.navGra40};
 `;
 
-const GrayChevron = styled(Chevron)`
+export const GrayChevron = styled(Chevron)`
   margin-left: 0.25em;
   color: #3E3832;
 `;
