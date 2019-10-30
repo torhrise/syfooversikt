@@ -6,6 +6,8 @@ import { isNullOrUndefined } from 'util';
 import { formaterNavn } from './lenkeUtil';
 import { HendelseTypeFilters } from '../store/filters/filterReducer';
 import { firstCompanyNameFromPersonData } from './personDataUtil';
+import { store } from '../store';
+import { Veileder, VeiledereState } from '../store/veiledere/veiledereTypes';
 
 export class Filterable<T> {
 
@@ -127,18 +129,42 @@ export type SortingType =
     | 'FNR_DESC'
     | 'COMPANY_ASC'
     | 'COMPANY_DESC'
+    | 'VEILEDER_ASC'
+    | 'VEILEDER_DESC'
     | 'NONE'
     ;
 
-export const getSortedEventsFromSortingType = (personregister: PersonregisterState, type: SortingType) => {
+export const getSortedEventsFromSortingType = (personregister: PersonregisterState, veiledere: Veileder[], type: SortingType) => {
     if (type === 'NAME_ASC' || type === 'NAME_DESC') {
         return sortEventsOnName(personregister, type);
     } else if (type === 'FNR_ASC' || type === 'FNR_DESC') {
         return sortEventsOnFnr(personregister, type);
     } else if (type === 'COMPANY_ASC' || type === 'COMPANY_DESC') {
         return sortEventsOnCompanyName(personregister, type);
+    } else if (type === 'VEILEDER_ASC' || type === 'VEILEDER_DESC') {
+        return sortEventsOnVeileder(personregister, veiledere, type);
     }
     return personregister;
+};
+
+const sortEventsOnVeileder = (personregister: PersonregisterState, veiledere: Veileder[], order: SortingType) => {
+    const allFnr = Object.keys(personregister);
+
+    return allFnr.map((fnr) => {
+        return {
+          fnr,
+          veileder: veiledere.filter((v) => personregister[fnr].tildeltVeilederIdent === v.ident)[0] || {},
+      };
+    }).sort((a , b) => {
+        const veilederIdentA = a.veileder.etternavn || '';
+        const veilederIdentB = b.veileder.etternavn || '';
+        if (veilederIdentA > veilederIdentB) return order === 'VEILEDER_ASC' ? -1 : 1;
+        if (veilederIdentA < veilederIdentB) return order === 'VEILEDER_ASC' ? 1 : -1;
+        return 0;
+    }).reduce((newPersonregister, veilederAndFnr) => {
+        newPersonregister[veilederAndFnr.fnr] = personregister[veilederAndFnr.fnr];
+        return newPersonregister;
+    }, {} as PersonregisterState);
 };
 
 const sortEventsOnCompanyName = (personregister: PersonregisterState, order: SortingType) => {
