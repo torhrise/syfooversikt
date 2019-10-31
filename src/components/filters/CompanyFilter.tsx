@@ -11,7 +11,7 @@ import { ApplicationState } from '../../store';
 
 const texts = {
     title: 'Virksomheter',
-    placeholder: 'Velg virkomheter',
+    placeholder: 'Velg virksomheter',
 };
 
 interface CompanyOption {
