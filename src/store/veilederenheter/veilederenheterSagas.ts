@@ -7,7 +7,7 @@ import {
 } from 'redux-saga/effects';
 import { get } from '../../api/index';
 import * as actions from './veilederenheter_actions';
-import { fullNaisUrl } from '../../utils/miljoUtil';
+import { fullNaisUrlDefault } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
 
 export function* hentVeilederenheter() {
@@ -15,7 +15,7 @@ export function* hentVeilederenheter() {
   try {
     const host = HOST_NAMES.SYFOMOTEADMIN;
     const path = `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo/enheter`;
-    const url = fullNaisUrl(host,path);
+    const url = fullNaisUrlDefault(host,path);
     const data = yield call(get, url);
     yield put(actions.hentVeilederenheterHentet(data));
   } catch (e) {

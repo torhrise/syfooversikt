@@ -20,19 +20,6 @@ export const erHerokuApp = () => {
     return window.location.href.indexOf('herokuapp') > -1;
 };
 
-export const finnNaisUrl = () => {
-  return erPreProd() ?
-      '-q1.nais.preprod.local'
-      : '.nais.adeo.no';
-};
-
-export const fullNaisUrl = (host: string, path: string) => {
-  if (erLokal() || erHerokuApp()) {
-    return path;
-  }
-  return `https://${host}${finnNaisUrl()}${path}`;
-};
-
 export const finnNaisUrlDefault = () => {
   return erPreProd() ?
       '.nais.preprod.local'

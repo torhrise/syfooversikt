@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { put, call } from 'redux-saga/effects';
 import { get } from '../../../src/api';
 import { HOST_NAMES } from '../../../src/konstanter';
-import { fullNaisUrl } from '../../../src/utils/miljoUtil';
+import { fullNaisUrlDefault } from '../../../src/utils/miljoUtil';
 import { personoversikt } from '../../data/fellesTestdata';
 import { hentPersonoversikt } from '../../../src/store/personoversikt/personoversiktSagas';
 import { PersonoversiktActionTypes } from '../../../src/store/personoversikt/personoversikt_actions';

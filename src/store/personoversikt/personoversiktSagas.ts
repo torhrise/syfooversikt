@@ -7,9 +7,6 @@ import {
 } from 'redux-saga/effects';
 import { get } from '../../api/index';
 import * as actions from './personoversikt_actions';
-import { fullNaisUrlDefault } from '../../utils/miljoUtil';
-import { HOST_NAMES } from '../../konstanter';
-import { skalHenteReducer } from '../../utils/selectorUtil';
 import { hentFodselsnummerFraPersonOversikt } from '../../components/utils/util';
 import * as personInfoActions from '../personInfo/personInfo_actions';
 import { PersonoversiktStatus } from './personoversiktTypes';
@@ -20,7 +17,6 @@ export function* hentPersonoversikt(
 ) {
   yield put(actions.hentPersonoversiktHenter());
   try {
-    const host = HOST_NAMES.SYFOOVERSIKTSRV;
     const path = `${process.env.REACT_APP_SYFOOVERSIKTSRVREST_ROOT}/personoversikt/enhet/${enhetId}`;
     const data = yield call(get, path);
     if (data.length > 0) {

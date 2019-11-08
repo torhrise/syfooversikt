@@ -1,15 +1,15 @@
 import {
   erHerokuApp,
   erLokal,
-  fullNaisUrl,
+  fullNaisUrlDefault,
 } from './utils/miljoUtil';
 import { HOST_NAMES } from './konstanter';
 
 export const config: any = {
     config: {
       dataSources: {
-        veileder: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo`)}`,
-        enheter: `${fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo/enheter`)}`,
+        veileder: `${fullNaisUrlDefault(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo`)}`,
+        enheter: `${fullNaisUrlDefault(HOST_NAMES.SYFOMOTEADMIN, `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo/enheter`)}`,
       },
       initiellEnhet: (erLokal() || erHerokuApp()) ? '0316' : '',
       toggles: {
