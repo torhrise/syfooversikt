@@ -7,36 +7,42 @@ Usage: python3 ./person_generator.py <number of users to generate>
 """
 
 import random
-import json
 import sys
+import json
 
-if len(sys.argv) < 2:
-    print(f'Usage: ./{sys.argv[0]} <number of users>')
-    sys.exit(1)
+def generate_person():
+    color = ['Rød', 'Gul', 'Blå', 'Grønn', 'Violett', 'Cyan', 'Magenta', 'Pantone', 'Hvit', 'Sort', 'Brun', 'Lilla', 'Turkis']
+    name = ['Nils', 'Gunnar', 'Jim', 'Dwight', 'Karen', 'Michael', 'George', 'Ringo', 'Paul', 'John']
+    fnr = f'{random.randint(0, 31999999999):011d}'
 
-pinfo = open('personInfo.json', 'w')
-poenhet = open('personoversiktEnhet.json',  'w')
+    f_navn = random.choice(name)
+    e_navn = random.choice(color)
+    navn = f'{f_navn} {e_navn}'
 
-pinfo_list = []
-poenhet_list = []
+    info = {'fnr': fnr, 'navn': navn,  'skjermingskode':'INGEN'}
+    oversikt = {'fnr': fnr, 'navn': navn, 'enhet': '0316', 'veilederIdent': None, 'moteplanleggerUbehandlet': True, 'oppfolgingstilfeller': []}
 
-color = ['Rød', 'Gul', 'Blå', 'Grønn', 'Violett', 'Cyan', 'Magenta', 'Pantone', 'Hvit', 'Sort', 'Brun', 'Lilla', 'Turkis']
-name = ['Nils', 'Gunnar', 'Jim', 'Dwight', 'Karen', 'Michael', 'George', 'Ringo', 'Paul', 'John']
+    return (info, oversikt)
 
-for x in range(0, int(sys.argv[1])):
-    r = random.randint(0, 31999999999)
-    fnr = f'{r:011d}'
+if __name__ == '__main__':
+    if len(sys.argv) < 2:
+        print(f'Usage: ./{sys.argv[0]} <number of users>')
+        sys.exit(1)
 
-    f = random.choice(name)
-    e = random.choice(color)
+    pinfo = open('personInfo.json', 'w')
+    poenhet = open('personoversiktEnhet.json',  'w')
 
-    navn = f'{f} {e}'
+    pinfo_list = []
+    poenhet_list = []
 
-    pinfo_list.append({'fnr': fnr, 'navn': navn,  'skjermingskode':'INGEN'})
-    poenhet_list.append({'fnr': fnr, 'navn': navn, 'enhet': '0316', 'veilederIdent': None, 'moteplanleggerUbehandlet': True, 'oppfolgingstilfeller': []})
+    for x in range(0, int(sys.argv[1])):
+         info, oversikt = generate_person()
 
-pinfo.write(json.dumps(pinfo_list, ensure_ascii=False))
-pinfo.close()
+         pinfo_list.append(info)
+         poenhet_list.append(oversikt)
 
-poenhet.write(json.dumps(poenhet_list, ensure_ascii=False))
-poenhet.close()
+    pinfo.write(json.dumps(pinfo_list, ensure_ascii=False))
+    pinfo.close()
+
+    poenhet.write(json.dumps(poenhet_list, ensure_ascii=False))
+    poenhet.close()
