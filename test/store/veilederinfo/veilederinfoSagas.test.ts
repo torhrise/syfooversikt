@@ -3,7 +3,7 @@ import { put, call } from 'redux-saga/effects';
 import { hentVeilederinfoSaga } from '../../../src/store/veilederinfo/veilederinfoSagas';
 import { get } from '../../../src/api';
 import { VeilederinfoActionTypes } from '../../../src/store/veilederinfo/veilederinfo_actions';
-import { fullNaisUrl } from '../../../src/utils/miljoUtil';
+import { fullNaisUrlDefault } from '../../../src/utils/miljoUtil';
 import { veilederinfo } from '../../data/fellesTestdata';
 import { HOST_NAMES } from '../../../src/konstanter';
 
@@ -16,7 +16,7 @@ describe('veilederinfoSagas', () => {
   });
 
   it('Skal dernest kalle REST-tjenesten', () => {
-    const url = fullNaisUrl(HOST_NAMES.SYFOMOTEADMIN, '/syfomoteadmin/api/internad/veilederinfo');
+    const url = fullNaisUrlDefault(HOST_NAMES.SYFOMOTEADMIN, '/syfomoteadmin/api/internad/veilederinfo');
     const nesteKall = call(get, url);
     expect(generator.next().value).to.deep.equal(nesteKall);
   });

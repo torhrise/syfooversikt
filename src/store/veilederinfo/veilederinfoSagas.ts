@@ -8,7 +8,7 @@ import {
 import { get } from '../../api/index';
 import * as actions from './veilederinfo_actions';
 import { VeilederinfoActionTypes } from './veilederinfo_actions';
-import { fullNaisUrl } from '../../utils/miljoUtil';
+import { fullNaisUrlDefault } from '../../utils/miljoUtil';
 import { HOST_NAMES } from '../../konstanter';
 
 export function* hentVeilederinfoSaga() {
@@ -16,7 +16,7 @@ export function* hentVeilederinfoSaga() {
   try {
     const host = HOST_NAMES.SYFOMOTEADMIN;
     const path = `${process.env.REACT_APP_SYFOMOTEADMIN_ROOT}/internad/veilederinfo`;
-    const url = fullNaisUrl(host,path);
+    const url = fullNaisUrlDefault(host,path);
     const data = yield call(get, url);
     yield put(actions.veilederinfoHentet(data));
   } catch (e) {
