@@ -80,7 +80,11 @@ const Personliste = (props: PersonlisteProps) => {
   };
 
   const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
-  const fnrListe = Object.keys(paginatePersonregister(getSortedEventsFromSortingType(personregister, veiledere, selectedSortingType), props.startItem, props.endItem));
+
+  const sortedPersonregister = getSortedEventsFromSortingType(personregister, veiledere, selectedSortingType);
+  const paginatedPersonregister = paginatePersonregister(sortedPersonregister, props.startItem, props.endItem);
+
+  const fnrListe = Object.keys(paginatedPersonregister);
 
   const isVeilederDataLoaded = useSelector((state: ApplicationState) => {
     const aktivEnhet = state.veilederenheter.aktivEnhetId;
