@@ -23,6 +23,8 @@ interface PersonlisteProps {
   checkboxHandler: (fnr: string) => void;
   markertePersoner: string[];
   veiledere: Veileder[];
+  startItem: number;
+  endItem: number;
 }
 
 export const VeilederNavn = styled.label`
@@ -67,8 +69,23 @@ const Personliste = (props: PersonlisteProps) => {
     veiledere,
   } = props;
 
+  const paginatePersonregister = (register: PersonregisterState, startItem: number, endItem: number) => {
+    const allFnr = Object.keys(personregister);
+    return allFnr
+        .slice(startItem, endItem + 1)
+        .reduce((slicedPersonregister, fnr) => {
+          slicedPersonregister[fnr] = personregister[fnr];
+          return slicedPersonregister;
+        }, {} as PersonregisterState);
+  };
+
   const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
-  const fnrListe = Object.keys(getSortedEventsFromSortingType(personregister, veiledere, selectedSortingType));
+
+  const sortedPersonregister = getSortedEventsFromSortingType(personregister, veiledere, selectedSortingType);
+  const paginatedPersonregister = paginatePersonregister(sortedPersonregister, props.startItem, props.endItem);
+
+  const fnrListe = Object.keys(paginatedPersonregister);
+
   const isVeilederDataLoaded = useSelector((state: ApplicationState) => {
     const aktivEnhet = state.veilederenheter.aktivEnhetId;
     if (aktivEnhet && state.veiledere[aktivEnhet]) {

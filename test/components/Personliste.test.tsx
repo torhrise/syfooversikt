@@ -34,6 +34,8 @@ describe('Personliste', () => {
       checkboxHandler={checkboxHandler}
       markertePersoner={markertePersoner}
       veiledere={veiledere}
+      startItem={0}
+      endItem={1}
     />
   </Provider>);
 
