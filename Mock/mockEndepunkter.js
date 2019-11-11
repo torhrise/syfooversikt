@@ -1,64 +1,82 @@
-const path = require('path');
-const fs = require('fs');
-
-const mockData = {};
-const AKTIVENHET = 'aktivenhet';
-const ENHETER = 'enheter';
-const MOTEBEHOV = 'motebehov';
-const PERSON_INFO = 'personInfo';
-const PERSONOVERSIKT_ENHET = 'personoversiktEnhet';
-const VEILEDERINFO = 'veilederinfo';
-const VEILEDERE = 'veiledere';
-
-const lastFilTilMinne = (filnavn) => {
-  fs.readFile(path.join(__dirname, `/Data/${filnavn}.json`), (err, data) => {
-    if (err) throw err;
-    mockData[filnavn] = JSON.parse(data.toString());
-  });
-};
-
-lastFilTilMinne(AKTIVENHET);
-lastFilTilMinne(ENHETER);
-lastFilTilMinne(MOTEBEHOV);
-lastFilTilMinne(PERSON_INFO);
-lastFilTilMinne(PERSONOVERSIKT_ENHET);
-lastFilTilMinne(VEILEDERINFO);
-lastFilTilMinne(VEILEDERE);
+const personUtils = require("./personUtils.js");
 
 function mockForLokal(server) {
-  server.post('/syfoperson/api/person/info', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[PERSON_INFO]));
+  server.post("/syfoperson/api/person/info", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+    res.send(JSON.stringify(personUtils.personInfo));
   });
 
-  server.get('/api/v1/personoversikt/enhet/:id', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[PERSONOVERSIKT_ENHET]));
+  server.get("/api/v1/personoversikt/enhet/:id", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+
+    res.send(JSON.stringify(personUtils.personoversiktEnhet));
   });
 
-  server.post('/api/v1/persontildeling/registrer', (req, res) => {
+  server.post("/api/v1/persontildeling/registrer", (req, res) => {
     res.send();
   });
 
-  server.get('/syfomoteadmin/api/internad/veilederinfo', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[VEILEDERINFO]));
+  server.get("/syfomoteadmin/api/internad/veilederinfo", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const veilederInfo = {
+      "navn": "F_Z101010 E_Z101010",
+      "ident": "Z101010",
+    };
+
+    res.send(JSON.stringify(veilederInfo));
   });
 
-  server.get('/syfomoteadmin/api/internad/veilederinfo/enheter', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[ENHETER]));
+  server.get("/syfomoteadmin/api/internad/veilederinfo/enheter", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const enheter = {
+      "enhetliste": [
+        {
+          "enhetId": "0316",
+          "navn": "Oslo",
+        },
+        {
+          "enhetId": "1100",
+          "navn": "Akershus",
+        },
+      ],
+    };
+
+    res.send(JSON.stringify(enheter));
   });
 
-  server.get('/api/aktivenhet', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[AKTIVENHET]));
+  server.get("/api/aktivenhet", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const aktivEnhet = {
+      "aktivBruker": null,
+      "aktivEnhet": "0316",
+    };
+
+    res.send(JSON.stringify(aktivEnhet));
   });
 
-  server.get('/syfoveileder/api/veiledere/enhet/:enhet', (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[VEILEDERE]));
-  })
+  server.get("/syfoveileder/api/veiledere/enhet/:enhet", (req, res) => {
+    res.setHeader("Content-Type", "application/json");
+
+    const veiledere = [
+      {
+        "fnr":"01999911111",
+        "skjermingskode":"INGEN"
+      },
+      {
+        "fnr":"99999922222",
+        "skjermingskode":"DISKRESJONSMERKET"
+      },
+      {
+        "fnr":"99999933333",
+        "skjermingskode":"EGEN_ANSATT"
+      }
+    ]
+
+    res.send(JSON.stringify(veiledere));
+  });
 }
 
 module.exports = {
