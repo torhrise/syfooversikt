@@ -70,7 +70,7 @@ const Personliste = (props: PersonlisteProps) => {
   } = props;
 
   const paginatePersonregister = (register: PersonregisterState, startItem: number, endItem: number) => {
-    const allFnr = Object.keys(personregister);
+    const allFnr = Object.keys(register);
     return allFnr
         .slice(startItem, endItem + 1)
         .reduce((slicedPersonregister, fnr) => {

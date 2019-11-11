@@ -149,7 +149,6 @@ export const getSortedEventsFromSortingType = (personregister: PersonregisterSta
 
 const sortEventsOnVeileder = (personregister: PersonregisterState, veiledere: Veileder[], order: SortingType) => {
     const allFnr = Object.keys(personregister);
-
     return allFnr.map((fnr) => {
         return {
           fnr,
