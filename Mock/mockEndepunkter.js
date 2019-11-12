@@ -1,39 +1,18 @@
-const path = require('path');
-const fs = require('fs');
+const mockUtils = require('./mockUtils.js');
 
-const mockData = {};
-const AKTIVENHET = 'aktivenhet';
-const ENHETER = 'enheter';
-const MOTEBEHOV = 'motebehov';
-const PERSON_INFO = 'personInfo';
-const PERSONOVERSIKT_ENHET = 'personoversiktEnhet';
-const VEILEDERINFO = 'veilederinfo';
-const VEILEDERE = 'veiledere';
-
-const lastFilTilMinne = (filnavn) => {
-  fs.readFile(path.join(__dirname, `/Data/${filnavn}.json`), (err, data) => {
-    if (err) throw err;
-    mockData[filnavn] = JSON.parse(data.toString());
-  });
-};
-
-lastFilTilMinne(AKTIVENHET);
-lastFilTilMinne(ENHETER);
-lastFilTilMinne(MOTEBEHOV);
-lastFilTilMinne(PERSON_INFO);
-lastFilTilMinne(PERSONOVERSIKT_ENHET);
-lastFilTilMinne(VEILEDERINFO);
-lastFilTilMinne(VEILEDERE);
+const generatedPersons = mockUtils.generatePersons(50);
+const personInfo = [...mockUtils.personInfo, ...generatedPersons];
+const personoversiktEnhet = [...mockUtils.personoversiktEnhet, ...mockUtils.generatePersonoversiktEnhetFromPersons(generatedPersons)];
 
 function mockForLokal(server) {
   server.post('/syfoperson/api/person/info', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[PERSON_INFO]));
+    res.send(JSON.stringify(personInfo));
   });
 
   server.get('/api/v1/personoversikt/enhet/:id', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[PERSONOVERSIKT_ENHET]));
+    res.send(JSON.stringify(personoversiktEnhet));
   });
 
   server.post('/api/v1/persontildeling/registrer', (req, res) => {
@@ -42,23 +21,24 @@ function mockForLokal(server) {
 
   server.get('/syfomoteadmin/api/internad/veilederinfo', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[VEILEDERINFO]));
+    res.send(JSON.stringify(mockUtils.veilederInfo));
   });
 
   server.get('/syfomoteadmin/api/internad/veilederinfo/enheter', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[ENHETER]));
+    res.send(JSON.stringify(mockUtils.enheter));
   });
 
   server.get('/api/aktivenhet', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[AKTIVENHET]));
+    res.send(JSON.stringify(mockUtils.aktivEnhet));
   });
 
   server.get('/syfoveileder/api/veiledere/enhet/:enhet', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(mockData[VEILEDERE]));
-  })
+
+    res.send(JSON.stringify(mockUtils.veiledere));
+  });
 }
 
 module.exports = {
