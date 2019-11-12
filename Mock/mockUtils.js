@@ -31,7 +31,6 @@ const generatePerson = () => {
 
 const generatePersons = (amount) => new Array(amount).fill({}).map(_ => generatePerson());
 
-
 const generatePersonoversiktEnhetFromPersons = (persons) => {
     return persons.map(person => {
         return {
