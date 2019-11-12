@@ -1,15 +1,19 @@
-const personUtils = require("./personUtils.js");
+const mockUtils = require("./mockUtils.js");
+
+const generatedPersons = mockUtils.generatePersons(50);
+const personInfo = [...mockUtils.personInfo, ...generatedPersons];
+const personoversiktEnhet = [...mockUtils.personoversiktEnhet, ...mockUtils.generatePersonoversiktEnhetFromPersons(generatedPersons)];
 
 function mockForLokal(server) {
   server.post("/syfoperson/api/person/info", (req, res) => {
     res.setHeader("Content-Type", "application/json");
-    res.send(JSON.stringify(personUtils.personInfo));
+    res.send(JSON.stringify(personInfo));
   });
 
   server.get("/api/v1/personoversikt/enhet/:id", (req, res) => {
     res.setHeader("Content-Type", "application/json");
 
-    res.send(JSON.stringify(personUtils.personoversiktEnhet));
+    res.send(JSON.stringify(personoversiktEnhet));
   });
 
   server.post("/api/v1/persontildeling/registrer", (req, res) => {
@@ -60,22 +64,7 @@ function mockForLokal(server) {
   server.get("/syfoveileder/api/veiledere/enhet/:enhet", (req, res) => {
     res.setHeader("Content-Type", "application/json");
 
-    const veiledere = [
-      {
-        "fnr":"01999911111",
-        "skjermingskode":"INGEN"
-      },
-      {
-        "fnr":"99999922222",
-        "skjermingskode":"DISKRESJONSMERKET"
-      },
-      {
-        "fnr":"99999933333",
-        "skjermingskode":"EGEN_ANSATT"
-      }
-    ]
-
-    res.send(JSON.stringify(veiledere));
+    res.send(JSON.stringify(mockUtils.veiledere));
   });
 }
 
