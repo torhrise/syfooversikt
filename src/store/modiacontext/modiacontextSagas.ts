@@ -9,7 +9,7 @@ import {
   get,
   post,
 } from '../../api/index';
-import { fullNaisUrlDefault } from '../../utils/miljoUtil';
+import { fullNaisUrlQ1 } from '../../utils/miljoUtil';
 import * as actions from './modiacontext_actions';
 import { HOST_NAMES } from '../../konstanter';
 
@@ -18,9 +18,9 @@ export function* pushModiacontextSaga(
 ) {
   yield put(actions.pusherModiaContext());
   try {
-    const host = HOST_NAMES.SYFOMODIACONTEXTHOLDER;
-    const path = `${process.env.REACT_APP_SYFOMODIACONTEXTHOLDER_ROOT}/context`;
-    const url = fullNaisUrlDefault(host, path);
+    const host = HOST_NAMES.MODIACONTEXTHOLDER;
+    const path = `${process.env.REACT_APP_MODIACONTEXTHOLDER_ROOT}/context`;
+    const url = fullNaisUrlQ1(host, path);
     yield call(
       post,
       url,
@@ -40,9 +40,9 @@ export function* aktivEnhetSaga(
 ) {
   yield put(actions.henterAktivEnhet());
   try {
-    const host = HOST_NAMES.SYFOMODIACONTEXTHOLDER;
-    const path = `${process.env.REACT_APP_SYFOMODIACONTEXTHOLDER_ROOT}/aktivenhet`;
-    const url = fullNaisUrlDefault(host,path);
+    const host = HOST_NAMES.MODIACONTEXTHOLDER;
+    const path = `${process.env.REACT_APP_MODIACONTEXTHOLDER_ROOT}/context/aktivenhet`;
+    const url = fullNaisUrlQ1(host,path);
     const data = yield call(
       get,
       url
