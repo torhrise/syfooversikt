@@ -29,7 +29,7 @@ function mockForLokal(server) {
     res.send(JSON.stringify(mockUtils.enheter));
   });
 
-  server.get('/api/aktivenhet', (req, res) => {
+  server.get('/modiacontextholder/api/context/aktivenhet', (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(mockUtils.aktivEnhet));
   });
