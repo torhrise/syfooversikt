@@ -40,7 +40,9 @@ export function* hentNavnForPersonerUtenNavn(data: PersonoversiktStatus[]): any 
   const personRegisterData = yield select(hentPersonregister);
 
   const filtrertListe = fnrListe.filter((fnrObjekt) => {
-    return !personRegisterData[fnrObjekt.fnr] || (personRegisterData[fnrObjekt.fnr] && personRegisterData[fnrObjekt.fnr].navn === undefined);
+    return !personRegisterData[fnrObjekt.fnr]
+        || (personRegisterData[fnrObjekt.fnr] && personRegisterData[fnrObjekt.fnr].skjermingskode === undefined)
+        || (personRegisterData[fnrObjekt.fnr] && personRegisterData[fnrObjekt.fnr].navn === '');
   });
 
   yield put(personInfoActions.hentPersonInfoForespurt(filtrertListe));

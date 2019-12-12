@@ -15,17 +15,20 @@ const randomChoice = (choices) => {
     return choices[index];
 }
 
-const generatePerson = () => {
+const generateName = () => {
     const e = ['Banan', 'Eple', 'Fersken', 'Rambutan', 'Durian', 'Stjernefrukt', 'Tomat', 'Drue', 'Vannmelon', 'Nektarin', 'Mandarin', 'Persimon'];
     const f = ['Rød', 'Gul', 'Blå', 'Grønn', 'Rosa', 'Oransje', 'Sort', 'Lilla', 'Hvit', 'Turkis', 'Fiolett', 'Infrarød'];
 
-    const navn = `${randomChoice(f)} ${randomChoice(e)}`;
-    const fnr = getRandomInt(31999999999).toString().padStart(11, '0');
+    return `${randomChoice(f)} ${randomChoice(e)}`;
+};
 
+const generatePerson = () => {
+    const name = generateName();
+    const fnr = getRandomInt(31999999999).toString().padStart(11, '0');
     return {
-       navn,
-       fnr,
-       skjermingskode: 'INGEN',
+        name,
+        fnr,
+        skjermingskode: 'INGEN',
     };
 };
 
@@ -35,6 +38,7 @@ const generatePersonoversiktEnhetFromPersons = (persons) => {
     return persons.map(person => {
         return {
             fnr: person.fnr,
+            navn: generateName(),
             enhet: '0316',
             veilederIdent: 'Z202020',
             motebehovUbehandlet: null,

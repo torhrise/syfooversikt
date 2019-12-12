@@ -27,10 +27,22 @@ export const testdata = {
 };
 
 export const personregister: PersonregisterState = {
-  [testdata.fnr1]: { navn: testdata.navn1, harMotebehovUbehandlet: true, harMoteplanleggerUbehandlet: false,
-    skjermingskode: testdata.skjermingskode.ingen, markert: false, tildeltVeilederIdent: 'Z999999' } as PersonData,
-  [testdata.fnr2]: { navn: testdata.navn2, harMotebehovUbehandlet: false, harMoteplanleggerUbehandlet: false,
-    skjermingskode: testdata.skjermingskode.egenAnsatt, markert: false, tildeltVeilederIdent: 'Z999999' } as PersonData,
+  [testdata.fnr1]: {
+    navn: testdata.navn1,
+    harMotebehovUbehandlet: true,
+    harMoteplanleggerUbehandlet: false,
+    skjermingskode: testdata.skjermingskode.ingen,
+    markert: false,
+    tildeltVeilederIdent: 'Z999999',
+  } as PersonData,
+  [testdata.fnr2]: {
+    navn: testdata.navn2,
+    harMotebehovUbehandlet: false,
+    harMoteplanleggerUbehandlet: false,
+    skjermingskode: testdata.skjermingskode.egenAnsatt,
+    markert: false,
+    tildeltVeilederIdent: 'Z999999',
+  } as PersonData,
 };
 
 export const personoversikt = [

@@ -12,6 +12,7 @@ import {
 import { PersonoversiktStatus } from '../../../src/store/personoversikt/personoversiktTypes';
 
 const mapPersonToState = (person: PersonoversiktStatus) => ({
+  navn: person.navn,
   tildeltEnhetId: person.enhet,
   tildeltVeilederIdent: person.veilederIdent,
   harMotebehovUbehandlet: person.motebehovUbehandlet,
