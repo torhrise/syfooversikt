@@ -17,6 +17,7 @@
   },
   {
     "fnr":"99999933333",
+    "navn":"",
     "enhet": "0316",
     "veilederIdent":"Z101010",
     "motebehovUbehandlet": true,
@@ -25,6 +26,7 @@
   },
   {
     "fnr":"99999944444",
+    "navn":"",
     "enhet": "0316",
     "veilederIdent":"Z101010",
     "motebehovUbehandlet": true,
@@ -38,6 +40,7 @@
   },
   {
     "fnr":"18999955555",
+    "navn":"",
     "enhet": "0316",
     "veilederIdent": null,
     "motebehovUbehandlet": true,
@@ -51,6 +54,7 @@
   },
   {
     "fnr": "99999966666",
+    "navn":"",
     "enhet": "0317",
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,
@@ -59,6 +63,7 @@
   },
   {
     "fnr":"99999955556",
+    "navn":"",
     "enhet": "0316",
     "veilederIdent": null,
     "motebehovUbehandlet": true,
@@ -67,6 +72,7 @@
   },
   {
     "fnr": "99999966667",
+    "navn":"",
     "enhet": "0317",
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,
@@ -75,6 +81,7 @@
   },
   {
     "fnr": "99999966668",
+    "navn":"",
     "enhet": "0317",
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,
@@ -83,6 +90,7 @@
   },
   {
     "fnr": "99999966669",
+    "navn":"",
     "enhet": "0317",
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,
@@ -91,6 +99,7 @@
   },
   {
     "fnr": "99999966670",
+    "navn":"",
     "enhet": "0316",
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,

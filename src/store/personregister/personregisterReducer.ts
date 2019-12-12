@@ -18,6 +18,10 @@ const tilPersonDataMap = (personDataMapObject: any) => {
 
 const initiellState = { };
 
+const hasName = (person: PersonData) => {
+  return person && person.navn && person.navn.length > 0;
+};
+
 const personregisterReducer: Reducer<PersonregisterState> = (
   state = initiellState,
   action
@@ -28,7 +32,9 @@ const personregisterReducer: Reducer<PersonregisterState> = (
       const personerSomSkalOppdateres: { [fnr: string]: PersonData } = navnHentet.map((personInfo: PersonInfo) => ({
         [personInfo.fnr]: {
           ...state[personInfo.fnr],
-          navn: personInfo.navn,
+          navn: hasName(state[personInfo.fnr])
+              ? state[personInfo.fnr].navn
+              : personInfo.navn,
           skjermingskode: personInfo.skjermingskode,
         },
       }));
@@ -52,6 +58,7 @@ const personregisterReducer: Reducer<PersonregisterState> = (
       const personerSomSkalOppdateres = personoversikt.map((person: PersonoversiktStatus) => ({
         [person.fnr]: {
           ...state[person.fnr],
+          navn: person.navn,
           tildeltEnhetId: person.enhet,
           tildeltVeilederIdent: person.veilederIdent,
           harMotebehovUbehandlet: person.motebehovUbehandlet,

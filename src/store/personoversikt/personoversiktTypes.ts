@@ -1,5 +1,6 @@
 export interface PersonoversiktStatus {
   fnr: string;
+  navn: string;
   enhet: string;
   veilederIdent: string | null;
   motebehovUbehandlet: boolean | null;
