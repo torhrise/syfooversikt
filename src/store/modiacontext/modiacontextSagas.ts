@@ -9,21 +9,17 @@ import {
   get,
   post,
 } from '../../api/index';
-import { fullNaisUrlQ1 } from '../../utils/miljoUtil';
 import * as actions from './modiacontext_actions';
-import { HOST_NAMES } from '../../konstanter';
 
 export function* pushModiacontextSaga(
   action: ReturnType<typeof actions.pushModiaContext>
 ) {
   yield put(actions.pusherModiaContext());
   try {
-    const host = HOST_NAMES.MODIACONTEXTHOLDER;
     const path = `${process.env.REACT_APP_MODIACONTEXTHOLDER_ROOT}/context`;
-    const url = fullNaisUrlQ1(host, path);
     yield call(
       post,
-      url,
+      path,
       {
         verdi: action.data.verdi,
         eventType: action.data.eventType,
@@ -40,12 +36,10 @@ export function* aktivEnhetSaga(
 ) {
   yield put(actions.henterAktivEnhet());
   try {
-    const host = HOST_NAMES.MODIACONTEXTHOLDER;
     const path = `${process.env.REACT_APP_MODIACONTEXTHOLDER_ROOT}/context/aktivenhet`;
-    const url = fullNaisUrlQ1(host,path);
     const data = yield call(
       get,
-      url
+      path
     );
     action.data.callback(data.aktivEnhet);
   } catch (e) {
