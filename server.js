@@ -40,6 +40,10 @@ server.set('views', `${__dirname}/dist`);
 server.set('view engine', 'mustache');
 server.engine('html', mustacheExpress());
 
+const modiacontextholderUrl =  process.env.NAIS_CONTEXT === 'dev'
+    ? 'modiacontextholder.q1'
+    : 'modiacontextholder.default';
+
 changelogs.readChangelogDir();
 
 const renderApp = () => {
@@ -123,10 +127,20 @@ const startServer = (html) => {
                 return `/api${req.path}`
             },
             proxyErrorHandler: function(err, res, next) {
-                console.error("Error in proxy", err)
+                console.error("Error in proxy for syfooversiktsrv", err);
                 next(err);
             }
-        }))
+        }));
+        server.use('/modiacontextholder/api', proxy(modiacontextholderUrl,  {
+            https: false,
+            proxyReqPathResolver: function(req) {
+                return `/modiacontextholder/api${req.url}`
+            },
+            proxyErrorHandler: function(err, res, next) {
+                console.error("Error in proxy for modiacontextholder", err);
+                next(err);
+            },
+        }));
     }
 
     const port = process.env.PORT || 8080;
