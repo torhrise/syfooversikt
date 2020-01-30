@@ -14,7 +14,6 @@ export const HendelseTekster: any = {
     UFORDELTE_BRUKERE: 'Ufordelte brukere', // Ikke tildelt veileder
     MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
     MOTEPLANLEGGER_SVAR: 'Svar møteplanlegger', // Svar fra møteplanlegger
-    IKKE_I_AKTIVITET: '100% f.o.m. 8 uker',
 };
 
 interface Props extends ComponentPropsWithoutRef<any> {
@@ -37,7 +36,6 @@ const lagNyttFilter = (forrigeFilter: HendelseTypeFilters, tekst: string, checke
     if (tekst === HendelseTekster.MOTEBEHOV) filter.onskerMote = checked;
     if (tekst === HendelseTekster.MOTEPLANLEGGER_SVAR) filter.svartMote = checked;
     if (tekst === HendelseTekster.UFORDELTE_BRUKERE) filter.ufordeltBruker = checked;
-    if (tekst === HendelseTekster.IKKE_I_AKTIVITET) filter.ikkeIAktivitet = checked;
     return filter;
 };
 
@@ -45,7 +43,6 @@ const isCheckedInState = (state: HendelseTypeFilters, tekst: string): boolean =>
     if (tekst === HendelseTekster.MOTEBEHOV) return state.onskerMote;
     if (tekst === HendelseTekster.MOTEPLANLEGGER_SVAR) return state.svartMote;
     if (tekst === HendelseTekster.UFORDELTE_BRUKERE) return state.ufordeltBruker;
-    if (tekst === HendelseTekster.IKKE_I_AKTIVITET) return state.ikkeIAktivitet;
     return false;
 };
 

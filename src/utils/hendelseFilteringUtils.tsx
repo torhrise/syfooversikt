@@ -6,8 +6,7 @@ import { isNullOrUndefined } from 'util';
 import { formaterNavn } from './lenkeUtil';
 import { HendelseTypeFilters } from '../store/filters/filterReducer';
 import { firstCompanyNameFromPersonData } from './personDataUtil';
-import { store } from '../store';
-import { Veileder, VeiledereState } from '../store/veiledere/veiledereTypes';
+import { Veileder } from '../store/veiledere/veiledereTypes';
 
 export class Filterable<T> {
 
