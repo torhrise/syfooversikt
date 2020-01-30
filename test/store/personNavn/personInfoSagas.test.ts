@@ -26,7 +26,6 @@ describe('hentPersonInfoSagas', () => {
   it(`Skal dernest sette ${PersonInfoActionTypes.HENT_PERSON_INFO_HENTET}`, () => {
     const personInfoSvar = [{
       fnr: testdata.fnr1,
-      navn: testdata.navn1,
       skjermingskode: testdata.skjermingskode.ingen,
     }];
     const nextPut = put({

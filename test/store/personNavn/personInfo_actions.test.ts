@@ -29,7 +29,6 @@ describe('personInfo_actions', () => {
   it('hentPersonInfoHentet() skal returnere riktig action', () => {
     const personInfoSvar = [ {
       fnr: testdata.fnr1,
-      navn: testdata.navn1,
       skjermingskode: testdata.skjermingskode.ingen,
     } ];
     expect(hentPersonInfoHentet(personInfoSvar)).to.deep.equal({
