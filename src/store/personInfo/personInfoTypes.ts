@@ -4,7 +4,6 @@ export interface Fodselsnummer {
 
 export interface PersonInfo {
   fnr: string;
-  navn: string;
   skjermingskode: string;
 }
 

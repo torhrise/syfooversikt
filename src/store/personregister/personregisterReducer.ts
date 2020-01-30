@@ -32,9 +32,6 @@ const personregisterReducer: Reducer<PersonregisterState> = (
       const personerSomSkalOppdateres: { [fnr: string]: PersonData } = navnHentet.map((personInfo: PersonInfo) => ({
         [personInfo.fnr]: {
           ...state[personInfo.fnr],
-          navn: hasName(state[personInfo.fnr])
-              ? state[personInfo.fnr].navn
-              : personInfo.navn,
           skjermingskode: personInfo.skjermingskode,
         },
       }));

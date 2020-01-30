@@ -43,11 +43,9 @@ describe('personregisterReducer', () => {
     it('handterer HENT_PERSON_INFO_HENTET', () => {
       const dataIForsteKall = [ {
         fnr: testdata.fnr1,
-        navn: testdata.navn1,
         skjermingskode: testdata.skjermingskode.ingen,
       }, {
         fnr: testdata.fnr2,
-        navn: testdata.navn2,
         skjermingskode: testdata.skjermingskode.ingen,
       } ];
       const dataIAndreKall = [ {
@@ -60,26 +58,21 @@ describe('personregisterReducer', () => {
       const forsteState = personregisterReducer(initialState, forsteAction);
       expect(forsteState).to.deep.equal({
         [testdata.fnr1]: {
-          navn: testdata.navn1,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr2]: {
-          navn: testdata.navn2,
           skjermingskode: testdata.skjermingskode.ingen,
         },
       });
       const andreState = personregisterReducer(forsteState, andreAction);
       expect(andreState).to.deep.equal({
         [testdata.fnr1]: {
-          navn: testdata.navn1,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr2]: {
-          navn: testdata.navn2,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr3]: {
-          navn: testdata.navn3,
           skjermingskode: testdata.skjermingskode.ingen,
         },
       });
@@ -94,17 +87,14 @@ describe('personregisterReducer', () => {
       const dataIAndreKall = [
         {
           fnr: testdata.fnr1,
-          navn: testdata.navn1,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         {
           fnr: testdata.fnr2,
-          navn: testdata.navn2,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         {
           fnr: testdata.fnr4,
-          navn: testdata.navn3,
           skjermingskode: testdata.skjermingskode.ingen,
         } ];
       const hentPersonInfoAction = hentPersonInfoHentet(dataIAndreKall);
@@ -114,16 +104,14 @@ describe('personregisterReducer', () => {
         ...forsteState,
         [testdata.fnr1]: {
           ...forsteState[testdata.fnr1],
-          navn: testdata.navn1,
           skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr2]: {
-          navn: testdata.navn2,
+          ...forsteState[testdata.fnr2],
           skjermingskode: testdata.skjermingskode.ingen,
         },
         [testdata.fnr4]: {
           ...forsteState[testdata.fnr4],
-          navn: testdata.navn3,
           skjermingskode: testdata.skjermingskode.ingen,
         },
       };

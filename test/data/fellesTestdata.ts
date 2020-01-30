@@ -17,6 +17,7 @@ export const testdata = {
   navn1: 'Et navn',
   navn2: 'Et annet navn',
   navn3: 'Nok et navn..',
+  navn4: 'Nok et navn igjen',
   enhetId,
   veilederIdent,
   skjermingskode: {
@@ -47,6 +48,7 @@ export const personregister: PersonregisterState = {
 
 export const personoversikt = [
   {
+    navn: testdata.navn1,
     fnr: testdata.fnr1,
     enhet: enhetId,
     veilederIdent: null,
@@ -54,6 +56,7 @@ export const personoversikt = [
     oppfolgingstilfeller: [],
   } as PersonoversiktStatus,
   {
+    navn: testdata.navn4,
     fnr: testdata.fnr4,
     enhet: enhetId,
     veilederIdent,
