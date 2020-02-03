@@ -14,7 +14,7 @@ const texts = {
 
 const ModalContent = styled.div`
     text-align: center;
-    max-width: 540px;
+    max-width: 34em;
     margin: auto;
 `;
 
@@ -28,18 +28,11 @@ const ModalButtons = styled.div`
 `;
 
 const Button = styled(Knapp)`
-    margin: 1rem auto auto;
-`;
-
-const Divider = styled.div`
-  margin: auto;
-  height: 1px;
-  width: 2.5em;
-  background: #78706A;
+    margin: 1em auto auto;
 `;
 
 const Modal = styled(ModalWrapper)`
-  min-width: 640px;
+  min-width: 40em;
   padding: 1.5em;
 `;
 
@@ -56,7 +49,7 @@ const ChangeEnhetModal = ({isOpen, changeEnhet, keepEnhet}: ChangeEnhetModalProp
             <ModalContent>
                 <ModalHeader>{texts.header}</ModalHeader>
                 <p>{texts.beskrivelse}</p>
-                <Divider />
+                <hr />
                 <ModalButtons>
                     <Button
                         autoFocus

@@ -6,7 +6,10 @@ import {
 import { ApplicationState } from '../store';
 import { CONTEXT_EVENT_TYPE } from '../konstanter';
 import { AlertStripeRod } from '../components/AlertStripeAdvarsel';
-import { hentAktivEnhet, pushModiaContext } from '../store/modiacontext/modiacontext_actions';
+import {
+  hentAktivEnhet,
+  pushModiaContext,
+} from '../store/modiacontext/modiacontext_actions';
 import { HentAktivEnhetData } from '../store/modiacontext/modiacontextTypes';
 import { hentVeilederinfo } from '../store/veilederinfo/veilederinfo_actions';
 import { VeilederinfoState } from '../store/veilederinfo/veilederinfoTypes';
@@ -91,7 +94,7 @@ const Context = () => {
 
   return (
       <div className="contextContainer">
-        <ChangeEnhetModal isOpen={changedEnhet} keepEnhet={keepEnhet} changeEnhet={changeEnhet}/>
+        <ChangeEnhetModal isOpen={changedEnhet} keepEnhet={keepEnhet} changeEnhet={changeEnhet} />
         {veilederinfo.hentingFeilet &&
         AlertStripeRod(
             tekster.feil.hentVeilederIdentFeilet,
