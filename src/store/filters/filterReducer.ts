@@ -31,7 +31,7 @@ const inititalState: FilterState = {
     selectedHendelseType: initialHendelseFilter,
 };
 
-const FilterReducer: Reducer<FilterState, FilterAction> = (state = inititalState, action) => {
+const FilterReducer: Reducer<FilterState, FilterAction> = (state: FilterState = inititalState, action) => {
     switch (action.type) {
         case FilterActionTypes.UPDATE_BIRTH_DATE: {
             return {
