@@ -28,7 +28,8 @@ const InputStyled = styled(Input)`
 const SearchIconBlue = styled(SearchIcon)`
   fill: ${themes.color.navBla};
   position: absolute;
-  margin-left: -1em;
+  right: 1em;
+  top: 1.5em;
 `;
 
 const InputWithSearchIcon = (props: InputWithSearchIconProps) => {
