@@ -1,0 +1,21 @@
+{
+  "title": "Velkommen!",
+  "date": "10-02-20",
+  "items": [
+    {
+      "title": "Tildel veileder",
+      "text": "Fra enhentens oversikt kan du tildele bruker(e) til en veileder. Marker brukerne som skal tildeles en veileder og trykk på \"Tildel veileder\".",
+      "image": "tildelveileder.png"
+    },
+    {
+      "title": "Min oversikt",
+      "text": "På \"Min oversikt\" finner du brukerne som er tildelt deg.",
+      "image": "minoversikt2.png"
+    },
+    {
+      "title": "Søk veileder",
+      "text": "Søk på enhetens veilder(e) for å se hvilke brukere som er tildelt dem.",
+      "image": "sokveileder.png"
+    }
+  ]
+}
