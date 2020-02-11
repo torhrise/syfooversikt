@@ -4,17 +4,17 @@
   "items": [
     {
       "title": "Tildel veileder",
-      "text": "Fra enhentens oversikt kan du tildele bruker(e) til en veileder. Marker brukerne som skal tildeles en veileder og trykk på \"Tildel veileder\".",
+      "text": "Fra enhetens oversikt kan du tildele brukere til veiledere. Kryss av ved navnet og trykk på «Tildel veileder».",
       "image": "tildelveileder.png"
     },
     {
       "title": "Min oversikt",
-      "text": "På \"Min oversikt\" finner du brukerne som er tildelt deg.",
+      "text": "Her finner du brukerne du har fått tildelt. Du kan også flytte en bruker over til en annen veileder.",
       "image": "minoversikt2.png"
     },
     {
-      "title": "Søk veileder",
-      "text": "Søk på enhetens veilder(e) for å se hvilke brukere som er tildelt dem.",
+      "title": "Søk etter veileder",
+      "text": "Her kan du søke etter veilederne i enheten for å se hvilke brukere de har fått tildelt.",
       "image": "sokveileder.png"
     }
   ]
