@@ -35,9 +35,12 @@ export const VeilederNavn = styled.label`
 
 const EtikettFokusStyled = styled(EtikettInfo)`
   padding: 2px 4px !important;
+  background: rgb(224, 245, 251) !important;
+  border-radius: 4px !important;
+  border: 1px solid rgb(102, 203, 236);
 `;
 
-const UfordeltBrukerEtikett = () => <EtikettFokusStyled>Ufordelt</EtikettFokusStyled>;
+const UfordeltBrukerEtikett = () => <EtikettFokusStyled>Ufordelt bruker</EtikettFokusStyled>;
 
 const erMarkert = (markertePersoner: string[], fnr: string) => {
   return markertePersoner.findIndex((markertPerson: string) => {
