@@ -40,7 +40,7 @@ const EtikettFokusStyled = styled(EtikettInfo)`
   border: 1px solid rgb(102, 203, 236);
 `;
 
-const UfordeltBrukerEtikett = () => <EtikettFokusStyled>Ufordelt</EtikettFokusStyled>;
+const UfordeltBrukerEtikett = () => <EtikettFokusStyled>Ufordelt bruker</EtikettFokusStyled>;
 
 const erMarkert = (markertePersoner: string[], fnr: string) => {
   return markertePersoner.findIndex((markertPerson: string) => {
