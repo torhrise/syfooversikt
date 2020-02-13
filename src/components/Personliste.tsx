@@ -29,7 +29,6 @@ interface PersonlisteProps {
 
 export const VeilederNavn = styled.label`
   text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
 `;
 
