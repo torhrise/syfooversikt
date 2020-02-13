@@ -1,11 +1,8 @@
-import React, {
-  useState,
-} from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { EtikettInfo } from 'nav-frontend-etiketter';
 import Personrad from './Personrad';
-import Sorteringsrad from './Sorteringsrad';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 import { veilederEllerNull } from '../utils/personDataUtil';
 import { ApplicationState } from '../store';
@@ -14,7 +11,6 @@ import {
   PersonregisterState,
 } from '../store/personregister/personregisterTypes';
 import {
-  SortingType,
   getSortedEventsFromSortingType,
 } from '../utils/hendelseFilteringUtils';
 
@@ -81,9 +77,9 @@ const Personliste = (props: PersonlisteProps) => {
         }, {} as PersonregisterState);
   };
 
-  const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
+  const brukerSorting = useSelector((state: ApplicationState) => state.sorting);
 
-  const sortedPersonregister = getSortedEventsFromSortingType(personregister, veiledere, selectedSortingType);
+  const sortedPersonregister = getSortedEventsFromSortingType(personregister, veiledere, brukerSorting.sortingType);
   const paginatedPersonregister = paginatePersonregister(sortedPersonregister, props.startItem, props.endItem);
 
   const fnrListe = Object.keys(paginatedPersonregister);
@@ -97,9 +93,6 @@ const Personliste = (props: PersonlisteProps) => {
   });
 
   return (<>
-    <Sorteringsrad onSortClick={(type) => {
-      setSortingType(type);
-    }} />
     {
       fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad

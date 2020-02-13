@@ -36,6 +36,8 @@ import changelogReducer, { ChangelogState } from './changelog/changelogReducer';
 import changelogSagas from './changelog/changelogSagas';
 import { createBrowserHistory } from 'history';
 import filterReducer, { FilterState } from './filters/filterReducer';
+import sortingReducer from './sorting/sortingReducer';
+import { SortingState } from './sorting/sortingTypes';
 
 export interface ApplicationState {
   router: any;
@@ -48,6 +50,7 @@ export interface ApplicationState {
   personInfo: PersonInfoState;
   personoversikt: PersonoversiktStatusState;
   personregister: PersonregisterState;
+  sorting: SortingState;
 }
 
 export interface ConnectedReduxProps<A extends Action = AnyAction> {
@@ -65,6 +68,7 @@ export const rootReducer = () => combineReducers<ApplicationState>({
   personInfo: personInfoReducer,
   personoversikt: personoversiktReducer,
   personregister: personregisterReducer,
+  sorting: sortingReducer,
 });
 
 export function* rootSaga() {
