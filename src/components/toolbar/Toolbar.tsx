@@ -12,6 +12,8 @@ import SearchVeileder from './SearchVeileder/SearchVeileder';
 import { updateVeilederIdentsFilter } from '../../store/filters/filter_actions';
 import countFilterAction from '../../metrics/countFilterAction';
 import { CounterFilterActionTypes } from '../../metrics/countFilterAction';
+import Sorteringsrad from '../Sorteringsrad';
+import { sortVeiledere } from '../../store/sorting/sorting_actions';
 
 export interface ToolbarProps {
     aktivVeilederInfo: Veilederinfo;
@@ -157,5 +159,8 @@ export default (props: ToolbarProps) => {
                     }}/>
             </PaginationContainer>
         </Innhold>
+        <Sorteringsrad onSortClick={(type) => {
+            dispatch(sortVeiledere(type));
+        }} />
     </Toolbar>);
 };

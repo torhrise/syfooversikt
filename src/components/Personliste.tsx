@@ -81,9 +81,9 @@ const Personliste = (props: PersonlisteProps) => {
         }, {} as PersonregisterState);
   };
 
-  const [ selectedSortingType, setSortingType ] = useState<SortingType>('NONE');
+  const veilederSorting = useSelector((state: ApplicationState) => state.sorting);
 
-  const sortedPersonregister = getSortedEventsFromSortingType(personregister, veiledere, selectedSortingType);
+  const sortedPersonregister = getSortedEventsFromSortingType(personregister, veiledere, veilederSorting.sortingType);
   const paginatedPersonregister = paginatePersonregister(sortedPersonregister, props.startItem, props.endItem);
 
   const fnrListe = Object.keys(paginatedPersonregister);
@@ -97,9 +97,6 @@ const Personliste = (props: PersonlisteProps) => {
   });
 
   return (<>
-    <Sorteringsrad onSortClick={(type) => {
-      setSortingType(type);
-    }} />
     {
       fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad
