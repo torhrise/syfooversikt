@@ -8,7 +8,7 @@ const initialState: SortingState = {
 
 const sortingReducer: Reducer<SortingState> = (state = initialState, action) => {
     switch (action.type) {
-        case SortingActionTypes.SORT_VEILEDERE: {
+        case SortingActionTypes.SORT_BRUKERE: {
             return {
                 ...state,
                 sortingType: action.sortingType,

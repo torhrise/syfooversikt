@@ -1,12 +1,12 @@
 import { SortingType } from '../../utils/hendelseFilteringUtils';
 
 export const enum SortingActionTypes {
-    SORT_VEILEDERE = 'SORT_VEILEDERE',
+    SORT_BRUKERE = 'SORT_BRUKERE',
 }
 
-export const sortVeiledere = (sortingType: SortingType) => {
+export const sortBrukere = (sortingType: SortingType) => {
     return ({
-        type: SortingActionTypes.SORT_VEILEDERE,
+        type: SortingActionTypes.SORT_BRUKERE,
         sortingType,
     });
 };
