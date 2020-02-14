@@ -2,7 +2,7 @@ import React, {
   Component,
 } from 'react';
 import styled from 'styled-components';
-import Toolbar from './toolbar/Toolbar';
+import Toolbar from './toolbar/ToolbarWrapper';
 import Personliste from './Personliste';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
