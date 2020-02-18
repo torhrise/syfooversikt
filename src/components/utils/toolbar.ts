@@ -18,7 +18,6 @@ export const onTogglePaginationClick = (numberOfItemsPerPage: number, setNumberO
 };
 
 export const getTogglePaginationText = (numberOfItemsPerPage: number, numberOfItemsTotal: number) => {
-
     return numberOfItemsPerPage === numberOfItemsTotal
         ? texts.showLess
         : texts.showMore;
