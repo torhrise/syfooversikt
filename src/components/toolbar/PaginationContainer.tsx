@@ -1,6 +1,6 @@
 import {
     getTogglePaginationText,
-    onTogglePaginationClick
+    onTogglePaginationClick,
 } from '../utils/toolbar';
 import Pagination from '../PaginationRow';
 import React from 'react';
