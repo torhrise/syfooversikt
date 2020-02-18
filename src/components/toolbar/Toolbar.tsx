@@ -1,7 +1,10 @@
 import TildelVeileder from './AssignVeileder/TildelVeileder';
 import { OverviewTabType } from '../../konstanter';
 import SearchVeileder from './SearchVeileder/SearchVeileder';
-import { Column, Row } from 'nav-frontend-grid';
+import {
+    Column,
+    Row
+} from 'nav-frontend-grid';
 import Sorteringsrad from '../Sorteringsrad';
 import { sortBrukere } from '../../store/sorting/sorting_actions';
 import React, { useState } from 'react';
@@ -12,7 +15,7 @@ import { useDispatch } from 'react-redux';
 import { ToolbarWrapperProps } from './ToolbarWrapper';
 import {
     onVeilderIdentsChange,
-    PAGINATED_NUMBER_OF_ITEMS
+    PAGINATED_NUMBER_OF_ITEMS,
 } from '../utils/toolbar';
 import PaginationContainer from './PaginationContainer';
 
@@ -20,8 +23,8 @@ const Innhold = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 0.5em;
-  border-bottom: 1px solid #b7b1a9;
+  margin: 0 .5em;
+  border-bottom: 1px solid ${themes.color.navGra40};
 `;
 
 const Element = styled.div`
@@ -56,10 +59,10 @@ const ToolbarStyled = styled.div`
   flex-direction: column;
   background-color: ${themes.color.white};
   position: sticky;
-  top: 0em;
+  top: 0;
   z-index: 1;
   border-radius: 4px;
-  border: 1px solid #c6c2bf;
+  border: 1px solid ${themes.color.navGra20};
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 `;
 

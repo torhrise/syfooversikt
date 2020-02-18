@@ -1,4 +1,7 @@
-import { getTogglePaginationText, onTogglePaginationClick } from '../utils/toolbar';
+import {
+    getTogglePaginationText,
+    onTogglePaginationClick
+} from '../utils/toolbar';
 import Pagination from '../PaginationRow';
 import React from 'react';
 import styled from 'styled-components';

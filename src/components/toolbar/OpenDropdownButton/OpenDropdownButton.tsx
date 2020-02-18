@@ -29,7 +29,7 @@ const ButtonDiv = styled.div`
   align-items: center;
   justify-content: flex-start;
   height: 100%;
-  border: 1px solid #78706a;
+  border: 1px solid ${themes.color.darkGrayish};
   border-radius: 4px;
   ${(props: ButtonDivProps) => props.active && activeStyle};
 `;

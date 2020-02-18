@@ -54,7 +54,7 @@ const ToolbarWrapper = (props: ToolbarWrapperProps) => {
         });
 
     return (
-        <React.Fragment>
+        <>
             <InfoText>
                 <div>{textPaginatedUsers(pageInfo, props.numberOfItemsTotal)}</div>
                 {props.markertePersoner.length > 0 && (
@@ -62,7 +62,7 @@ const ToolbarWrapper = (props: ToolbarWrapperProps) => {
                 )}
             </InfoText>
             <Toolbar {...props} setPageInfo={setPageInfo} />
-        </React.Fragment>
+        </>
     );
 };
 
