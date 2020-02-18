@@ -7,7 +7,6 @@ import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
   skjermingskode,
-  companyNamesFromPersonData,
   firstCompanyNameFromPersonData,
 } from '../utils/personDataUtil';
 

@@ -13,6 +13,7 @@ import {
 import {
   getSortedEventsFromSortingType,
 } from '../utils/hendelseFilteringUtils';
+import themes from '../styles/themes';
 
 interface PersonlisteProps {
   personregister: PersonregisterState;
@@ -33,6 +34,11 @@ const EtikettFokusStyled = styled(EtikettInfo)`
   background: rgb(224, 245, 251) !important;
   border-radius: 4px !important;
   border: 1px solid rgb(102, 203, 236);
+`;
+
+const PersonradWrapper = styled.div`
+  border: 1px solid ${themes.color.navGra40};
+  border-top: none;
 `;
 
 const UfordeltBrukerEtikett = () => <EtikettFokusStyled>Ufordelt bruker</EtikettFokusStyled>;
@@ -92,7 +98,7 @@ const Personliste = (props: PersonlisteProps) => {
     return false;
   });
 
-  return (<>
+  return (<PersonradWrapper>
     {
       fnrListe.map((fnr: string, idx: number) => {
         return (<Personrad
@@ -108,7 +114,7 @@ const Personliste = (props: PersonlisteProps) => {
         />);
       })
     }
-  </>);
+  </PersonradWrapper>);
 };
 
 export default Personliste;
