@@ -23,12 +23,12 @@ const InfoText = styled.div`
   flex-direction: row;
   font-size: 1em;
   font-weight: bold;
-  padding: 0.25em;
-  padding-bottom: 0.5em;
+  padding: .25em;
+  padding-bottom: .5em;
   box-sizing: border-box;
   border: 2px solid transparent;
   >:not(:first-child) {
-    margin-left: 0.5em;
+    margin-left: .5em;
   }
 `;
 

@@ -3,7 +3,7 @@ import { OverviewTabType } from '../../konstanter';
 import SearchVeileder from './SearchVeileder/SearchVeileder';
 import {
     Column,
-    Row
+    Row,
 } from 'nav-frontend-grid';
 import Sorteringsrad from '../Sorteringsrad';
 import { sortBrukere } from '../../store/sorting/sorting_actions';
