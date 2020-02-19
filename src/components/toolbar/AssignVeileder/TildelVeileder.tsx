@@ -31,7 +31,6 @@ const dropdownButtonTexts: DropdownButtonTexts = {
     reset: 'Avbryt',
 };
 
-
 interface TildelVeilederProps {
     veiledere: Veileder[];
     markertePersoner: string[];
@@ -42,7 +41,6 @@ interface TildelVeilederProps {
 }
 
 const TildelVeileder = (props: TildelVeilederProps) => {
-
     const stateFromProps = () => ({
         chosenVeilederIdent: '',
         input: '',
