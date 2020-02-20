@@ -9,6 +9,7 @@ import themes from '../../styles/themes';
 
 const TogglePagination = styled.p`
   cursor: pointer;
+  margin-right: .7em;
   color: ${themes.color.navBla};
   :hover {
     border-bottom: 1px solid ${themes.color.navGra40};
