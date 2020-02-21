@@ -16,32 +16,25 @@ const ChevronButton = styled.button`
 
     :focus {
         outline: ${(props) => props.className === 'invisible'
-    ? 'none'
-    : 'auto'
-};
+            ? 'none'
+            : 'auto'
+        };
         outline-offset: -5px;
     }
 `;
 
 const ChevronLabel = styled.span`
-    color: #0067c5;
+    color: ${themes.color.darkBlue};
     box-sizing: border-box;
     margin-bottom: 2px;
     border: 2px solid transparent;
-    ${ChevronButton}:hover & {
-        border-bottom: 1px solid #0067c5;
-    }
 `;
 
 const ChevronStyled = styled(Chevron)`
     color: ${(props) => props.className === 'invisible'
-    ? `${themes.color.invisible}`
-    : `${themes.color.navBla}`
-};
-`;
-
-const StyledEmptyContainer = styled.div`
-    padding: 0.5em;
+        ? `${themes.color.invisible}`
+        : `${themes.color.navBla}`
+    };
 `;
 
 interface ChevronKnappProps {

@@ -32,8 +32,8 @@ interface ChevronKnappProps {
 
 const ChevronKnapp = ({ type = 'venstre', text: tekst, disabled, onClick }: ChevronKnappProps) => {
     const colorClassname = classNames(disabled
-        ? 'enabled'
-        : 'disabled'
+        ? 'disabled'
+        : 'enabled'
     );
 
     return (

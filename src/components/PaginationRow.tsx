@@ -76,7 +76,7 @@ const PaginationRow = ({
   return (
     <PaginationItems>
       <Element>
-        <ChevronKnapp disabled={currentPage !== 0} type="venstre" onClick={onPreviousClick} />
+        <ChevronKnapp disabled={currentPage === 0} type="venstre" onClick={onPreviousClick} />
       </Element>
       {currentPage !== getNumberOfPages() &&
         <Element>
@@ -87,7 +87,7 @@ const PaginationRow = ({
         <Clickable index={getNumberOfPages()} setPage={setCurrentPage} currentPage={currentPage} />
       </Element>
       <Element>
-        <ChevronKnapp disabled={currentPage !== getNumberOfPages()} type="høyre" onClick={onNextClick} />
+        <ChevronKnapp disabled={currentPage === getNumberOfPages()} type="høyre" onClick={onNextClick} />
       </Element>
     </PaginationItems>
   );

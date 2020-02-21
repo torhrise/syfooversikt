@@ -9,7 +9,9 @@ const ClickableStyled = styled.span`
 `;
 
 const Clickable = (props: { index: number, setPage: (page: number) => void, currentPage: number}) => {
-    const isActive = props.index === props.currentPage ? 'active' : undefined;
+    const isActive = props.index === props.currentPage
+        ? 'active'
+        : undefined;
 
     const page = props.index + 1;
     return (
