@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import themes from '../../styles/themes';
 
 const ClickableStyled = styled.span`
-  color: ${(props) => props.className === 'active' ? '#005b82' : themes.color.navBla};
+  color: ${(props) => props.className === 'active' ? themes.color.deepBlue : themes.color.navBla};
   font-weight: ${(props) => props.className === 'active' ? 'bold' : 'normal'};
   cursor: ${(props) => props.className === 'active' ? 'normal' : 'pointer'};
 `;
