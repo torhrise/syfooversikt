@@ -8,9 +8,9 @@ import {
     Undertittel,
     Normaltekst,
 } from 'nav-frontend-typografi';
+import ChevronKnapp from '../ChevronKnapp';
 import { Changelog } from '../../store/changelog/changelogTypes';
 import NumberIndicator from '../NumberIndicator';
-import ChangelogChevronKnapp from './ChangelogChevronKnapp';
 
 interface Props {
     isOpen: boolean;
@@ -120,14 +120,14 @@ const ChangelogModal = ({ onClose, isOpen, changelog }: Props) => {
                         </ChangelogTextField>
                     </ModalMain>
                     <ModalButtons>
-                        <ChangelogChevronKnapp type="venstre" text="Forrige" visible={!isFirstPage} onClick={() => {
+                        <ChevronKnapp type="venstre" text="Forrige" visible={!isFirstPage} onClick={() => {
                             setPageNumber(currentPageNumber - 1);
                         }}/>
                         <NumberIndicator antall={changelog.items.length} valgtIndex={currentPageNumber} />
-                        {!isLastPage && <ChangelogChevronKnapp type="høyre" text="Neste" visible={true} onClick={() => {
+                        {!isLastPage && <ChevronKnapp type="høyre" text="Neste" visible={true} onClick={() => {
                             setPageNumber(Math.min(currentPageNumber + 1, changelog.items.length - 1));
                         }}/>}
-                        {isLastPage && <ChangelogChevronKnapp type="høyre" text="Ferdig" visible={true} onClick={() => {
+                        {isLastPage && <ChevronKnapp type="høyre" text="Ferdig" visible={true} onClick={() => {
                             onClose(isLastPage, changelog.version);
                         }}/>}
                     </ModalButtons>
