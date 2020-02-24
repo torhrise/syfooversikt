@@ -1,8 +1,5 @@
 export const themes = {
     color: {
-        darkBlue: "#0067c5",
-        darkGrayish: "#78706a",
-        deepBlue: "#005b82",
         invisible: "#00000",
         navBla: "#0067C5",
         navBlaLighten40: "#66A4DC",

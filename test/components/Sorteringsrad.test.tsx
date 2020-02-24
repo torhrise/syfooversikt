@@ -15,6 +15,6 @@ describe('Sorteringsrad', () => {
 
   it('Skal rendre navn, fodselsnummer, veilederident og veiledernavn Column-komponenter', () => {
     expect(component.find(SortingButton)).to.have.length(4);
-    expect(component.contains(kolonneForVeilederTekst)).to.equal(true);
+    expect(component.contains(<strong>{kolonneForVeilederTekst}</strong>)).to.equal(true);
   });
 });
