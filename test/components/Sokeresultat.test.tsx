@@ -10,7 +10,7 @@ import {
   veiledere,
   markertePersoner,
 } from '../data/fellesTestdata';
-import Toolbar from '../../src/components/toolbar/ToolbarWrapper';
+import Toolbar from '../../src/components/toolbar/Toolbar';
 import Personliste from '../../src/components/Personliste';
 import { OverviewTabType } from '../../src/konstanter';
 

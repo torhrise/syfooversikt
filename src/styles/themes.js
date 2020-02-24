@@ -8,7 +8,6 @@ export const themes = {
         navGra20: "#C6C2bf",
         navGra40: "#B7B1A9",
         navLysGra: "#E9E7E7",
-        darkGrayish: "#78706a",
         white: "#fff",
     },
 };

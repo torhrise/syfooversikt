@@ -3,7 +3,7 @@ import React, {
     useEffect,
     useState
 } from 'react';
-import { ToolbarWrapperProps } from '../ToolbarWrapper';
+import { ToolbarProps } from '../Toolbar';
 import {
     assignUsersToSelectedVeileder,
     filterVeiledereOnInput,
@@ -14,8 +14,6 @@ import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { DropdownButtonTexts } from '../Dropdown/DropdownButtons';
-import { OverviewTabType } from '../../../konstanter';
-import { Veilederinfo } from '../../../store/veilederinfo/veilederinfoTypes';
 
 interface StateProps {
     chosenVeilederIdent: string;
@@ -31,17 +29,7 @@ const dropdownButtonTexts: DropdownButtonTexts = {
     reset: 'Avbryt',
 };
 
-
-interface TildelVeilederProps {
-    veiledere: Veileder[];
-    markertePersoner: string[];
-    tabType: OverviewTabType;
-    aktivVeilederInfo: Veilederinfo;
-    buttonHandler: (veilederIdent: string) => void;
-    checkAllHandler: (checked: boolean) => void;
-}
-
-const TildelVeileder = (props: TildelVeilederProps) => {
+const TildelVeileder = (props: ToolbarProps) => {
 
     const stateFromProps = () => ({
         chosenVeilederIdent: '',
@@ -112,7 +100,7 @@ const TildelVeileder = (props: TildelVeilederProps) => {
 
     const chooseButtonHandler = (chosenVeilederIdent: string) => {
         if (chosenVeilederIdent && chosenVeilederIdent.length > 0) {
-            assignUsersToSelectedVeileder(props.buttonHandler, props.checkAllHandler, chosenVeilederIdent);
+            assignUsersToSelectedVeileder(props, chosenVeilederIdent);
             setState({
                 ...state,
                 showList: false,

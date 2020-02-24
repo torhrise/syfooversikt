@@ -1,13 +1,14 @@
 import * as React from 'react';
+import { ToolbarProps } from '../components/toolbar/Toolbar';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 import { sortVeiledereAlphabetically } from './veiledereUtils';
 
-export const assignUsersToSelectedVeileder = (buttonHandler: (veilederIdent: string) => void, checkAllHandler: (checked: boolean) => void, selectedVeilederIdent: string) => {
+export const assignUsersToSelectedVeileder = (({ buttonHandler, checkAllHandler }: ToolbarProps, selectedVeilederIdent: string) => {
   if (selectedVeilederIdent && selectedVeilederIdent.length > 0) {
     buttonHandler(selectedVeilederIdent);
   }
   checkAllHandler(false);
-};
+});
 
 export const filterVeiledereOnInput = ((veiledere: Veileder[], lowerCaseInput: string) => {
   const filteredVeiledere = veiledere.filter((veileder: Veileder) =>
