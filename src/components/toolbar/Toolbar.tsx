@@ -143,7 +143,7 @@ export default (props: ToolbarProps) => {
                 />
                 <TildelVeileder {...props} />
                 {props.tabType === OverviewTabType.ENHET_OVERVIEW && (
-                    <SearchVeileder onSelect={onVeilderIdentsChange} {...props} />)}
+                    <SearchVeileder {...props} />)}
             </Element>
             <PaginationContainer>
                 {shouldShowTogglePagination &&
