@@ -1,6 +1,5 @@
 export const themes = {
     color: {
-        darkGrayish: "#78706a",
         invisible: "#00000",
         navBla: "#0067C5",
         navBlaLighten40: "#66A4DC",
@@ -9,6 +8,7 @@ export const themes = {
         navGra20: "#C6C2bf",
         navGra40: "#B7B1A9",
         navLysGra: "#E9E7E7",
+        darkGrayish: "#78706a",
         white: "#fff",
     },
 };
