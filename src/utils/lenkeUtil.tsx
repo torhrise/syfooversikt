@@ -1,11 +1,11 @@
 import React from 'react';
 import Lenke from 'nav-frontend-lenker';
-import { fullAppAdeoUrl } from './miljoUtil';
+import { fullNaisUrlDefault } from './miljoUtil';
 import { capitalizeFirstLetter } from './stringUtil';
 
 const lenkeTilModiaBasertPaaFnr = (fnr: string) => {
   const path = `/sykefravaer/${fnr}`;
-  return fullAppAdeoUrl(path);
+  return fullNaisUrlDefault('syfomodiaperson', path);
 };
 
 export const formaterNavn = (navn?: string): string => {
