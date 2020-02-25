@@ -9,9 +9,6 @@ import { Veilederinfo } from '../../store/veilederinfo/veilederinfoTypes';
 import { OverviewTabType } from '../../konstanter';
 import Pagination from '../PaginationRow';
 import SearchVeileder from './SearchVeileder/SearchVeileder';
-import { updateVeilederIdentsFilter } from '../../store/filters/filter_actions';
-import countFilterAction from '../../metrics/countFilterAction';
-import { CounterFilterActionTypes } from '../../metrics/countFilterAction';
 import Sorteringsrad from '../Sorteringsrad';
 import { sortBrukere } from '../../store/sorting/sorting_actions';
 
@@ -118,11 +115,6 @@ export default (props: ToolbarProps) => {
     };
 
     const shouldShowTogglePagination = props.numberOfItemsTotal > PAGINATED_NUMBER_OF_ITEMS;
-
-    const onVeilderIdentsChange = (veilederIdents: string[]) => {
-        dispatch(updateVeilederIdentsFilter(veilederIdents));
-        countFilterAction(CounterFilterActionTypes.VEILEDER_SOK).next();
-    };
 
     return (<Toolbar>
         <InfoText>
