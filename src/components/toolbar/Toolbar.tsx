@@ -14,7 +14,6 @@ import { Checkbox } from 'nav-frontend-skjema';
 import { useDispatch } from 'react-redux';
 import { ToolbarWrapperProps } from './ToolbarWrapper';
 import {
-    onVeilderIdentsChange,
     PAGINATED_NUMBER_OF_ITEMS,
 } from '../utils/toolbar';
 import PaginationContainer from './PaginationContainer';
@@ -86,7 +85,7 @@ const Toolbar = (props: ToolbarProps) => {
                 <Element>
                     <TildelVeileder {...props} />
                     {props.tabType === OverviewTabType.ENHET_OVERVIEW && (
-                        <SearchVeileder onSelect={onVeilderIdentsChange} {...props} />)}
+                        <SearchVeileder {...props} />)}
                 </Element>
                 <PaginationContainer
                     numberOfItemsPerPage={numberOfItemsPerPage}

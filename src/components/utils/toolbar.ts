@@ -1,7 +1,3 @@
-import { updateVeilederIdentsFilter } from '../../store/filters/filter_actions';
-import countFilterAction, { CounterFilterActionTypes } from '../../metrics/countFilterAction';
-import { useDispatch } from 'react-redux';
-
 const texts = {
     showMore: 'Se alle',
     showLess: 'Vis færre',
@@ -21,11 +17,4 @@ export const getTogglePaginationText = (numberOfItemsPerPage: number, numberOfIt
     return numberOfItemsPerPage === numberOfItemsTotal
         ? texts.showLess
         : texts.showMore;
-};
-
-export const onVeilderIdentsChange = (veilederIdents: string[]) => {
-    const dispatch = useDispatch();
-
-    dispatch(updateVeilederIdentsFilter(veilederIdents));
-    countFilterAction(CounterFilterActionTypes.VEILEDER_SOK).next();
 };
