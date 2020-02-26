@@ -9,8 +9,6 @@ import {
 import { get } from '../../api/index';
 import * as actions from './veiledere_actions';
 import { VeiledereActionTypes } from './veiledere_actions';
-import { fullNaisUrlDefault } from '../../utils/miljoUtil';
-import { HOST_NAMES } from '../../konstanter';
 import { skalHenteReducer } from '../../utils/selectorUtil';
 
 export function* hentVeiledereSaga(
@@ -18,10 +16,8 @@ export function* hentVeiledereSaga(
 ) {
   yield put(actions.henterVeiledere(enhetId));
   try {
-    const host = HOST_NAMES.SYFOVEILEDER;
     const path = `${process.env.REACT_APP_SYFOVEILEDER_ROOT}/veiledere/enhet/${enhetId}`;
-    const url = fullNaisUrlDefault(host,path);
-    const data = yield call(get, url);
+    const data = yield call(get, path);
     yield put(actions.veiledereHentet(enhetId, data));
   } catch (e) {
     yield put(actions.hentVeiledereFeilet(enhetId));

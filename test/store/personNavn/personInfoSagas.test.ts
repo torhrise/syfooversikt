@@ -3,9 +3,7 @@ import { put, call } from 'redux-saga/effects';
 import { hentPersonInfoSaga } from '../../../src/store/personInfo/personInfoSagas';
 import { PersonInfoActionTypes } from '../../../src/store/personInfo/personInfo_actions';
 import { post } from '../../../src/api';
-import { fullNaisUrlDefault } from '../../../src/utils/miljoUtil';
 import { testdata } from '../../data/fellesTestdata';
-import { HOST_NAMES } from '../../../src/konstanter';
 
 describe('hentPersonInfoSagas', () => {
   const requestBody = [{ fnr: testdata.fnr1 }];
@@ -18,7 +16,7 @@ describe('hentPersonInfoSagas', () => {
   });
 
   it('Skal dernest kalle REST-tjenesten', () => {
-    const url = fullNaisUrlDefault(HOST_NAMES.SYFOPERSON, '/syfoperson/api/person/info');
+    const url = '/syfoperson/api/person/info';
     const nesteKall = call(post, url, forespurtAction.data);
     expect(generator.next().value).to.deep.equal(nesteKall);
   });

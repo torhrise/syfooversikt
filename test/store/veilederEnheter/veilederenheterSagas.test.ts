@@ -6,9 +6,7 @@ import {
 import { get } from '../../../src/api';
 import { hentVeilederenheter } from '../../../src/store/veilederenheter/veilederenheterSagas';
 import { VeilederenheterActionTypes } from '../../../src/store/veilederenheter/veilederenheter_actions';
-import { fullNaisUrlDefault } from '../../../src/utils/miljoUtil';
 import { enhet } from '../../data/fellesTestdata';
-import { HOST_NAMES } from '../../../src/konstanter';
 
 describe('veilederenheterSagas', () => {
   const generator = hentVeilederenheter();
@@ -19,7 +17,7 @@ describe('veilederenheterSagas', () => {
   });
 
   it('Skal dernest kalle REST-tjenesten', () => {
-    const url = fullNaisUrlDefault(HOST_NAMES.SYFOMOTEADMIN, '/syfomoteadmin/api/internad/veilederinfo/enheter');
+    const url = '/syfomoteadmin/api/internad/veilederinfo/enheter';
     const nesteKall = call(get, url);
     expect(generator.next().value).to.deep.equal(nesteKall);
   });
