@@ -4,9 +4,7 @@ import {
   call,
   put } from 'redux-saga/effects';
 import { pushBrukerArbeidstakerSaga } from '../../../src/store/veilederArbeidstaker/veilederArbeidstakerSagas';
-import { fullNaisUrlDefault } from '../../../src/utils/miljoUtil';
 import { post } from '../../../src/api';
-import { HOST_NAMES } from '../../../src/konstanter';
 
 describe('veilederArbeidstakerSagas', () => {
   describe('fordel liste av brukere til en veileder', () => {

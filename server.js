@@ -141,6 +141,36 @@ const startServer = (html) => {
                 next(err);
             },
         }));
+        server.use('/syfomoteadmin/api', proxy('syfomoteadmin.default',  {
+            https: false,
+            proxyReqPathResolver: function(req) {
+                return `/syfomoteadmin/api${req.url}`
+            },
+            proxyErrorHandler: function(err, res, next) {
+                console.error("Error in proxy for syfomoteadmin", err);
+                next(err);
+            },
+        }));
+        server.use('/syfoperson/api', proxy('syfoperson.default',  {
+            https: false,
+            proxyReqPathResolver: function(req) {
+                return `/syfoperson/api${req.url}`
+            },
+            proxyErrorHandler: function(err, res, next) {
+                console.error("Error in proxy for syfoperson", err);
+                next(err);
+            },
+        }));
+        server.use('/syfoveileder/api', proxy('syfoveileder.default',  {
+            https: false,
+            proxyReqPathResolver: function(req) {
+                return `/syfoveileder/api${req.url}`
+            },
+            proxyErrorHandler: function(err, res, next) {
+                console.error("Error in proxy for syfoveileder", err);
+                next(err);
+            },
+        }));
     }
 
     const port = process.env.PORT || 8080;
