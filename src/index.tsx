@@ -11,9 +11,7 @@ import {
 } from './store/modiacontext/modiacontext_actions';
 import { setAktivEnhetHentet } from './store/veilederenheter/veilederenheter_actions';
 import './styles/styles.less';
-import {
-  finnMiljoStreng,
-} from './utils/miljoUtil';
+import { fullNaisUrlDefault } from './utils/miljoUtil';
 import AppRouter from './routers/AppRouter';
 import {
   config,
@@ -38,7 +36,9 @@ const handleChangeEnhet = (data: string) => {
 };
 
 const handlePersonsokSubmit = (nyttFnr: string) => {
-  (window as any).location = `https://app${finnMiljoStreng()}.adeo.no/sykefravaer/${nyttFnr}`;
+  const host = 'syfomodiaperson';
+  const path = `/sykefravaer/${nyttFnr}`;
+  (window as any).location = fullNaisUrlDefault(host, path);
 };
 
 setEventHandlersOnConfig(handlePersonsokSubmit, handleChangeEnhet);
