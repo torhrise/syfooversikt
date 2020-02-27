@@ -66,6 +66,6 @@ export default () => {
         <ChangelogModal onClose={(didComplete, version) => {
             setShowChangelog(false);
             saveChangelogVersionViewed(version);
-          }} isOpen={showChangelog} changelog={latestChangelog} />
+        }} isOpen={showChangelog} changelog={latestChangelog} />
     );
 };

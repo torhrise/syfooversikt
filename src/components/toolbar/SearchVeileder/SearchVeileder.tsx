@@ -34,8 +34,8 @@ const dropdownButtonTexts: DropdownButtonTexts = {
 const SearchVeileder = (props: VeilederIdentsFilterProps) => {
     const [showList, setShowList] = useState(false);
     const [input, setInput] = useState('');
-    const dispatch = useDispatch();
     const appState = useSelector((state: ApplicationState) => state);
+    const dispatch = useDispatch();
     const selectedVeilederIdents: string[] = appState.filters.selectedVeilederIdents;
 
     const [activeFilters, setActiveFilters] = useState(selectedVeilederIdents.length);

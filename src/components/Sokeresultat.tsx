@@ -2,13 +2,13 @@ import React, {
   Component,
 } from 'react';
 import styled from 'styled-components';
-import Toolbar from './toolbar/Toolbar';
 import Personliste from './Personliste';
 import { VeilederArbeidstaker } from '../store/veilederArbeidstaker/veilederArbeidstakerTypes';
 import { PersonregisterState } from '../store/personregister/personregisterTypes';
 import { Veilederinfo } from '../store/veilederinfo/veilederinfoTypes';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 import { OverviewTabType } from '../konstanter';
+import ToolbarWrapper from './toolbar/ToolbarWrapper';
 
 interface SokeresultatState {
   markertePersoner: string[];
@@ -33,16 +33,6 @@ const lagListe = (markertePersoner: string[], veilederIdent: string, enhet: stri
     fnr,
     enhet,
   }));
-};
-
-const paginatePersonregister = (personregister: PersonregisterState, startItem: number, endItem: number) => {
-  const allFnr = Object.keys(personregister);
-  return allFnr
-    .slice(startItem, endItem + 1)
-    .reduce((slicedPersonregister, fnr) => {
-      slicedPersonregister[fnr] = personregister[fnr];
-      return slicedPersonregister;
-    }, {} as PersonregisterState);
 };
 
 const SokeresultatContainer = styled.div`
@@ -146,7 +136,7 @@ class Sokeresultat extends Component<SokeresultatProps, SokeresultatState> {
     const allFnr = Object.keys(personregister);
 
     return (<SokeresultatContainer>
-      <Toolbar
+      <ToolbarWrapper
         numberOfItemsTotal={allFnr.length}
         onPageChange={this.onPageChange}
         tabType={tabType}

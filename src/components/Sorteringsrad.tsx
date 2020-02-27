@@ -3,7 +3,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import {
   Column,
-  Row,
 } from 'nav-frontend-grid';
 import themes from '../styles/themes';
 import { SortingType } from '../utils/hendelseFilteringUtils';
@@ -18,25 +17,6 @@ const tekster = {
   overskriftVeileder: 'Veileder',
   virksomhet: 'Virksomhet',
 };
-const RowStyled = styled(Row)`
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-`;
-
-export const OverskriftRad = styled(RowStyled)`
-  display: flex;
-  align-items: center;
-  /* padding: .5rem 0; */
-  border-top: 1px solid ${themes.color.navGra20};
-  border-bottom: 1px solid ${themes.color.navGra20};
-  font-weight: 700;
-`;
-
-const IngressRad = styled(RowStyled)`
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid ${themes.color.navGra40};
-`;
 
 export const GrayChevron = styled(Chevron)`
   margin-left: 0.25em;
@@ -80,15 +60,15 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
 
   const onSortingButtonClicked = (sortingTypeAsc: SortingType, sortingTypeDesc: SortingType) => {
     const nextSortingType: SortingType = currentSortingType === sortingTypeAsc
-              ? sortingTypeDesc
-              : sortingTypeAsc;
+        ? sortingTypeDesc
+        : sortingTypeAsc;
     setCurrentSortingType(nextSortingType);
     onSortClick(nextSortingType);
   };
 
   const chevronType = (sortingTypeAsc: SortingType) => {
     if (currentSortingType === sortingTypeAsc) {
-         return 'opp';
+      return 'opp';
     }
     return 'ned';
   };
@@ -125,23 +105,21 @@ const Sorteringsrad = ({ onSortClick }: SortingRowProps) => {
   ];
 
   return (
-    <>
-      <IngressRad>
-        <Column className="emptyColumn" xs={'1'} />
-        {columns.map((col, index) => {
-          return (
-              <FlexColumn key={index} xs={col.xs}>
-                <SortingButton onClick={() => onSortingButtonClicked(col.sortingTypeAsc, col.sortingTypeDesc)}>
-                  <strong>{col.sortingText}</strong>
-                </SortingButton>
-                {col.extraText}
-                <GrayChevron type={chevronType(col.sortingTypeAsc)}/>
-              </FlexColumn>
-          );
-        })}
-        <Column xs={'2'} />
-      </IngressRad>
-    </>
+      <>
+        {
+          columns.map((col, index) => {
+            return (
+                <FlexColumn key={index} xs={col.xs}>
+                  <SortingButton onClick={() => onSortingButtonClicked(col.sortingTypeAsc, col.sortingTypeDesc)}>
+                    {col.sortingText}
+                  </SortingButton>
+                  {col.extraText}
+                  <GrayChevron type={chevronType(col.sortingTypeAsc)}/>
+                </FlexColumn>
+            );
+          })
+        }
+      </>
   );
 };
 

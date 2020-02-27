@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { ToolbarProps } from '../components/toolbar/Toolbar';
 import { Veileder } from '../store/veiledere/veiledereTypes';
 import { sortVeiledereAlphabetically } from './veiledereUtils';
+import { ToolbarWrapperProps } from '../components/toolbar/ToolbarWrapper';
 
-export const assignUsersToSelectedVeileder = (({ buttonHandler, checkAllHandler }: ToolbarProps, selectedVeilederIdent: string) => {
+export const assignUsersToSelectedVeileder = (({ buttonHandler, checkAllHandler }: ToolbarWrapperProps, selectedVeilederIdent: string) => {
   if (selectedVeilederIdent && selectedVeilederIdent.length > 0) {
     buttonHandler(selectedVeilederIdent);
   }

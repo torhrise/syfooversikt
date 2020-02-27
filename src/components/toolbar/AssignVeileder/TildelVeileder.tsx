@@ -3,7 +3,6 @@ import React, {
     useEffect,
     useState
 } from 'react';
-import { ToolbarProps } from '../Toolbar';
 import {
     assignUsersToSelectedVeileder,
     filterVeiledereOnInput,
@@ -14,6 +13,7 @@ import { Veileder } from '../../../store/veiledere/veiledereTypes';
 import OpenDropdownButton from '../OpenDropdownButton/OpenDropdownButton';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { DropdownButtonTexts } from '../Dropdown/DropdownButtons';
+import { ToolbarWrapperProps } from '../ToolbarWrapper';
 
 interface StateProps {
     chosenVeilederIdent: string;
@@ -29,7 +29,7 @@ const dropdownButtonTexts: DropdownButtonTexts = {
     reset: 'Avbryt',
 };
 
-const TildelVeileder = (props: ToolbarProps) => {
+const TildelVeileder = (props: ToolbarWrapperProps) => {
 
     const stateFromProps = () => ({
         chosenVeilederIdent: '',
