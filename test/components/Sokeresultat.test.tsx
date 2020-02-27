@@ -45,7 +45,7 @@ describe('Sokeresultat', () => {
       checkAllHandler={dummyFunksjon}
       veiledere={veiledere}
       markertePersoner={markertePersoner}
-    />));
+      setPageInfo={()=>{}}/>));
   });
   it('Skal inneholde liste av personer', () => {
     expect(component.find(Personliste)).to.have.length(1);
