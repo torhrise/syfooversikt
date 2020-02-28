@@ -26,16 +26,16 @@ const SearchIconBlue = styled(SearchIcon)`
 const ButtonDiv = styled.div`
   display: flex;
   cursor: pointer;
-  border-left: 1px solid ${themes.color.navGra20};
   align-items: center;
   justify-content: flex-start;
-  height: 100%
-
+  height: 100%;
+  border: 1px solid ${themes.color.darkGrayish};
+  border-radius: 4px;
   ${(props: ButtonDivProps) => props.active && activeStyle};
 `;
 
 const DropdownButtonButton = styled.button`
-  padding: 1em 2em 1em 1em;
+  padding: .5em 1em;
   margin: 0;
   width: 100%;
   background: none;
@@ -73,9 +73,9 @@ const OpenDropdownButton = (props: AssignToVeilederButtonProps) => {
     return (<ButtonDiv className="openDropdownButton" active={props.userIsChecked}>
         <DropdownButtonButton className="openDropdownButton__button" onClick={props.onClick}>
             {props.search &&
-                <SearchIconWrapper>
-                    <SearchIconBlue className="inputWithSearchIcon__icon"/>
-                </SearchIconWrapper>
+            <SearchIconWrapper>
+                <SearchIconBlue className="inputWithSearchIcon__icon"/>
+            </SearchIconWrapper>
             }
             {props.text}
             <DropdownButtonChevron className="openDropdownButton__chevron" type={chevronType(props.showList)}/>

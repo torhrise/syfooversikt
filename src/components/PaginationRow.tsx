@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import {
-    useEffect,
-    useState,
+  useEffect,
+  useState,
 } from 'react';
 import styled from 'styled-components';
 import ChevronKnapp from './ChevronKnapp';
+import themes from '../styles/themes';
+import Clickable from './toolbar/Clickable';
 
 const PaginationItems = styled.div`
   display: flex;
@@ -13,28 +15,30 @@ const PaginationItems = styled.div`
   justify-content: space-between;
 `;
 
-const PaginationText = styled.div`
-  display: inline-flex;
-  justify-items: center;
-  white-space: nowrap;
-`;
-
 interface PaginationProps {
   startPage?: number;
   numberOfItems: number;
   maxNumberPerPage: number;
   onPageChange(start: number, end: number, pageNumber: number): void;
 }
+
+const Element = styled.div`
+  display: flex;
+  justify-content: center;
+  border-left: 2px solid ${themes.color.navGra40};
+  width: 2.5em;
+`;
+
 const PaginationRow = ({
-  numberOfItems,
-  startPage = 0,
-  maxNumberPerPage,
-  onPageChange,
-}: PaginationProps) => {
+                         numberOfItems,
+                         startPage = 0,
+                         maxNumberPerPage,
+                         onPageChange,
+                       }: PaginationProps) => {
 
   const getNumberOfPages = () => {
     if (numberOfItems === maxNumberPerPage) {
-        return 0;
+      return 0;
     }
     return Math.floor(numberOfItems / maxNumberPerPage);
   };
@@ -69,17 +73,23 @@ const PaginationRow = ({
     };
   };
 
-  const getCurrentPageAsNormalizedText = () => `${currentPage + 1}`;
-  const getLastPageAsNormalizedText = () => `${getNumberOfPages() + 1}`;
-
   return (
-    <PaginationItems>
-        <ChevronKnapp visible={currentPage !== 0} type="venstre" onClick={onPreviousClick} />
-        <PaginationText>
-            <p>Side <strong>{getCurrentPageAsNormalizedText()}</strong> av <strong>{getLastPageAsNormalizedText()}</strong></p>
-        </PaginationText>
-        <ChevronKnapp visible={currentPage !== getNumberOfPages()} type="høyre" onClick={onNextClick} />
-    </PaginationItems>
+      <PaginationItems>
+        <Element>
+          <ChevronKnapp disabled={currentPage === 0} type="venstre" onClick={onPreviousClick} />
+        </Element>
+        {currentPage !== getNumberOfPages() &&
+        <Element>
+          <Clickable index={currentPage} setPage={setCurrentPage} currentPage={currentPage} />
+        </Element>
+        }
+        <Element>
+          <Clickable index={getNumberOfPages()} setPage={setCurrentPage} currentPage={currentPage} />
+        </Element>
+        <Element>
+          <ChevronKnapp disabled={currentPage === getNumberOfPages()} type="høyre" onClick={onNextClick} />
+        </Element>
+      </PaginationItems>
   );
 };
 
