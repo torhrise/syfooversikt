@@ -18,7 +18,8 @@
     "start": "node ./server.js",
     "start-local": "node ./server.js local",
     "start-opplaering": "node ./server.js opplaering",
-    "test": "mocha -r ts-node/register -r ignore-styles -r jsdom-global/register ./test/setup.tsx ./test/**/*.tsx ./test/**/*.ts"
+    "test": "mocha -r ts-node/register -r ignore-styles -r jsdom-global/register ./test/setup.tsx ./test/**/*.tsx ./test/**/*.ts",
+    "sec-audit": "npm audit --audit-level=moderate"
   },
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
@@ -140,7 +141,8 @@
     "workbox-webpack-plugin": "3.6.3"
   },
   "devDependencies": {
-    "@babel/core": "7.2.2",
+    "@babel/cli": "7.10.1",
+    "@babel/core": "7.10.2",
     "@babel/preset-env": "7.2.3",
     "@babel/preset-react": "7.0.0",
     "@babel/preset-typescript": "7.1.0",
@@ -151,8 +153,6 @@
     "@types/jsdom": "12.2.1",
     "@types/mocha": "5.2.5",
     "@types/react-modal": "3.8.3",
-    "babel-cli": "6.26.0",
-    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "8.0.1",
     "babel-istanbul": "0.12.2",
     "babel-plugin-istanbul": "6.0.0",
@@ -170,8 +170,8 @@
     "less": "3.9.0",
     "less-loader": "5.0.0",
     "less-plugin-autoprefix": "2.0.0",
-    "mkdirp": "0.5.1",
-    "mocha": "5.2.0",
+    "mkdirp": "0.5.5",
+    "mocha": "7.2.0",
     "npm-run-all": "4.1.5",
     "prettier": "1.15.3",
     "rimraf": "2.6.2",
@@ -182,8 +182,8 @@
     "typescript": "3.7.5",
     "typescript-styled-plugin": "0.15.0",
     "webpack": "4.41.5",
-    "webpack-cli": "3.1.0",
-    "webpack-dev-server": "3.1.11"
+    "webpack-cli": "3.3.11",
+    "webpack-dev-server": "3.11.0"
   },
   "eslintConfig": {
     "extends": "react-app"
