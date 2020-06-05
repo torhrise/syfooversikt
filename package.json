@@ -18,7 +18,8 @@
     "start": "node ./server.js",
     "start-local": "node ./server.js local",
     "start-opplaering": "node ./server.js opplaering",
-    "test": "mocha -r ts-node/register -r ignore-styles -r jsdom-global/register ./test/setup.tsx ./test/**/*.tsx ./test/**/*.ts"
+    "test": "mocha -r ts-node/register -r ignore-styles -r jsdom-global/register ./test/setup.tsx ./test/**/*.tsx ./test/**/*.ts",
+    "sec-audit": "npm audit --audit-level=moderate"
   },
   "author": "DigiSyfo <digisyfo@nav.no>",
   "license": "ISC",
