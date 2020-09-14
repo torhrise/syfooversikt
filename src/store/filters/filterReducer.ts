@@ -11,12 +11,14 @@ export interface FilterState {
 }
 
 export interface HendelseTypeFilters {
+    arbeidsgiverOnskerMote: boolean;
     onskerMote: boolean;
     svartMote: boolean;
     ufordeltBruker: boolean;
 }
 
 const initialHendelseFilter: HendelseTypeFilters = {
+    arbeidsgiverOnskerMote: false,
     onskerMote: false,
     svartMote: false,
     ufordeltBruker: false,

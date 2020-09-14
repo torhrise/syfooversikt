@@ -9,8 +9,10 @@ import { ApplicationState } from '../store';
 import { HendelseTypeFilters } from '../store/filters/filterReducer';
 import { updateHendelseFilterAction } from '../store/filters/filter_actions';
 import { OverviewTabType } from '../konstanter';
+import { toggleOppfolgingsplanLPSBistand } from '../toggle';
 
 export const HendelseTekster: any = {
+    ARBEIDSGIVER_BISTAND: 'Arbeidsgiver ønsker bistand',
     UFORDELTE_BRUKERE: 'Ufordelte brukere', // Ikke tildelt veileder
     MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
     MOTEPLANLEGGER_SVAR: 'Svar møteplanlegger', // Svar fra møteplanlegger
@@ -23,6 +25,7 @@ interface Props extends ComponentPropsWithoutRef<any> {
 
 const enkeltFilterFraTekst = (tekst: string, checked: boolean): HendelseTypeFilters => {
     const filter: HendelseTypeFilters = {
+        arbeidsgiverOnskerMote: false,
         onskerMote: false,
         svartMote: false,
         ufordeltBruker: false,
@@ -32,6 +35,7 @@ const enkeltFilterFraTekst = (tekst: string, checked: boolean): HendelseTypeFilt
 
 const lagNyttFilter = (forrigeFilter: HendelseTypeFilters, tekst: string, checked: boolean): HendelseTypeFilters => {
     const filter = { ...forrigeFilter };
+    if (tekst === HendelseTekster.ARBEIDSGIVER_BISTAND) filter.arbeidsgiverOnskerMote = checked;
     if (tekst === HendelseTekster.MOTEBEHOV) filter.onskerMote = checked;
     if (tekst === HendelseTekster.MOTEPLANLEGGER_SVAR) filter.svartMote = checked;
     if (tekst === HendelseTekster.UFORDELTE_BRUKERE) filter.ufordeltBruker = checked;
@@ -39,6 +43,7 @@ const lagNyttFilter = (forrigeFilter: HendelseTypeFilters, tekst: string, checke
 };
 
 const isCheckedInState = (state: HendelseTypeFilters, tekst: string): boolean => {
+    if (tekst === HendelseTekster.ARBEIDSGIVER_BISTAND) return state.arbeidsgiverOnskerMote;
     if (tekst === HendelseTekster.MOTEBEHOV) return state.onskerMote;
     if (tekst === HendelseTekster.MOTEPLANLEGGER_SVAR) return state.svartMote;
     if (tekst === HendelseTekster.UFORDELTE_BRUKERE) return state.ufordeltBruker;
@@ -64,6 +69,8 @@ export default ({ className, personRegister, tabType }: Props) => {
     const elementer = Object.keys(HendelseTekster).filter((key) => {
         if (HendelseTekster[key] === HendelseTekster.UFORDELTE_BRUKERE && tabType === OverviewTabType.MY_OVERVIEW) {
             return false;
+        } else if (HendelseTekster[key] === HendelseTekster.ARBEIDSGIVER_BISTAND) {
+            return toggleOppfolgingsplanLPSBistand();
         }
         return true;
     }).map((key) => {

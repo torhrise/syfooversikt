@@ -5,6 +5,7 @@
     "veilederIdent": null,
     "motebehovUbehandlet": null,
     "moteplanleggerUbehandlet": true,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": []
   },
   {
@@ -13,6 +14,7 @@
     "veilederIdent": null,
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": null,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": []
   },
   {
@@ -22,6 +24,7 @@
     "veilederIdent":"Z101010",
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": true,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": []
   },
   {
@@ -31,6 +34,7 @@
     "veilederIdent":"Z101010",
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": true,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": [
       {
         "virksomhetsnummer": "12345",
@@ -45,6 +49,7 @@
     "veilederIdent": null,
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": null,
+    "oppfolgingsplanLPSBistandUbehandlet": true,
     "oppfolgingstilfeller": [
       {
         "virksomhetsnummer": "12345",
@@ -59,6 +64,7 @@
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,
     "moteplanleggerUbehandlet": true,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": []
   },
   {
@@ -68,6 +74,7 @@
     "veilederIdent": null,
     "motebehovUbehandlet": true,
     "moteplanleggerUbehandlet": null,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": []
   },
   {
@@ -77,6 +84,7 @@
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,
     "moteplanleggerUbehandlet": true,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": []
   },
   {
@@ -86,6 +94,7 @@
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,
     "moteplanleggerUbehandlet": true,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": []
   },
   {
@@ -95,6 +104,7 @@
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,
     "moteplanleggerUbehandlet": true,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": []
   },
   {
@@ -104,6 +114,7 @@
     "veilederIdent": "Z202020",
     "motebehovUbehandlet": null,
     "moteplanleggerUbehandlet": true,
+    "oppfolgingsplanLPSBistandUbehandlet": null,
     "oppfolgingstilfeller": []
   }
 ]
