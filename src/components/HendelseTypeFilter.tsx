@@ -26,7 +26,6 @@ const enkeltFilterFraTekst = (tekst: string, checked: boolean): HendelseTypeFilt
         onskerMote: false,
         svartMote: false,
         ufordeltBruker: false,
-        ikkeIAktivitet: false,
     };
     return lagNyttFilter(filter, tekst, checked);
 };

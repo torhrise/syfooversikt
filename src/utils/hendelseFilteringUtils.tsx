@@ -102,8 +102,6 @@ export const filtrerPersonregister = (personregister: PersonregisterState, filte
                 cv[fnr] = personData;
             } else if (filter.ufordeltBruker && isNullOrUndefined(personData.tildeltVeilederIdent)) {
                 cv[fnr] = personData;
-            } else if (filter.ikkeIAktivitet && personData.oppfolgingstilfeller && personData.oppfolgingstilfeller.length > 0) {
-                cv[fnr] = personData;
             }
             return cv;
         }, {} as PersonregisterState);

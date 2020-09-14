@@ -14,14 +14,12 @@ export interface HendelseTypeFilters {
     onskerMote: boolean;
     svartMote: boolean;
     ufordeltBruker: boolean;
-    ikkeIAktivitet: boolean;
 }
 
 const initialHendelseFilter: HendelseTypeFilters = {
     onskerMote: false,
     svartMote: false,
     ufordeltBruker: false,
-    ikkeIAktivitet: false,
 };
 
 const inititalState: FilterState = {
