@@ -43,6 +43,7 @@ const generatePersonoversiktEnhetFromPersons = (persons) => {
             veilederIdent: 'Z202020',
             motebehovUbehandlet: null,
             moteplanleggerUbehandlet: true,
+            oppfolgingsplanLPSBistandUbehandlet: null,
             oppfolgingstilfeller: []
         };
     })

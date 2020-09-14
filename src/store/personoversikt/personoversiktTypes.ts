@@ -5,6 +5,7 @@ export interface PersonoversiktStatus {
   veilederIdent: string | null;
   motebehovUbehandlet: boolean | null;
   moteplanleggerUbehandlet: boolean | null;
+  oppfolgingsplanLPSBistandUbehandlet: boolean | null;
   oppfolgingstilfeller: Oppfolgingstilfelle[] | [];
 }
 

@@ -6,6 +6,7 @@ export interface PersonData {
   navn: string;
   harMotebehovUbehandlet: boolean;
   harMoteplanleggerUbehandlet: boolean;
+  harOppfolgingsplanLPSBistandUbehandlet: boolean;
   skjermingskode: Skjermingskode;
   markert: boolean;
   tildeltEnhetId: string;
