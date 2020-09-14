@@ -17,13 +17,6 @@ export const veilederEllerNull = (veileder?: Veileder) => {
   return null;
 };
 
-export const hendelsestypeString = {
-  motebehovMote: 'Møtebehov/Møte',
-  motebehov: 'Møtebehov',
-  mote: 'Møte',
-  ingen: '',
-};
-
 export const mapPersonregisterToCompanyList = (personregister: PersonregisterState) => {
   const allCompanyNames: string[] = [];
   Object.keys(personregister).forEach((fnr) => {
@@ -42,17 +35,4 @@ export const companyNamesFromPersonData = (p: PersonData): string[] => {
 
 export const firstCompanyNameFromPersonData = (p: PersonData) => {
     return companyNamesFromPersonData(p).shift();
-};
-
-export const hendelsestype = (person: PersonData) => {
-  if (person.harMotebehovUbehandlet) {
-    if (person.harMoteplanleggerUbehandlet) {
-      return hendelsestypeString.motebehovMote;
-    }
-    return hendelsestypeString.motebehov;
-  }
-  if (person.harMoteplanleggerUbehandlet) {
-    return hendelsestypeString.mote;
-  }
-  return hendelsestypeString.ingen;
 };

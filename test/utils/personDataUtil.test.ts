@@ -1,10 +1,6 @@
 import { expect } from 'chai';
 import { PersonData } from '../../src/store/personregister/personregisterTypes';
-import {
-  hendelsestype,
-  hendelsestypeString,
-  skjermingskode,
-} from '../../src/utils/personDataUtil';
+import { skjermingskode} from '../../src/utils/personDataUtil';
 import { testdata } from '../data/fellesTestdata';
 
 const INGEN = '';
@@ -37,61 +33,6 @@ describe('personDataUtils', () => {
       const returnertString = skjermingskode(person);
 
       expect(returnertString).to.equal(INGEN);
-    });
-  });
-
-  describe('hendelsestype', () => {
-    it('Skal returnere en string både møtebehov og møte hvis personen har begge deler', () => {
-      const person: PersonData = {
-        navn: testdata.navn1,
-        harMotebehovUbehandlet: true,
-        harMoteplanleggerUbehandlet: true,
-        skjermingskode: testdata.skjermingskode.ingen,
-        markert: false,
-      } as PersonData;
-
-      const returnertString = hendelsestype(person);
-
-      expect(returnertString).to.equal(hendelsestypeString.motebehovMote);
-    });
-    it('Skal returnere en string med møtebehov hvis personen bare har møtebehov', () => {
-      const person: PersonData = {
-        navn: testdata.navn1,
-        harMotebehovUbehandlet: true,
-        harMoteplanleggerUbehandlet: false,
-        skjermingskode: testdata.skjermingskode.ingen,
-        markert: false,
-      } as PersonData;
-
-      const returnertString = hendelsestype(person);
-
-      expect(returnertString).to.equal(hendelsestypeString.motebehov);
-    });
-    it('Skal returnere en string med møte hvis personen bare har møte', () => {
-      const person: PersonData = {
-        navn: testdata.navn1,
-        harMotebehovUbehandlet: false,
-        harMoteplanleggerUbehandlet: true,
-        skjermingskode: testdata.skjermingskode.ingen,
-        markert: false,
-      } as PersonData;
-
-      const returnertString = hendelsestype(person);
-
-      expect(returnertString).to.equal(hendelsestypeString.mote);
-    });
-    it('Skal returnere en tom string hvis personen har ingen hendelser', () => {
-      const person: PersonData = {
-        navn: testdata.navn1,
-        harMotebehovUbehandlet: false,
-        harMoteplanleggerUbehandlet: false,
-        skjermingskode: testdata.skjermingskode.ingen,
-        markert: false,
-      } as PersonData;
-
-      const returnertString = hendelsestype(person);
-
-      expect(returnertString).to.equal(hendelsestypeString.ingen);
     });
   });
 });
