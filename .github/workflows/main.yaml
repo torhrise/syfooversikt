@@ -1,9 +1,6 @@
-name: master
+name: main
 
-on:
-  push:
-    branches:
-      - master
+on: push
 
 env:
   APP_NAME: syfooversikt
@@ -57,6 +54,7 @@ jobs:
           docker push ${IMAGE}
 
   deploy-dev:
+    if: github.ref == 'refs/heads/master'
     name: Deploy to NAIS Dev-fss
     needs: build
     runs-on: ubuntu-latest
@@ -69,6 +67,7 @@ jobs:
           RESOURCE: naiserator-dev.yaml
 
   deploy-prod:
+    if: github.ref == 'refs/heads/master'
     name: Deploy to NAIS Prod-fss
     needs: deploy-dev
     runs-on: ubuntu-latest
@@ -80,11 +79,3 @@ jobs:
           CLUSTER: prod-fss
           RESOURCE: naiserator-prod.yaml
 
-  pling:
-    name: Pling!
-    needs: deploy-prod
-    runs-on: ubuntu-latest
-    steps:
-      - name: Pling
-        run: |
-          curl -s "https://syfoping.herokuapp.com/regDeploy?deployedBy=${COMMITER_NAME}&app=${APP_NAME}"
