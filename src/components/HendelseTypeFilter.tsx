@@ -12,10 +12,10 @@ import { OverviewTabType } from '../konstanter';
 import { toggleOppfolgingsplanLPSBistand } from '../toggle';
 
 export const HendelseTekster: any = {
-    ARBEIDSGIVER_BISTAND: 'Arbeidsgiver ønsker bistand',
     UFORDELTE_BRUKERE: 'Ufordelte brukere', // Ikke tildelt veileder
-    MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
+    ARBEIDSGIVER_BISTAND: 'Arbeidsgiver ønsker bistand',
     MOTEPLANLEGGER_SVAR: 'Svar møteplanlegger', // Svar fra møteplanlegger
+    MOTEBEHOV: 'Ønsker møte', // MØTEBEHOV - UBEHANDLET
 };
 
 interface Props extends ComponentPropsWithoutRef<any> {
