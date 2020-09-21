@@ -5,8 +5,14 @@ import { fullNaisUrlDefault } from './miljoUtil';
 import { capitalizeFirstLetter } from './stringUtil';
 
 const lenkeTilModiaBasertPaaFnr = (fnr: string, personData: PersonData) => {
+  let path = `/sykefravaer/${fnr}`;
   const skalTilMoteoversikt = personData.harMotebehovUbehandlet || personData.harMoteplanleggerUbehandlet;
-  const path = `/sykefravaer/${fnr}${skalTilMoteoversikt ? '/moteoversikt' : ''}`;
+  const skalTilOppfolgingsplanOversikt = personData.harOppfolgingsplanLPSBistandUbehandlet;
+  if (skalTilOppfolgingsplanOversikt) {
+    path = `${path}/oppfoelgingsplaner`;
+  } else if (skalTilMoteoversikt) {
+    path = `${path}/moteoversikt`;
+  }
   return fullNaisUrlDefault('syfomodiaperson', path);
 };
 
@@ -29,5 +35,15 @@ export const formaterNavn = (navn?: string): string => {
 export const lenkeTilModiaEnkeltperson = (personData: PersonData, fnr: string) => {
   return (<Lenke href={lenkeTilModiaBasertPaaFnr(fnr, personData)} >
       {formaterNavn(personData.navn)}
+  </Lenke>);
+};
+
+export const lenkeTilModiaEnkeltpersonFnr = (personData: PersonData, fnr: string) => {
+  const hasPersonName = personData.navn && personData.navn.length > 0;
+  if (hasPersonName) {
+    return fnr;
+  }
+  return (<Lenke href={lenkeTilModiaBasertPaaFnr(fnr, personData)} >
+    {fnr}
   </Lenke>);
 };
