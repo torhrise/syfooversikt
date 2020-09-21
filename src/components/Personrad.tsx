@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import { Column } from 'nav-frontend-grid';
 import { Checkbox } from 'nav-frontend-skjema';
 import themes from '../styles/themes';
-import { lenkeTilModiaEnkeltperson } from '../utils/lenkeUtil';
+import {
+    lenkeTilModiaEnkeltperson,
+    lenkeTilModiaEnkeltpersonFnr,
+} from '../utils/lenkeUtil';
 import { PersonData } from '../store/personregister/personregisterTypes';
 import {
   skjermingskode,
@@ -68,7 +71,7 @@ export default (props: PersonradProps) => {
         />
       </Column>
       <Column xs={'3'}>{lenkeTilModiaEnkeltperson(personData, fnr)}</Column>
-      <Column xs={'2'}>{fnr}</Column>
+      <Column xs={'2'}>{lenkeTilModiaEnkeltpersonFnr(personData, fnr)}</Column>
       <Column xs={'2'}>{firstCompanyNameFromPersonData(personData)}</Column>
       <Column xs={'2'}>{veilederName}</Column>
       <Column xs={'2'}><NoWrapText>{skjermingskode(personData)}</NoWrapText></Column>
