@@ -24,7 +24,7 @@ function readChangelog(changelogDir, versionCode) {
         if (!Number.isInteger(fileversion)) {
             throw new Error(`Invalid version, expected an integer but got ${fileversion}`);
         }
-        if (!ext === "json") {
+        if (ext !== "json") {
             throw new Error(`Invalid changelog format, expected json but got ${ext}`);
         }
         const json = fs.readFileSync(path.join(changelogDir, file), { encoding: 'UTF-8' })
